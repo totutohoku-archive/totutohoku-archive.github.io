@@ -1,0 +1,1214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=x-sjis">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
+<TITLE>マインスイーパフラグ研究所</TITLE>
+</HEAD>
+<BODY background="1052.gif" alink="#ff7f00" bgcolor="#e0e0e0" link="#ff0000" text="#000000" vlink="#400080">
+<P><BR>
+<FONT size="+3"><B><FONT size="+3">マインスイーパフラグの戦略研究ページ</FONT></B></FONT><BR>
+<BR>
+とつげき東北は、マインスイーパフラグをするにあたって思考・開発した数理的戦略を、メモ帳にメモっていた。<BR>
+それを、友達の要請によってhtml文書としたのがこのページである。読みやすさなどは全く考慮されていない。<BR>
+<BR>
+<BR>
+<B><FONT size="+3">凡例</FONT></B><BR>
+<BR>
+<B>Ｐ</B><BR>
+はハタを表す。<BR>
+<BR>
+<B>無</B><BR>
+は、周りの8ブロックに1つもハタのないマスを表す。<BR>
+<BR>
+<B>１、２、・・・、８</B><BR>
+は、その数だけ周りにハタのあるマスを表す。<BR>
+<BR>
+<B>×</B><BR>
+は、「考慮する必要がないマス」であることを示す。<BR>
+例：<BR>
+×<BR>
+×１１<BR>
+×<BR>
+これは、<BR>
+Ｐ<BR>
+Ｐ４１<BR>
+Ｐ<BR>
+と等価であるし、<BR>
+無<BR>
+無２１<BR>
+Ｐ<BR>
+とも等価である。<BR>
+<BR>
+<B>既知マス</B><BR>
+とは、ハタが存在するかしないかがいずれかに確定しているマスを指す。<BR>
+<BR>
+<B>未知マス</B><BR>
+とは、いまだハタがあるかないかが（確率的にしか）確定できないマスを指す。<BR>
+<BR>
+<B>未開</B><BR>
+とは、ハタのあるなしにかかわらず、いまだ開けられていないマスを指す。<BR>
+<BR>
+<B>無情報のマス</B><BR>
+とは、未開のマスであって、かつ相手にいかなる未知マスについての情報も与えないマスを指す。<BR>
+<BR>
+<B>オープン</B><BR>
+とは、無かつ未開のマスをクリックすることによって、クリックしていない別のマスが開いてしまう現象を言う。<BR>
+ベタオリの際に意図的にオープンする場合と区別して、失敗して相手に情報を与え得るようなオープンを「大オープン」「大ミンカン」などと呼ぶことがある。<BR>
+逆に、安全なオープンを「降りオープン」などと呼ぶこともあるが、統一した呼び名はない。<BR>
+<BR>
+<B>ベタオリ</B><BR>
+とは、未知マスのうちに、特に戦略上有利な置くべき場所がなく、無情報のマスを開けることで相手のミスを誘う戦略を指す。<BR>
+<BR>
+<B>スジ</B><BR>
+とは、（ぱっと見）オープンの危険があるようにみせかけて、論理的にはオープンされる危険が全くないマスを指す。<BR>
+例<BR>
+無無<BR>
+Ｐ ３　 ○<BR>
+無<BR>
+の○の位置など。<BR>
+<BR>
+<B>ドヘタ</B><BR>
+とは、マインスイーパフラグに勝つという目的のもとに、戦略的知性が著しく欠如した人物または手を形容する言葉である。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+3">基礎の確認</FONT></B><BR>
+<BR>
+■■基本的な考え方■■<BR>
+<BR>
+練習１）<BR>
+<BR>
+壁<BR>
+壁 １１<BR>
+壁×１<BR>
+壁×１<BR>
+壁壁壁壁壁<BR>
+<BR>
+（×印は、「そこにハタがないと確定している」と見なせるマスを指す）<BR>
+<BR>
+壁○ＡＡ<BR>
+壁１１Ａ<BR>
+壁　１Ａ<BR>
+壁　１Ｂ<BR>
+壁壁壁壁壁<BR>
+<BR>
+１）○にハタがあると仮定すると、Ａにはハタがないので、Ｂにはハタがある。<BR>
+<BR>
+壁○★Ａ<BR>
+壁１１Ａ<BR>
+壁　１Ａ<BR>
+壁　１Ｂ<BR>
+壁壁壁壁壁<BR>
+<BR>
+２）○にハタがないと仮定すると、★にハタがあるが、このときＡにハタがないので、Ｂにはハタがある。<BR>
+<BR>
+１）または２）なので、Ｂにはハタがある。<BR>
+つまり<BR>
+<BR>
+壁<BR>
+壁１１<BR>
+壁　１<BR>
+壁　１<BR>
+壁壁壁壁壁<BR>
+<BR>
+の形だと、<BR>
+<BR>
+壁<BR>
+壁１１<BR>
+壁　１<BR>
+壁　１Ｐ<BR>
+壁壁壁壁壁<BR>
+<BR>
+Ｐにハタが存在することは確定である。<BR>
+（Ｐはハタを表す）<BR>
+<BR>
+<BR>
+練習２）<BR>
+<BR>
+Ｐ２４<BR>
+<BR>
+２の存在から考えて、<BR>
+<BR>
+○○○<BR>
+Ｐ ２ ４<BR>
+○○○<BR>
+<BR>
+この○の部分には高々あと1つだけしかハタがない（自明）。<BR>
+<BR>
+○○○Ａ<BR>
+Ｐ ２ ４ Ａ<BR>
+○○○Ａ<BR>
+<BR>
+Ａのうち1つでもハタがないマスがあるとすると、○部分に2つ以上のハタが存在しなければならないが、それは自明な事実と矛盾する。<BR>
+したがって、「Ａのうち1つでもハタがないマスがある」は誤りであり、Ａの部分は全てハタである。<BR>
+<BR>
+つまり<BR>
+<BR>
+Ｐ２４<BR>
+<BR>
+の形は<BR>
+<BR>
+　　　Ｐ<BR>
+Ｐ２４Ｐ<BR>
+　　　Ｐ<BR>
+<BR>
+が確定である。<BR>
+<BR>
+<BR>
+<BR>
+応用練習）　　※初心者には複雑なので、初心者は飛ばしてください<BR>
+<BR>
+この種の確定的情報に基づく判断の実践例としては、次のようなものがある（上記の論理的判断の複合版なので、ゆっくり考えれば必ず解ける）。<BR>
+<IMG src="mine0.gif" width="188" height="165" border="0"><BR>
+このような場合、まずは「絶対にハタがないマス」を考える。<BR>
+ここでは、黒く塗りつぶしてみよう。<BR>
+<IMG src="mine1.gif" width="188" height="165" border="0"><BR>
+「２」の周りに２つのハタがあることと、「１」の周りに１つのハタがあることから、今塗った黒いマスにはハタがないことがわかる。<BR>
+<IMG src="mine2.gif" width="188" height="165" border="0"><BR>
+赤色の部分は、赤色の中央にある「１」の存在により、高々１つのハタしかない。<BR>
+そうすると、「３」の存在から考えて、黄色の部分のいずれか片方だけに１つハタがある。<BR>
+（なぜなら黒い部分にはハタがなく、すでにハタが１つ見えていて、赤い部分に１つしかハタがないからである）<BR>
+<IMG src="mine3.gif" width="188" height="165" border="0"><BR>
+黄色の左上の「１」の存在と黄色いマスのいずれかにハタがあることから、「１」の左側の黒い部分にも、もうハタがないことがわかる。<BR>
+次に黄色い部分にハタが１つだけあることと、黄色の左下の「２」の存在とから、紫色の部分のいずれか片方にハタが１つだけあることがわかる。<BR>
+<IMG src="mine4.gif" width="188" height="165" border="0"><BR>
+青いカーソル枠で囲った「２」の下にある「２」の存在から、画面上の緑の部分のいずれか片方には、１つだけハタがある。<BR>
+そうすると、緑の上の「１」の存在から、その左側３マスの黒い部分にもハタがないことがわかる。<BR>
+ここで、青いカーソル枠で囲った「２」の左にある「２」に着目すると、紫のうち片方にハタが１つだけあり、黒い部分にはハタがない。<BR>
+したがって必然的に、黒いカーソル枠で囲った部分にはハタが存在しなければならない。<BR>
+<IMG src="mine5.gif" width="186" height="164" border="0"><BR>
+このようにして、ハタを見つけたり、その他のマスのどこにどのような確率でハタが埋まっているかを考えていくことができる。<BR>
+<BR><BR>
+<BR>
+<BR>
+■■定石■■<BR>
+<BR>
+・定石<BR>
+<BR>
+×１１１×<BR>
+×××××<BR>
+<BR>
+こういう場合は<BR>
+<BR>
+　　○<BR>
+×１１１×<BR>
+×××××<BR>
+<BR>
+ここに置く。<BR>
+もちろん、本当は<BR>
+<BR>
+Ｐ　　Ｐ<BR>
+×１１１×<BR>
+×××××<BR>
+<BR>
+のような形であることもあるが、特定の4マスのうちに2つハタがある確率は15％しかない（この場合は数字による条件つき確率になってはいるが）。<BR>
+しかも、もし○になくても相手は50％で2本取れるか、50％で外して2本取られるかなので、その分の不利はない。<BR>
+<BR>
+<BR>
+・定石<BR>
+<BR>
+Ｐ<BR>
+Ｐ４<BR>
+Ｐ<BR>
+<BR>
+例えばこのような形は<BR>
+<BR>
+×<BR>
+×１<BR>
+×<BR>
+<BR>
+に単純化できる。この形では<BR>
+<BR>
+×<BR>
+×１○<BR>
+×<BR>
+<BR>
+○におく。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+3">システマティックマインスイーパフラグ研究</FONT></B><BR>
+<BR>
+<B><FONT size="+1">■■基本演算■■</FONT></B><BR>
+<BR>
+16*16=256マスに51本のハタがある<BR>
+運のみで開けると、20％くらい(1/5くらい)ハタをとれる。<BR>
+<BR>
+「1」があるマスの周りには8つのブロックがあるので、「1」と隣接したマスは爆弾がある確率が通常の場所より低い。<BR>
+「2」だと2/8なので、爆弾がある確率が通常より高い。<BR>
+<BR>
+<BR>
+任意の未知のｎマスに、ちょうどｍ本だけハタがある確率を考える。<BR>
+nＣm（4/5）^（n-m）・（1/5）^m<BR>
+=nＣm{4^(n-m)/5^n}<BR>
+<BR>
+<B>（表1：未知のｎマスにちょうどｍ本のハタがある確率）</B></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>n　m</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">4</TD>
+      <TD align="right">5</TD>
+      <TD align="right">6</TD>
+      <TD align="right">7</TD>
+      <TD align="right">8</TD>
+    </TR>
+    <TR>
+      <TD align="right">1</TD>
+      <TD align="right">80</TD>
+      <TD align="right">20</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.00</TD>
+    </TR>
+    <TR>
+      <TD align="right">2</TD>
+      <TD align="right">64</TD>
+      <TD align="right">32</TD>
+      <TD align="right">4</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+    </TR>
+    <TR>
+      <TD align="right">3</TD>
+      <TD align="right">51.2</TD>
+      <TD align="right">38.4</TD>
+      <TD align="right">9.6</TD>
+      <TD align="right">0.8</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+    </TR>
+    <TR>
+      <TD align="right">4</TD>
+      <TD align="right">40.96</TD>
+      <TD align="right">40.96</TD>
+      <TD align="right">15.36</TD>
+      <TD align="right">2.56</TD>
+      <TD align="right">0.16</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+    </TR>
+    <TR>
+      <TD align="right">5</TD>
+      <TD align="right">32.77</TD>
+      <TD align="right">40.96</TD>
+      <TD align="right">20.48</TD>
+      <TD align="right">5.12</TD>
+      <TD align="right">0.64</TD>
+      <TD align="right">0.03</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+    </TR>
+    <TR>
+      <TD align="right">6</TD>
+      <TD align="right">26.21</TD>
+      <TD align="right">39.32</TD>
+      <TD align="right">24.58</TD>
+      <TD align="right">8.19</TD>
+      <TD align="right">1.54</TD>
+      <TD align="right">0.15</TD>
+      <TD align="right">0.01</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+    </TR>
+    <TR>
+      <TD align="right">7</TD>
+      <TD align="right">20.97</TD>
+      <TD align="right">36.7</TD>
+      <TD align="right">27.53</TD>
+      <TD align="right">11.47</TD>
+      <TD align="right">2.87</TD>
+      <TD align="right">0.43</TD>
+      <TD align="right">0.04</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+    </TR>
+    <TR>
+      <TD align="right">8</TD>
+      <TD align="right">16.78</TD>
+      <TD align="right">33.55</TD>
+      <TD align="right">29.36</TD>
+      <TD align="right">14.68</TD>
+      <TD align="right">4.59</TD>
+      <TD align="right">0.92</TD>
+      <TD align="right">0.11</TD>
+      <TD align="right">0.01</TD>
+      <TD align="right">0</TD>
+    </TR>
+    <TR>
+      <TD align="right">9</TD>
+      <TD align="right">13.42</TD>
+      <TD align="right">30.2</TD>
+      <TD align="right">30.2</TD>
+      <TD align="right">17.62</TD>
+      <TD align="right">6.61</TD>
+      <TD align="right">1.65</TD>
+      <TD align="right">0.28</TD>
+      <TD align="right">0.03</TD>
+      <TD align="right">0</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>m=9の項目は有効数字上全て0<BR>
+<BR>
+<BR>
+<B><FONT size="+2">初手に関する研究</FONT></B><BR>
+<BR>
+<B><FONT size="+1">■初手の最善手とその受けの最善手</FONT></B><BR>
+<BR>
+<B>・初手</B><BR>
+<BR>
+一般に初期状態で、ある1打のオープン確率は13.4％である（壁際を除く）。<BR>
+それに対して、壁際であると26％であり、スミであると41％になる。<BR>
+ゆえに、オープンの危険を考えれば、端やスミに置いてはならない。<BR>
+また、もしオープンしてしまった場合に、画面の真ん中であれば４方向にオープンしてしまうが、画面の端に近ければそちら側にはオープンしないで済む。<BR>
+よって、端から見て2つめであるようなマス（4つある）に置くこと。<BR>
+<BR>
+壁壁壁壁壁<BR>
+壁<BR>
+壁　★<BR>
+壁<BR>
+<BR>
+★が初手の最善手である。<BR>
+<BR>
+<BR>
+<B>・初手への受け</B><BR>
+<BR>
+相手の初手が最善手である場合、<BR>
+<BR>
+壁壁壁壁壁<BR>
+壁<BR>
+壁　１<BR>
+壁<BR>
+<BR>
+例えばこのように出た場合、<BR>
+<BR>
+壁壁壁壁壁<BR>
+壁<BR>
+壁　１<BR>
+壁　ＡＢ<BR>
+壁<BR>
+<BR>
+ＡＢのどちらが有利なのかを計算しよう。<BR>
+<BR>
+Ａに置いた場合、たまたま１の周りのハタが８個中上の３つのどこかにあり、しかもＡの下３マスにハタがい確率が、オープンの確率を表す。<BR>
+ゆえに3/8*0.512=19.2％<BR>
+<BR>
+Ｂに置いた場合、たまたま１の周りのハタが８個中上の５つのどこかにあり、しかもＢの周囲の５マスにハタがない確率が、オープンの確率を表す。<BR>
+ゆえに5/8*0.3277*4/5=20.5％<BR>
+<BR>
+いずれにしても、<BR>
+<BR>
+壁　　　<BR>
+壁　★　<BR>
+壁<BR>
+壁壁壁壁<BR>
+<BR>
+のように、他の最善手に置くほうがオープンの確率が低い（13.4％）。<BR>
+<BR>
+<BR>
+壁壁壁壁壁<BR>
+壁<BR>
+壁　２<BR>
+壁<BR>
+<BR>
+と出た場合についても同様に考える。<BR>
+<BR>
+壁壁壁壁壁<BR>
+壁<BR>
+壁　２<BR>
+壁　ＡＢ<BR>
+<BR>
+Ａは3/8*2/7*0.512=5.5％<BR>
+Ｂは5/8*4/7*0.3277=11.7％<BR>
+<BR>
+ゆえに、最善手は<BR>
+<BR>
+壁壁壁壁壁<BR>
+壁<BR>
+壁　２<BR>
+壁　★<BR>
+<BR>
+である。<BR>
+<BR>
+<BR>
+<B><FONT size="+3">単一情報に基づく戦略の研究</FONT></B><BR>
+<BR>
+<B><FONT size="+1">■Ｘマス中Ｘ－１マスが当たりの時の有利さ</FONT></B><BR>
+<BR>
+例えば「７」が出ていて、そのまわりに何も情報のない空白が８マスあるとしよう。<BR>
+まず、1回目に7/8の確率で当てられることは当然である。<BR>
+当たった場合は、次に6/7の勝負ができる。<BR>
+さらに当たれば5/6の勝負ができる。<BR>
+ところがもし、最初の1回で外してしまえば（1/8）、残り7つ全て取られてしまうことになる。<BR>
+結局、自分が連続で当て続けられる確率は<BR>
+7/8*6/7*5/6*4/5までで0.5になるから、「勝負！」を続けていくと、半々の確率で4本までは取れるが、残り3本は取られてしまうことになる。<BR>
+しかも、最初に「ハズレを引く」と取られる量が多くなるから、結局この勝負は互いに互角となる。<BR>
+（厳密な計算は読者に任せる。1つだけ「ハズレ」の入ったクジを2人で引き合うとき、クジの数にかかわらず有利さは半々になることを考えよ。3本中1本「ハズレ」があり、残り全て「アタリ」であるクジがあるとする。ハズレを引いた時点でもう片方は残りのアタリをもらえると考える。ハズレを引く可能性は引く順番によらず互角なのであるから、結局手にするアタリの期待数は同じになる）<BR>
+周りに何もない空白スペースをクリックして「７」などが出ると大慌てだが、結局、「アタリＸマス、ハズレ１マス」の状況であれば、どちらも有利不利はないと言える。<BR>
+もちろん、「1回だけ勝負して残りは別のマスに進む」ことをしても無駄である。1回目で7/8の確率で1本取得できるが、1/8の確率で外れて残り7本を取られてしまうため、期待値は0本となり、有利にならない。格上の人と試合をしていて運のみででも1回勝ちたいなら7本狙いをする価値はあるが、実はそうしない方がトータルとしては勝てる。<BR>
+<BR>
+<BR>
+<FONT size="-1"><B><FONT size="+1">■Ｘマス中Ｙマスが当たりの時の有利さ</FONT></B></FONT><BR>
+<BR>
+では先ほどの話を一般化しよう。<BR>
+<BR>
+<B>3本中1本当たりの勝負は有利だろうか？</B><BR>
+もしも勝負することによってそれ以上の情報を与えないのであれば、平均的に1/3本取得できる上、外れたとしても「2本中1本の勝負」に持ち込まれるだけでそれは有利でも不利でもないから、1/3本分丸まる得することになる。<BR>
+従って<B>、1/3当たり勝負は1/3本分有利</B>である。<BR>
+<BR>
+<B>3本中2本当たりの勝負は？</B><BR>
+勝負すると、2/3で1本得するが1/3で2本損し、その後は「半々の2択」になるので、<B>有利不利はない</B>。<BR>
+<BR>
+<B>4本中1本当たりの勝負は？</B><BR>
+1つめを当てられる確率が1/4。<BR>
+外した場合（3/4）、相手は自分を3本中1本の勝負に持ち込めるから、0.33本不利となる。<BR>
+つまり0.25-0.25=0で、<B>有利不利がない</B>。<BR>
+これならいっそ、空いている他のマスを攻めたほうが1/5得できるから有利である。<BR>
+<BR>
+<B>4本中2本当たりの勝負はどうだろうか？</B><BR>
+1つめを当てられる確率は2/4。当てると、次は1/3当たりの勝負に持ち込め、さらに1/3本有利になる。<BR>
+外れると（2/4）、3本中2本当たりの勝負になる。これは先の「Ｘマス中Ｘ－１マスが当たり」の状況であり、有利不利はない。<BR>
+従って、2/4+2/4*1/3=<B>8/12本分有利な勝負</B>であると言える。<BR>
+<BR>
+説明は省くが、<B>4本中3本当たりの勝負も、有利不利が存在しない</B>。<BR>
+<BR>
+これらの一体何が違うのだろうか？<BR>
+「3本中2本当たり」の勝負だと何も得ではないのに、「3本中1本当たり」の勝負だと得するのはなぜか？<BR>
+「4本中3本もあたり」なら喜んでクリックしたいところだが、それよりは他を攻めた方が得なのはどうしてか？<BR>
+<BR>
+「ハズレが出るごとに、その次のハズレまでの間のアタリの取得者を入れ替えるクジビキ」があった場合、ハズレの分布のしかたを考えて、有利不利を決定することができるのである。<BR>
+<BR>
+3本中1本あたりの場合<BR>
+○××<BR>
+×●×<BR>
+××○<BR>
+2/3-1/3=1/3だけ有利である。<BR>
+（なお、○は先攻者の取得するハタ、●は後攻者の取得するハタである）<BR>
+<BR>
+3本中2本あたりの場合<BR>
+○○×<BR>
+○×●<BR>
+×●●<BR>
+有利不利はない。<BR>
+<BR>
+4個中1つアタリがある場合<BR>
+○×××<BR>
+×●××<BR>
+××○×<BR>
+×××●<BR>
+有利不利はない。<BR>
+<BR>
+さらに複雑にして、<BR>
+4個中2つアタリがある場合<BR>
+○○××<BR>
+○×●×<BR>
+×○○×<BR>
+×●×○<BR>
+××○○<BR>
+○××○<BR>
+のような分布を考えることができる。<BR>
+○の数は10個、●の数は2個だから、この勝負をすると(10-2)/12本分有利であり、先の計算と一致する。<BR>
+<BR>
+<BR>
+さて、ここは数学パズルの部屋ではないので、答えだけを急いで求めよう。<BR>
+A個中B個当たりのくじを先に引く人の有利さをＦ(A,B)と書くと、<BR>
+Ｆ(A,B)＝(B/A)Ｆ(A-1,B-1)-(A-B／A)Ｆ(A-1,B)<BR>
+が成り立つから、Ｃで実装すると有利さは次のような再帰関数を呼ぶことで求まる。<BR>
+<BR>
+double f(double A,double B)<BR>
+{<BR>
+if(!(A|B)){return 0;}<BR>
+return B/A+(B/A)*f(A-1,B-1)-((A-B)/A)*f(A-1,B);<BR>
+}<BR>
+<BR>
+この計算結果を表にしたのが以下の表である。<BR>
+<BR>
+<B>（表2：A個の空白中B個が当たりの時、先に取る方があとに取る方よりも有利な度合い）<BR>
+</B></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>A B</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">4</TD>
+      <TD align="right">5</TD>
+      <TD align="right">6</TD>
+      <TD align="right">7</TD>
+      <TD align="right">8</TD>
+      <TD align="right">9</TD>
+    </TR>
+    <TR>
+      <TD align="right">1</TD>
+      <TD align="right">0.00</TD>
+      <TD align="right">1</TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">2</TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD align="right">3</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.33</TD>
+      <TD align="right">0</TD>
+      <TD align="right">3</TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD align="right">4</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.67</TD>
+      <TD align="right">0</TD>
+      <TD align="right">4</TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD align="right">5</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1</TD>
+      <TD align="right">0</TD>
+      <TD align="right">5</TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD align="right">6</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.4</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1.33</TD>
+      <TD align="right">0</TD>
+      <TD align="right">6</TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD align="right">7</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.14</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.6</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1.67</TD>
+      <TD align="right">0.00</TD>
+      <TD align="right">7</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD align="right">8</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.29</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.8</TD>
+      <TD align="right">0</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">8</TD>
+    </TR>
+    <TR>
+      <TD align="right">9</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.11</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.43</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1</TD>
+      <TD align="right">0</TD>
+      <TD align="right">2.33</TD>
+      <TD align="right">0.00</TD>
+      <TD align="right">9.00</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+<B><FONT color="#0000FF">「A個中B個が当たりとわかっているとき、AとBの差が偶数であれば、取れば有利」</FONT></B><BR>
+これは先の○●×の思考において、差が奇数の場合の対象性を考えれば予測できることであるが、直感とは離れた結論である。<BR>
+ただしこれは、<B>あくまでも取ったことによって他のます目の情報を与えない場合に限る</B>。<BR>
+実際には、7などであれば、取りに行くと「残り3マスにあるかどうか」などの情報が相手に知れてしまうことが多いために、有利さはほとんどなくなる。<BR>
+<BR>
+<B><FONT color="#0000FF">この戦略が最も使えるのは「3個中1個」「4個中2個」「5個中1個」「5個中3個」などで、しかも自分の指定によって相手に追加情報を与える可能性がない場合に攻めることが得</FONT></B>だという場合である。<BR>
+<BR>
+「3個中1個の場合」<BR>
+×　　Ｐ<BR>
+Ｐ２○Ｐ<BR>
+×　　Ｐ<BR>
+○の位置に置けば、追加の情報を与えることがない。<BR>
+×　　Ｐ<BR>
+Ｐ２　Ｐ<BR>
+×　□Ｐ<BR>
+□の位置に置いてしまうと、もし例えば「3」と出てしまうと確定が生じてしまい、自分の有利さがなくなる。<BR>
+<BR>
+「5個中1個の場合」<BR>
+×<BR>
+Ｐ６○<BR>
+×<BR>
+この場合、○の位置に置くことで、相手を2択に持ち込むことができる上、自分は1/5本分の得ができる。<BR>
+このように、相手に追加の情報を与えないで、しかもＡ-Ｂが偶数である場合には、攻めることが有効である。<BR>
+<BR>
+<BR>
+<BR>
+<FONT size="-1"><B><FONT size="+1">■■新しい場所を攻める時の戦略■■</FONT></B></FONT><BR>
+<BR>
+では、オープンの危険を避けながら新しいマスを開拓する場合、どのような開拓が有利であろうか。<BR>
+当然、相手にも情報を与えることになるので、「ハタがないと確定しているマス」に置くことで「開拓」してしまうとほぼ確実に損する。<BR>
+何マスの「未知のマス」と隣接するマスを攻めるのが有効かを検証する。<BR>
+<BR>
+以前の研究により、未知のマスがｎマス隣接した場所を開ける時、未知のマスにハタがｍ本ある確率を計算した。<BR>
+一部引用すると</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>n　m</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">4</TD>
+    </TR>
+    <TR>
+      <TD align="right">1</TD>
+      <TD align="right">80</TD>
+      <TD align="right">20</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+    </TR>
+    <TR>
+      <TD align="right">2</TD>
+      <TD align="right">64</TD>
+      <TD align="right">32</TD>
+      <TD align="right">4</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+    </TR>
+    <TR>
+      <TD align="right">3</TD>
+      <TD align="right">51.2</TD>
+      <TD align="right">38.4</TD>
+      <TD align="right">9.6</TD>
+      <TD align="right">0.8</TD>
+      <TD align="right">0</TD>
+    </TR>
+    <TR>
+      <TD align="right">4</TD>
+      <TD align="right">40.96</TD>
+      <TD align="right">40.96</TD>
+      <TD align="right">15.36</TD>
+      <TD align="right">2.56</TD>
+      <TD align="right">0.16</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+あるマスを開けたとき、そこが当たる確率は1/5である。この場合は問題ない。<BR>
+外れた場合、そこに隣接する未知のマス数によって有利さがかわる。<BR>
+表1で与えられた分布に従ってヒントが出るわけだが、その分布に従って、表2で与えられる「相手の」有利度が相手に渡ることになる。<BR>
+<BR>
+（未知の3マスに隣接するマスを開ける場合）<BR>
+例えば未知のマス3マスに隣接するマスを開けると、表1から、<BR>
+4/5の確率で<BR>
+値　 　　0　　 1　　 2　　 3<BR>
+確率　51.2 38.4 　9.6 0.8<BR>
+のような分布に従う単一情報が表示される。<BR>
+0の時は問題がないが、1、2、3のときは相手が有利になる可能性がある。<BR>
+表2によると、その場合<BR>
+　　0 　　1 　　2 　3<BR>
+　　0　 0.33 　0　 3<BR>
+のような有利度が相手に渡ることになる。<BR>
+結局、最初の自分の手が当たらなかった場合の相手に渡る有利度の期待値は<BR>
+0.384*0.33+0.008*3=0.1572<BR>
+であり、自分が+0.2に対して相手は+4/5*0.1572=+0.121となるから、結局自分は+0.08程度しか得できない。<BR>
+<BR>
+（未知の4マスに隣接するマスを開ける場合）<BR>
+<BR>
+表1より<BR>
+　　　0 　　1 　　　2 　　3 　　4<BR>
+4 40.96 40.96 15.36 2.56 0.16<BR>
+<BR>
+表2より、<BR>
+　　0　 1　　 2 　　3 　4<BR>
+4 　0　 0　 0.67 　0　 4 この場合は、自分が+0.2に対して相手は+0.0874496となり、自分は+1.13程度得できる。<BR>
+<BR>
+（未知の2マスに隣接するマスを開ける場合）<BR>
+<BR>
+表1より<BR>
+　　　　0　　 1　　　 2　　 3　　 4<BR>
+4　 40.96 40.96 15.36 2.56 0.16<BR>
+<BR>
+表2より、<BR>
+　　　0 　1 　　2　　 3 　4<BR>
+4 　　0 　0　 0.67 　0　 4 この場合は、自分が+0.2に対して相手は+0.0874496となり、自分は+1.13程度得できる。<BR>
+<BR>
+<BR>
+このような思考を表にまとめると、次のようになる。<BR>
+<BR>
+（表3：相手に情報が渡る場合に関する表）</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD></TD>
+      <TD align="right">0</TD>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">4</TD>
+      <TD align="right">5</TD>
+      <TD align="right">6</TD>
+      <TD align="right">7</TD>
+      <TD align="right">8</TD>
+      <TD>条件付で相手に行く有利さ</TD>
+      <TD>相手の得る有利さ</TD>
+      <TD>自分の有利度</TD>
+    </TR>
+    <TR>
+      <TD align="right">1</TD>
+      <TD align="right">0</TD>
+      <TD align="right">20</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.2</TD>
+      <TD align="right">0.16</TD>
+      <TD align="right">0.04</TD>
+    </TR>
+    <TR>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">8</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.08</TD>
+      <TD align="right">0.064</TD>
+      <TD align="right">0.136</TD>
+    </TR>
+    <TR>
+      <TD align="right">3</TD>
+      <TD align="right">0</TD>
+      <TD align="right">12.67</TD>
+      <TD align="right">0</TD>
+      <TD align="right">2.4</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.1507</TD>
+      <TD align="right">0.12056</TD>
+      <TD align="right">0.07944</TD>
+    </TR>
+    <TR>
+      <TD align="right">4</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">10.29</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.64</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.1093</TD>
+      <TD align="right">0.08744</TD>
+      <TD align="right">0.11256</TD>
+    </TR>
+    <TR>
+      <TD align="right">5</TD>
+      <TD align="right">0</TD>
+      <TD align="right">8.19</TD>
+      <TD align="right">0</TD>
+      <TD align="right">5.12</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.15</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.1346</TD>
+      <TD align="right">0.10768</TD>
+      <TD align="right">0.09232</TD>
+    </TR>
+    <TR>
+      <TD align="right">6</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">9.83</TD>
+      <TD align="right">0</TD>
+      <TD align="right">2.05</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.06</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.1194</TD>
+      <TD align="right">0.09552</TD>
+      <TD align="right">0.10448</TD>
+    </TR>
+    <TR>
+      <TD align="right">7</TD>
+      <TD align="right">0</TD>
+      <TD align="right">5.14</TD>
+      <TD align="right">0</TD>
+      <TD align="right">6.88</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.72</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.1274</TD>
+      <TD align="right">0.10192</TD>
+      <TD align="right">0.09808</TD>
+    </TR>
+    <TR>
+      <TD align="right">8</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">8.51</TD>
+      <TD align="right">0</TD>
+      <TD align="right">3.67</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.22</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.124</TD>
+      <TD align="right">0.0992</TD>
+      <TD align="right">0.1008</TD>
+    </TR>
+    <TR>
+      <TD align="right">9</TD>
+      <TD align="right">0.00</TD>
+      <TD align="right">3.32</TD>
+      <TD align="right">0</TD>
+      <TD align="right">7.58</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1.65</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.07</TD>
+      <TD align="right">0.00</TD>
+      <TD align="right">0.1262</TD>
+      <TD align="right">0.10096</TD>
+      <TD align="right">0.09904</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+したがって、未知のＸマスに隣接するある未知のマスに「勝負」する場合の有利さは<BR>
+<BR>
+<B>（表4：未知のＸマスに隣接する未知のマスに置く場合の自分の有利さの表）</B><BR>
+Ｘ 自分の有利度<BR>
+0 0.2<BR>
+1 0.04<BR>
+2 0.136<BR>
+3 0.079424<BR>
+4 0.1125504<BR>
+5 0.092304<BR>
+6 0.1044784<BR>
+7 0.0980952<BR>
+8 0.1007488<BR>
+<BR>
+である。<BR>
+ただし、マス数が多い場合には表2の計算上の「誤差」があるため、マス数が多い場合の自分の有利度はもっと上昇すると考えられる（おそらくＸ＝8程度になると、有利度はほとんど0.2に近づくと考えられる）。<BR>
+<BR>
+結論としては、<FONT color="#0000FF"><B>隣接する未知のマスが0の場合を除き、隣接する未知のマスが多ければ多いほど、また隣接する未知マスの数が偶数であるほど、一般に自分の有利度が増える</B></FONT>と言える。<BR>
+<B><FONT color="#0000FF">10回ベタオリするかわりに10回攻めれば、1～2本分ハタを得できる</FONT></B>と考えて良い。<BR>
+<BR>
+<BR>
+並んだ未知の場所を既知にすることによって自分が受ける不利さ<BR>
+Ｘ箇所の未知の場所についての情報を、リターンなしで開けるとき、<BR>
+表3より、<BR>
+<BR>
+<B>（表5：未知のＸマスに隣接するハタのないマスに置く場合の不利さの表）</B><BR>
+Ｘ　不利度<BR>
+1 -0.2<BR>
+2 -0.08<BR>
+3 -0.15072<BR>
+4 -0.109312<BR>
+5 -0.13462<BR>
+6 -0.119402<BR>
+7 -0.127381<BR>
+8 -0.124064<BR>
+9 -0.126185<BR>
+<BR>
+<BR>
+<B><FONT size="+1">■■戦略のために■■</FONT></B><BR>
+<BR>
+上記の話から、<BR>
+<BR>
+壁<BR>
+壁３<BR>
+壁壁壁<BR>
+<BR>
+の場合にこの周りをクリックすることは当然として、<BR>
+<BR>
+壁　　　<BR>
+壁１　<BR>
+壁壁壁<BR>
+<BR>
+<B>の場合にもこの周りのいずれかをクリックすることが好まし</B>いことがわかる。<BR>
+しかも、与える情報からして、<BR>
+<BR>
+壁　★　　　<BR>
+壁１　<BR>
+壁壁壁<BR>
+<BR>
+<B>ここが最善手</B>であることがわかる。<BR>
+また、<BR>
+<BR>
+壁<BR>
+壁２<BR>
+壁壁壁<BR>
+<BR>
+<B>このような場合は、他に置く場所があれば他を攻めた方が良い</B>ことがわかる。<BR>
+<BR>
+壁壁壁<BR>
+壁Ｐ<BR>
+壁　★<BR>
+・<BR>
+・<BR>
+・<BR>
+壁　　　<BR>
+壁２　　<BR>
+壁壁壁<BR>
+<BR>
+例えばここが善手となる。<BR>
+<BR>
+<BR>
+<B><FONT color="#0000FF">初心者が相手の場合「ベタオリ（0本取得）」をすることによってオープンのミスを待つことは戦略上有効</FONT></B>であるが、<B><FONT color="#0000FF">基本的には「新境地」を開拓することで平均的に0.1～0.2本分得できるので、そのような戦略がふさわしい</FONT></B>。<BR>
+なお、<B>「2択！」のような勝負をしても無意味</B>である。なぜなら、<B>2択は利益が平均して+-0本だが、「新境地開拓」であれば利益が0.1～0.2程度は見込める</B>からである。<BR>
+<BR>
+<B>基本的な戦略として、0.1～0.2本取得がほぼ安全に見込める場合や、60％～70％の確率で1本取得できる場合（ただし1マスだけハズレの場合を除く）には、攻めれば有利であることが多いと考えられるから、それを意識して打つとずいぶん強くなるだろう。</B><BR>
+<BR>
+また、<B>Ａマス中Ｂマスが当たりで、Ａ-Ｂが偶数のときは（情報を一方的に与える可能性がない限り）攻めるべき</B>である。とくに<B>「3-1」「4-2」「5-1」「5-3」形程度の場合は攻めることが有利</B>である。<BR>
+<BR>
+<B><FONT color="#0000FF">一般的に次の優先順位で開けていく。</FONT><BR>
+確定マス＞「5-3」＞「4-2」＞「3-1」＞「5-1（情報を与えない場合のみ）」＞他に一切情報を与えない未知マス＞未知マスになるべく多く隣接する未知マス（少ない場合は偶数の未知マスに隣接する未知マス）＞未知マスにあまり多く隣接しておらず、奇数個数の未知マスと隣接する未知マス＞「Ａ-Ｂ奇数」＝ベタオリ＞たくさんの未知マスに隣接した、ハタがないマス＞小数の未知マスに隣接した、ハタがないマス＞＞オープン</B><BR>
+<BR>
+以上は、単数の情報に関する戦略の研究であった。<BR>
+実はほとんどこれだけの技術があれば勝率8割くらいは取れてしまうのだが、次には、複数の情報に関する戦略を研究しよう。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+3">複数情報に基づく戦略の研究</FONT></B><BR>
+<BR>
+<B><FONT size="+1">■一見「当たれば2本、外れれば1本」という選択</FONT></B><BR>
+<BR>
+××<BR>
+１<BR>
+１<BR>
+１<BR>
+×<BR>
+<BR>
+例えばこの状況を考えよう。<BR>
+可能性としては<BR>
+<BR>
+Ａ）<BR>
+××<BR>
+１Ｐ<BR>
+１<BR>
+１<BR>
+×Ｐ<BR>
+<BR>
+または<BR>
+<BR>
+Ｂ）<BR>
+××<BR>
+１<BR>
+１Ｐ<BR>
+１<BR>
+×<BR>
+<BR>
+の2通りが考えられる。<BR>
+これを「半々」だと錯覚して、Ａのようなハタの存在を仮定して攻める人が多いが、実際はどうなのかを検証しよう。<BR>
+全体に分布するハタの数は「1/5」で統一して考えているから、この場合もそう考える。<BR>
+つまり可能な4つの未知マスが存在し、そのうち2つにハタがある可能性と、可能な4つの未知マスが存在し、そのうち1つにハタがある可能性のどちらがどれだけ高く、期待本数がどれだけになるかを考えればよい。<BR>
+表1から引用すると、</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD align="right">4</TD>
+      <TD align="right">40.96</TD>
+      <TD align="right">40.96</TD>
+      <TD align="right">15.36</TD>
+      <TD align="right">2.56</TD>
+      <TD align="right">0.16</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>であり、この4マスのうち1つだけにハタがある可能性は40.96なのに対して、2つハタがある可能性は15.36である。<BR>
+0本、3本、4本などの場合は実際の状況と矛盾するので無視して、確率の比で考える。<BR>
+4マス中1本だけハタがある可能性は<BR>
+40.96/(40.96+15.36)=72.7％<BR>
+であるから、この場合0.727本取得できる。<BR>
+4マス中2本ハタがある可能性は100-72.7=27.3％であり、この場合0.546本取得できる。<BR>
+したがって、<B>例のような状況であれば、（Ａ）を想定して2本取得を目指すよりも（Ｂ）を想定して1本だけ取得を目指す方が得</B>（0.181本）であることがわかる。<BR>
+「半々で1本か2本」という風に誤解しがちであるが、実は1本の可能性の方が充分高く、従ってこの場合は1本取得を目指す方が良い。<BR>
+ただし、周囲3マスの未知マスの情報を与えることになり、<BR>
+表5より<BR>
+Ｘ　不利度<BR>
+1 -0.2<BR>
+2 -0.08<BR>
+3 -0.15072<BR>
+であるから、結局は<B>有利度はほとんどない</B>。<BR>
+新規開拓を狙った方が得である。<BR>
+<BR>
+<BR>
+<BR>
+次に、<BR>
+<BR>
+×<BR>
+１<BR>
+１<BR>
+１<BR>
+×<BR>
+<BR>
+この場合はどうか。<BR>
+<BR>
+Ａ）<BR>
+×<BR>
+１<BR>
+１Ｐ<BR>
+１<BR>
+×<BR>
+<BR>
+Ｂ）<BR>
+×Ｐ<BR>
+１<BR>
+１<BR>
+１Ｐ<BR>
+×<BR>
+<BR>
+Ｃ）<BR>
+×<BR>
+１Ｐ<BR>
+１<BR>
+１<BR>
+×Ｐ<BR>
+<BR>
+の3つの可能性が考えられる。<BR>
+表1より、</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD align="right">5</TD>
+      <TD align="right">32.77</TD>
+      <TD align="right">40.96</TD>
+      <TD align="right">20.48</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>だから、Ａである可能性はＢやＣである可能性の4倍になる。<BR>
+しかもＡを外しても、まだ半々の勝負になるので、Ａを狙いに行けば0.67本分得できる。<BR>
+表5より<BR>
+Ｘ　不利度<BR>
+1 -0.2<BR>
+2 -0.08<BR>
+3 -0.15072<BR>
+であり、これを差し引いてもＡ<B>を狙いにいけばおよそ0.52本得</B>である。<BR>
+<BR>
+<BR>
+<BR>
+このことは同様に、33が並んでいるような場合にも応用できる。<BR>
+<BR>
+　３３<BR>
+<BR>
+とある場合に、<BR>
+<BR>
+Ｐ　　Ｐ<BR>
+Ｐ３３Ｐ<BR>
+Ｐ　　Ｐ<BR>
+<BR>
+という分布をしている確率は、表1より、わずか0.01％しかない。<BR>
+逆に<BR>
+　○○<BR>
+　３３<BR>
+　○○<BR>
+<BR>
+この○のうちのどこかに少なくとも1本ある確率は99.99％もあるのである。<BR>
+この場合は、ほぼ「半々」の勝負となるから、○のどこかに置くことは得策ではない。<BR>
+また<BR>
+<BR>
+★３３<BR>
+<BR>
+のような位置に置くことも、半々の状況において相手に情報を与えることになるから、得策ではない。<BR>
+別に攻める場所があれば新規開拓をすべき局面である。<BR>
+<BR>
+<BR>
+<B><FONT size="+1">■「Ａマス中Ｂマス」と「Ｃマス中Ｄマス」のかぶった領域のハタの存在について</FONT></B><BR>
+<BR>
+　ＢＤ<BR>
+<BR>
+と並んでいて、Ｂの周囲の未知マスはＡマス、Ｄの周囲の未知マスはＣマスあるとする。<BR>
+また、ＢＤ両方に隣接する未知マスはＥマスあるとしよう。<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+「Ｘマス中Ｙマスが当たりの時の有利さ」で研究したとおり、Ｘ-Ｙが奇数であれば、<BR>
+<BR>
+<BR>
+<BR>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,500 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=x-sjis">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
+<TITLE>VNCrypt.DLL開発者マニュアル</TITLE>
+</HEAD>
+<BODY background="1052.gif" alink="#ff7f00" bgcolor="#ffffff" link="#ff0000" text="#000000" vlink="#400080">
+<P><B><FONT size="+3"><IMG src="MJexeIO.gif" width="34" height="36" border="0">VNCrypt.DLL</FONT><FONT size="+1">（高強度の暗号化・復号化DLL）　開発者マニュアル</FONT></B><BR>
+個人使用・非商用利用に関してはフリーです。本DLL全体の著作権はとつげき東北が保有します。<A href="mailto:totutohoku@hotmail.com"><FONT color="#0000FF">メールはこちら</FONT></A><BR>
+<BR>
+<BR>
+このDLLは、以下のような機能・関数を提供します。<BR>
+<BR>
+<B>［暗号化・復号化・圧縮・展開関係］</B><BR>
+・任意のファイル・フォルダを、VNCrypt暗号化ファイルにする機能<BR>
+・任意のVNCrypt暗号化ファイルを、復号化してファイルに保存する機能<BR>
+・任意のファイル・フォルダをLZH書庫に圧縮する機能<BR>
+・任意のLZH書庫を展開する機能<BR>
+<B>［SHA関係］</B><BR>
+・任意の文字列のSHA-1ハッシュ値を得る関数<BR>
+・任意の文字列のSHA-512ハッシュ値を得る関数<BR>
+<B>［真性乱数・擬似乱数関係］</B><BR>
+・ハードウェア乱数生成の機能（hdrand.c）<BR>
+・超長周期擬似乱数、MT（メルセンヌツイスター）の手軽な利用<BR>
+・超長周期擬似乱数、MTに基づく、安全な擬似乱数の手軽な利用（SHRAND）<BR>
+<BR>
+ただし、ハードウェア乱数の使用のためには書き込み可能なテンポラリフォルダが必要です。<BR>
+Windows95以降対象、またCPUはPentium以降に対応。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+2">★使用法★</FONT></B><BR>
+<BR>
+通常のDLLと同様です。現バージョンにはヘッダファイルがありません。<BR>
+<BR>
+//★以下はヘッダ部分に記述<BR>
+//インポート関数の型定義（下の各関数の説明を読んで、同じ型で定義します）<BR>
+typedef int (*BVNencrypt)(char *,char *,char
+*,char *,int,int,int,int,int,int,int);<BR>
+typedef int (*BVNencryptEx)(char *,char *,char
+*,char *,int,int,int,int,int,int,int,int,int);<BR>
+typedef int (*BVNdecrypt)(char *,char *,char
+*,char *,int,int,int);<BR>
+typedef int (*BVNdecryptEx)(char *,char *,char
+*,char *,int,int,int);<BR>
+typedef int (*BVNvirtualdecrypt)(char *,char
+*,char *,char *,int,int,int);<BR>
+typedef int (*BVNCfilecheck)(char *);<BR>
+typedef int (*BVNCgetversion)(void);<BR>
+typedef int (*BVNCinitialize)(void);<BR>
+typedef int (*BVNChdrand32)(void);<BR>
+typedef int (*BVNChdrandbit)(void);<BR>
+typedef void (*BVNCinit_by_array)(unsigned
+long *, unsigned long);<BR>
+typedef unsigned long (*BVNCgenrand)(void);<BR>
+typedef int (*BVNChdrandpool)(int);<BR>
+typedef int (*BLZHdecode)(char *,char *,char
+*);<BR>
+typedef int (*BLZHencode)(char *,char *,int);<BR>
+typedef int (*BVNCfilelist)(char *);<BR>
+typedef int (*BLZHeEx)(char *);<BR>
+typedef unsigned int (*BVNCSHA1)(char *,int,char
+*);<BR>
+typedef unsigned int (*BVNCSHA512)(char *,int,char
+*);<BR>
+typedef int (*BSHRAND)(void);<BR>
+typedef void (*BSHRAND_init)(unsigned long
+*, unsigned long);<BR>
+<BR>
+//インポート関数型の関数へのポインタ変数宣言<BR>
+BVNencrypt VNencrypt;<BR>
+BVNencryptEx VNencryptEx;<BR>
+BVNdecrypt VNdecrypt;<BR>
+BVNdecrypt VNdecryptEx;<BR>
+BVNvirtualdecrypt VNvirtualdecrypt;<BR>
+BVNCgetversion VNCgetversion;<BR>
+BVNCfilecheck VNCfilecheck;<BR>
+BVNCinitialize VNCinitialize;<BR>
+BVNChdrand32 VNChdrand32;<BR>
+BVNChdrandbit VNChdrandbit;<BR>
+BVNCinit_by_array VNCinit_by_array;<BR>
+BVNCgenrand VNCgenrand;<BR>
+BVNChdrandpool VNChdrandpool;<BR>
+BLZHdecode LZHdecode;<BR>
+BLZHencode LZHencode;<BR>
+BVNCfilelist VNCfilelist;<BR>
+BLZHeEx LZHeEx;<BR>
+BVNCSHA1 VNCSHA1;<BR>
+BVNCSHA1 VNCSHA512;<BR>
+BSHRAND SHRAND;<BR>
+BSHRAND_init SHRAND_init;<BR><BR>
+<BR>
+//★以下をボタンクリックイベント内に記述<BR>
+//<FONT color="#FF0000" size="+1"><B>注意！</B></FONT>　<B>VisualC++の場合</B>、キャストの制限が違います。<BR>
+//xx = ( XX )::GetProcAddress( hDll, &quot;_xx&quot;
+); <BR>
+//のような部分でキャストエラーが出るようです。<BR>
+//コンパイラの指示通り、ここを<BR>
+//xx = ( XX&nbsp;)::GetProcAddress( (struct
+HINSTANCE__ *)hDll, &quot;_xx&quot; ); <BR>
+//に直してやることで、コンパイルできます。<BR>
+{<BR>
+int errc=0;<BR>
+HANDLE hDll = ::LoadLibrary( &quot;VNCrypt.dll&quot;
+); //DLLをロード<BR>
+if(hDll==NULL){ShowMessage(&quot;DLLオープンできません&quot;);return;}
+//DLLロードのエラーチェック<BR>
+<BR>
+//DLLから必要な関数をインポート<BR>
+//DLL関数インポートのエラーチェック。この例では２つの関数だけをチェックしている。<BR>
+if((VNencrypt = (BVNencrypt)::GetProcAddress(hDll,&quot;_VNencrypt&quot;))==NULL)errc=1;<BR>
+if((VNencryptEx = (BVNencryptEx)::GetProcAddress(hDll,&quot;_VNencryptEx&quot;))==NULL)errc=1;<BR>
+if((VNdecrypt = (BVNdecrypt)::GetProcAddress(hDll,&quot;_VNdecrypt&quot;))==NULL)errc=1;<BR>
+if((VNdecryptEx = (BVNdecryptEx)::GetProcAddress(hDll,&quot;_VNdecryptEx&quot;))==NULL)errc=1;<BR>
+if((VNvirtualdecrypt = (BVNvirtualdecrypt)::GetProcAddress(hDll,&quot;_VNvirtualdecrypt&quot;))==NULL)errc=1;<BR>
+if((VNCfilecheck = (BVNCfilecheck)::GetProcAddress(hDll,&quot;_VNCfilecheck&quot;))==NULL)errc=1;<BR>
+if((VNCinitialize = (BVNCinitialize)::GetProcAddress(hDll,&quot;_VNCinitialize&quot;))==NULL)errc=1;<BR>
+if((VNCgetversion = (BVNCgetversion)::GetProcAddress(hDll,&quot;_VNCgetversion&quot;))==NULL)errc=1;<BR>
+if((VNChdrand32 = (BVNChdrand32)::GetProcAddress(hDll,&quot;_VNChdrand32&quot;))==NULL)errc=1;<BR>
+if((VNChdrandbit = (BVNChdrandbit)::GetProcAddress(hDll,&quot;_VNChdrandbit&quot;))==NULL)errc=1;<BR>
+if((VNCinit_by_array = (BVNCinit_by_array)::GetProcAddress(hDll,&quot;_VNCinit_by_array&quot;))==NULL)errc=1;<BR>
+if((VNCgenrand = (BVNCgenrand)::GetProcAddress(hDll,&quot;_VNCgenrand&quot;))==NULL)errc=1;<BR>
+if((VNChdrandpool = (BVNChdrandpool)::GetProcAddress(hDll,&quot;_VNChdrandpool&quot;))==NULL)errc=1;<BR>
+if((LZHdecode = (BLZHdecode)::GetProcAddress(hDll,&quot;_LZHdecode&quot;))==NULL)errc=1;<BR>
+if((LZHencode = (BLZHencode)::GetProcAddress(hDll,&quot;_LZHencode&quot;))==NULL)errc=1;<BR>
+if((VNCfilelist = (BVNCfilelist)::GetProcAddress(hDll,&quot;_VNCfilelist&quot;))==NULL)errc=1;<BR>
+if((LZHeEx = (BLZHeEx)::GetProcAddress(hDll,&quot;_LZHeEx&quot;))==NULL)errc=1;<BR>
+if((VNCSHA1 = (BVNCSHA1)::GetProcAddress(hDll,&quot;_VNCSHA1&quot;))==NULL)errc=1;<BR>
+if((VNCSHA512 = (BVNCSHA512)::GetProcAddress(hDll,&quot;_VNCSHA512&quot;))==NULL)errc=1;<BR>
+if((SHRAND = (BSHRAND)::GetProcAddress(hDll,&quot;_SHRAND&quot;))==NULL)errc=1;<BR>
+if((SHRAND_init = (BSHRAND_init)::GetProcAddress(hDll,&quot;_SHRAND_init&quot;))==NULL)errc=1;<BR>
+<BR>
+if(errc==1){ShowMessage(&quot;DLLに必要な関数がありません。&quot;);FreeLibrary(hDll);Application-&gt;Terminate();}<BR>
+//★以下を自由にコーディングする<BR>
+<BR>
+<BR>
+//★以下は全ての動作を終了した後に一度だけ行う<BR>
+//DLLの開放<BR>
+FreeLibrary( hDll );<BR>
+}<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+2">★基本的な使い方例★</FONT></B><BR>
+<BR>
+基本的な動作の流れとしては、次のようになります。<BR>
+<BR>
+・暗号化<BR>
+まず、VNCinitialize（）によって乱数源を準備します。<BR>
+VNCfilelist（）を用いて対象ファイル・フォルダを列挙しておき、VNencryptEx（）をLZHmode=3で用いれば、複数のファイルやフォルダをまとめて暗号化できます。<BR>
+<BR>
+・圧縮<BR>
+VNCfilelist（）を用いて対象ファイル・フォルダを列挙しておき、LZHeEx（）を用いれば、複数のファイルやフォルダをまとめてLZHファイルにできます。<BR>
+<BR>
+・復号化<BR>
+VNdecryptEx（）を呼び出せば復号化できます。<BR>
+<BR>
+・展開<BR>
+LZHdecode（）を呼び出せば展開できます。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+1"><FONT size="+2">★関数マニュアル★</FONT><BR>
+</FONT></B><BR>
+<BR>
+<B><I><FONT size="+1">int VNCinitialize()</FONT></I></B><BR>
+<BR>
+全ての関数に先立って、必ず一度以上実行する。<BR>
+初期化が行われると同時に、ハードウェア乱数を使用するための準備を行う。<BR>
+PCのシステム構成だけでなく偶然性によって返り値はばらつく。<BR>
+最初は大きな値の返り値を期待して呼び出す。<BR>
+何度か試行しても大きな値の返り値が得られない場合、小さな値の返り値を期待して呼び出す。<BR>
+最終的に1以上の返り値が得られれば、このDLLは一応動作する（ただし例えば返り値10の場合と1の場合では、実行パフォーマンスにかなりの差が生ずる）。<BR>
+<BR>
+引数<BR>
+なし<BR>
+<BR>
+返り値<BR>
+0以下　ハードウェア乱数生成失敗<BR>
+1以上　そのビット数のハードウェア乱数が使える<BR>
+<BR>
+<BR>
+<I><FONT size="-1">VNencrypt(char filename[MAX_PATH],char filename2[MAX_PATH],char
+filename3[MAX_PATH],char KEYS[],int keybyte,int
+ints,int paddingmode,int padsize,int restricted,int
+poly_num,int rewritemode,int SHA1mode)</FONT><BR>
+</I><BR>
+使われなくなりました。<BR>
+<BR>
+<BR>
+<FONT size="+1"><B><I>int VNencryptEx(char filename[MAX_PATH],char
+filename2[MAX_PATH],char filename3[MAX_PATH],char
+KEYS[],int keybyte,int ints,int paddingmode,int
+padsize,int restricted,int poly_num,int rewritemode,int
+LZHmode,int SHA1mode)<BR>
+</I></B></FONT><BR>
+指定ファイルを暗号化する。<BR>
+v1.90以降では、VNCfilelist（）関数と併用して、LZHmode=3で利用することが推奨される。<BR>
+<BR>
+引数<BR>
+filename　入力ファイル名（パス付き）<BR>
+filename2　出力ファイル名（パス付きも可）<BR>
+filename3　元ファイル名（復号時に、この名前のファイルに復号化される。パスを含んではならない）<BR>
+KEYS　鍵の文字列。<BR>
+keybyte　キーのバイト数<BR>
+ints　無効なパラメータ。0を指定すること。<BR>
+paddingmode　0　パディングしない　1　randでパディング　2　hdrandでパディング。通常使用時においては1で充分である。<BR>
+padsize　パディングの式に与えるp。大きければ大きいほど暗号ファイルは大きくなるが、鍵の長さなどが特定されにくくなる。通常使用時には50以下で充分。<BR>
+//　　　　なおパディングバイト数を算出する式は　r=VNhdrand32()%p+VNhdrand32%/p+8　であり、実際に暗号ファイルに書き出されるバイト数はr*2になる。<BR>
+restricted　非公開パラメータ。0を指定すること。<BR>
+poly_num　MT系列2のintをいくつ重合するか。通常使用においては2または4が望ましい。詳細についてはVNCryptのフォーマット参照。最小値は1、最大値は65535。<BR>
+rewritemode　出力ファイルと同名のファイルが存在するときに上書きするかどうか。0しない、1する。<BR>
+LZHmode 圧縮のモード。0-圧縮なしファイル暗号化　1-圧縮付ファイル暗号化　2-圧縮付フォルダ暗号化　3-VNCfilelist()で登録したファイル・フォルダを暗号化<BR>
+SHA1mode　SHAモード。詳しくはフォーマットを参照。VNCrypt.exeにおける「XORモード」の指定と同様。<BR>
+<BR>
+返り値<BR>
+1　暗号化成功<BR>
+-1　何らかの失敗（ファイルが存在しないなど）<BR>
+-2　hdrand失敗<BR>
+-3　鍵が長すぎる<BR>
+-4　padsizeが0以下<BR>
+-5　poly_numが0以下かまたは規定値より大きい<BR>
+-6　入力ファイルが開けない<BR>
+-7　既に出力ファイル名が存在する（rewrite=0の時のみ）<BR>
+-8　出力できない（書き込み禁止など）<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">int VNCfilelist(char * filename)</FONT></I></B><BR>
+<BR>
+暗号化（または圧縮）すべきファイル・フォルダを1つ追加する。<BR>
+V1.90以降の暗号化では常に、VNencryptExの前にこの関数を用いて暗号化すべきファイル・フォルダを指定しておき、VNencryptExをLZHmode=3で呼び出すべきである。<BR>
+<BR>
+引数<BR>
+filename 追加すべきファイル名またはフォルダ名、ただしここで「/d」を指定すると、これまで追加したファイル・フォルダをすべて消去する。<BR>
+<BR>
+返り値<BR>
+0または1　成功<BR>
+負数　失敗<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">int LZHeEx(char * filename)</FONT></I></B><BR>
+<BR>
+VNCfilelistで指定したファイル・フォルダをまとめて1つの書庫に圧縮する。<BR>
+<BR>
+引数<BR>
+filename 書庫名。<BR>
+<BR>
+返り値<BR>
+1　成功<BR>
+負数　失敗<BR>
+<BR>
+例<BR>
+「c:\aaa.txt」「c:\bbb.txt」の2つのファイルと、「c:\ccc」というフォルダをまとめて圧縮して「c:\ddd.lzh」として出力するには<BR>
+{<BR>
+VNCfilelist(&quot;/d&quot;); //リストの初期化<BR>
+VNCfilelist(&quot;c:\\aaa.txt&quot;); //リストに「c:\aaa.txt」を追加<BR>
+VNCfilelist(&quot;c:\\bbb.txt&quot;); //リストに「c:\bbb.txt」を追加<BR>
+VNCfilelist(&quot;c:\\ccc&quot;); //リストに「c:\ccc」フォルダを追加<BR>
+LZHeEx(&quot;c:\\ddd.lzh&quot;); //圧縮<BR>
+}<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">int LZHdecode(char filename1[MAX_PATH],filename2[MAX_PATH],filename3[MAX_PATH])</FONT></I></B><BR>
+<BR>
+LZHファイルを展開する。<BR>
+<BR>
+引数<BR>
+filename1　書庫名。<BR>
+filename2　書庫名のパス。filename1でフルパスを指定している場合は不要。<BR>
+filename3　展開すべきフォルダのパス。「c:\～～～\folder」という形で指定すると、folderという名前のフォルダ上に展開される。<BR>
+<BR>
+返り値<BR>
+1　成功<BR>
+<BR>
+例<BR>
+「c:\aaa\bbb.lzh」を「c:\ddd」フォルダ上に展開したい時は<BR>
+LZHdecode(&quot;c:\\aaa\\bbb.lzh&quot;,NULL,&quot;c:\\ddd&quot;);<BR>
+または<BR>
+LZHdecodeEx(&quot;bbb.lzh&quot;,&quot;c:\\aaa&quot;,&quot;c:\\ddd&quot;);<BR>
+などとする。<BR>
+書庫をfilename1とfilename2に分けて指定できるのは便宜のためであって、必ずしもこの方式に従う必要はない。<BR>
+<BR>
+<BR>
+<FONT size="+4"><I><FONT size="-2">VNdecrypt(char filename[MAX_PATH],char filename2[MAX_PATH],char
+*outfilename,char KEYS[],int keybyte,int
+rewritemode,int ints)</FONT></I></FONT><BR>
+<BR>
+使われなくなりました。<BR>
+<BR>
+<BR>
+<FONT size="+1"><B><I><FONT size="+1">int VNdecryptEx(char filename[MAX_PATH],char
+filename2[MAX_PATH],char *outfilename,char
+KEYS[],int keybyte,int rewritemode,int ints)</FONT><BR>
+<BR>
+</I></B></FONT>指定ファイルを復号化する。<BR>
+<BR>
+引数<BR>
+filename 入力ファイル名（パス付き）<BR>
+filename2 出力フォルダパス<BR>
+outfilename 実際に出力されたファイル名（vncファイルから得られる）<BR>
+KEYS　鍵の文字列。<BR>
+keybyte　キーのバイト数（このDLLでは、2500までの動作が保障される）<BR>
+rewriteMODE 出力ファイルと同名のファイルが存在するときに上書きするか。0しない、1する。通常は0で運用すべきである。<BR>
+ints　無効なパラメータ（0を指定すること）<BR>
+<BR>
+返り値<BR>
+1　復号化成功<BR>
+-1　何らかの失敗（ファイルが存在しないなど）<BR>
+-2　VNCファイルではない<BR>
+-3　復号化不可能なバージョン<BR>
+-4　重合数が1より小さいか規定値より大きい<BR>
+-5　暗号化されたアドレスが、実際のファイルの大きさより大きい<BR>
+-6　入力ファイルが開けない<BR>
+-7　出力ファイルが既にある（rewrite=0の時のみ）　注意：バージョンによってはこの返り値は返らず、常に上書き処理される<BR>
+-8　出力できない（書き込み禁止など）<BR>
+-9　異常なﾒﾓﾘ書き込みを要求するVNC（復号化鍵が違うなど）。なお、通常、誤ったキーを指定するとこの返り値が返る確率が高い。<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">int VNvirtualdecrypt(char filename[MAX_PATH],char
+filename2[MAX_PATH],char *outfilename,char
+KEY[],int keybyte,int rewritemode,int ints)
+</FONT></I></B><BR>
+<BR>
+最初に一度VNdecryptEx（）を行ってから、鍵以外を同じパラメータにしてこの関数を呼ぶ。<BR>
+すると、別の鍵でVNdecryptExを行うのと同様の返り値を得られる（ただし復号化は行われない）。<BR>
+つまり、複数の鍵で連続的に復号化を試してみる場合に用いると、通常のdecryptのような無駄な作業（読み込みなど）をせずに復号化テストを行える。<BR>
+返り値が1だったときに、その鍵で本当の復号化（VNdecryptEx）を行えばよい。<BR>
+<BR>
+返り値<BR>
+VNdecryptExと同じ。<BR>
+<BR>
+返り値<BR>
+VNdecryptExと同じ。<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">int VNCfilecheck(char filename[MAX_PATH])</FONT></I></B><BR>
+<BR>
+ファイルがVNCファイルであるかどうか、またその暗号化バージョンはいくらかを得る。<BR>
+<BR>
+引数<BR>
+filename　対象ファイル名（パス付き）<BR>
+<BR>
+返り値<BR>
+正の整数 VNCバージョンの100倍の整数値<BR>
+-1 ファイル自体が存在しない、またはフォルダである<BR>
+-2 VNCファイルではない普通のファイル<BR>
+-4 重合度が0以下か規定値以上（エラー）<BR>
+-5 filenameがヌルストリング<BR>
+<BR>
+<BR>
+<FONT size="+1"><B><I>int VNCgetversion(void)<BR>
+</I><BR>
+</B></FONT>DLLのバージョンを得る。<BR>
+<BR>
+引数　<BR>
+なし<BR>
+<BR>
+返り値<BR>
+DLLのバージョンの100倍の整数値。<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">unsigned int VNCSHA1(char * str,int bytes,char
+*odigit)</FONT></I></B><BR>
+<BR>
+文字列から、SHA-1ハッシュ値（160ビット）を取得する。<BR>
+<BR>
+引数<BR>
+str　元の文字列<BR>
+bytes　文字列のバイト数<BR>
+odigit　ハッシュの文字列（160ビット）を格納するバッファへのポインタ<BR>
+<BR>
+返り値<BR>
+ハッシュ値の各々の4バイト（32ビット）をXORした値。<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">unsigned int VNCSHA512(char * str,int bytes,char
+*odigit)</FONT></I></B><BR>
+<BR>
+文字列から、SHA-512ハッシュ値（512ビット）を取得する。<BR>
+<BR>
+引数<BR>
+str　元の文字列<BR>
+bytes　文字列のバイト数<BR>
+odigit　ハッシュの文字列（512ビット）を格納するバッファへのポインタ<BR>
+<BR>
+返り値<BR>
+ハッシュ値の各々の4バイト（32ビット）をXORした値。<BR>
+<BR>
+例<BR>
+「test.txt」という名前のファイルのSHA-512ハッシュ値を計算して表示するサンプル。<BR>
+<BR>
+char filename[MAX_PATH]; //ファイル名<BR>
+strcpy(filename,&quot;test.txt&quot;); //<BR>
+char *cBUF; //ファイル内容保持用<BR>
+HANDLE hFILE;<BR>
+DWORD wFSIZE,wGSIZE;<BR>
+<BR>
+// ファイルを開く<BR>
+hFILE = ::CreateFile(filename,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0);<BR>
+// ファイルサイズの取得<BR>
+wFSIZE = ::GetFileSize(hFILE,NULL);<BR>
+// ファイルサイズが0xFFFFFFFFの場合はファイルオープン失敗<BR>
+if (wFSIZE != 0xFFFFFFFF) {<BR>
+// メモリを確保する<BR>
+cBUF = (char*)malloc(wFSIZE + 1);<BR>
+// ファイルを一括で読込む<BR>
+::ReadFile(hFILE,cBUF,wFSIZE,&amp;wGSIZE,NULL);<BR>
+// ファイルを閉じる<BR>
+::CloseHandle(hFILE);<BR>
+<BR>
+char dig[64+4]; //ハッシュしたデータを保持するため<BR>
+VNCSHA512(cBUF,wFSIZE,dig); //ハッシュ実行<BR>
+MessageBox(NULL,dig,NULL,NULL); //結果表示<BR>
+<BR>
+free(cBUF);<BR>
+}<BR>
+else<BR>
+{<BR>
+MessageBox(NULL,&quot;ファイルが不適切です&quot;,NULL,NULL);<BR>
+return;<BR>
+}<BR>
+<BR>
+<BR>
+<I><FONT size="+1"><B>int VNChdrand32(void)</B></FONT></I><BR>
+<BR>
+ハードウェア乱数から32ビットの乱数を得る。<BR>
+<BR>
+引数<BR>
+なし<BR>
+<BR>
+返り値<BR>
+32ビットの真の乱数。<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">int VNChdrandbit(void)</FONT></I></B><BR>
+<BR>
+ハードウェア乱数から1ビットの乱数を得る。<BR>
+<BR>
+引数<BR>
+なし<BR>
+<BR>
+返り値<BR>
+0または1（真の乱数）<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">void VNCinit_by_array(unsigned long MTSeed[625],int
+t)</FONT></I></B><BR>
+<BR>
+MT擬似乱数を、624*32ビットの配列で初期化する。<BR>
+VNCgenrandの前に少なくとも一度は実行すること。<BR>
+<BR>
+引数<BR>
+MTseed[]　各々、0～0xFFFFFFFFの値を持つ配列。ただし[0]の値だけは0xFFFF0000に固定すること。<BR>
+t　定数。623に固定して用いる。<BR>
+<BR>
+返り値<BR>
+なし<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">unsigned long VNCgenrand(void)</FONT></I></B><BR>
+<BR>
+MT擬似乱数から、32ビットの乱数を得る。<BR>
+<BR>
+引数<BR>
+なし<BR>
+<BR>
+返り値<BR>
+32ビット擬似乱数。<BR>
+<BR>
+<B><I><FONT size="+1">void SHRAND_init(unsigned long <FONT size="+1">MTSeed[625]</FONT>, unsigned long t)</FONT></I></B><BR>
+<BR>
+MT擬似乱数をもとにした、SHRAND擬似乱数を、624*32ビットの配列で初期化する。<BR>
+SHRANDの前に少なくとも一度は実行すること。<BR>
+MTと全く同じ要領で、SHAを用いた安全な擬似乱数列を得ることができる。<BR>
+<BR>
+引数<BR>
+MTseed[]　各々、0～0xFFFFFFFFの値を持つ配列。ただし[0]の値だけは0xFFFF0000に固定すること。<BR>
+t　定数。623に固定して用いる。<BR>
+<BR>
+返り値<BR>
+なし<BR><BR>
+<BR>
+<B><I><FONT size="+1">int SHRAND(void)</FONT></I></B><BR>
+<BR>
+SHRAND擬似乱数から、32ビットの安全な擬似乱数を得る。<BR>
+（返り値の型がVNCgenrandと異なることに深い理由はない、というか適当　笑）<BR>
+<BR>
+引数<BR>
+なし<BR>
+<BR>
+返り値<BR>
+32ビット擬似乱数。<BR>
+<BR>
+<BR><BR><BR><BR>
+<BR>
+<BR>
+</P>
+</BODY>
+</HTML>

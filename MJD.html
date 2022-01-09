@@ -1,0 +1,208 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=x-sjis">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>MJDシステムについて</title>
+</head>
+
+<body bgcolor="#B9C4FF">
+
+<p><a href="rcalc3.lzh"><font size="7"><strong><img
+src="DEKISU2.gif" border="0" width="32" height="32"></strong></font></a><font
+size="7">ＤＤＤ</font><font size="4"><strong>(</strong></font><font
+size="5"><strong>D</strong></font><font size="3"><strong>ekisugi
+spee</strong></font><font size="5"><strong>D</strong></font><font
+size="3"><strong>ｙ</strong></font><font size="4"><strong> </strong></font><font
+size="5"><strong>D</strong></font><font size="3"><strong>ataformat</strong></font><font
+size="4"><strong>)</strong></font><font size="7">集計システムについて</font><br>
+<br>
+「できすぎくん」は、最高のデータ処理だけでなく、東風荘のスコア集計における<font
+color="#FF0000"><strong>最高のパフォーマンス</strong></font>を実現するためにＤＤＤと呼ばれる新しい集計システムを導入しました。概要と使い方、ＤＤＤに関するオプション、ＤＤＤに関する注意、およびそのシステムの技術的な情報をここに記します。<br>
+<br>
+<br>
+<font size="7"><strong><img src="DEKISU2.gif" width="32"
+height="32"></strong></font><font size="5"><strong>ＤＤＤの概要</strong></font><br>
+<br>
+<strong>・圧倒的な集計パフォーマンスを約束します</strong><br>
+一度集計したファイルのデータは「ＤＤＤファイル」に記憶され、それ以降は圧倒的な速度で集計を行うことができるようになります。ＣＰＵ時間にして、従来のmjscoreからデータを読み込む方式の約10倍以上ものパフォーマンスに達します（初期設計時実測値）。今後集計するデータがより複雑に、精密になるに従い、このパフォーマンス向上の度合いはさらに大きくなります。<br>
+<br>
+<strong>・使用者は普段、MJDを意識することなくMJDの機能を利用できます</strong><br>
+ＤＤＤシステム（以降ＤＤＤ）について何の知識もなくても、ＤＤＤの優れた性能を活かすことができます。またＤＤＤについて知ると、より便利に性能を引き出すことができます。<br>
+<br>
+<br>
+<font size="7"><strong><img src="DEKISU2.gif" width="32"
+height="32"></strong></font><font size="5"><strong>ＤＤＤファイルを作り（自動）、利用する（自動）</strong></font><br>
+<font size="3"><br>
+ＤＤＤファイルは、mjscoreファイルに入っている複雑な牌譜のデータを、できすぎくんが読みとりやすい形に変換したファイルです。１つのmjscoreファイルに対して１つのＤＤＤファイルが作られることになります。<br>
+<br>
+<strong>・mjscoreファイルに対応するＤＤＤファイルがない時</strong><br>
+集計作業をする時にＤＤＤファイルがない場合、「ＤＤＤファイルを作成しますか」というダイアログボックスが表れます。ここで「はい」を選択すると、自動的にＤＤＤファイルが作成されます。ＤＤＤファイルの作成には少し時間がかかりますが、１度作成してしまえば、集計が一気に高速になりますので、作成することを強く推奨します。また、普段集計しているmjscoreと別のmjscoreを集計する場合などにもＤＤＤファイルがない場合があり、同様にＤＤＤファイルを作成すべきか尋ねられます。たくさんのＤＤＤファイルを作っても集計にかかる時間はほとんど変化せず、特に問題ありません。ハードディスクの容量がギリギリであるとか、集計後そのmjscoreファイルを二度と使わないことが決まっているような特殊な状況を除き、基本的にはＤＤＤファイルを作っておいてかまいません。<br>
+<br>
+<strong>・ＤＤＤファイルのデータが古くなっている時</strong><br>
+以前に作成したＤＤＤファイルのデータよりも、mjscoreのデータの方が多くなってくると、ＤＤＤファイルによる集計の高速化効果が薄れてきます。このことを回避するには、「集計条件」を一つも指定していない状態で、ＤＤＤファイルのデータを集計期間内に１試合以上含む形で、最新の試合までを「詳細集計」します。こうすることによって、ＤＤＤファイルが自動的に更新されます</font><font
+color="#0000FF" size="3"><strong>（要するに、充分古い日付のデータから最近のデータまでを「詳細集計」してやれば、意識することなくＤＤＤファイルは更新されます）</strong></font><font
+size="3">。また「ＤＤＤファイルの再構築」によって、ＤＤＤファイルを完全に一新することもできます（通常は、この操作をすることに特別なメリットはありません）。<br>
+<br>
+<strong>・ＤＤＤファイルを利用する</strong><br>
+ＤＤＤファイルができたら、後は普段通りに集計してください。集計速度が向上します。<br>
+<br>
+<strong>・ＤＤＤファイルが壊れたら</strong><br>
+ＤＤＤファイルが壊れたり、どうしても集計結果がおかしくなった場合には、「ＤＤＤファイルの再構築」でＤＤＤファイルを最新のものに更新します。また、できすぎくんのバージョンアップに伴い、集計データが大きく増加した場合などには、古いＤＤＤファイルが使えなくなる可能性もあります。<br>
+<br>
+<br>
+</font><font size="7"><strong><img src="DEKISU2.gif" width="32"
+height="32"></strong></font><font size="5"><strong>注意</strong></font><br>
+<font size="3"><br>
+ＤＤＤファイルはその性質上、あるmjscoreとの完全な１対１対応を保証できません（例えば、内容がほとんど同じmjscoreファイルがある場合に、そのいずれかのmjscoreファイルから作成したＤＤＤファイルは、他方のmjscoreファイルの集計の際にも誤って作動してしまうでしょう）。ＤＤＤファイルは、自分自身が、あるmjscoreファイルと対応することを「識別する」ために、mjscoreファイルからユニークである可能性の高いデータを取り出して保持しています（具体的には、ファイル先頭から任意の試合数の開始日や開始時刻、卓番号、および対戦者のメンバーリストを取り出しています）。識別のための試合数はＤＤＤファイル作成時に任意に指定することができ、これを大きくすることで、識別の成功率は高まります。同じ日の同じ時刻に同じ卓番号で打つということはあり得ないようにも思えますが、例えばその卓でたまたま知り合いと打ち、お互いのmjscoreファイルを集計する場合などには、識別に失敗する恐れがあります。このような可能性のあるmjscoreファイルをＤＤＤファイルにする場合には、充分大きな試合数を識別のために用いるべきです。逆にこのような可能性がない場合は、識別のために費やす無駄な時間を減らすために、識別する試合数を少なくして記録するべきです。<br>
+<br>
+ＤＤＤファイルは、対応するmjscoreファイルの情報を必ずしも全て持ちません。mjscoreファイルからＤＤＤファイルへの変換は不可逆変換であり、</font><font
+color="#FF0000" size="3"><strong>mjscoreのバックアップとしてＤＤＤファイルを使うことはできません</strong></font><font
+size="3">。mjscoreファイルは必ず別にバックアップを取っておきましょう。<br>
+<br>
+ＤＤＤファイルの形式は、それを使用するできすぎくんのバージョンによって予告なく変更される可能性があります。（まずないことですが）例えば、仮に誰かが「ＤＤＤファイルを用いた集計ツール」を作成したとしても、ＤＤＤファイルの形式の変更に伴い、集計ルーチンも書き換える必要が生ずるかもしれません。ＤＤＤファイルを利用・改変・公開することに関してとつげき東北は何の制限も設けませんが、フォーマットの変更の可能性があることを予めご了承下さい。<br>
+<br>
+<br>
+</font><font size="7"><strong><img src="DEKISU2.gif" width="32"
+height="32"></strong></font><font size="5"><strong>技術情報</strong></font><br>
+<font size="3"><br>
+</font><font size="4"><strong>ＤＤＤ、あるいはその他の技術導入による「できすぎくん」のパフォーマンス向上の証明</strong></font><font
+size="3"><br>
+<br>
+集計にかかる時間を、通常集計、最初に詳細集計機能がついたv3.25の詳細集計、テンパイチェックを高速化したv3.30の詳細集計、ＤＤＤシステムを導入したv3.40（ＤＤＤファイル作成済み）の通常集計および詳細集計、また他のスコア集計ツールの各々で比較する。<br>
+<br>
+</font><font color="#0000FF" size="3"><strong>　　　　集計したソフト　　　試合数　集計時間（秒）<br>
+</strong></font><font color="#00FFFF" size="3"><strong>fast!</strong></font><font
+color="#0000FF" size="3"><strong><br>
+</strong></font><font color="#00FFFF" size="3"><strong>　↑</strong></font><font
+color="#0000FF" size="3"><strong>　v3.40通常集計　　　　　</strong></font><font
+color="#FF0000" size="3"><strong>★ＤＤＤ</strong></font><font
+size="3"><br>
+</font><font color="#00FFFF" size="3"><strong>　｜</strong></font><font
+color="#0000FF" size="3"><strong>　v3.40</strong></font><font
+color="#008080" size="3"><strong>詳細集計</strong></font><font
+color="#0000FF" size="3"><strong>　　　　　</strong></font><font
+color="#FF0000" size="3"><strong>★ＤＤＤ</strong></font><font
+color="#0000FF" size="3"><strong><br>
+</strong></font><font color="#0202FF" size="3"><strong>　｜</strong></font><font
+color="#0000FF" size="3"><strong>　v3.25通常集計<br>
+</strong></font><font color="#0202FF" size="3"><strong>　｜</strong></font><font
+color="#0000FF" size="3"><strong>　スコアツールＡ<br>
+</strong></font><font color="#400080" size="3"><strong>　｜</strong></font><font
+color="#0000FF" size="3"><strong>　スコアツールＢ<br>
+</strong></font><font color="#400080" size="3"><strong>　｜</strong></font><font
+color="#0000FF" size="3"><strong>　v3.30</strong></font><font
+color="#008080" size="3"><strong>詳細集計</strong></font><font
+color="#0000FF" size="3"><strong><br>
+</strong></font><font color="#400080" size="3"><strong>　｜</strong></font><font
+color="#0000FF" size="3"><strong>　v3.25</strong></font><font
+color="#008080" size="3"><strong>詳細集計</strong></font><font
+color="#400080" size="3"><strong><br>
+slow</strong></font><font size="3"><br>
+<br>
+</font><font size="2">集計されたデータはとつげき東北の第一東風荘超ラン卓データ（全て牌譜あり）で、mjscore全体の後半1/4前後以降のデータである。<br>
+計測結果は、同条件で５回計測後の平均値。<br>
+注：結果は、他のスコア集計ツールが遅いということを意味しないし、ましてや他のツールの価値を減らすものでは全然ない。<br>
+　　それらはできすぎくんにない優れた機能を持っているかもしれない。とつげき東北自身、現在でも他のスコア集計ツールをいくつか愛用している。<br>
+</font><font size="3"><br>
+<br>
+</font><font size="4"><strong>ＤＤＤのシステム構成およびＤＤＤファイルのフォーマット</strong></font><font
+size="3"><br>
+<br>
+ＤＤＤシステムは以下の２種類のファイルによって構成される。<br>
+<br>
+DDD．DAT　DDDファイル管理用データファイル。必ず１つだけ存在する。<br>
+sc0000．DDD～sc9999．DDD　DDDフォーマットファイル。少なくともDDD．DATで指定される数だけ存在するべき。<br>
+<br>
+DDD.DATが、mjscoreと各ＤＤＤファイルとの（不完全な）１対１対応関係を記録する。<br>
+このためにDDD.DATは、mjscoreがユニークであるための識別文字列を持つ。<br>
+<br>
+<br>
+DDD.DATのフォーマットは以下の通りである。<br>
+<br>
+<strong>DDDファイル１のデータ（ファイル名・コメント・識別すべき試合数・識別文字列）<br>
+DDDファイル２のデータ（ファイル名・識別すべき試合数・識別文字列）<br>
+・・・</strong><br>
+<strong>（EOF）</strong><br>
+<br>
+<br>
+１つのデータの中には、次の形式でデータが格納される。<br>
+<br>
+<strong>DDDファイル名<br>
+コメント（改行まで自由）<br>
+識別すべき試合数<br>
+識別文字列</strong><br>
+（mjscoreの先頭の試合からの、「識別すべき試合数」分だけ、mjscoreの開始時刻の載った行と、対戦者ＨＮとＲの載った行が入る）<br>
+<br>
+<br>
+具体的には、識別すべき試合数が２のmjscoreファイルと、１のmjscoreファイルをDDDファイルとした場合には、例えば次のようになる。識別に使われる試合は、必ずmjscoreの最初の試合から順に、識別すべき試合数分だけ取られる。<br>
+<br>
+<strong>sc0000．DAT<br>
+2<br>
+===== 東風戦ランキング超上級 488卓 開始 2001/02/21
+02:22 =====<br>
+持点27000 [1]とつげき東北 R1993 [2]月組☆まゆ R1995
+[3]starcat R1975 [4]月狂蒼星 R1907<br>
+===== 東風戦ランキング超上級 486卓 開始 2001/02/21
+02:36 =====<br>
+持点27000 [1]とつげき東北 R1987 [2]月狂蒼星 R1905 [3]◎ぶらいあん
+R1876 [4]月組☆まゆ R1997<br>
+sc0000．DAT<br>
+1<br>
+===== 東風戦：仲間でワイワイ卓 71卓 開始
+1999/04/02 15:51 =====<br>
+持点27000 [1]・・、・・。 R1609 [2]ルーベン R1495
+[3]sum52281 R1524 [4]TOTUGEKI R1500</strong><br>
+<br>
+</font><font size="2">（改行は実際に改行コードが入る。数値等もそのままASCIIコードで入る）</font><font
+size="3"><br>
+<br>
+<br>
+各々のＤＤＤファイルは次の形式を持つ。<br>
+</font><br>
+<strong>ＤＤＤファイルのマーク（&quot;Dekisugi speeDy
+Dataformat&quot;の文字列がASCIIコードで入る）<br>
+ＤＤＤフォーマットバージョン（単純に、バージョン表記文字列が&quot;1.00&quot;
+&quot;2.00&quot;のようにASCIIコードで入る）<br>
+予約領域（任意のバイト数のデータ領域が予約されている）<br>
+データ開始記号（&quot;DDD start&quot;の文字列がASCIIコードで入る）<br>
+１試合目のデータ<br>
+２試合目のデータ<br>
+・・・・・・<br>
+ＤＤＤファイル終端記号（&quot;DDD end&quot;の文字列がASCIIコードで入る）<br>
+（EOF）</strong><br>
+<br>
+<font size="2">（改行は実際に改行コードが入る。数値等もそのままASCIIコードで入る）<br>
+</font><br>
+<br>
+各試合のデータは次の通り構成される。<br>
+<br>
+<strong>試合の場所、卓、日付、時刻データ（mjscoreのものと同一）<br>
+持ち点・ＨＮ・Ｒのデータ（mjscoreのものと同一）<br>
+東１局０本場のデータ<br>
+その次の局のデータ<br>
+その次の局のデータ<br>
+・・・・<br>
+試合結果のデータ（----試合結果----の文字列以降、４位の表示までmjscoreと同一の形式）</strong><br>
+<br>
+<font size="2">（改行は実際に改行コードが入る。数値等もそのままASCIIコードで入る）</font><br>
+<br>
+<br>
+各局のデータは次の順で、数値は全てASCIIコードで記録される。なお、ここでは改行はデータ上の改行を表さない。<br>
+データ上の改行は（CR）と表記される。<br>
+<br>
+<br>
+<br>
+<br>
+基本的にはＡＮＳＩ　Ｃの標準関数 fprintf
+で書式 &quot;%d %d %d %d・・・&quot;
+と書き込んでいるだけであって理解しやすいはずだ。<br>
+DDDファイルはテキストエディタで開いて読むことができる形式だから、不明な部分がもしあれば、実際にテキストエディタで開いてみると良いだろう。<br>
+<br>
+<br>
+<br>
+<br>
+</p>
+</body>
+</html>

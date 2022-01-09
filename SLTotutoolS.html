@@ -1,0 +1,376 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=x-sjis">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>ﾂｰﾙｿｰｽ</title>
+</head>
+
+<body background="801-04.gif" bgcolor="#FFFFFF">
+
+<p><font color="#00FF80" size="7"><strong>ツールのソースコード一部公開</strong></font><font
+color="#FFFF80"><strong>　</strong></font><font color="#00FF80"
+size="7"><strong><br>
+</strong></font><font color="#FFFFFF" size="4"><strong><br>
+</strong></font><font color="#FFFFFF">先に言っておきますが、とつは「１ビットの差でフリーズするコードを書く」ことで知られております(
+≧∇≦)ﾌﾞﾊﾊﾊ!<br>
+<br>
+はっきり言って「動けばいい」「オブジェクト指向？なにそれヽ(
+´Д`)ノ」の世界です。<br>
+<br>
+１６ビット時代から、機械語でコード書いてたので、まず「動くこと」優先、ぁゃιぃ部分も無視、の習慣があるの。<br>
+<br>
+ＣやＣ＋＋の勉強をしたい人は、別のＨＰへ行って下さい。<br>
+<br>
+とつもＣ＋＋はまだ勉強中ですし(笑)。<br>
+<br>
+ていうか、基本的な勉強なしでコーディングするクセがあるので、Ｃとかの文字列操作なんかもすごい苦手ですわ(笑)。<br>
+<br>
+シューティングゲームとかばっかり作ってたからねゞ（´▽｀；）<br>
+<br>
+適当にポインタ当てて、うまく動いたらラッキーって感じでやってます。<br>
+<br>
+開発はＣ＋＋Ｂｕｉｌｄｅｒを使ってますので、他の環境には全く使えないでしょう(
+´ｰ`)。<br>
+<br>
+<br>
+ここには、単純に「Ｃ＋＋ビルダーで東風関係の集計ツールを作る場合に使い回せるソース」があるだけです。<br>
+<br>
+ただ、東風関係のツール作ってる人、ぜひソース公開をしましょうよ。<br>
+<br>
+こういう、きちゃないソースの適当すぎる公開でさえ、たぶん、集計ツール作りには役立つんです(笑)。<br>
+<br>
+知識が共有されることで、更に上の知識を捉えることができます。<br>
+<br>
+みんながみんな同じ読み込みルーチンなんか作っていたら、みんなのアイデアが活かせないと思うよ(
+≧∇≦)<br>
+<br>
+<br>
+<br>
+</font><font color="#00FFFF" size="3"><strong>ｉｎｔ　DateCMP関数</strong></font><font
+color="#FFFFFF">　引数(AnsiString,AnsiString)　返り値１　－１<br>
+<br>
+牌譜の集計の時に、ある期間（日付）の指定をする場合が多い。<br>
+たぶん日付比較のメソッドくらいあると思うが、調べるのめんどいので自作した。<br>
+日付のフォーマットは”**/**/**”の形で、AnsiStringで与える。<br>
+1999年と2000年を比較すると、このフォーマットの場合に1999&gt;2000となるので、そうならないように</font><font
+color="#FFFFFF" size="5">だけ</font><font color="#FFFFFF">の処理がされている。<br>
+あとはしらん(笑)<br>
+AnsiString　ｘ=DateTimePicker-&gt;Date　のようにしてゲットした指定日付と、別に用意された日付を比較するのに用います。<br>
+牌譜の、ある対戦の日付を得るルーチンは下の「集計の骨格」の中に入ってます。<br>
+ちなみに、仕様では「同じ日」なら０が返るはずなんだが、牌譜から日付を読みとるとき、後ろの部分をカットするのが面倒でそれをしておらず、自動的に１か－１しか返らないシステムになりましたヽ(´▽｀*)/ｷｬｰ<br>
+指定日付が「1999/01/01」だとして、対戦日が「1999/01/01」でも、対戦日の方は「1999/01/01
+16:02 491卓=====」みたいなデータで送られてくるので、イコールにならないんですな(
+≧∇≦)ﾌﾞﾊﾊﾊ!<br>
+ま、問題ないよ(;´ｰ`)y-ﾟﾟ<br>
+<br>
+<br>
+</font><font color="#FFFFFF" size="1">int DateCMP(AnsiString
+s,AnsiString t){<br>
+<br>
+AnsiString cmp0=&quot;0&quot;;<br>
+AnsiString cmp9=&quot;9&quot;;<br>
+<br>
+if((s[1]==cmp9[1])&amp;&amp;(t[1]==cmp0[1]))<br>
+{<br>
+s[1]=cmp0[1];t[1]=cmp9[1];<br>
+}<br>
+else if((s[1]==cmp0[1])&amp;&amp;(t[1]==cmp9[1]))<br>
+{<br>
+s[1]=cmp9[1];t[1]=cmp0[1];<br>
+}<br>
+<br>
+if(s&lt;t){<br>
+return -1;<br>
+}<br>
+else if(s&gt;t)<br>
+{<br>
+return 1;<br>
+}<br>
+else<br>
+{<br>
+return 0;<br>
+｝<br>
+｝<br>
+</font><font color="#FFFFFF"><br>
+<br>
+<br>
+<br>
+</font><font color="#00FFFF" size="3"><strong>集計の骨格</strong></font><font
+color="#FFFFFF">　これがmjscore集計の骨格部分。こういう感じで、あとは適当にいじれば、望む集計ができるはず。<br>
+注意・この部分はまだ発展途上です(笑)　与えられたＨＮの文字列を含むＨＮがあったりすると集計がおかしくなりますね。<br>
+<br>
+<br>
+</font><font color="#FFFFFF" size="2">char* filename =new
+char[FILENAME_MAX];</font><font color="#FFFFFF"> //filenameには、mjscore.txtへのフルパスが入っています。<br>
+<br>
+</font><font color="#FFFFFF" size="2">void TForm1::test()<br>
+{<br>
+AnsiString date;<br>
+char str[MOJISUU];<br>
+char takusyurui1[30];<br>
+char takusyurui2[30];<br>
+char takusyurui3[30];<br>
+char namae[14];<br>
+char namae1[14];<br>
+char namae2[14];<br>
+char namae3[14];<br>
+<br>
+int taku;<br>
+double siaisuu[4]={0,0,0,0};<br>
+double junnikei[4]={0,0,0,0};<br>
+<br>
+FILE *fp;　　　　<br>
+if ((fp=fopen(filename,&quot;r&quot;))==NULL) //ｆｉｌｅｎａｍｅで指定されるファイルがなければ何もせず帰る<br>
+{<br>
+return;<br>
+}<br>
+<br>
+fgets(str, MOJISUU, fp);<br>
+fclose(fp);<br>
+<br>
+<br>
+if ((fp=fopen(filename,&quot;r&quot;))==NULL) //Σ(￣□￣;)いきなり同じ処理しとる！？　昔の残骸でしょう(笑)<br>
+{<br>
+return;<br>
+}<br>
+<br>
+strcpy(namae1,Edit5-&gt;Text.c_str()); //ＨＮの文字列のあるTEdit欄から文字列にＨＮを代入（ビルダー利用者なら意味わかるでしょう<br>
+strcpy(namae2,Edit6-&gt;Text.c_str());<br>
+strcpy(namae3,Edit7-&gt;Text.c_str());<br>
+<br>
+strcpy(takusyurui1,&quot;ランキング超上&quot;); //卓種類判別用<br>
+strcpy(takusyurui2,&quot;上級ランキング&quot;);<br>
+strcpy(takusyurui3,&quot;：ランキング卓&quot;);<br>
+<br>
+while (!feof(fp)) //filenameが終わるまで処理を続ける<br>
+{<br>
+fgets(str, MOJISUU, fp);<br>
+if((strstr(str,takusyurui1)!=NULL)||(strstr(str,takusyurui2)!=NULL)||(strstr(str,takusyurui3)!=NULL))
+//指定の卓種類であれば、以下の処理をします<br>
+{<br>
+<br>
+if (strstr(str,takusyurui1)!=NULL){taku=1;} //卓種類判別<br>
+else if (strstr(str,takusyurui2)!=NULL){taku=2;}<br>
+else if (strstr(str,takusyurui3)!=NULL){taku=3;}<br>
+<br>
+<br>
+<br>
+char *ptr, c = '始'; //開始年月日を取得<br>
+<br>
+ptr = strchr(str, c);<br>
+date=ptr+5;<br>
+AnsiString p;<br>
+p=DateToStr(MaskEdit1-&gt;Date);<br>
+p=p; //開始日と同じか、それ以降なら集計したい<br>
+AnsiString p2;<br>
+p2=DateToStr(MaskEdit2-&gt;Date);<br>
+p2=p2+1; //終了日＋１と同じか、それ以降なら集計したくない（DateCMP関数の説明で書いた通り、「同じ日」は判別できないんです<br>
+<br>
+<br>
+if ((DateCMP(date,p)==1)&amp;&amp;(DateCMP(date,p2)==-1)) //取得した年月日が、MaskEdit1～MaskEdit2の間であれば、それを集計対象として集計。<br>
+// MaskEdit　と名を付けていますが、ここは実はDateTimePickerを使っています(笑)。<br>
+<br>
+{<br>
+<br>
+fgets(str, MOJISUU, fp);<br>
+<br>
+if(((strstr(str,namae1))!=NULL)||((strstr(str,namae2))!=NULL)||((strstr(str,namae3))!=NULL))
+//指定のＨＮが含まれていれば集計<br>
+{<br>
+<br>
+if((strstr(str,namae1))!=NULL){strcpy(namae,namae1);}<br>
+else if((strstr(str,namae2))!=NULL){strcpy(namae,namae2);}<br>
+else if((strstr(str,namae3))!=NULL){strcpy(namae,namae3);}<br>
+<br>
+<br>
+<br>
+// 集計本体<br>
+<br>
+int bangou;<br>
+bangou=atoi(strstr(str,namae)-2);<br>
+<br>
+int c;<br>
+for(c=-1;c&lt;=bangou;c++)<br>
+{fgets(str, MOJISUU, fp);}<br>
+<br>
+int kaze=0;<br>
+if ((strstr(str,&quot;東]&quot;))!=NULL) {kaze=1;}<br>
+if ((strstr(str,&quot;南]&quot;))!=NULL) {kaze=2;}<br>
+if ((strstr(str,&quot;西]&quot;))!=NULL) {kaze=3;}<br>
+if ((strstr(str,&quot;北]&quot;))!=NULL) {kaze=4;}<br>
+if (kaze==1||kaze==2||kaze==3||kaze==4)<br>
+{<br>
+<br>
+<br>
+//
+上がり手や牌譜そのものを使った集計はここに記述する。<br>
+<br>
+<br>
+while((strstr(str,&quot; ---- 試合結果 ----&quot;))==NULL) //いきなり試合結果まで飛ばす。上がり手などの集計はこの直前にすること。<br>
+{fgets(str, MOJISUU, fp);}<br>
+<br>
+int tokuten=0;<br>
+char kekka[20];<br>
+<br>
+for(c=1;c&lt;=4;c++)<br>
+{<br>
+fread(kekka,20,1,fp);<br>
+fscanf(fp,&quot;%d&quot;,&amp;tokuten);<br>
+<br>
+if(strstr(kekka,namae)!=NULL)<br>
+{<br>
+int jyunni;<br>
+jyunni=atoi(kekka); //その試合での順位を得る<br>
+siaisuu[taku]++; //takuにあたる卓での試合数を加算<br>
+<br>
+junnikei[taku]+=jyunni++; //takuにあたる卓での順位合計を加算<br>
+<br>
+}<br>
+}<br>
+}<br>
+}<br>
+}<br>
+}<br>
+}<br>
+<br>
+<br>
+fclose(fp);<br>
+<br>
+//
+以下、適当に平均順位やら安定Ｒやらを計算して　Editに入れてやる。このへんは作る人任せ。<br>
+<br>
+long totalsiaisuu; //なぜlongかって？　あのねえ、動けばええねん動けば！(
+´Д`)<br>
+int R1=1930;<br>
+int R2=1730;<br>
+int R3=1500;<br>
+<br>
+totalsiaisuu=siaisuu[1]+siaisuu[2]+siaisuu[3];<br>
+Edit8-&gt;Text=siaisuu[3];<br>
+Edit11-&gt;Text=siaisuu[2];<br>
+Edit14-&gt;Text=siaisuu[1];<br>
+Edit17-&gt;Text=totalsiaisuu;<br>
+<br>
+<br>
+if(siaisuu[3]==0){<br>
+Edit9-&gt;Text=0;Edit10-&gt;Text=0;<br>
+}<br>
+else<br>
+{<br>
+Edit9-&gt;Text=double (junnikei[3]/Edit8-&gt;Text.ToInt());<br>
+Edit10-&gt;Text=(R3+3000-1200*(Edit9-&gt;Text.ToDouble()));<br>
+}<br>
+<br>
+if(siaisuu[2]==0){<br>
+Edit12-&gt;Text=0;Edit13-&gt;Text=0;<br>
+}<br>
+else<br>
+{<br>
+Edit12-&gt;Text=double (junnikei[2]/Edit11-&gt;Text.ToInt());<br>
+Edit13-&gt;Text=(R2+3000-1200*(Edit12-&gt;Text.ToDouble())); //このへんの同じ処理の記述に、やる気のなさを感じますな(
+≧∇≦)ﾌﾞﾊﾊﾊ!<br>
+}<br>
+<br>
+if(siaisuu[1]==0){<br>
+Edit15-&gt;Text=0;Edit16-&gt;Text=0;<br>
+}<br>
+else<br>
+{<br>
+Edit15-&gt;Text=double (junnikei[1]/Edit14-&gt;Text.ToInt());<br>
+Edit16-&gt;Text=(R1+3000-1200*(Edit15-&gt;Text.ToDouble()));<br>
+}<br>
+<br>
+if(totalsiaisuu==0){ //ここが安定Ｒの出力かしらねえ<br>
+Edit19-&gt;Text=0;}<br>
+else<br>
+{<br>
+Edit19-&gt;Text=(Edit10-&gt;Text.ToDouble()*siaisuu[3]+Edit13-&gt;Text.ToDouble()*siaisuu[2]+Edit16-&gt;Text.ToDouble()*siaisuu[1])/totalsiaisuu;<br>
+}<br>
+<br>
+Edit17-&gt;Text=(Edit8-&gt;Text.ToInt())+(Edit11-&gt;Text.ToInt())+(Edit14-&gt;Text.ToInt());<br>
+saveinifile();<br>
+<br>
+}<br>
+<br>
+<br>
+</font><font color="#FFFFFF"><br>
+<br>
+</font><font color="#00FFFF"><strong>void　saveinifile（）関数</strong></font><font
+color="#FFFFFF">　前回使ったＨＮや集計期間を保存します。<br>
+始めに#define iniFN
+”好きなファイルネーム”　で、このデータ保存用のファイルネームを与えておきます。<br>
+Edit5とか、それ系が出てきますが、要は「ＨＮの文字列が入ったEdit欄」ですわ。適宜変更してくださいな。<br>
+ところでEdit1ですが、これは「作業用」の、インビジブルなエディットボックスです。<br>
+なんや、文字列とかの代入とかがうまくいかなかったので、短絡的にこれを用いるに至りました(爆)。<br>
+<br>
+</font><font color="#FFFFFF" size="1">void TForm1::saveinifile(){<br>
+<br>
+AnsiString namae1;<br>
+AnsiString namae2;<br>
+AnsiString namae3;<br>
+Edit1-&gt;Text=MaskEdit1-&gt;Date.DateString();<br>
+startdate=Edit1-&gt;Text.c_str();<br>
+<br>
+Edit1-&gt;Text=MaskEdit2-&gt;Date.DateString();<br>
+enddate=Edit1-&gt;Text.c_str();<br>
+namae1=Edit5-&gt;Text;<br>
+namae2=Edit6-&gt;Text;<br>
+namae3=Edit7-&gt;Text;<br>
+<br>
+FILE *fp;<br>
+fp=fopen(iniFN,&quot;w&quot;);<br>
+fprintf(fp,&quot;%s\n&quot;,startdate);<br>
+fprintf(fp,&quot;%s\n&quot;,enddate);<br>
+<br>
+fprintf(fp,&quot;%s\n&quot;,namae1);<br>
+fprintf(fp,&quot;%s\n&quot;,namae2);<br>
+fprintf(fp,&quot;%s\n&quot;,namae3);<br>
+<br>
+fclose(fp);<br>
+</font><font color="#FFFFFF"><br>
+<br>
+<br>
+</font><font color="#00FFFF"><strong>void　loadinifile（）関数</strong></font><font
+color="#FFFFFF">　前回使ったＨＮや集計期間をロードします。<br>
+始めに#define iniFN
+”ファイルネーム”　で、このデータ保存用のファイルネームを与えておきます。<br>
+同様にEdit1は作業用になってます。<br>
+<br>
+<br>
+</font><font color="#FFFFFF" size="1">void TForm1::loadinifile(){<br>
+<br>
+char namae1[20],namae2[20],namae3[20];<br>
+<br>
+FILE *fp;<br>
+fp=fopen(iniFN,&quot;r&quot;);<br>
+fscanf(fp,&quot;%s&quot;,startdate);<br>
+fscanf(fp,&quot;%s&quot;,enddate);<br>
+<br>
+fscanf(fp,&quot;%s&quot;,namae1);<br>
+fscanf(fp,&quot;%s&quot;,namae2);<br>
+fscanf(fp,&quot;%s&quot;,namae3);<br>
+fclose(fp);<br>
+<br>
+Edit5-&gt;Text=namae1;<br>
+Edit6-&gt;Text=namae2;<br>
+Edit7-&gt;Text=namae3;<br>
+<br>
+Edit1-&gt;Text=startdate;<br>
+MaskEdit1-&gt;Date=Edit1-&gt;Text;<br>
+Edit1-&gt;Text=enddate;<br>
+MaskEdit2-&gt;Date=Edit1-&gt;Text;<br>
+<br>
+Edit1-&gt;Text=filename; <br>
+}<br>
+</font><font color="#FFFFFF"><br>
+<br>
+<br>
+<br>
+<br>
+<embed src="tamsp01.mid" hidden="true" align="baseline"
+border="0" width="1" height="1" autostart="true" loop="true"
+repeat="true"><noembed><bgsound src="tamsp01.mid" loop="infinite"></noembed> </font></p>
+</body>
+</html>

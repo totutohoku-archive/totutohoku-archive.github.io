@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=x-sjis">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
+<TITLE>東風荘画面入出力ＤＬＬ</TITLE>
+</HEAD>
+<BODY background="1052.gif" alink="#ff7f00" bgcolor="#ffffff" link="#ff0000" text="#000000" vlink="#400080">
+<P><B><FONT size="+3"><IMG src="MJexeIO.gif" width="34" height="36" border="0">MJexeIO.DLL</FONT><FONT size="+1">（東風荘画面入出力用ダイナミックリンクライブラリ）</FONT><FONT size="+2" color="#0000FF">v0.92</FONT><FONT size="+2">　</FONT></B><B>とつげき東北</B>　<A href="/hp/"><B><U><FONT color="#0000FF">TOP</FONT></U></B></A><BR>
+<BR>
+ソフトウェアの形態：制限付フリーウェア<BR>
+ソフトウェアの機能：東風荘（MJ.exe）画面入出力用ダイナミックリンクライブラリ<BR>
+動作環境：WINDOWS95以降<BR>
+<BR>
+<BR>
+<B><FONT color="#0000FF"><U><FONT size="+2"><A href="MJexeIO.dll"><FONT color="#0000FF"><IMG src="MJexeIO.gif" width="34" height="36" border="0">MJexeIO.DLLダウンロード</FONT></A></FONT></U></FONT></B><BR>
+<FONT color="#FF0000">下の「使用条件」、「ソフトウェア<FONT color="#FF0000">開発時の使用条件</FONT>」をお読みになり、その内容に同意いただけた方だけがダウンロードできます。</FONT><BR>
+<BR>
+<BR>
+<B><FONT size="+1">MJexeIO.dllを利用したソフト</FONT></B><BR>
+<BR>
+<U><A href="tumotumo.htm"><B><FONT color="#0000FF">ツモツモ君♪（東風荘・リーチ時自動和了・ツモ切りツール）</FONT></B></A></U>　<B><FONT color="#000000"><A href="http://homepage2.nifty.com/BeniKujyaku/"><U><FONT color="#0000FF">紅孔雀さん</FONT></U></A></FONT></B>・とつげき東北（共同開発）<BR>
+<A href="http://doranizm.hp.infoseek.co.jp/"><B><FONT color="#0000FF">電脳猫型ドラえもんβ（自動打ちツール）</FONT></B></A>　<B><FONT color="#0000FF">ドラえもんβ</FONT></B><BR>
+<A href="http://chitan.cside.com/main.shtml"><U><B><FONT color="#0000FF">ポテポテ君（多目的ツール）</FONT></B></U></A>　<B><FONT color="#0000FF">Snoopy</FONT></B>　（ポテポテ君では、ごく一部の機能にのみMJexeIO.DLLを利用しています）<BR>
+<A href="http://doraponw.hp.infoseek.co.jp/dora/soft/soft.htm"><B><FONT color="#0000FF">東風補助ソフトkamo_tool</FONT></B></A> <B><FONT color="#0000FF">◆鴨園◆ドラ</FONT></B><BR>
+<A href="http://www.geocities.jp/hokutoh/kansen_1.html"><FONT color="#0000FF"><B>観戦補助ツール</B></FONT></A> <FONT color="#0000FF"><B>観戦◆第二軍</B></FONT><BR>
+<BR>
+<BR>
+<B><FONT size="+1">MJexeIO.dllを使った開発</FONT></B><BR>
+<BR>
+<A href="MJexeIODLLstart.htm" target="TOP"><B><U><FONT color="#0000FF">具体的にプログラムを動かすには？</FONT></U></B></A><FONT color="#FF0000" size="-1"><B>（入門用）</B></FONT>　「サンプルコード３」の一括/wを用いて、<FONT color="#0000FF">コピペだけで簡単に東風用アプリを作って動かしてみる</FONT><BR>
+<BR>
+「C++のコンパイラを持っているけど、MJexeIO.dllってどうやって使うの？　難しい！」という人に。<BR>
+コピペするだけでとりあえず、「ミニ東風ツール（？）」ができるようにするためのコーナーです。ぜひ一度ためしてみましょう。<BR>
+<B><FONT color="#000000">再配布の制限が緩和されました。</FONT></B>いくつかの条件下で、ソフトウェア開発者はMJexeIO.dllを当該のソフトと同時に配布することができます。<BR>
+<BR>
+上に紹介したドラえもんβのページでは、具体的にMJexeIO.dllを使う方法や、VBからの利用法などについて活発な意見交換が行われています。<BR>
+<BR>
+<BR>
+<B><FONT size="+2">★ソフトウェアの機能とバージョン情報★</FONT></B><BR>
+<BR>
+このソフトは、単体では動作しません。このソフトを利用する他のソフトを実行するために必要です。<BR>
+また、このソフトの関数を呼び出すことで、プログラマは、比較的簡単に東風荘画面入出力を行うためのソフトを開発できます。<BR>
+テンパイの待ち判定関数等、便利な関数も用意しました。<BR>
+<BR>
+<FONT color="#FF0000">現在テスト版</FONT>につき動作保証は一切ありません。<BR>
+一通りの動作チェックを行ってからバージョン1.00としてリリースします。<BR>
+<FONT color="#FF0000">全ての関数の動作や引数が大幅に変更になる可能性があります。</FONT><BR>
+v0.19以降に導入された一部の関数は、東風のプログラマ友達である紅孔雀さんに開発・投稿していただきました（関数名の後にその旨が書いてあります）。<BR>
+現在、呼び出し規約は「C」です。C以外の言語からの呼び出し方等についてはお答えできません。<BR>
+<BR>
+このDLLを利用して、東風荘の画面上の情報を読み取ったり、東風荘にマウスクリックなどの情報を送ることができます。<BR>
+東風荘のウインドウハンドルなどの管理は完全に隠蔽されており、非常に簡単に東風荘にアクセスすることが可能になっています。<BR>
+<FONT color="#0000FF">「Ｃ++のコードが書けてコンパイラさえ持っていれば、誰でも東風自動打ちツールが簡単に作れる！」</FONT>DLLです。<BR>
+今後、そのためにマニュアルが初心者向けに整理されます。<BR>
+<BR>
+v0.01　とりあえず公開。機能はごく基本的な牌の読み込み。これが本DLLの骨格。<BR>
+v0.02　選んだ牌を切れる出力関数PushHaiを実装。<BR>
+v0.03　右クリック関数RClick、ファンクションキー入力関数PushFunctionKeyを実装。<BR>
+v0.04　v0.03でPushFunctionKey関数をエクスポートしていなかったので(笑)修正。マニュアルのバグフィクス。<BR>
+v0.05　東風荘関係のウインドウハンドルの操作を全て隠蔽した。<BR>
+ｖ0.06　GetTonpuDataの挙動を変更。<BR>
+ｖ0.07　全ての関数の基本動作チェックとバグフィクスを行った。現段階では返り値がまだ厳密にチェックされていない。<BR>
+ｖ0.08　全ての関数の返り値をチェックし一部修正した。<BR>
+ｖ0.09　内部関数を整備。<BR>
+v0.10　GetCursorDCPosを実装。<BR>
+v0.15　GetTonpuDataの不具合修正、GetTonpuInfoを導入。<BR>
+v0.16　PushHaiの不具合修正。<BR>
+v0.17　GetTonpuDataの、対戦時の返り値を修正。<BR>
+v0.18　Check_tenpai関数および、Check_agari関数を導入（国士未対応）。<BR>
+v0.19　GetAvailableFunctionKey、ExistAvailableFunctionKey関数を導入。<BR>
+v0.20　GetAvailableFunctionKeyの返り値を初期化していなかったので修正。<BR>
+v0.25　赤牌に対応し、SetMode関数およびTehaiNormalize関数を導入。<BR>
+v0.26　GetRightestTehai関数を導入。<BR>
+v0.27　GetSutehaiにおいて、赤ワクに囲まれた状態の牌を読み出せるようにした。<BR>
+v0.30　Check_tenpai関数が国士にも対応。<BR>
+v0.32　内部関数であったGetHaiを、ext_GetHai関数としてエクスポート。<BR>
+v0.33　赤ワクに囲まれた状態の牌を誤認する場合を修正。<BR>
+v0.38　GetPlayerPoint関数を導入。<BR>
+v0.39　GetPlayerPoint関数を廃止してGetPlayerInfo関数に差し替え。<BR>
+v0.40　GetHoldTime関数を導入。<BR>
+v0.41　GetSutehai関数の返り値で、読み込み失敗の場合でもsutehai[]配列の内容を保障した。<BR>
+v0.42　GetSutehaiNum関数を導入。<BR>
+v0.43　GetReach関数を導入。<BR>
+v0.44　GetSutehaiの返り値を変更。<BR>
+v0.45　チャット送信をする関数SendChatを導入。<BR>
+v0.46　SendChatの仕様を一部変更。<BR>
+v0.50　GetReachの不安定動作を修正。<BR>
+v0.51　GetSutehaiEx関数を導入。<BR>
+v0.60　SimulateOrder関数、GetOrder関数を導入。<BR>
+v0.61　GetNextOrder関数を導入。<FONT size="-1"><FONT size="-1">※現在、カンが入って</FONT>いるとき、リーチ直後が不安定</FONT><BR>
+v0.62　GetNextOrder関数の不具合を一応修正。<FONT size="-1">※引き続き調査中</FONT><BR>
+v0.63　GetExtendInformation関数、GetExtendInformationSize関数を導入し、DLLに拡張（読み込み可能）作業領域を持たせた。<BR>
+v0.64　GetAvailableFunctionKeyの仕様変更。ボタンの反転状態も取得できるようになった。<BR>
+v0.70　東風接続系の関数を４つ導入。<BR>
+v0.71　落ち防止用に瞬間観戦する関数SuperQuickWatchingを導入。<BR>
+v0.72　東風接続系関数、落ち防止関数の調整。<BR>
+v0.73　GetAvailableFunctionKeyのflagsが初期化されていなかったのを修正（v0.64～v0.72）。<BR>
+v0.74　SimulateOrder関数を高速化。<BR>
+v0.75　待合画面でボタンを押す一連の関数を導入した。<BR>
+v0.76　GetSutehaiEx2関数を導入。<BR>
+v0.77　SelectTaku関数を導入。<BR>
+v0.78　裏向き牌の牌番号を255から41に変更した。<BR>
+v0.79　チャット欄の文字列を読み取るための関数を導入。<BR>
+v0.80　卓画面のウインドウタイトルバー情報を手軽に取得する関数GetPlayInfo関数を導入。<BR>
+v0.81　SendChatで、64文字を超える場合に送信されなかったのを、自動で切り詰めて送信されるように変更。<BR>
+v0.82　GetPlayerInfoがエクスポートされていなかったので修正。<BR>
+v0.83　GetAvailableFunctionKeyにおいて、F4に対応するボタン読み取りに冗長性を持たせて誤認を減らした。<BR>
+v0.84　画面からの数字取得系・ボタン取得系関数に冗長性を持たせて、誤認率を大幅に減少。<BR>
+v0.85　同上の関数において、広告サイズなどを一定と仮定し、ウインドウの重なりによる取得失敗可能性を減少させた。<BR>
+v0.86　v0.83以降のGetAvailableFunctionKey関数が、F9を読み取れないバグを修正。<BR>
+v0.89　各種調整・瞬間観戦関数の最適化。<BR>
+v0.90　GetHoldTimeがエクスポートされていなかったので修正。<BR>
+v0.92　GetAvailableFunctionLeyのF5の戻り値がおかしかったので修正。<BR>
+<BR>
+<BR>
+<FONT size="-1"><B>★使用条件★</B><BR>
+</FONT><FONT size="-1"><BR>
+本DLLまたは本DLLを利用するソフトウェアの挙動によるいかなる損害についても、とつげき東北にその責任の一部または全部を負わせないこと（必ず利用者の自己責任の下に利用すること）。<BR>
+</FONT><FONT size="-1"><BR>
+このDLL（MJexeIO.dll）は、次の目的で作られています。<BR>
+・麻雀研究ソフトを含む麻雀関係のソフト、麻雀関係のソフトの補助的動作をするソフトのうち、善良で健全なソフトをコーディングするプログラマが、その開発効率を向上させること<BR>
+・そのような善良で健全なソフトを、エンドユーザが利用できるようにすること<BR>
+利用形態にかかわらず、以上の目的に沿わない場合本DLLの利用を許可しません。<BR>
+</FONT><FONT size="-1"><BR>
+本DLLを利用して悪意あるコードを書くことは可能ですが、とつげき東北はそのようなコード開発・使用のための本DLLの利用を一切認めません。<BR>
+また仮にそのようなコードが用いられて何らかの損害が生じたとしても、とつげき東北は責任を負いません（ウイルスの被害を、そのウイルスの開発に用いたコンパイラの開発者が負わないことと同様です。悪意あるそうしたコードはこのDLLを利用しなくても書くことができます）。<BR>
+本DLLはあくまでも「善良なソフトウェア開発の支援」「開発されたソフトウェア使用の補助」を目的としており、開発されたソフトウェアの挙動に責任を持つものではありません。<BR>
+万一、このDLLを使用するソフトウェアが他人に何らかの損害を与えた場合、このDLLの持つバグ等が原因であっても、その責任の一部または全部を本DLLの作者であるとつげき東北が負うことはありません。<BR>
+当該ソフトウェアの開発者または当該ソフトウェアの使用者が、全ての法的責任を負います。<BR>
+</FONT><FONT size="-1"><BR>
+以上のことを了承されない方の、本DLL利用、本DLLを利用するソフトウェアの利用を禁止します。<BR>
+</FONT><FONT size="-1"><BR>
+<BR>
+<B>★ソフトウェア開発時の使用条件★</B><BR>
+</FONT><FONT size="-1"><BR>
+DLLの内容に改変を加えないこと、著作者名（とつげき東北）を変更しないこと。<BR>
+</FONT><FONT size="-1"><BR>
+個人的なソフトウェア開発は（東風荘の利用規約や各種法律を犯さない限り）自由です。<BR>
+本DLLを利用して、東風荘の利用規約を犯すようなソフトウェア開発を行うことは許可しません。<BR>
+例えば「遅延行為を行うソフト」の開発に本DLLを使用してはいけません。<BR>
+バグなどの理由で不慮の迷惑行為に及ばないよう、細心の注意を払ってソフトウェアを開発してください。<BR>
+<BR>
+一般公開するソフトウェアにおいてこのDLLを使用する場合、以下の条件があります。<BR>
+</FONT><FONT size="-1">MJexeIO.dllの著作者がとつげき東北であることが各ユーザに伝わり、各ユーザが本サイトおよびMJexeIO.dllの使用条件を見ることが可能であるような場合に限り、再配布を許可します。<BR>
+具体的には、当該ソフトのマニュアルにMJexeIO.dllについての説明や、とつげき東北サイトへのリンクを記入する程度でかまいません（ソフトウェアの出力として「MJexeIO.dllについて」等を表示する必要はありません）。<BR>
+全ての関数は予告なく仕様変更される可能性があります。<BR>
+</FONT><FONT size="-1"><B><FONT color="#FF0000">東風荘の楽しさ、バランスを損なわせる程度の機能を持った公開ソフトウェアには使用しない</FONT></B>こと。<BR>
+具体的には例えば、このDLLによって読み出した牌情報から、相手の安全牌を計算してくれるような、麻雀ゲームの重要な技術にかかわる機能を持つソフトウェアに利用することはできません。イーシャンテンチェックやフリテン警告程度の、簡単なアドバイスならかまわないでしょう。安定Ｒにして1700以上程度の強さを持つ「自動打ちツール」などは東風荘のバランスを損なわせる恐れがあるため、そうしたソフトウェアを不特定多数に広く公開する目的で本DLLを利用することはできません（以上は、個人的な研究程度の範疇なら問題ありません）。<BR>
+本DLLを用いたソフトウェアの一方的な公開停止要求の権利を、とつげき東北が所有します。とつげき東北が要求した場合、その理由を問わずに、ソフトウェアの公開を停止しなければいけません。<BR>
+また、当該ソフトウェアの公開・使用に対して東風荘開発・運営者である東氏が禁止または停止要求した場合は、必ずそれに従ってください。<BR>
+無断で商用に利用することはできません（相談には応じますが、基本的に東風荘の楽しさやバランスを著しく乱すようなソフトには利用できません。また、別途東氏からの許可が必要です）。<BR>
+以上の規約は、予告なく変更する可能性がありますが、その場合は、新しい規約に即座に従ってください。</FONT><BR>
+<FONT size="-1"><BR>
+使用条件に関する質問・要望は掲示板または</FONT><FONT size="-1" color="#0000FF"><A href="mailto:totutohoku@hotmail.com"><FONT color="#0000FF"><U>メール</U></FONT></A></FONT><FONT size="-1">でお願いします。悪意のあるソフト開発目的などでない限り、柔軟に対処いたします。<BR>
+</FONT><BR>
+<BR>
+<B><FONT size="+1"><FONT size="+2">★開発環境★</FONT><BR>
+</FONT></B><BR>
+Borland　C++　Builder　Pro　5.0<BR>
+<BR>
+<BR>
+<B><FONT size="+2">★開発者向けマニュアル★</FONT></B><BR>
+<BR>
+<FONT size="+1">・<B>概要・アルファベット順関数マニュアル</B></FONT><BR>
+<BR>
+<B><FONT color="#0000FF" size="+1"><U><A href="MJexeIODLLfunc.htm" target="TOP"><FONT color="#0000FF">開発者マニュアル</FONT><FONT color="#0000FF" size="-1">（使用法・定義・アルファベット順関数マニュアル・サンプルコード等）</FONT></A></U></FONT></B><FONT color="#000000">（初めにお読みください）<BR>
+<BR>
+<A href="MJexeIODLLfunc.htm#sample1" target="TOP"><FONT color="#0000FF">サンプルコード１</FONT></A>・場に見えている牌を数え上げするプログラム例<BR>
+<A href="MJexeIODLLfunc.htm#sample2" target="TOP"><FONT color="#0000FF"><FONT color="#000000"><FONT color="#0000FF">サンプルコード２</FONT></FONT></FONT></A>・観戦中/対戦中に、手前のプレイヤー（自分）の、テンパイチェックを行うプログラム例<BR>
+</FONT><A href="MJexeIODLLfunc.htm#sample3" target="TOP"><FONT color="#0000FF">サンプルコード３</FONT></A><FONT color="#FF0000" size="-1"><B>（初心者向け・オススメ）</B></FONT>・指定されたＨＮを一括/wし、東風のチャットウインドウに結果を表示させるプログラム例<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#sample4" target="TOP"><FONT color="#0000FF">サンプルコード４</FONT></A>・手前のプレイヤー（自分）のリーチ後に、他家が初めて切った牌の位置を表示するプログラム例</FONT><BR>
+<A href="MJexeIODLLstart.htm" target="TOP"><FONT color="#0000FF"><U>具体的にプログラムを動かすには？</U></FONT></A><FONT color="#FF0000" size="-1"><B>（入門用）</B></FONT>・「サンプルコード３」の一括/wを用いて、<FONT color="#0000FF">コピペだけで簡単に東風用アプリを作って動かしてみる</FONT><BR>
+<BR>
+<FONT color="#000000"><A href="MJexeIODLL0.htm" target="TOP"><U><FONT color="#0000FF">入出力の実際１</FONT></U></A>・静止画像から可能な限り打牌の順序を決定する方法、東風荘の不具合による影響など</FONT><BR>
+<BR>
+<BR>
+<FONT size="+1"><B>・目的別関数マニュアル</B></FONT><BR>
+<BR>
+<BR>
+<B>DLL設定関連</B><BR>
+<BR>
+<B><FONT color="#FF0000">DLLの情報を得たい・DLL全体の動作を変えたい</FONT></B><BR>
+<A href="MJexeIODLLfunc.htm#GetDLLVersion" target="TOP"><U><FONT color="#000000">GetDLLVersion</FONT></U></A>　DLLのバージョンを返す関数。<BR>
+<A href="MJexeIODLLfunc.htm#SetMode" target="TOP"><U><FONT color="#000000">SetMode</FONT></U></A>　赤牌にどう対応させるかを指定する関数。<BR>
+<A href="MJexeIODLLfunc.htm#GetExtendInformation" target="TOP"><U><FONT color="#000000">GetExtendInformation</FONT></U></A>　DLLの拡張（読み込み可能）作業領域のデータを取得する関数。<BR>
+<A href="MJexeIODLLfunc.htm#GetExtendInformationSize" target="TOP"><U><FONT color="#000000">GetExtendInformationSize</FONT></U></A>　DLLの拡張（読み込み可能）作業領域のサイズを返す関数。<BR>
+<BR>
+<BR>
+<B>一般</B><BR>
+<BR>
+<B><FONT color="#FF0000">東風荘の全体的な情報を取得したい</FONT></B><BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetTonpuData" target="TOP"><FONT color="#000000">GetTonpuData</FONT></A></FONT>　東風荘ウインドウのタイトルバーの文字列を取得するとともに、現在起動されているかどうか、待合にいるかどうかが判定できる。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetTonpuInfo" target="TOP"><FONT color="#000000">GetTonpuInfo</FONT></A></FONT>　東風荘のウインドウハンドルを取得するとともに、現在第○東風荘にいる、ということを判定できる。<BR>
+<BR>
+<BR>
+<B>「接続画面」関連</B><BR>
+<BR>
+<B><FONT color="#FF0000"><FONT color="#FF0000">接続画面から情報を取得する、</FONT>接続画面に情報を送る</FONT></B><BR>
+<A href="MJexeIODLLfunc.htm#GetTonpuConnectionStatus" target="TOP"><U><FONT color="#000000">GetTonpuConnectionStatus</FONT></U></A>　東風荘への接続状態を調べる関数。<BR>
+<A href="MJexeIODLLfunc.htm#SetTonpuConnectionInfo" target="TOP"><U><FONT color="#000000">SetTonpuConnectionInfo</FONT></U></A>　東風荘の接続ウィンドウに接続情報をセットする関数。<BR>
+<A href="MJexeIODLLfunc.htm#PushTonpuConnectionButton" target="TOP"><U><FONT color="#000000">PushTonpuConnectionButton</FONT></U></A>　東風荘の接続ボタンを押す関数。<BR>
+<A href="MJexeIODLLfunc.htm#CanselTonpuConnection" target="TOP"><U><FONT color="#000000">CanselTonpuConnection</FONT></U></A>　接続をキャンセルする関数。<BR>
+<BR>
+<BR>
+<FONT color="#000033"><B>「待合室画面」関連</B></FONT><BR>
+<BR>
+<FONT color="#FF0000"><B>待合室画面から情報を取得する</B></FONT><BR>
+<A href="MJexeIODLLfunc.htm#GetChatLine" target="TOP"><U><FONT color="#000000">GetChatLine</FONT></U></A>　チャット欄の指定行の文字列を取得する関数。<BR>
+<A href="MJexeIODLLfunc.htm#GetChatLineNum" target="TOP"><U><FONT color="#000000">GetChatLineNum</FONT></U></A>　チャット欄に表示されているチャットの合計行数を得る関数。<BR>
+<BR>
+<B><FONT color="#FF0000">待合室画面に情報を送る</FONT></B><BR>
+<A href="MJexeIODLLfunc.htm#PushYoyakuButton" target="TOP"><FONT color="#000000">PushYoyakuButton</FONT></A>　予約ボタンを押す。<BR>
+<A href="MJexeIODLLfunc.htm#PushTorikesiButton" target="TOP"><FONT color="#000000">PushTorikesiButton</FONT></A>　予約取り消しボタンを押す。<BR>
+<A href="MJexeIODLLfunc.htm#PushJouhouButton" target="TOP"><FONT color="#000000">PushJouhouButton</FONT></A>　卓情報ボタンを押す。<BR>
+<A href="MJexeIODLLfunc.htm#PushKansenButton" target="TOP"><FONT color="#000000">PushKansenButton</FONT></A>　観戦ボタンを押す。<BR>
+<A href="MJexeIODLLfunc.htm#PushSyuuryouButton" target="TOP"><FONT color="#000000">PushSyuuryouButton</FONT></A>　終了ボタンを押す。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#SendChat" target="TOP"><FONT color="#000000">SendChat</FONT></A></FONT>　東風荘に対して、チャット欄に文字を書いて送信する動作を行う。/w
+などを自動でさせたい場合にも用いられる。<BR>
+<A href="MJexeIODLLfunc.htm#SuperQuickWatching" target="TOP"><U><FONT color="#000000">SuperQuickWatching</FONT></U></A>　落ち防止のために瞬間観戦を行う関数。<BR>
+<A href="MJexeIODLLfunc.htm#SelectTaku" target="TOP"><U><FONT color="#000000">SelectTaku</FONT></U></A>　卓を選択する関数（例えば上ランに予約したい、超ランの3番目の卓を観戦させたい、などの場合に利用する）。<BR>
+<BR>
+<BR>
+<B>「卓画面」関連</B><BR>
+<BR>
+<B><FONT color="#FF0000">卓画面から、牌に関する情報を取得する</FONT></B><BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#ext_GetHai" target="TOP"><FONT color="#000000">ext_GetHai</FONT></A></FONT>　指定した場所に牌画像があると仮定して、その牌画像が何であるかを返す関数。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetDoraHai" target="TOP"><FONT color="#000000">GetDoraHai</FONT></A></FONT>　対戦画面でドラ表示牌を取得する関数。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetFuroHai" target="TOP"><FONT color="#000000">GetFuroHai</FONT></A></FONT>　各プレイヤーがフーロしているかどうか、またそのフーロはどのようであるかを取得する関数。<BR>
+<A href="MJexeIODLLfunc.htm#GetHaiSize" target="TOP"><FONT color="#000000">GetHaiSize</FONT></A>　東風荘の画面の牌サイズが大・中･小のどれであるかを取得する関数。<BR>
+<A href="MJexeIODLLfunc.htm#GetRightestTehai" target="TOP"><FONT color="#000000">GetRightestTehai</FONT></A>　最後にGetTehaiで読み込んだプレイヤーの手牌のうち、一番右の牌（ツモった直後ならツモ牌）を返す。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetSutehai" target="TOP"><FONT color="#000000">GetSutehai</FONT></A></FONT>　捨て牌の情報を得る。リーチしている場合、捨て牌においてリーチした牌がどこであるかなども取得できる。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetSutehaiEx" target="TOP"><FONT color="#000000">GetSutehaiEx</FONT></A></FONT>　捨て牌の情報を得る。リーチしている場合、捨て牌においてリーチした牌がどこであるかなども取得できる。網がかかった牌がある場合、その情報も取得する。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetSutehaiEx2" target="TOP"><FONT color="#000000">GetSutehaiEx2</FONT></A></FONT>　捨て牌の情報を得る。GetSutehaiExの情報に加えて、ツモ切り線のかかった牌の位置、赤ワクで囲まれた牌の位置の情報も取得できる。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetSutehaiNum" target="TOP"><FONT color="#000000">GetSutehaiNum</FONT></A></FONT>　捨て牌の数と、リーチ順目だけをGetSutehai、GetSutehaiEx、GetSutehaiEx2よりも高速に取得する。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetTehai" target="TOP"><FONT color="#000000">GetTehai</FONT></A></FONT>　「手前のプレイヤー（対戦時は自分）」の手牌の情報を得る。フーロ牌は含まないので食い仕掛けの場合GetFuroHaiの情報も必要になる。<BR>
+<BR>
+<B><FONT color="#FF0000">卓画面から、その他の情報を取得する</FONT></B><BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetPlayInfo" target="TOP"><FONT color="#000000">GetPlayInfo</FONT></A></FONT>　卓番号や局番号、観戦者数などの、卓画面のウインドウタイトルから得られる情報を整数値として手軽に取得する関数。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#ExistAvailableFunctionKey" target="TOP"><FONT color="#000000">ExistAvailableFunctionKey</FONT></A></FONT>　東風の画面で、ボタンが出ているかを取得する関数。<BR>
+<A href="MJexeIODLLfunc.htm#GetAvailableFunctionKey" target="TOP"><FONT color="#000000">GetAvailableFunctionKey</FONT></A>　現在押せるボタンが出ているかどうか、その表記は何であるかを取得する関数。<BR>
+<A href="MJexeIODLLfunc.htm#GetCursorDCPos" target="TOP"><FONT color="#000000">GetCursorDCPos</FONT></A>　マウスカーソルが、東風の画面のどこにあるかを取得する関数。<BR>
+<A href="MJexeIODLLfunc.htm#GetHoldTime" target="TOP"><FONT color="#000000">GetHoldTime</FONT></A>　牌を切るまでの制限時間があと何秒であるかを取得する関数。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetKaze" target="TOP"><FONT color="#000000">GetKaze</FONT></A></FONT>　手前のプレイヤーが東・南・西・北のうちどの風であるかを取得する関数。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetPlayerInfo" target="TOP"><FONT color="#000000">GetPlayerInfo</FONT></A></FONT>　プレイヤーの持ち点とＲの値を画面から読み取る。<BR>
+<A href="MJexeIODLLfunc.htm#GetReach" target="TOP"><FONT color="#000000">GetReach</FONT></A>　指定プレイヤーがリーチしているか否かを、他のどの関数よりも高速に読み取る。リーチ棒の画像があるかないかで判定する。<BR>
+<A href="MJexeIODLLfunc.htm#GetTurnPlayer" target="TOP"><FONT color="#000000">GetTurnPlayer</FONT></A>　現在ＨＮ表示欄が赤色になっているプレイヤーはどこかを取得する。<BR>
+<BR>
+<B><FONT color="#FF0000">卓画面に情報を送る</FONT></B><BR>
+<A href="MJexeIODLLfunc.htm#PushFunctionKey" target="TOP"><FONT color="#000000">PushFunctionKey</FONT></A>　東風荘に対して、ファンクションキーを押す動作を行う。GetAvailableFunctionKeyと組み合わせて、チーやロンの動作をさせられる。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#PushHai" target="TOP"><FONT color="#000000">PushHai</FONT></A></FONT>　東風荘の自分の手に対して、どれかの牌を選んでクリックさせる動作を行う。打牌や、チー・ポンの選択などの際に使う。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#RClick" target="TOP"><FONT color="#000000">RClick</FONT></A></FONT>　東風荘に対して、右クリックをする動作を行う。チーポンのキャンセルなどの際に使う。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#SendChat" target="TOP"><FONT color="#000000">SendChat</FONT></A></FONT>　東風荘に対して、チャット欄に文字を書いて送信する動作を行う。/w
+などを自動でさせたい場合にも用いられる。<BR>
+<BR>
+<BR>
+<B>計算・シミュレート関連</B><BR>
+<BR>
+<B><FONT color="#FF0000">牌の情報を利用したい</FONT></B><BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#Check_tenpai" target="TOP"><FONT color="#000000">Check_tenpai</FONT></A></FONT>　テンパイチェックを行う関数。<BR>
+<A href="MJexeIODLLfunc.htm#Check_agari" target="TOP"><FONT color="#000000">Check_agari</FONT></A><FONT color="#000000">　「通常手」に対して</FONT>、ある牌が上がり牌であるかどうかを返す関数。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#TehaiNormalize" target="TOP"><FONT color="#000000">TehaiNormalize</FONT></A></FONT>　赤牌ありで取得した牌情報を、赤牌のない通常の牌情報に変換し、Check_tenpai関数などで利用できるようにするための関数。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#SimulateOrder" target="TOP"><FONT color="#000000">SimulateOrder</FONT></A></FONT>　ある牌とある牌の順序（どちらが先に切られたか、あるいは不定か）をシミュレートする関数。静止画像のフリテンチェックなどに使える。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetOrder" target="TOP"><FONT color="#000000">GetOrder</FONT></A></FONT>　SimulateOrderでシミュレートした結果を取得する関数。<BR>
+<FONT color="#000000"><A href="MJexeIODLLfunc.htm#GetNextOrder" target="TOP"><FONT color="#000000">GetNextOrder</FONT></A></FONT>　SimulateOrderでシミュレートしたあとに、ある牌の直後に切られた牌の位置を手軽に取得する関数。<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</P>
+</BODY>
+</HTML>

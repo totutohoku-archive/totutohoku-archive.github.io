@@ -1,0 +1,522 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>システマティック麻雀工学</TITLE>
+</HEAD>
+<BODY background="1052.gif" alink="#ff7f00" bgcolor="#e0e0e0" link="#ff0000" text="#000000" vlink="#400080">
+<P>システマティック麻雀工学：<FONT size="+3"><B><BR>
+コンピュータと勝負しよう</B></FONT><FONT size="+3" color="#FF0000"><B><BR>
+（回答受付は締め切りました）</B></FONT><BR>
+<BR>
+<BR>
+<B><FONT size="+1">概要：</FONT></B><BR>
+<BR>
+麻雀の数理的研究と何の関係もない場違いな諸君、ようこそシステマティック麻雀研究所へ。<BR>
+我々は頭を使って麻雀を研究することを旨とする団体である。<BR>
+つまり、しばしば諸君と意見が対立する団体だと言い換えても良い。<BR>
+<BR>
+我々はこれまで、対立を引き起こす様々なことを言ってきた。<BR>
+流れがないということもそうだし、麻雀の強さはルールに依存しないということもそうだったし、諸君のやっている読みなど無意味だというのもそうだった。<BR>
+麻雀は読みが大事だと認識している諸君は、諸君の身につけた麻雀の技術（切り順からの読みや状況判断）が、とつげき東北によって無下に否定されてしまうことに憤りを覚えていたに違いない。<BR>
+本当の上級者はとつげき東北のように読みができない人ではなく、もっと別の様々な状況を読む人間であると信じているに違いない。<BR>
+我々はそれらの主張を、理論と実験を通して証明してきたわけだが、賢明な諸君はあえてそれらに反論しなかった。<BR>
+諸君は、<BR>
+「理論が全てではない」「実際に打って勝負だ！」<BR>
+などと、わざと低脳な発言をして我々を爆笑させてくれた。<BR>
+<BR>
+<BR>
+しかし、勝負できないというのもつまらない。<BR>
+そこで<B>我々はここに、純粋に諸君の「読み」能力が発揮できるテストを用意した</B>。<BR>
+諸君の恐るべき直感的判断があまりにも優れていることを、諸君はコンピュータなどよりずっとうまく読めることを<B>客観的に証明する</B>ための、チャンスを用意したのである。<BR>
+<BR>
+我々が用意したのは、「山に残っている牌を当てるテスト」、言い換えると「次にツモる牌を当てるテスト」である。<BR>
+数え上げ的な「山牌読みプログラム」に比較して、諸君の読みがどれほど有能であるかをテストできる。<BR>
+諸君は単に、画像で示された麻雀の各々の状況において、持ち前の読み能力を発揮して、このプログラムを超える素晴らしい読みを発揮してくれるだけでいい。実に簡単である。<BR>
+<BR>
+このテストの優れている点は、基本的に<B>”ネット麻雀と実戦麻雀の差”などを度外視して、単純に個人の読み能力をテストできる</B>点にある。<BR>
+「ネット麻雀の打牌なんて読めない」などと言っても始まらない。<BR>
+コンピュータもまた「ネット麻雀かどうか」などということは一切考慮していないからだ。<BR>
+得意の「対応力」で、それも考慮に入れて高得点を目指せばよかろう。<BR>
+ご存知の通り、山牌を読むということは、次にツモる牌を当てることであり、他家のメンツ構成を読むことであり、またアタリ牌を読むことでもある。<BR>
+<B>卓上で必要な「読み」のほとんどの要素をこの試験は点数化できると</B>言って差し支えない。<BR>
+「実際に打った成績」などより100倍も正確に「読み技術の高さ」を定量化できるだろう。<BR>
+<B>プロ、リアル上級者、ネット上級者、いずれもが参加でき、客観的に読み能力をテストすることができる</B>。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+1">試験のルール：</FONT></B><BR>
+<BR>
+諸君は様々な状況を判断に入れた上で、慎重に「山牌に残っている牌」を推測するといい。<BR>
+全ての状況に対して、<B>もっとも山に残っていそうな牌（重要な牌）を2つと、その次に残っていそうな牌5つを指定する</B>こと（全て異なる7種類の牌を指定せよ）。<BR>
+<B>予想した牌が実際に山に残っていた枚数を点数</B>とする。また<B>予想したにもかかわらず残っていなかった場合は１点減点</B>とする。<BR>
+<B>重要な２牌については加点および減点を２倍</B>する。<BR>
+つまりまあ、<B>「次にツモる確率がもっとも高い牌を、高い順に指定する」</B>と考えてもらって良い。<BR>
+（その時点で全員の牌をオープンして、誰も持っていない牌、つまり王牌＋残りツモ牌　を当てる）<BR>
+解答時間は無制限である。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+1">補足：</FONT></B><BR>
+<BR>
+諸君の優秀な頭脳と異なり、コンピュータの演算は恥ずかしいほどに粗末なものだ。<BR>
+コンピュータは点数状況を一切考慮しない。相手のツモ切りや、打牌の順序を一切考慮しない。そこが東風荘であるかフリー雀荘であるかを考慮しない。<BR>
+コンピュータはドラが何であるかに無関心である。リーチ宣言牌が何であるかに興味はない。そもそもリーチという概念が存在しない。<BR>
+現在の順目や流れなど認識できない。決め（ルール）を把握しない。<BR>
+相手の狙い役をも全く知らない。もちろん、ラグがどうとかといった、東風特有の読みもしない。<BR>
+相手が食い仕掛けをしているかどうかさえ見ていない。MJ-0の一番原始的なモードを使った、単純なモデル計算のみである。<BR>
+<BR>
+これらの成績を比較するわけだから、読みの鋭い諸君は楽勝だろう。<BR>
+<BR>
+<BR>
+人間は、解答の訂正を行うことができず、また挑戦したからには言い訳ができない。<BR>
+<B>ルールや方法を全て熟考した上で解答を送るべき</B>だ。適当にやったとか、そういう言い訳は絶対にしてはならない。<BR>
+<BR>
+諸君の周りにいる「読みが大事」と言ってる者にも、この試験を勧めていただきたい。彼は非常に優秀な成績を収めるか、あるいは墓穴を掘るかのいずれかだろう。<BR>
+「高度な読みをした結果、コンピュータの数え上げと大して変わらない成績」だったら、その読みは何の役にも立っていないということを頭にいれてチャレンジして欲しい。<BR>
+<BR>
+なお、<B>とつげき東北は性格が悪いために、「読み」に関して大言壮語を吐いている人を、この試験の受験者として推薦することがある</B>。<BR>
+彼の言葉と結果（またはどんな言い訳をして受験しなかったかの経緯）については当HPにて引用・紹介される可能性が高いので注意されたい。<BR>
+システマティック麻雀研究所は、形而上学麻雀を、「自分はすごいんです」と言うだけの麻雀を、心から嫌悪しているのである。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+1"><S>試験への参加：</S></FONT></B><BR>
+<BR>
+<B><FONT color="#FF0000" size="+1">（このコーナーは締め切りました。ご協力ありがとうございました）</FONT></B><BR><BR>
+<BR>
+<B><FONT color="#FF0000">解答は自動採点されるので、解答の書式に必ず従うこと。</FONT></B><BR>
+マークシート試験のようなもので、解答のしかたを間違うと正しい採点の対象にならない。<BR>
+<BR>
+解答の書式は、次のようなもの。<BR>
+<BR>
+問1<BR>
+1m<BR>
+2s<BR>
+東<BR>
+北<BR>
+9p<BR>
+4m<BR>
+3s<BR>
+<BR>
+問2<BR>
+5m<BR>
+7s<BR>
+西<BR>
+発<BR>
+中<BR>
+白<BR>
+8s<BR>
+<BR>
+・・・（このまま問10まで続ける）<BR>
+<BR>
+マンズは「1m　2m　・・・」<BR>
+ピンズは「1p　2p　・・・」<BR>
+ソーズは「1s　2s　・・・」<BR>
+と表記する。<BR>
+字牌は「東　南　西　北　白　発　中」<BR>
+と表記する。<BR>
+<BR>
+<B>牌指定は必ず1行に1つ</B>だけして、改行すること。<BR>
+上の例のように、問1～問10に、順に答えること。<BR>
+全角とか半角について神経質になる必要はない。また「發」などの字にも対応しているから、よほど変な解答でなければ大丈夫である。<BR>
+<BR>
+「問」という文字を書くことで、問題の区切りがコンピュータに伝わるので、上の例のように「問1　問2　・・・」のような行を入れること。<BR>
+解答のうち、<B>各問題の上の2つが「重要」指定の牌</B>である。ムダに「★」とかつけたりしないように。<BR>
+上の例だと、問1の「重要牌2つ」は１マンと2ソウ、「残りの5牌」は東、北、9ピン、4マン、3ソウとなっている。<BR>
+<BR>
+<IMG src="mjcom_B0_00.gif" width="611" height="294" border="0"><BR>
+（自動採点くん）<BR>
+<BR>
+<BR>
+東風荘でのＲや実戦での実績、所属等を明かしても良い場合はそれらの情報を追記せよ。<BR>
+少なくともHNや通称、あるいはメールの名前などは（本名を除いて）必要に応じて公開される。<BR>
+なお公正のため、試験結果の得点については基本的に本人に返信するか、後にＨＰ上で公開する。<BR>
+受験者は、自分の解答と得点の両方を同時に、未受験の者であって将来受験する者に教えてはならない。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+1">本試験問題（10問）：</FONT></B><BR>
+<BR>
+通常の受験者は、この10問の解答を送ること。<BR>
+成績上位者は追試験を行う可能性がある。<BR>
+<BR>
+なお打牌の下に水色の線がついているものはツモ切りである（空切りした場合はつかない）。<BR>
+東風戦の順位戦で、チップやオカ、赤ドラは存在しない。主に東風荘の超ランでの実際の対局から無作為に取り出した局面である。<BR>
+<BR>
+1：<BR>
+<IMG src="mjcom_B0_0.gif" width="614" height="381" border="0"><BR>
+<BR>
+2：<BR>
+<IMG src="mjcom_B0_1.gif" width="614" height="381" border="0"><BR>
+<BR>
+3：<BR>
+<IMG src="mjcom_B0_2.gif" width="621" height="382" border="0"><BR>
+<BR>
+4：<BR>
+<IMG src="mjcom_B0_3.gif" width="613" height="379" border="0"><BR>
+<BR>
+5：<BR>
+<IMG src="mjcom_B0_4.gif" width="624" height="386" border="0"><BR>
+<BR>
+6：<BR>
+<IMG src="mjcom_B0_5.gif" width="613" height="379" border="0"><BR>
+<BR>
+7：<BR>
+<IMG src="mjcom_B0_6.gif" width="613" height="379" border="0"><BR>
+<BR>
+8：<BR>
+<IMG src="mjcom_B0_18.gif" width="613" height="379" border="0"><BR>
+<BR>
+9：<BR>
+<IMG src="mjcom_B0_10.gif" width="613" height="379" border="0"><BR>
+<BR>
+10：<BR>
+<IMG src="mjcom_b0_20.gif" width="621" height="459" border="0"><BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+1">これまでの結果：</FONT></B><BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>　</TD>
+      <TD>得点</TD>
+      <TD>偏差値*</TD>
+    </TR>
+    <TR>
+      <TD>コンピュータ</TD>
+      <TD align="right">183</TD>
+      <TD align="right">64.3</TD>
+    </TR>
+    <TR>
+      <TD>ぺた</TD>
+      <TD align="right">178</TD>
+      <TD align="right">61.7</TD>
+    </TR>
+    <TR>
+      <TD>薔薇と薔薇</TD>
+      <TD align="right">175</TD>
+      <TD align="right">61.1</TD>
+    </TR>
+    <TR>
+      <TD>DDH-V</TD>
+      <TD align="right">178</TD>
+      <TD align="right">60.4</TD>
+    </TR>
+    <TR>
+      <TD>神龍★獣冴</TD>
+      <TD align="right">174</TD>
+      <TD align="right">60</TD>
+    </TR>
+    <TR>
+      <TD>secret</TD>
+      <TD align="right">175</TD>
+      <TD align="right">60</TD>
+    </TR>
+    <TR>
+      <TD>keiichixx</TD>
+      <TD align="right">170</TD>
+      <TD align="right">59.8</TD>
+    </TR>
+    <TR>
+      <TD>雀-Ｘ</TD>
+      <TD align="right">170</TD>
+      <TD align="right">58.9</TD>
+    </TR>
+    <TR>
+      <TD>keisuke</TD>
+      <TD align="right">168</TD>
+      <TD align="right">58.4</TD>
+    </TR>
+    <TR>
+      <TD>パンダ狩り</TD>
+      <TD align="right">166</TD>
+      <TD align="right">57.5</TD>
+    </TR>
+    <TR>
+      <TD>ＪＴ５２３</TD>
+      <TD align="right">169</TD>
+      <TD align="right">57.5</TD>
+    </TR>
+    <TR>
+      <TD>いめたろ</TD>
+      <TD align="right">166</TD>
+      <TD align="right">56.9</TD>
+    </TR>
+    <TR>
+      <TD>ラークロング</TD>
+      <TD align="right">168</TD>
+      <TD align="right">56.6</TD>
+    </TR>
+    <TR>
+      <TD>とつげき東北</TD>
+      <TD align="right">167</TD>
+      <TD align="right">56</TD>
+    </TR>
+    <TR>
+      <TD>散る桜ゆえ</TD>
+      <TD align="right">165</TD>
+      <TD align="right">55.8</TD>
+    </TR>
+    <TR>
+      <TD>ueda_9</TD>
+      <TD align="right">165</TD>
+      <TD align="right">55.1</TD>
+    </TR>
+    <TR>
+      <TD>Phoenix一輝</TD>
+      <TD align="right">166</TD>
+      <TD align="right">54.3</TD>
+    </TR>
+    <TR>
+      <TD>ito</TD>
+      <TD align="right">162</TD>
+      <TD align="right">54.3</TD>
+    </TR>
+    <TR>
+      <TD>恥部＠研</TD>
+      <TD align="right">161</TD>
+      <TD align="right">53.6</TD>
+    </TR>
+    <TR>
+      <TD>しんや</TD>
+      <TD align="right">160</TD>
+      <TD align="right">52.4</TD>
+    </TR>
+    <TR>
+      <TD>とうのかな</TD>
+      <TD align="right">156</TD>
+      <TD align="right">51.5</TD>
+    </TR>
+    <TR>
+      <TD>FT</TD>
+      <TD align="right">152</TD>
+      <TD align="right">51</TD>
+    </TR>
+    <TR>
+      <TD>すぴんぐらす</TD>
+      <TD align="right">153</TD>
+      <TD align="right">50.8</TD>
+    </TR>
+    <TR>
+      <TD>ts</TD>
+      <TD align="right">158</TD>
+      <TD align="right">50.8</TD>
+    </TR>
+    <TR>
+      <TD>雀豪ＥＤ</TD>
+      <TD align="right">156</TD>
+      <TD align="right">50.1</TD>
+    </TR>
+    <TR>
+      <TD>雀天くん</TD>
+      <TD align="right">155</TD>
+      <TD align="right">49.7</TD>
+    </TR>
+    <TR>
+      <TD>台風総長</TD>
+      <TD align="right">148</TD>
+      <TD align="right">49.5</TD>
+    </TR>
+    <TR>
+      <TD>eks-z</TD>
+      <TD align="right">152</TD>
+      <TD align="right">48.9</TD>
+    </TR>
+    <TR>
+      <TD>雀修会次元</TD>
+      <TD align="right">141</TD>
+      <TD align="right">46.5</TD>
+    </TR>
+    <TR>
+      <TD>toto_sp</TD>
+      <TD align="right">139</TD>
+      <TD align="right">42.5</TD>
+    </TR>
+    <TR>
+      <TD>Lee億春</TD>
+      <TD align="right">131</TD>
+      <TD align="right">41.9</TD>
+    </TR>
+    <TR>
+      <TD>赤兎</TD>
+      <TD align="right">138</TD>
+      <TD align="right">41.7</TD>
+    </TR>
+    <TR>
+      <TD>さわ</TD>
+      <TD align="right">129</TD>
+      <TD align="right">40.1</TD>
+    </TR>
+    <TR>
+      <TD>最後の麻雀</TD>
+      <TD align="right">124</TD>
+      <TD align="right">38.3</TD>
+    </TR>
+    <TR>
+      <TD>ジロー</TD>
+      <TD align="right">125</TD>
+      <TD align="right">38.2</TD>
+    </TR>
+    <TR>
+      <TD>芹沢名人</TD>
+      <TD align="right">123</TD>
+      <TD align="right">35.8</TD>
+    </TR>
+    <TR>
+      <TD>ゆな連☆由奈</TD>
+      <TD align="right">114</TD>
+      <TD align="right">35.4</TD>
+    </TR>
+    <TR>
+      <TD>沖の定置網</TD>
+      <TD align="right">111</TD>
+      <TD align="right">31.2</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><FONT size="-2">1名解答ミス（牌指定が各問で5つしかない)<BR>
+*偏差値は、各問における各人の点数を偏差値とした後、その合計値を再び偏差値としたものです。</FONT><FONT size="-1"><BR>
+</FONT><BR>
+参加者のみなさま、ご協力ありがとうございます。<BR>
+読みについて（私が批判するような内容を）語っていて、なおかつこの読み問題に挑戦してくれた人たちもいる。<BR>
+結果はコンピュータの勝利だったが、こんな挑発的な試験に、そうした立場から挑んでくれたこと自体が感服に値する。<BR>
+彼らとは違って、ほとんどの自称「読みができる」人は、このテストに挑戦する勇気・自信さえないのだから。<BR>
+「結果が出ないからこそ知ったかぶりして語れる」のが彼らの特徴だと思っていた認識を、少し改めさせられた。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+1">「重要」指定2牌のみでの成績：</FONT></B></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>重要解のみ</TD>
+      <TD>得点</TD>
+      <TD>偏差値</TD>
+    </TR>
+    <TR>
+      <TD>コンピュータ</TD>
+      <TD align="right">94</TD>
+      <TD align="right">60</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">92</TD>
+      <TD align="right">59</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">92</TD>
+      <TD align="right">59</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">92</TD>
+      <TD align="right">59</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">92</TD>
+      <TD align="right">59</TD>
+    </TR>
+    <TR>
+      <TD>とつげき東北</TD>
+      <TD align="right">90</TD>
+      <TD align="right">58</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">90</TD>
+      <TD align="right">58</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">86</TD>
+      <TD align="right">56</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">82</TD>
+      <TD align="right">54</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">82</TD>
+      <TD align="right">54</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">82</TD>
+      <TD align="right">54</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">76</TD>
+      <TD align="right">51</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">76</TD>
+      <TD align="right">51</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">70</TD>
+      <TD align="right">48</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">66</TD>
+      <TD align="right">46</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">60</TD>
+      <TD align="right">42</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">58</TD>
+      <TD align="right">41</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">48</TD>
+      <TD align="right">36</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">32</TD>
+      <TD align="right">28</TD>
+    </TR>
+    <TR>
+      <TD>人間</TD>
+      <TD align="right">33</TD>
+      <TD align="right">29</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>「最初の3牌くらいは充分考えられるが、7牌目などはよく考えられない」という意見がいくつかあったので、「重要」指定2牌のみでの結果も出しておく（19名現在）。<BR>
+当然、「たくさん残っている確からしい牌」になるので、上位層での差はつきにくくなる。<BR>
+これぐらいになれば運のみでコンピュータを逆転する人がいてもおかしくはない。<BR>
+しかし、若干の順位変動はあるものの、残念ながら結論はほぼ変わらなかった。<BR>
+<BR>
+ちなみに、最初のいくつかが簡単に見つかるのは当然のことだ。<BR>
+どんな局面でも、たいてい、いくつかの牌が山にありそうなことを見抜くことはたやすい。<BR>
+しかし、たった3つだけ「出やすい」とわかっていたとしても、実戦的にはあまり使えないだろう。<BR>
+<BR>
+それとも、「集中できるのは5問くらい」だから前半5問だけの結果も集計すれば満足されるだろうか・・・（その場合もコンピュータは1位だが。19名参加現在）。<BR>
+偶然性が少なくなるよう、10問において、7牌の指定をし、それで結果を導くというこのテストの趣旨をご理解いただきたい。<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</P>
+</BODY>
+</HTML>

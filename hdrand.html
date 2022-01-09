@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=x-sjis">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
+<TITLE>ハードウェア乱数生成ルーチンhdrand.c</TITLE>
+</HEAD>
+<BODY background="1052.gif" bgcolor="#ffffff" text="#000000">
+<P><FONT color="#000000" size="6"><STRONG>ハードウェア乱数生成ルーチンhdrand.c</STRONG></FONT>　　by　とつげき東北　　<FONT color="#0000FF"><U><A href="/hp/"><FONT color="#0000FF">トップページに戻る</FONT></A></U></FONT><BR>
+<BR>
+<BR>
+<A href="http://www.amazon.co.jp/exec/obidos/ASIN/4061497650/sml-22"><IMG src="kagakusuru.jpg" width="72" height="120" border="0"></A><FONT color="#FF0000"><SCRIPT type="text/javascript"><!--
+google_ad_client = "pub-0849366231331886";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+//--></SCRIPT> <SCRIPT type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</SCRIPT> <BR>
+<BR>
+</FONT><BR>
+<FONT size="+2"><B>「ランダムな乱数」「良質な乱数」を得る</B></FONT><BR>
+<BR>
+<B><FONT size="+1">導入：</FONT></B><BR>
+<BR>
+プログラミングをしていて、「真にランダムな乱数」を得ようとしたときに困ることがある。<BR>
+どんなに優れた決定論的擬似乱数ルーチンも、真にランダムな乱数を作ってはくれない。<BR>
+結果としてtime値などを乱数の種にすることになるわけだ。<BR>
+ゲームなどならその程度でも充分だが、セキュリティの重要なソフトではそうはいかず、ユーザのマウス入力のタイミングなどを読み取る必要が出てくる。<BR>
+そこで<B>CPUがPentium以降・Windows下でハードディスクが使用されている環境</B>で、ユーザに不可解な入力作業をさせることなく、良い性質の乱数を得るためのルーチンを作っておく。<BR>
+<BR>
+<BR>
+<B><FONT size="+1">方法：</FONT></B><BR>
+<BR>
+テンポラリファイルフォルダにファイルを作成・削除し、その処理にかかった時間を高分解能パフォーマンスカウンタで計測して、処理時間を得る。<BR>
+処理時間のビット列のうち、偏らないビットを乱数ビットとして利用する。<BR>
+ハードディスクのシーク時間や物理的な書き込み速度は、キャッシュや温度や湿度やWindowsの処理順などによってばらつきがあるので、良質なランダムビットがとれる。<BR>
+測定されるビットの変化を最初にテストしておくことで（100回のビット発生で、充分に変化が見られたビットだけを乱数に使用する）、処理速度の違いや、パフォーマンスカウンタの質の悪さ（例えば最下位ビットが必ず偶数や奇数になる可能性）も吸収できる。<BR>
+<BR>
+当然、専用のハードウェアを用いるのと比較して動作速度は遅い（1000ビット/1秒・・・とつげき東北の環境で）が、「真の乱数」は普通は1000ビットもあればかなり充分だろう。<BR>
+このルーチンが必要とする「Pentium以降・Windows・要ハードディスク」という敷居は、少なくとも専用ハードウェアよりはずっと低いものだ。<BR>
+ユーザにマウスを振らせるよりずっと早く、ずっと良質な乱数が得られることだろう。<BR>
+なお<B>、この方式で生成した乱数列は、乱数評価の有名なテスト<A href="http://stat.fsu.edu/~geo/diehard.html"><U><FONT color="#0000FF"><FONT color="#0000FF">DIEHARDテスト</FONT></FONT></U></A>に<U><A href="test_bit.txt"><FONT color="#0000FF">合格</FONT></A></U>した</B>（MTのDIEHARD結果は<A href="mtdiehard.txt"><U><FONT color="#0000FF">こちら</FONT></U></A>）。<BR>
+MTのような、周期の長い良質な擬似乱数の種としてこれを使えば、暗号ツールなどに<A href="VNCrypt.htm"><U><FONT color="#0000FF">実用的に応用</FONT></U></A>できる。<BR>
+<BR>
+より良い一様乱数を得る必要があるなどの目的に応じて、hdrand_test関数内のテストは各々調整すると良い。<BR>
+<BR>
+<BR>
+<B><FONT size="+1">関数：</FONT></B><BR>
+<BR>
+<B><I><FONT size="+1">int hdrand_init()</FONT></I></B><BR>
+<BR>
+テンポラリファイルを用意するための関数。<B>全ての動作の前にこれを１度だけ呼び出しておく。</B><BR>
+ここでのエラーは特にチェックする必要はない。hdrand_test()での返り値だけをチェックすれば充分。<BR>
+返り値<BR>
+0　通常終了<BR>
+-1　テンポラリファイルが作成できないのでhdrandはつかえない。<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">int hdrand_test()</FONT></I></B><BR>
+<BR>
+実際にいくつかの乱数を発生させ、乱数として使用可能なビット情報をグローバル変数に格納する。<BR>
+<FONT color="#000000"><B>プログラムの最初で、initの後に1度だけ必ず呼び出し、エラーが出てさえいなければそれ以降は意識しなくて良い。</B></FONT><BR>
+１度失敗しても（返り値-1でも）、その後成功する可能性もあるので何度かリトライした方が良い。<BR>
+<BR>
+返り値<BR>
+n　nビットが乱数として使用可能。<BR>
+0　使用可能な乱数ビットが存在しない。<BR>
+-1　使用可能な乱数ビットが存在しない。その環境ではhdrandが使えない。<BR>
+<BR>
+具体的な動作<BR>
+hdrand_generate()で乱数ビットを100回生成する。<BR>
+前回のビットと今回のビットが40～60回変化していれば、そのビットは「合格」である。<BR>
+合格になったビットが1ビット以上存在すれば、この関数は-1以外の値を返す。<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">int hdrand_generate()</FONT></I></B><BR>
+<BR>
+実際に乱数を作るルーチン。内部でだけ使用する。<BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">int hdrand32()</FONT></I></B><BR>
+<BR>
+32ビットの信頼できる乱数ビット列を返す。<BR>
+<B>最初に初期化（initとtest）を行った後は、これを呼び出すだけで良質な乱数ビット列を取得できる。</B><BR>
+<BR>
+<BR>
+<B><I><FONT size="+1">int hdrandbit()</FONT></I></B><BR>
+<BR>
+1ビットの信頼できる乱数ビットを返す。<BR>
+hdrand_generateによって生成されるビット列の「有効な上位ビット」部分は少し偏る可能性があるので、より完全な乱数を得たい場合はこちらを利用する。<BR>
+ただしある程度長い同じ長さのビット数を得る場合、hdrand32の方が高速である。<BR>
+<BR>
+<BR>
+<B><FONT size="+1">テストプログラム例（Borland C++ Builder）</FONT></B><BR>
+<BR>
+#include&quot;stdio.h&quot;<BR>
+<BR>
+main(void)<BR>
+{<BR>
+//準備とエラーチェック<BR>
+int noerr=0;<BR>
+hdrand_init();<BR>
+for(int retry=0;retry&lt;16;retry++)if(hdrand_test()!=-1){noerr=1;break;}<BR>
+if(noerr==0){ShowMessage(&quot;乱数が使えません&quot;);exit(0);}<BR>
+//実際に乱数を生成する<BR>
+for(int r=0;r&lt;10;r++)ShowMessage(hdrand32());<BR>
+}<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+1">実装：</FONT></B><BR>
+<BR>
+<B>ヘッダ部（グローバル）：</B>（必要ならstaticにすること。関数のプロトタイプ宣言も必要ならすること）<BR>
+<BR>
+_LARGE_INTEGER hdrand_PC; //高分解能パフォーマンスカウンタのカウント値参照用<BR>
+DWORD hdrand_value; //ジェネレータが返す真の値<BR>
+int hdrand_Rshift; //hdrandのジェネレータが返す値の右何ビットが使えないか<BR>
+int hdrand_Lshift; //hdrandのジェネレータが返す値の何ビットが使用可能か<BR>
+char hdrand_buf[MAX_PATH]; //ファイルネーム保持用<BR>
+FILE * hdrand_str; //ファイル入出力用<BR>
+<BR>
+<B>関数部：</B><BR>
+<BR>
+int hdrand_init()<BR>
+{<BR>
+if(GetTempPath(MAX_PATH,hdrand_buf)==0)return
+-1; //テンポラリファイルフォルダを取得<BR>
+strcat(hdrand_buf,&quot;temprnd.tmp\0&quot;);
+//仮のテンポラリファイル。ちゃんとやるならGetTempFileNameで。<BR>
+return 0;<BR>
+}<BR>
+<BR>
+int hdrand_generate()<BR>
+{<BR>
+QueryPerformanceCounter(&amp;hdrand_PC);
+<BR>
+hdrand_value=hdrand_PC.LowPart;<BR>
+<BR>
+hdrand_str=fopen(hdrand_buf,&quot;wb&quot;);
+<BR>
+if(hdrand_str==NULL)return -1;<BR>
+fwrite(hdrand_str,1,1,hdrand_str);<BR>
+fclose(hdrand_str);<BR>
+DeleteFile(hdrand_buf);<BR>
+<BR>
+QueryPerformanceCounter(&amp;hdrand_PC);<BR>
+hdrand_value=(hdrand_PC.LowPart^hdrand_value);<BR>
+}<BR>
+<BR>
+<BR>
+int hdrand_test()<BR>
+{<BR>
+bool bits[64];<BR>
+bool lastbits[64];<BR>
+int henka[64];<BR>
+int h_b;<BR>
+<BR>
+memset(henka,0,sizeof(int)*8);<BR>
+<BR>
+for(int j=0;j&lt;100;j++)<BR>
+{<BR>
+hdrand_generate();<BR>
+h_b=hdrand_value;<BR>
+for(int i=0;i&lt;sizeof(int)*8-1;i++)<BR>
+{<BR>
+bits[i]=(h_b &amp; 1);<BR>
+h_b = h_b &gt;&gt; 1;<BR>
+henka[i]+=bits[i]!=lastbits[i];<BR>
+lastbits[i]=bits[i];<BR>
+}<BR>
+}<BR>
+<BR>
+hdrand_Rshift=255;<BR>
+hdrand_Lshift=-1;<BR>
+for(int i=0;i&lt;sizeof(int)*8-1;i++)<BR>
+{<BR>
+if((henka[i]&gt;=40)&amp;&amp;(henka[i]&lt;=60))<BR>
+{<BR>
+if(i&lt;hdrand_Rshift)hdrand_Rshift=i;<BR>
+if(i&gt;=hdrand_Lshift)hdrand_Lshift=i-hdrand_Rshift+1;<BR>
+}<BR>
+else break;<BR>
+}<BR>
+if(hdrand_Rshift==255)return -1;<BR>
+if(hdrand_Lshift&lt;=0)return -1;<BR>
+return hdrand_Lshift;<BR>
+}<BR>
+<BR>
+<BR>
+//ランダムな32ビットの乱数を返す。<BR>
+int hdrand32()<BR>
+{<BR>
+unsigned int tmp=0;<BR>
+unsigned int h_v;<BR>
+int totalbit=0;<BR>
+while(1)<BR>
+{<BR>
+VNhdrand_generate();<BR>
+h_v=hdrand_value &gt;&gt; hdrand_Rshift;<BR>
+for(int j=0;j&lt;hdrand_Lshift;j++)<BR>
+{<BR>
+tmp+=h_v &amp; 1;<BR>
+h_v=h_v &gt;&gt; 1;<BR>
+totalbit++;<BR>
+if(totalbit&gt;=32)return tmp;<BR>
+tmp=tmp&lt;&lt;1;<BR>
+}<BR>
+}<BR>
+<BR>
+}<BR>
+<BR>
+<BR>
+//ランダムな1ビットの乱数を返す。<BR>
+int hdrandbit()<BR>
+{<BR>
+hdrand_generate();<BR>
+return (hdrand_value &gt;&gt; hdrand_Rshift
+) &amp;1 ;<BR>
+}<BR>
+<BR>
+<BR>
+<B><FONT size="+1">注意</FONT></B><BR>
+<BR>
+hdrand32()は、書き込みにかかった時間の上位の方のビットも利用する（その変化が充分に大きい限り）。<BR>
+そのため、より良い乱数を得るためには、hdrand_generateによる返り値hdrand_valueの下位ビットの方を利用するようにした方が良いかもしれない。<BR>
+実用上充分だと思うが、そのあたりの調整をする場合各自でソースをいじるように。<BR>
+<BR>
+<FONT color="#FF0000">このプログラムを利用して発生したいかなる損害にも、作者とつげき東北は責任を負わない。各自の責任の下に使用すること。</FONT><BR>
+改良、自作ソフトへの組み込み等は全て自由。このページの内容を著作権だけを変更して、そのまま自分のHPに書くようなことはしないように（著作権法に違反する）。<BR>
+このページは2002/04/21に公開された。<BR>
+<BR>
+<BR>
+<BR>
+<FONT color="#FF0000"><SCRIPT type="text/javascript"><!--
+google_ad_client = "pub-0849366231331886";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+//--></SCRIPT> <SCRIPT type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</SCRIPT> </FONT><BR>
+<BR>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=x-sjis">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
+<TITLE>システマティック麻雀工学</TITLE>
+</HEAD>
+<BODY background="1052.gif">
+<P>システマティック麻雀工学：牌譜処理：<FONT size="+3"><B><BR></B></FONT><BR><BR>
+<BR>
+//以下のグローバル変数を使用する。<BR>
+//ローカルにしても良いが、ファイル操作関係の関数呼び出しなどが煩雑になり、メリットはあまりない。<BR>
+FILE *fp;<BR>
+int MOJISUU=256;<BR>
+char sitei[256]; //&quot;03/05/01\0&quot;などとし、頭だししたい試合日付を指定する<BR>
+char str[256]; //汎用。<BR>
+<BR>
+<BR>
+<BR>
+//ファイルのサイズを取得する関数。<BR>
+long filesize(FILE *stream)<BR>
+{<BR>
+long curpos, length;<BR>
+curpos = ftell(stream);<BR>
+fseek(stream, 0L, SEEK_END);<BR>
+length = ftell(stream);<BR>
+fseek(stream, curpos, SEEK_SET);<BR>
+return length;<BR>
+}<BR>
+<BR><BR>
+<BR>
+//現在のfpより後ろにある、もっとも近い試合データの日付から始まる文字列へのポインタを得る<BR>
+char * nextdate()<BR>
+{<BR>
+char *ptr, *dates,c = '/';<BR>
+str[0]='\0';<BR>
+str[1]='\0';<BR>
+str[2]='\0';<BR>
+//&quot;卓 開始 &quot;という文字列があり、&quot;=====
+&quot;という文字列があり、<BR>
+//なおかつ&quot;/&quot;があるような行まで読み飛ばしつつ、&quot;/&quot;の2文字前<BR>
+//からの文字列へのポインタをdatesに格納<BR>
+while((strstr(&amp;str[2],&quot;卓 開始 &quot;)==NULL)||((strstr(&amp;str[2],&quot;=====
+&quot;)==NULL)||(ptr==NULL)))<BR>
+{<BR>
+if((fgets(&amp;str[2], MOJISUU-2, fp))==NULL){return
+&quot;//&quot;;}<BR>
+ptr = strchr(&amp;str[2], c);<BR>
+}<BR>
+return ptr-2;<BR>
+}<BR>
+<BR>
+//04/01/01などから始まる文字列2つを比較する。<BR>
+//date1のほうが後ならば1　先ならば-1　同じなら0<BR>
+int datecmp(char * date1,char * date2)<BR>
+{<BR>
+char dateA[10],dateB[10];<BR>
+strncpy(dateA,date1,8);<BR>
+strncpy(dateB,date2,8);<BR>
+dateA[8]='\0';<BR>
+dateB[8]='\0';<BR>
+if(dateA[0]=='9')dateA[0]=1; //厳密には文字コード依存<BR>
+if(dateB[0]=='9')dateB[0]=1; //厳密には文字コード依存<BR>
+for(int ind=0;ind&lt;=8;ind++)<BR>
+{<BR>
+if(dateA[ind]&gt;dateB[ind]){/*ShowMessage(AnsiString(dateA)+&quot;は&quot;+AnsiString(dateB)+&quot;より後&quot;);*/return
+1;}<BR>
+if(dateA[ind]&lt;dateB[ind]){/*ShowMessage(AnsiString(dateA)+&quot;は&quot;+AnsiString(dateB)+&quot;より前&quot;);*/return
+-1;}<BR>
+}<BR>
+return 0;<BR>
+}<BR>
+<BR>
+<BR>
+<BR>
+//mjscoreの日付データを2分検索するための再帰関数<BR>
+int x(fpos_t * l_filepos,fpos_t * r_filepos)<BR>
+{<BR>
+fpos_t mid_filepos;<BR>
+mid_filepos=(fpos_t(*l_filepos/2)+fpos_t(*r_filepos/2));<BR>
+if(mid_filepos==fpos_t(*l_filepos))return
+0;<BR>
+fsetpos(fp,&amp;mid_filepos);<BR>
+char * c=nextdate();<BR>
+if((!(c[0]=='/' &amp;&amp; c[1]=='/'))&amp;&amp;(datecmp(c,sitei)&gt;=0))<BR>
+{*r_filepos=mid_filepos;x(l_filepos,r_filepos);}<BR>
+else if(!(c[0]=='/' &amp;&amp; c[1]=='/')){*l_filepos=mid_filepos;x(l_filepos,r_filepos);}<BR>
+else return 0;<BR>
+}<BR>
+<BR>
+void atamadasi()<BR>
+{<BR>
+fpos_t l_filepos,r_filepos;<BR>
+l_filepos=0;<BR>
+r_filepos=filesize(fp);<BR>
+x(&amp;l_filepos,&amp;r_filepos);<BR>
+fsetpos(fp,&amp;l_filepos);<BR>
+char * c=nextdate();<BR>
+if(datecmp(c,sitei)!=0)c=nextdate();<BR>
+ShowMessage(c);<BR>
+<BR>
+}<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+void __fastcall TForm1::Button1Click(TObject
+*Sender)<BR>
+{<BR>
+<BR>
+<BR>
+AnsiString dat=Edit1-&gt;Text;<BR>
+strncpy(sitei,dat.c_str(),20);<BR>
+fp=fopen(&quot;mjscore.txt&quot;,&quot;rt&quot;);<BR>
+if(fp==NULL)return;<BR>
+atamadasi();<BR>
+fclose(fp);<BR>
+<BR>
+}<BR>
+//-------------------<BR>
+</P></BODY>
+</HTML>

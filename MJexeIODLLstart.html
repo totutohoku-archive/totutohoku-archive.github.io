@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=x-sjis">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
+<title>MJexeIO入門マニュアル</title>
+</head>
+
+<BODY background="1052.gif" alink="#ff7f00" bgcolor="#ffffff" link="#ff0000" text="#000000" vlink="#400080"><P><B><FONT size="+3"><IMG src="MJexeIO.gif" width="34" height="36" border="0">MJexeIO.DLL</FONT><FONT size="+1">（東風荘画面入出力用ダイナミックリンクライブラリ）　入門マニュアル</FONT></B><BR>
+<BR>
+<BR><BR>
+<FONT size="+1"><B>具体的にプログラムを作って動かすには？</B></FONT><BR>
+<BR>
+C++のコンパイラを使って、コンソールアプリとして構築してみましょう。<BR>
+<FONT color="#0000FF">マニュアルの指示どおりにサンプルをコピペしていきます。</FONT><BR>
+一部<FONT color="#0000FF">「ShowMessage」などのコンパイラ依存の関数を使っているので、そういう部分は削除</FONT>してしまいましょう。<BR>
+下にあるコードのほとんど全部が、ただのコピペです。<BR>
+<BR>
+そしてプログラムの最初で、必要なインクルードファイルを#includeでインクルードさせます。<BR>
+また簡単のために、おなじみのint main（）から始まるようにしたので、returnのところは返り値を適当につけてやります。<BR>
+<FONT color="#FF0000">赤字</FONT>になっている部分以外は、「ShowMessage」を削除したり、「return」を「return
+-1」に変えたりしているだけで、基本的にコピペです。<BR>
+<BR>
+これをこのままコンパイルすれば（たぶん）動くと思います。<BR>
+当然、<FONT color="#FF0000">MJexeIO.dllを実行ファイルと同じフォルダに置いておく必要があります</FONT>。<BR><BR>
+<BR>
+<B>VisualC++の場合</B>、キャストの制限が違うようで、<BR>
+GetHaiSize = ( GETHAISIZE )::GetProcAddress(
+hDll, &quot;_GetHaiSize&quot; ); <BR>
+のような部分でキャストエラーが出るようです。<BR>
+コンパイラの指示通り、ここを<BR>
+GetHaiSize = ( GETHAISIZE )::GetProcAddress(
+(struct HINSTANCE__ *)hDll, &quot;_GetHaiSize&quot;
+); <BR>
+に直してやることで、コンパイルできます。<BR>
+<BR>
+<BR>
+<FONT size="-2" color="#FF0000">#include&quot;windows.h&quot;<BR>
+#include&quot;string.h&quot;<BR>
+</FONT><FONT size="-2"><BR>
+</FONT><FONT size="-2"><BR>
+//★以下はヘッダ部分に記述<BR>
+//インポート関数の型定義（下の各関数の説明を読んで、同じ型で定義します）<BR>
+typedef int (*GETTEHAI)(int,int *);<BR>
+typedef int (*GETSUTEHAI)(int,int,int *);<BR>
+typedef int (*GETSUTEHAINUM)(int,int,int
+*);<BR>
+typedef int (*GETDLLVERSION)(void);<BR>
+typedef int (*GETKAZE)(int);<BR>
+typedef int (*GETTURNPLAYER)(int);<BR>
+typedef int (*GETFUROHAI)(int,int,int *);<BR>
+typedef int (*GETTONPUDATA)(char *);<BR>
+typedef int (*GETHAISIZE)(void);<BR>
+typedef int (*GETDORAHAI)(int,int *);<BR>
+typedef int (*PUSHHAI)(int,int);<BR>
+typedef int (*PUSHFUNCTIONKEY)(int);<BR>
+typedef int (*RCLICK)(void);<BR>
+typedef int (*GETTONPUINFO)(HWND *,HWND *);<BR>
+typedef int (*CHECK_TENPAI)(int *,int *);<BR>
+typedef int (*CHECK_AGARIHAI)(int *,int);<BR>
+typedef int (*SETMODE)(int);<BR>
+typedef int (*GETAVAILABLEFUNCTIONKEY)(int
+*,int);<BR>
+typedef int (*EXISTAVAILABLEFUNCTIONKEY)(int);<BR>
+typedef int (*GETRIGHTESTTEHAI)(void);<BR>
+typedef int (*EXT_GETHAI)(int,int,int,int);<BR>
+typedef int (*GETPLAYERINFO)(int *,int *,int,int)
+;<BR>
+typedef int (*GETHOLDTIME)(int);<BR>
+typedef int (*GETREACH)(int,int);<BR>
+typedef int (*SENDCHAT)(char *,int,int);<BR>
+</FONT><FONT size="-2"><BR>
+//インポート関数型の関数へのポインタ変数宣言<BR>
+GETTEHAI GetTehai;<BR>
+GETSUTEHAI GetSutehai;<BR>
+GETSUTEHAINUM GetSutehaiNum;<BR>
+GETDLLVERSION GetDLLVersion;<BR>
+GETKAZE GetKaze;<BR>
+GETTURNPLAYER GetTurnPlayer;<BR>
+GETFUROHAI GetFurohai;<BR>
+GETTONPUDATA GetTonpuData;<BR>
+GETHAISIZE GetHaiSize;<BR>
+GETDORAHAI GetDorahai;<BR>
+PUSHHAI PushHai;<BR>
+PUSHFUNCTIONKEY PushFunctionKey;<BR>
+RCLICK RClick;<BR>
+GETTONPUINFO GetTonpuInfo;<BR>
+CHECK_TENPAI Check_tenpai;<BR>
+CHECK_AGARIHAI Check_agarihai;<BR>
+SETMODE SetMode;<BR>
+GETAVAILABLEFUNCTIONKEY GetAvailableFunctionKey;<BR>
+EXISTAVAILABLEFUNCTIONKEY ExistAvailableFunctionKey;<BR>
+GETRIGHTESTTEHAI GetRightestTehai;<BR>
+EXT_GETHAI ext_GetHai;<BR>
+GETPLAYERINFO GetPlayerInfo;<BR>
+GETHOLDTIME GetHoldTime;<BR>
+GETREACH GetReach;<BR>
+SENDCHAT SendChat;<BR>
+</FONT><FONT size="-2"><BR>
+</FONT><FONT size="-2" color="#FF0000"><BR>
+int main()<BR>
+{</FONT><FONT size="-2"><BR>
+int tmphai[51],size; //汎用<BR>
+</FONT><FONT size="-2"><BR>
+HANDLE hDll = ::LoadLibrary( &quot;MJexeIO.dll&quot;
+); //DLLをロード<BR>
+if(hDll==NULL){return 0;} //DLLロードのエラーチェック<BR>
+</FONT><FONT size="-2"><BR>
+//DLLから必要な関数をインポート<BR>
+GetHaiSize = ( GETHAISIZE )::GetProcAddress(
+hDll, &quot;_GetHaiSize&quot; ); <BR>
+GetDorahai = ( GETDORAHAI )::GetProcAddress(
+hDll, &quot;_GetDorahai&quot; ); <BR>
+GetTehai = ( GETTEHAI )::GetProcAddress(
+hDll, &quot;_GetTehai&quot; );<BR>
+GetSutehai = ( GETSUTEHAI )::GetProcAddress(
+hDll, &quot;_GetSutehai&quot; );<BR>
+GetSutehaiNum = ( GETSUTEHAINUM )::GetProcAddress(
+hDll, &quot;_GetSutehaiNum&quot; );<BR>
+GetDLLVersion = ( GETDLLVERSION )::GetProcAddress(
+hDll, &quot;_GetDLLVersion&quot; );<BR>
+GetKaze = ( GETKAZE )::GetProcAddress( hDll,
+&quot;_GetKaze&quot; );<BR>
+GetTurnPlayer = ( GETTURNPLAYER )::GetProcAddress(
+hDll, &quot;_GetTurnPlayer&quot; );<BR>
+GetFurohai = ( GETFUROHAI )::GetProcAddress(
+hDll, &quot;_GetFurohai&quot; );<BR>
+GetTonpuData = ( GETTONPUDATA )::GetProcAddress(
+hDll, &quot;_GetTonpuData&quot; );<BR>
+PushHai = ( PUSHHAI )::GetProcAddress( hDll,
+&quot;_PushHai&quot; );<BR>
+PushFunctionKey = ( PUSHFUNCTIONKEY )::GetProcAddress(
+hDll, &quot;_PushFunctionKey&quot; );<BR>
+RClick = ( RCLICK )::GetProcAddress( hDll,
+&quot;_RClick&quot; );<BR>
+GetTonpuInfo = (GETTONPUINFO)::GetProcAddress(hDll,&quot;_GetTonpuInfo&quot;);<BR>
+Check_tenpai = (CHECK_TENPAI)::GetProcAddress(hDll,&quot;_Check_tenpai&quot;);<BR>
+Check_agarihai = (CHECK_AGARIHAI)::GetProcAddress(hDll,&quot;_Check_agarihai&quot;);<BR>
+SetMode = (SETMODE)::GetProcAddress(hDll,&quot;_SetMode&quot;);<BR>
+GetAvailableFunctionKey = (GETAVAILABLEFUNCTIONKEY)::GetProcAddress(hDll,&quot;_GetAvailableFunctionKey&quot;);<BR>
+ExistAvailableFunctionKey = (EXISTAVAILABLEFUNCTIONKEY)::GetProcAddress(hDll,&quot;_ExistAvailableFunctionKey&quot;);<BR>
+GetRightestTehai = (GETRIGHTESTTEHAI)::GetProcAddress(hDll,&quot;_GetRightestTehai&quot;);<BR>
+ext_GetHai = (EXT_GETHAI)::GetProcAddress(hDll,&quot;_ext_GetHai&quot;);<BR>
+GetPlayerInfo = (GETPLAYERINFO)::GetProcAddress(hDll,&quot;_GetPlayerInfo&quot;);<BR>
+GetHoldTime = (GETHOLDTIME)::GetProcAddress(hDll,&quot;_GetHoldTime&quot;);<BR>
+GetReach = (GETREACH)::GetProcAddress(hDll,&quot;_GetReach&quot;);<BR>
+SendChat = (SENDCHAT)::GetProcAddress(hDll,&quot;_SendChat&quot;);<BR>
+</FONT><FONT size="-2"><BR>
+//DLL関数インポートのエラーチェック。この例では２つの関数だけをチェックしている。<BR>
+if(GetHaiSize==NULL){return -1;} //DLL関数インポートのエラーチェック<BR>
+if(GetDorahai==NULL){return -1;} //DLL関数インポートのエラーチェック<BR>
+</FONT><FONT size="-2"><BR>
+int i;<BR>
+char str[1024]; //返り値受け取り用の文字列<BR>
+char players[5][20];<BR>
+</FONT><FONT size="-2"><BR>
+strcpy(players[0],&quot;/w とつげき東北\0&quot;);<BR>
+strcpy(players[1],&quot;/w とつ開発研究\0&quot;);<BR>
+strcpy(players[2],&quot;/w 紅孔雀さん\0&quot;);<BR>
+strcpy(players[3],&quot;/w バイマンキン\0&quot;);<BR>
+strcpy(players[4],&quot;/w デシマンキン\0&quot;);<BR>
+for(i=0;i&lt;5;i++)<BR>
+SendChat(players[i],0,0); //チャットに文字列送信<BR>
+</FONT><FONT size="-2"><BR>
+//★以下は全ての動作を終了した後に一度だけ行う<BR>
+//DLLの開放<BR>
+FreeLibrary( hDll );<BR>
+return 0;<BR>
+</FONT><FONT size="-2" color="#FF0000">}</FONT><FONT size="-2"><BR>
+</FONT><BR><BR><BR>
+<B><FONT size="+1">実行結果画面</FONT></B><BR>
+<BR>
+<IMG src="MJexeIODLL.gif" width="586" height="411" border="0"><BR><BR>
+東風の画面で上のプログラムを実行すると、このように一瞬にして「一括/w」をすることができました。<BR>
+<FONT color="#0000FF">MJexeIO.dllを利用すれば、主要部分はコピペで、使い勝手を整えボタンなどを配置すれば、実用的なツールを作ることができる</FONT>ことがおわかりいただけたでしょう。<BR><BR><BR><BR><BR><BR><BR><BR>
+<BR>
+<BR><BR><BR><BR><BR>
+<BR></P></BODY>
+</html>

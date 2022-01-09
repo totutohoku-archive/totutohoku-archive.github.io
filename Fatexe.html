@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=x-sjis">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
+<TITLE>Fat.exe（ファイルに冗長データを加える簡易偽装ツール）</TITLE>
+</HEAD>
+<BODY background="1052.gif" alink="#ff0000" bgcolor="#ffffd2" link="#0000ff" text="#000000" vlink="#880088">
+<P><B><FONT size="+3"><IMG src="Fatexe.gif" width="32" height="32" border="0"></FONT><FONT size="+3">Fat.exe</FONT><FONT size="+1">（exeファイルに冗長データを加える簡易偽装ツール</FONT><FONT size="+1">）</FONT></B><FONT color="#FF0000" size="+1"><B>v1.00</B></FONT><B>　　　とつげき東北</B>　　<FONT color="#0000FF"><U><A href="/hp/"><FONT color="#0000FF">ホーム</FONT></A></U></FONT><BR>
+フリーソフト（使用無料）。著作権はとつげき東北が保有。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+1">説明</FONT></B><BR>
+<BR>
+ファイルの末尾にデータを付加して冗長さを与える、非常に簡単なexeファイル偽装ツールです。<BR>
+ユニークなファイルサイズから、あるexeファイルがあるソフトであることが特定されたり、またはファイルが発見されてしまうこと自体を防ぐために用います。<BR>
+ほとんどその用途以外、使い道はありません。<BR>
+<FONT color="#FF0000"><BR>
+</FONT><BR>
+<BR>
+<B><FONT size="+1">用途</FONT></B><BR>
+<BR>
+<B>・実行ファイルの簡単な偽装</B><BR>
+ファイルサイズからファイルを特定される可能性があり、なおかつそれを防ぎたい場合に使えます。<BR>
+例えば<B>「WinPTA.exe」に対してこれを利用し、なおかつ実行ファイルの名称を変えてしまうことで、「WinPTA.exe」の存在が第三者からわかりにくくなります</B>。<BR>
+自分自身のファイルサイズに依存した動作をするタイプの、ごく一部のexeファイルに対しては無効です（作成されたexeファイルは誤動作します）。<BR><BR>
+<B>・テキストファイル等に対する、暗号の堅牢さ向上</B><BR>
+<B>ファイルを（例えば素朴なRSA暗号で）暗号化する際、ファイルサイズが非常に小さい場合に危険な場合があります</B>（理論については他のページで調べてください）。<BR>
+例えばテキストファイルのように冗長データを付加しても影響がほとんどないファイルの場合、このソフトを使って冗長さを持たせることで、解読されにくい暗号にすることができます。<BR>
+<BR>
+<BR>
+<BR>
+<B><FONT size="+1">使い方</FONT></B><BR>
+<BR>
+<IMG src="Fatexe1.gif" width="248" height="182" border="0"><BR>
+<BR>
+加える冗長データを上で設定し、「ファイルを指定して実行」によってファイルを選ぶと、実行時フォルダに「tmp.tmp」というファイルを作成します。<BR>
+同名のファイルが既にある場合無条件で上書きします。これが「冗長データを付加された元ファイルのコピー」です。<BR>
+例えば「加えるバイト数10240」として、ファイルサイズ500Kbのexeファイルを指定して実行すると、「tmp.tmp」という名前の510Kbのexeファイルができます。<BR>
+tmp.exeに名前を変えてダブルクリックすると、元のexeファイルと全く同じに起動し動作するでしょう。<BR>
+<BR>
+<BR>
+<BR>
+使用前に必ず<B><FONT color="#ff0000"><A href="license.htm"><U><FONT color="#ff0000">利用規約</FONT></U></A></FONT></B>に同意してください。同意せずに利用・配布・再配布等をすることを一切禁止します。<BR>
+<FONT color="#FF0000">このプログラムを使用・配布したことによって生じたいかなる損害にも、とつげき東北は責任を負いません。使用者の責任で使うこと。</FONT><BR>
+<A href="Fat.lzh"><IMG src="Fatexe.gif" width="32" height="32" border="0"><U><FONT color="#0000FF" size="+2"><B>Fat.exeダウンロード</B></FONT></U></A><BR>
+<BR><BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</P>
+</BODY>
+</HTML>

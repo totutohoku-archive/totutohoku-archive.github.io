@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=x-sjis">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
+<title>システマティック麻雀工学</title>
+</head>
+
+<BODY background="1052.gif">
+<P><FONT size="+3"><B>上がりチェック・テンパイチェックの方法</B></FONT><BR>
+<BR><BR>
+<B><FONT size="+2">実装例</FONT></B><BR>
+<BR>
+//tehai[0～8]マンズ1～9の数<BR>
+//tehai[10～18]ピンズ1～9の数<BR>
+//tehai[20～28]ソーズ1～9の数<BR>
+//tehai[30]東の数<BR>
+//tehai[32]南の数<BR>
+//　・・・<BR>
+//tehai[42]中の数<BR>
+//その他の要素は0にしておくこと。<BR>
+<BR>
+void ments_cut(int i)<BR>
+{<BR>
+for(;!tehai[i];i++)if(i&gt;=43){return;}
+//上がっている場合ここが実行される<BR>
+if(tehai[i]==3) //コーツとして抜き取れる場合<BR>
+{<BR>
+tehai[i]-=3;<BR>
+ments_cut(i);<BR>
+tehai[i]+=3;<BR>
+}<BR>
+if(tehai[i+1]&amp;&amp;tehai[i+2]) //シュンツとして抜き取れる場合<BR>
+{<BR>
+tehai[i]--,tehai[i+1]--,tehai[i+2]--;<BR>
+ments_cut(i);<BR>
+tehai[i]++,tehai[i+1]++,tehai[i+2]++;<BR>
+}<BR>
+}<BR>
+<BR>
+int agari_check(void)<BR>
+{<BR>
+int i;<BR>
+for(i=0;i&lt;44;i++)<BR>
+if(2&lt;=tehai[i]) //頭を抜き取る<BR>
+{<BR>
+tehai[i]-=2;<BR>
+ments_cut(0);<BR>
+tehai[i]+=2;<BR>
+}<BR>
+}<BR>
+<BR>
+<BR>
+<B><FONT size="+2">解説</FONT></B><BR><BR>
+tehai[]に適切な手を与えてagari_checkを呼び出すと、その手が和了しているかどうかがわかる。<BR>
+上がっているような「メンツ抜き出し」に成功した場合に、ments_cut内の｛return;｝の部分が実行される。<BR>
+<BR>
+手のテンパイチェックをしたい場合は、孤立牌でないような牌を手に１つずつ加えながら、これを呼び出して上がりチェックをすればよい。<BR>
+もし上がりであるなら、手は、その時加えた牌を上がり牌に持つようなテンパイをしている。<BR>
+加えられた牌と、メンツの抜き方の関係から、待ちの形などを判別させることも容易である。<BR>
+<BR>
+「できすぎくん」では、実際にこの方法でテンパイチェック・待ちの形判別が行われている。<BR>
+<BR><BR><BR><BR>
+<BR>
+<BR>
+</P>
+</BODY>
+</html>
