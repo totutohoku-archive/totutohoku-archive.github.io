@@ -650,7 +650,7 @@ orders[n]　プレイヤーnが次に出す捨て牌の位置が返る<BR>
 <BR>
 プレイヤーAがa番目に切った牌が、プレイヤーBがb番目に切った牌に対してどういう順序であるかを返す関数。<BR>
 ただし、SimulateOrder関数で事前にシミュレートしておく必要がある。<BR>
-<A href="MJexeIODLL0.htm" target="TOP"><U><FONT color="#0000FF">ここに</FONT></U></A>アルゴリズムの概略と、順序決定についての説明がある。<BR>
+<A href="MJexeIODLL0.html" target="TOP"><U><FONT color="#0000FF">ここに</FONT></U></A>アルゴリズムの概略と、順序決定についての説明がある。<BR>
 例えば、GetOrder(1,1,4,1)の結果は、自分（手前のプレイヤー）が親なら0、上家が親なら1である（その他の場合は状況によって変化する）。<BR>
 なぜなら、自分が親である限り、自分の1番最初に切った牌は常に、4（上家）が1番最初に切った牌より先に切られており、逆に上家が親であれば、自分の1番最初に切った牌は、上家が1番最初に切った牌より後に切られているからである。また、もし下家が親で、自分が親の第一打をポンしていれば、自分の1番最初に切った牌は、上家の一番最初に切った牌よりも先になる。<BR>
 同様にして任意の牌に対する順序付けを取得できる。「不定」とは、どちらが先である可能性も論理的にあり得る場合の返り値である。<BR>
@@ -1091,7 +1091,7 @@ sutehaidatas3[50],int sutehaidatas4[50])</FONT></B><BR>
 捨て牌、フーロ牌の情報から、牌の順序を求めるためのシミュレーションを行う。<BR>
 例えばポンチーが入り乱れているときに「親の５番目の捨て牌と、南家の５番目の捨て牌は、どちらが先に切られたか？」ということを取得するための準備としてこの関数を呼ぶ。<BR>
 この結果は、GetOrder関数で読み出すことができる。<BR>
-方法としては、<A href="MJexeIODLL0.htm" target="TOP"><U><FONT color="#0000FF">ここに</FONT></U></A>アルゴリズムの概略がある。<BR>
+方法としては、<A href="MJexeIODLL0.html" target="TOP"><U><FONT color="#0000FF">ここに</FONT></U></A>アルゴリズムの概略がある。<BR>
 <BR>
 [引数]<BR>
 kaze　手前のプレイヤーの風。GetKazeで取得した返り値<BR>
@@ -1277,7 +1277,7 @@ strcpy(players[4],&quot;/w デシマンキン\0&quot;);<BR>
 for(i=0;i&lt;5;i++)<BR>
 SendChat(players[i],0,0); //チャットに文字列送信<BR>
 <BR>
-<B><A href="MJexeIODLLstart.htm" target="TOP"><U><FONT color="#0000FF">具体的にこのプログラムを動かすには？</FONT></U></A><BR>
+<B><A href="MJexeIODLLstart.html" target="TOP"><U><FONT color="#0000FF">具体的にこのプログラムを動かすには？</FONT></U></A><BR>
 <BR>
 <BR>
 <BR>
