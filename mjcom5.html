@@ -4,32 +4,32 @@
 <meta charset="UTF-8">
 <META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>�łƏ΂��ƂƂ������k</TITLE>
+<TITLE>毒と笑いととつげき東北</TITLE>
 </HEAD>
 <BODY background="1052.gif" alink="#ff7f00" bgcolor="#e0e0e0" link="#ff0000" text="#000000" vlink="#400080" leftmargin="20" topmargin="10" marginwidth="2" marginheight="10" lang="JA" style="tab-interval:42.0pt;text-justify-trim:punctuation">
-<P>�V�X�e�}�e�B�b�N�����H�w�F<FONT size="+3"><B><BR>
-�T�F�����̃n�C�p�C���ɗp����[�������ɂ���</B></FONT><BR>
+<P>システマティック麻雀工学：<FONT size="+3"><B><BR>
+５：麻雀のハイパイ等に用いる擬似乱数について</B></FONT><BR>
 <BR>
 <BR>
-�����̃n�C�p�C�͏[���Ƀ����_���łȂ��Ȃǂ̎w�E������邱�Ƃ����邽�߁A�����̃n�C�p�C���ɗp���邽�߂̋[�������ɂ��čl�@���Ă����B<BR>
+麻雀のハイパイは充分にランダムでないなどの指摘がされることがあるため、麻雀のハイパイ等に用いるための擬似乱数について考察しておく。<BR>
 <BR>
 <BR>
-<B><FONT size="+1">�[�������̎��ׂ������F</FONT></B><BR><BR>
-�i�P�j��������<BR>
-�i�Q�j���v�I���G��<BR>
-�i�R�j�\���s�\��<BR>
-�i�S�j���s���x�@<BR>
+<B><FONT size="+1">擬似乱数の持つべき性質：</FONT></B><BR><BR>
+（１）長周期性<BR>
+（２）統計的乱雑さ<BR>
+（３）予測不可能性<BR>
+（４）実行速度　<BR>
 <BR>
-�i�P�j�i�Q�j�ɂ��ẮAMersenneTwister���ǂ��B<BR>
-2^19937-1�Ƃ������ɒ��������������Ă����A�u623�����ŋϓ��ɕ��z����v�Ƃ������v�I�ȗ��G���������Ă���B<BR>
-�\���s�\�����K�v�Ƃ���Ȃ��A�����̃V�~�����[�V�������̗p�r�ŗp����Ȃ�A�őP�ł��낤�B<BR><BR>
-�܂�����ꂽ�����̗񂩂玟�̗������\���ł��Ȃ����Ƃ��K�v�ł���i�R�j�B���̂��߂ɁAMersenneTwister�œ�����r�b�g�񂩂�A������n�b�V���֐��Ńn�b�V���l���Ƃ�A�����V�����[�������Ƃ���B<BR>
-�č������ȕW���Z�p��NIST�����J���Ă��闐���̓��v�����c�[��NIST
-SP800-22�ɂ����āAGeneratou-Using SHA-1<BR>
+（１）（２）については、MersenneTwisterが良い。<BR>
+2^19937-1という非常に長い周期を持っている上、「623次元で均等に分布する」という統計的な乱雑さを持っている。<BR>
+予測不可能性が必要とされない、麻雀のシミュレーション等の用途で用いるなら、最善であろう。<BR><BR>
+また得られた乱数の列から次の乱数が予測できないことが必要である（３）。このために、MersenneTwisterで得られるビット列から、一方向ハッシュ関数でハッシュ値をとり、これを新しい擬似乱数とする。<BR>
+米国商務省標準技術局NISTが公開している乱数の統計試験ツールNIST
+SP800-22において、Generatou-Using SHA-1<BR>
 <BR>
-���݁A������֐��Ƃ��Ă�SHA-1����\�I�ł���BSHA-1<BR>
+現在、一方向関数としてはSHA-1が代表的である。SHA-1<BR>
 <BR><BR><BR>
-�����S�ɂ��邽�߂̕��@�Ƃ��ẮA�n�b�V���֐�Whirlpool<BR><BR>
+より安全にするための方法としては、ハッシュ関数Whirlpool<BR><BR>
 <BR><BR><BR><BR><BR>
 <BR>
 <BR><BR>

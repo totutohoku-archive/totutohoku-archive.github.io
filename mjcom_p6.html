@@ -3,247 +3,247 @@
 <HEAD>
 <meta charset="UTF-8">
 <META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
-<TITLE>���Ϗ��ʂ̕΂�ƐM���ł�����͕]��</TITLE>
+<TITLE>平均順位の偏りと信頼できる実力評価</TITLE>
 </HEAD>
 <BODY background="1052.gif" bgcolor="#000000" text="#000000" style="BACKGROUND-COLOR: #336699">
-<P><FONT color="#000000" size="6"><B>���Ϗ��ʂ̕΂�ƐM���ł�����͕]��</B></FONT><FONT color="#000000">�@</FONT><FONT color="#0000FF"><U><B><A href="/hp/"><FONT color="#0000FF">�Ƃ������k</FONT></A></B></U></FONT><BR>
+<P><FONT color="#000000" size="6"><B>平均順位の偏りと信頼できる実力評価</B></FONT><FONT color="#000000">　</FONT><FONT color="#0000FF"><U><B><A href="/hp/"><FONT color="#0000FF">とつげき東北</FONT></A></B></U></FONT><BR>
 <BR>
 <BR>
-<FONT size="5" color="#000000"><B>�ړI�F</B></FONT><FONT color="#000000"><BR>
+<FONT size="5" color="#000000"><B>目的：</B></FONT><FONT color="#000000"><BR>
 </FONT><FONT color="#000000"><BR>
-�����́u���́v���������ʂ�������]������̂͊ȒP�ł͂Ȃ��B<BR>
-�Ⴆ�΃��[�`�����ŁA�ǂ��炪��ɑ���̓�����v�����ނ��A�ŁA�P�ʂɂȂ邩�S�ʂɂȂ邩�����܂����肷��B<BR>
-�u�����ڂŌ���΁`�`�����������Ă�v�Ȃǂƌ����邪�A���ۂǂ̒��x�u�����ځv�Ō���΂悢�̂�������������Ă��Ȃ��̂����󂾂낤�Ɛ��@����B<BR>
-�łƂ������납�猩�Ă���΁A���������́u�����v�͂킩��悤�ȋC������̂����A�ǂ�������l�̍D�݂�ł����ɂ���ĕ]���͂܂��܂��ɂȂ邵�A�Ȃɂ���ʉ��ł�����@�ł͂Ȃ����낤�B<BR>
+麻雀の「実力」を試合結果だけから評価するのは簡単ではない。<BR>
+例えばリーチ勝負で、どちらが先に相手の当たり牌をつかむか、で、１位になるか４位になるかが決まったりする。<BR>
+「長い目で見れば～～した方が勝てる」などと言われるが、実際どの程度「長い目」で見ればよいのかさえ理解されていないのが現状だろうと推察する。<BR>
+打つところを後ろから見ていれば、だいたいの「強さ」はわかるような気もするのだが、どうも見る人の好みや打ち方によって評価はまちまちになるし、なにより定量化できる方法ではないだろう。<BR>
 <BR>
-�u�ŋ߂̎����̕��Ϗ��ʁv������͂�]������̂́A�V���v���������ɋq�ϓI�ŁA�����I�ŁA�M���ł�����@�̈�ł���B<BR>
-�����ł́A�������E���ʕ��z�ɂ�镽�Ϗ��ʂ̕΂�̓x�������ʉ����A����M���x�Ŏ��͂��v���������ꍇ�ɕK�v�Ȏ����������߂�v�Z���@�Ȃǂ��Љ��B<BR>
-</FONT><FONT color="#000000">�Ȃ��A���͂̌v���Ƃ����ۑ�́A���������̑S�Ă̊�b�ƂȂ�B�������u���҂́A�ȉ��ɂ��ďn�m���Ă����ׂ��ł���B<BR>
+「最近の試合の平均順位」から実力を評価するのは、シンプルだが非常に客観的で、合理的で、信頼できる方法の一つである。<BR>
+ここでは、試合数・順位分布による平均順位の偏りの度合いを定量化し、ある信頼度で実力を計測したい場合に必要な試合数を求める計算方法などを紹介する。<BR>
+</FONT><FONT color="#000000">なお、実力の計測という課題は、麻雀研究の全ての基礎となる。研究を志す者は、以下について熟知しておくべきである。<BR>
 <BR>
 </FONT><FONT color="#000000"><BR>
 <BR>
 <BR>
-</FONT><FONT color="#000000" size="+2"><B>���_�v�Z�F</B></FONT><FONT color="#000000"><BR>
+</FONT><FONT color="#000000" size="+2"><B>理論計算：</B></FONT><FONT color="#000000"><BR>
 <BR>
-1����������ł��ʂ��Ƃ�m�����o�i���j�ł���v���C���[���l����B<BR>
-���Ϗ��ʂi�������o�i���j�ł���B<BR>
-�i�Ȃ������ł́A���͂���1�`4��\�����̂Ƃ���j<BR>
+1試合あたりでｊ位をとる確率がＰ（ｊ）であるプレイヤーを考える。<BR>
+平均順位Ｊ＝ΣｉＰ（ｉ）である。<BR>
+（なおここでは、Σはｉ＝1～4を表すものとする）<BR>
 <BR>
-1�����I�����̏��ʂ̕��U�̓��o�i���j�E�i���|�i�j^2������A�������I�����̏��ʍ��v�̕��U��<BR>
-<FONT color="#000000">�����o�i���j�E�i���|�i�j^2<BR>
-�Ə�����B<BR>
+1試合終了時の順位の分散はΣＰ（ｉ）・（ｉ－Ｊ）^2だから、ｎ試合終了時の順位合計の分散は<BR>
+<FONT color="#000000">ｎΣＰ（ｉ）・（ｉ－Ｊ）^2<BR>
+と書ける。<BR>
 <BR>
-<B>��ʂɂ������I�������Ϗ��ʂ́A�u�^�̕��Ϗ��ʁv����̕ω����̕W���΍��Ђ�</B><BR>
-</FONT><FONT color="#0000FF" size="+1"><B>�� �� ��o�`/���p</B></FONT> <BR>
-������<B>�`��</B></FONT><FONT color="#000000"><B>���o�i���j�i���|�i�j^2</B></FONT>�A��ʓI�ɂ͂`=1.25��<BR>
-<FONT color="#000000">�ƕ\����B<BR>
-</FONT><FONT color="#000000"><B>�o�i���j�F1����������ł��ʂɂȂ�m���A�i�F1����������̕��Ϗ��ʁA���F������</B><BR>
+<B>一般にｎ試合終了時平均順位の、「真の平均順位」からの変化分の標準偏差σは</B><BR>
+</FONT><FONT color="#0000FF" size="+1"><B>σ ＝ √｛Ａ/ｎ｝</B></FONT> <BR>
+ただし<B>Ａ＝</B></FONT><FONT color="#000000"><B>ΣＰ（ｉ）（ｉ－Ｊ）^2</B></FONT>、一般的にはＡ=1.25弱<BR>
+<FONT color="#000000">と表せる。<BR>
+</FONT><FONT color="#000000"><B>Ｐ（ｊ）：1試合あたりでｊ位になる確率、Ｊ：1試合あたりの平均順位、ｎ：試合数</B><BR>
 </FONT><FONT color="#000000"><BR>
-�Ȃ��A����q�̕ω����ŕ\�������</FONT><BR>
-<FONT color="#000000"><FONT color="#0000FF" size="+1"><B>�Ёi�q�j�@���@1200�@�~�@��o�`/���p</B></FONT></FONT><BR>
-<FONT color="#000000"><FONT color="#000000"><B>�������o�i���j�F1����������ł��ʂɂȂ�m���A�i�F1����������̕��Ϗ��ʁA���F������</B><BR>
+なお、安定Ｒの変化分で表示すると</FONT><BR>
+<FONT color="#000000"><FONT color="#0000FF" size="+1"><B>σ（Ｒ）　＝　1200　×　√｛Ａ/ｎ｝</B></FONT></FONT><BR>
+<FONT color="#000000"><FONT color="#000000"><B>ただしＰ（ｊ）：1試合あたりでｊ位になる確率、Ｊ：1試合あたりの平均順位、ｎ：試合数</B><BR>
 </FONT><BR>
 <BR>
-</FONT>���}�́A�`=1.25�̏ꍇ�ƁA�`=1.00�̏ꍇ�̈ꕔ�́A�������ƌ��ʂ̕ϓ��֌W���A�e�X�̐M���x�ŃO���t�Ƀv���b�g�������̂ł���B<BR>
+</FONT>下図は、Ａ=1.25の場合と、Ａ=1.00の場合の一部の、試合数と結果の変動関係を、各々の信頼度でグラフにプロットしたものである。<BR>
 <BR>
-<B>�}1�F�������ƌ��ʂ̂΂���i�`=1.25�C�`=1.00�j</B><BR>
+<B>図1：試合数と結果のばらつき（Ａ=1.25，Ａ=1.00）</B><BR>
 <IMG src="mjcom_p6.gif" width="1090" height="748" border="0"><BR>
 <BR>
 <BR>
 <BR>
 <BR>
-<B><FONT color="#000000" size="+2">�`�l�ɂ��āF</FONT></B><BR>
+<B><FONT color="#000000" size="+2">Ａ値について：</FONT></B><BR>
 <BR>
-<B><FONT color="#000000">�`�l�́A�u�i���ʕ��z�̓����ɂ��j���т̂΂���₷���̎w�W�v</FONT></B>�ł���ƌ������Ƃ��ł���B<BR>
-����`�l�́u���ʕ��z�W���v�u�΂�̂`�v�ȂǂƌĂ΂�邱�Ƃ�����B<BR>
-<B><FONT color="#0000FF">���сi���Ϗ��ʁj�̕��U�́A���ʕ��z�W���`�ɔ�Ⴕ�A���������ɔ���Ⴗ��</FONT></B>�B<BR>
+<B><FONT color="#000000">Ａ値は、「（順位分布の特徴による）成績のばらつきやすさの指標」</FONT></B>であると言うことができる。<BR>
+今後Ａ値は「順位分布係数」「偏りのＡ」などと呼ばれることがある。<BR>
+<B><FONT color="#0000FF">成績（平均順位）の分散は、順位分布係数Ａに比例し、試合数ｎに反比例する</FONT></B>。<BR>
 <BR>
-<FONT color="#000000">���ɁA�o�i1�`4�j��0.25�A�܂�1��2��3��4�ʂ��ׂāA25���̊m���łƂ�v���C���[���l����ƁA<BR>
-�`�����o�i���j</FONT><FONT color="#000000">�E�i���|�i�j^2��5/4������A</FONT><BR>
-<B><FONT color="#000000"><FONT color="#000000">1�`4�ʂ𓙂������v���C���[�́A�������I�������Ϗ��ʂ́u�^�̕��Ϗ��ʁv����̕ω����̕W���΍��Ђ�</FONT></FONT></B><FONT color="#000000"><FONT color="#0000FF"><BR>
-�Ё@���@��o1.25/n�p</FONT><FONT color="#000000"><BR>
-<B>���F������</B><BR>
-�ƂȂ�B<BR>
+<FONT color="#000000">仮に、Ｐ（1～4）＝0.25、つまり1位2位3位4位すべて、25％の確率でとるプレイヤーを考えると、<BR>
+Ａ＝ΣＰ（ｉ）</FONT><FONT color="#000000">・（ｉ－Ｊ）^2＝5/4だから、</FONT><BR>
+<B><FONT color="#000000"><FONT color="#000000">1～4位を等しく取るプレイヤーの、ｎ試合終了時平均順位の「真の平均順位」からの変化分の標準偏差σは</FONT></FONT></B><FONT color="#000000"><FONT color="#0000FF"><BR>
+σ　＝　√｛1.25/n｝</FONT><FONT color="#000000"><BR>
+<B>ｎ：試合数</B><BR>
+となる。<BR>
 <BR>
-<B>����q�\�L�ł�</B><BR>
-</FONT></FONT><FONT color="#0000FF">�Ёi�q�j�@���@1200�~��o1.25/n�p</FONT><BR>
-<FONT color="#000000"><B>���F������</B><BR>
-�ł���B<BR>
+<B>安定Ｒ表記では</B><BR>
+</FONT></FONT><FONT color="#0000FF">σ（Ｒ）　＝　1200×√｛1.25/n｝</FONT><BR>
+<FONT color="#000000"><B>ｎ：試合数</B><BR>
+である。<BR>
 <BR>
-</FONT><FONT color="#000000"><FONT color="#000000">���ϓI�ȃv���C���[�̂`��1.25�ł���̂ɑ΂��āA</FONT><FONT color="#000000">P(1)��0.3�AP(2)��0.27�AP(3)��0.23�AP(4)��0.2�A���Ϗ���2.33�́u�����g�v�̐l�̂`�͂ǂ����낤���B<BR>
-</FONT>�`��0.3*�i1-2.33�j^2�{0.27*�i2-2.33�j^2�{0.23*�i3-2.33�j^2�{0.2*�i4-2.33�j^2��1.2211<BR>
-�ƌv�Z�ł��A<BR>
-�Ёi�q�j�@���@1200�@�~�@��o1.2211/���p<BR>
-�ƂȂ�B<BR>
-<FONT color="#000000"><FONT color="#000000">P(1)��0.3�AP(2)��0.2�AP(3)��0.2�AP(4)��0.3�A���Ϗ���2.5�́u���Ȃ�ɒ[�ȑł���v�̂`���A1.45�ƂȂ����B<BR>
+</FONT><FONT color="#000000"><FONT color="#000000">平均的なプレイヤーのＡは1.25であるのに対して、</FONT><FONT color="#000000">P(1)＝0.3、P(2)＝0.27、P(3)＝0.23、P(4)＝0.2、平均順位2.33の「勝ち組」の人のＡはどうだろうか。<BR>
+</FONT>Ａ＝0.3*（1-2.33）^2＋0.27*（2-2.33）^2＋0.23*（3-2.33）^2＋0.2*（4-2.33）^2＝1.2211<BR>
+と計算でき、<BR>
+σ（Ｒ）　＝　1200　×　√｛1.2211/ｎ｝<BR>
+となる。<BR>
+<FONT color="#000000"><FONT color="#000000">P(1)＝0.3、P(2)＝0.2、P(3)＝0.2、P(4)＝0.3、平均順位2.5の「かなり極端な打ち手」のＡが、1.45となった。<BR>
 </FONT></FONT><BR>
-�`�̒l�͂��̂悤�ɂ����ނ�1.2�`1.45�O��̒l�ł���A���Ϗ��ʂ̂΂���͏��ʕ��z�̕ω��ɂ͂��܂�ˑ����Ȃ����Ƃ��킩��B<BR>
-<FONT color="#000000">���ʁA���ʕ��z�͏�L�Ɏ������悤�ȁu�����I�ȁv�l����邩��A�ʏ�́@1.2���`��1.45�@���x�ɂ��Ă����l����Ώ[���ł���B</FONT><BR>
-���������̕��@�́A�K������</FONT><FONT color="#FF0000">�u�`�`�����̒�����悩���������������o���v�ꍇ�̕��Ϗ��ʂ̂΂�����v�Z����̂ɓK�������@�ł͂Ȃ�</FONT><FONT color="#000000">�B���̂悤�ȏꍇ�͕ʂ̋c�_���K�v�ł���B<BR>
+Ａの値はこのようにおおむね1.2～1.45前後の値であり、平均順位のばらつきは順位分布の変化にはあまり依存しないことがわかる。<BR>
+<FONT color="#000000">普通、順位分布は上記に示したような「現実的な」値を取るから、通常は　1.2≦Ａ≦1.45　程度についてだけ考えれば充分である。</FONT><BR>
+ただしこの方法は、必ずしも</FONT><FONT color="#FF0000">「～～試合の中からよかったｎ試合を取り出す」場合の平均順位のばらつきを計算するのに適した方法ではない</FONT><FONT color="#000000">。そのような場合は別の議論が必要である。<BR>
 <BR>
 <BR>
 <BR>
 <BR>
-</FONT><FONT color="#000000" size="+2"><B>�`�l�̕ω�</B></FONT><FONT color="#000000" size="+1"><B>�i����эő�l�ƍŏ��l�j</B></FONT><FONT color="#000000" size="+2"><B>�Ɋւ�����F</B></FONT><FONT color="#FF0000">�i�����<FONT color="#FF0000">�B</FONT>���ʂ̓ǎ҂͔�΂��Ă��������j</FONT><FONT color="#000000"><BR>
+</FONT><FONT color="#000000" size="+2"><B>Ａ値の変化</B></FONT><FONT color="#000000" size="+1"><B>（および最大値と最小値）</B></FONT><FONT color="#000000" size="+2"><B>に関する補題：</B></FONT><FONT color="#FF0000">（やや難解<FONT color="#FF0000">。</FONT>普通の読者は飛ばしてください）</FONT><FONT color="#000000"><BR>
 <BR>
-<FONT color="#000000">�o�i1�j=���A�o�i2�j=���A�o�i3�j=z�Ƃ����<FONT color="#000000">�i������0&lt;=x&lt;=1�A<FONT color="#000000">0&lt;=y&lt;=1�A<FONT color="#000000">0&lt;=z&lt;=1�A</FONT></FONT>0&lt;=x+y+z&lt;=1�j</FONT>�A���Ϗ��ʂi=��+2��+3��+4�i1-��-��-���j�ƕ\�����Ƃ��ł��A<BR>
-�`�@=�@<FONT color="#000000"><FONT color="#000000">���o��+2��+3��+4�i1-��-��-���j-1�p^2+<FONT color="#000000"><FONT color="#000000">���o��+2��+3��+4�i1-��-��-���j-2�p^2+<FONT color="#000000"><FONT color="#000000">���o��+2��+3��+4�i1-��-��-���j-3�p^2+<FONT color="#000000"><FONT color="#000000">�i1-��-��-���j�o��+2��+3��+4�i1-��-��-���j�p^2</FONT></FONT></FONT></FONT></FONT></FONT></FONT></FONT><BR>
-�̂悤�ɕ\���ł��邪�A�����</FONT>�C���œW�J����ƁA<BR>
-</FONT><FONT color="#0000FF">�`�@���@9���i1-���j+4���i1-���j+���i1-���j-12����-6����-4����<BR>
-�@�@���@-�i3x+2y+z�j^2+9x+4y+z</FONT><FONT color="#000000"><BR>
-�Ƃ��ꂢ�ɓW�J�ł���iʧʧ�j�B<BR>
+<FONT color="#000000">Ｐ（1）=ｘ、Ｐ（2）=ｙ、Ｐ（3）=zとすると<FONT color="#000000">（ただし0&lt;=x&lt;=1、<FONT color="#000000">0&lt;=y&lt;=1、<FONT color="#000000">0&lt;=z&lt;=1、</FONT></FONT>0&lt;=x+y+z&lt;=1）</FONT>、平均順位Ｊ=ｘ+2ｙ+3ｚ+4（1-ｘ-ｙ-ｚ）と表すことができ、<BR>
+Ａ　=　<FONT color="#000000"><FONT color="#000000">ｘ｛ｘ+2ｙ+3ｚ+4（1-ｘ-ｙ-ｚ）-1｝^2+<FONT color="#000000"><FONT color="#000000">ｙ｛ｘ+2ｙ+3ｚ+4（1-ｘ-ｙ-ｚ）-2｝^2+<FONT color="#000000"><FONT color="#000000">ｚ｛ｘ+2ｙ+3ｚ+4（1-ｘ-ｙ-ｚ）-3｝^2+<FONT color="#000000"><FONT color="#000000">（1-ｘ-ｙ-ｚ）｛ｘ+2ｙ+3ｚ+4（1-ｘ-ｙ-ｚ）｝^2</FONT></FONT></FONT></FONT></FONT></FONT></FONT></FONT><BR>
+のように表現できるが、これを</FONT>気合で展開すると、<BR>
+</FONT><FONT color="#0000FF">Ａ　＝　9ｘ（1-ｘ）+4ｙ（1-ｙ）+ｚ（1-ｚ）-12ｘｙ-6ｘｚ-4ｙｚ<BR>
+　　＝　-（3x+2y+z）^2+9x+4y+z</FONT><FONT color="#000000"><BR>
+ときれいに展開できる（ﾊｧﾊｧ）。<BR>
 <BR>
-�`�́A�ő�l�ƍŏ��l�����߂悤�B<BR>
+Ａの、最大値と最小値を求めよう。<BR>
 <BR>
-�܂��͊ȒP�̂��߂�1�ʂ�4�ʂ݂̂����ꍇ�A�܂�o�i1�j=x�A�o�i2�j=y=0�A�o�i3�j=z=0�ƒu���Ƃ����l����ƁA<BR>
-�`=9���i1-���j=-9x^2+9x<BR>
-���<BR>
-d�`/dx�@���@-18x�{9<BR>
-����Ax=0.5�ɂ����Ă`�͍ő�l2.25����邱�Ƃ��킩��B<BR>
+まずは簡単のために1位と4位のみを取る場合、つまりＰ（1）=x、Ｐ（2）=y=0、Ｐ（3）=z=0と置くときを考えると、<BR>
+Ａ=9ｘ（1-ｘ）=-9x^2+9x<BR>
+より<BR>
+dＡ/dx　＝　-18x＋9<BR>
+から、x=0.5においてＡは最大値2.25を取ることがわかる。<BR>
 <BR>
-�����������\�ȏ��ʕ��z�Ɉ�ʉ�����B<BR>
+これをあらゆる可能な順位分布に一般化する。<BR>
 <BR>
-�`=9/4-2y-2z-�i3x+2y+z-3/2�j^2<BR>
-�ƕό`����ƁA���炩��<BR>
-A��9/4<BR>
-����������y=z=0����3x+2y+z-3/2=0�̎��ł���B<BR>
+Ａ=9/4-2y-2z-（3x+2y+z-3/2）^2<BR>
+と変形すると、明らかに<BR>
+A＜9/4<BR>
+等号成立はy=z=0かつ3x+2y+z-3/2=0の時である。<BR>
 <BR>
-�ȏ���A</FONT><FONT color="#0000FF"><B>�`�̍ő�l�ƂȂ鏇�ʕ��z��<BR>
-�o�i1�j=x=0.5�A�o�i2�j=y=0�A�o�i3�j=z=0�A�o�i4�j=1-x-y-z=0.5<BR>
-�ł���A���̂Ƃ��̂`�̒l��2.25�ł��邱�Ƃ��ؖ����ꂽ</B></FONT><FONT color="#000000">�B<BR>
+以上より、</FONT><FONT color="#0000FF"><B>Ａの最大値となる順位分布は<BR>
+Ｐ（1）=x=0.5、Ｐ（2）=y=0、Ｐ（3）=z=0、Ｐ（4）=1-x-y-z=0.5<BR>
+であり、そのときのＡの値は2.25であることが証明された</B></FONT><FONT color="#000000">。<BR>
 </FONT><FONT color="#0000FF"><BR>
-<FONT color="#000000">�t�ɍŏ��l�ɂ��čl����ƁA����̏��ʂ݂̂���葱����ꍇ�Ɍ����Ă`�͍ŏ��ƂȂ�A�`=0�ƂȂ�B����͎����ł���B<BR>
+<FONT color="#000000">逆に最小値について考えると、特定の順位のみを取り続ける場合に限ってＡは最小となり、Ａ=0となる。これは自明である。<BR>
 </FONT></FONT><FONT color="#000000"><BR>
 <BR>
-<B>&lt;�Q�l&gt;</B><BR>
+<B>&lt;参考&gt;</B><BR>
 <B><FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><BR>
-x+y+z=k�Ax+y=m�Ƃ���<BR>
-�݂`�ix,m,k�j/��x��-2x-2m-2k+5<BR>
-�݂`�ix,m,k�j/��m��<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+3</FONT></FONT></FONT></FONT><BR>
-<FONT color="#000000">�݂`�ix,m,k�j/��k��<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+1</FONT></FONT></FONT></FONT></FONT><BR>
-</FONT></FONT></FONT></FONT>���`�@���@<FONT color="#000000"><FONT color="#000000"><FONT color="#000000">�o�݂`�ix,m,k�j/��x�p��x�{�o<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">�݂`�ix,m,k�j/��m</FONT></FONT></FONT></FONT>�p��m�{�o<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">�݂`�ix,m,k�j/��k</FONT></FONT></FONT></FONT>�p��k</FONT></FONT></FONT><BR>
-���`�@���@<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">�i-2x-2m-2k+5�j��x�{�i<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+3</FONT></FONT></FONT></FONT>�j��m�{�i<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+1</FONT></FONT></FONT></FONT></FONT>�j��k</FONT></FONT></FONT></FONT></B><BR>
+x+y+z=k、x+y=mとして<BR>
+∂Ａ（x,m,k）/∂x＝-2x-2m-2k+5<BR>
+∂Ａ（x,m,k）/∂m＝<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+3</FONT></FONT></FONT></FONT><BR>
+<FONT color="#000000">∂Ａ（x,m,k）/∂k＝<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+1</FONT></FONT></FONT></FONT></FONT><BR>
+</FONT></FONT></FONT></FONT>ｄＡ　＝　<FONT color="#000000"><FONT color="#000000"><FONT color="#000000">｛∂Ａ（x,m,k）/∂x｝ｄx＋｛<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">∂Ａ（x,m,k）/∂m</FONT></FONT></FONT></FONT>｝ｄm＋｛<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">∂Ａ（x,m,k）/∂k</FONT></FONT></FONT></FONT>｝ｄk</FONT></FONT></FONT><BR>
+ｄＡ　＝　<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">（-2x-2m-2k+5）ｄx＋（<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+3</FONT></FONT></FONT></FONT>）ｄm＋（<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+1</FONT></FONT></FONT></FONT></FONT>）ｄk</FONT></FONT></FONT></FONT></B><BR>
 <BR>
-�����̎�����A�`�̕ω��̂��������A���ۂɂ`���v�Z���邱�ƂȂ��ȒP�ɔc���ł���B<BR>
-�Ⴆ�΁u�g�b�v�����������₵�A4�ʗ�������Ɠ����������炵�A2�ʗ���3�ʗ��Ƃ����ɕۂꍇ�v���ƁA��m=��k=��x�Ƃ���̂ŁA<BR>
-<FONT color="#000000">���`�@���@<FONT color="#000000"><FONT color="#000000"><FONT color="#000000">�i-2x-2m-2k+5�j��x�{�i<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+3</FONT></FONT></FONT></FONT>�j��x�{�i<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+1</FONT></FONT></FONT></FONT></FONT>�j��x</FONT></FONT></FONT><BR>
-</FONT>�@�@�@���@�i-6x-6m-6k+9�j��x<BR>
-���l����Ηǂ��B<BR>
+これらの式から、Ａの変化のしかたを、実際にＡを計算することなく簡単に把握できる。<BR>
+例えば「トップ率を少し増やし、4位率をそれと同じだけ減らし、2位率と3位率とを一定に保つ場合」だと、ｄm=ｄk=ｄxとするので、<BR>
+<FONT color="#000000">ｄＡ　＝　<FONT color="#000000"><FONT color="#000000"><FONT color="#000000">（-2x-2m-2k+5）ｄx＋（<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+3</FONT></FONT></FONT></FONT>）ｄx＋（<FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000"><FONT color="#000000">-2x-2m-2k+1</FONT></FONT></FONT></FONT></FONT>）ｄx</FONT></FONT></FONT><BR>
+</FONT>　　　＝　（-6x-6m-6k+9）ｄx<BR>
+を考えれば良い。<BR>
 <BR>
-�g�b�v��0.5�A2�ʗ�0�A3�ʗ�0�̏ꍇ�A�܂�x=0.5,m=0.5,k=0.5�̋ߖT�ɂ����āA�g�b�v����4�ʗ��������A������e�����ω�������ꍇ�̋������l���悤�B<BR>
-�g�b�v��0.5+e�A2�ʗ�0�A3�ʗ�0�̏ꍇ�Ax=0.5+e�Am=0.5+e�Ak=0.5+e�ƂȂ�A���`�@���@-18e<BR>
-�uy=0,z=0�Ƃ����������ł́Ax=0.5�̋ߖT�ɂ����Ắv���̂悤�ȑ����\���`����B</FONT></P>
+トップ率0.5、2位率0、3位率0の場合、つまりx=0.5,m=0.5,k=0.5の近傍において、トップ率と4位率だけを、微小なeだけ変化させる場合の挙動を考えよう。<BR>
+トップ率0.5+e、2位率0、3位率0の場合、x=0.5+e、m=0.5+e、k=0.5+eとなり、ｄＡ　＝　-18e<BR>
+「y=0,z=0という条件下での、x=0.5の近傍においては」次のような増減表が描ける。</FONT></P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD align="center">x</TD>
-      <TD>�E�E�E</TD>
+      <TD>・・・</TD>
       <TD align="center">0.5</TD>
-      <TD>�E�E�E</TD>
+      <TD>・・・</TD>
     </TR>
     <TR>
-      <TD align="center">d�`</TD>
+      <TD align="center">dＡ</TD>
       <TD align="center">+</TD>
       <TD align="center">0</TD>
       <TD align="center">-</TD>
     </TR>
     <TR>
-      <TD align="center">�`</TD>
-      <TD align="center">��</TD>
-      <TD>�ɑ�l</TD>
-      <TD align="center">��</TD>
+      <TD align="center">Ａ</TD>
+      <TD align="center">↑</TD>
+      <TD>極大値</TD>
+      <TD align="center">↓</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><FONT color="#000000"><BR>
-���ʗ������������ɁA���������̕ω����ɂ���������悤�ȕω���������ꍇ�Ɋg�����Ę_���悤�B<BR>
-</FONT><FONT color="#0000FF">��ʂɁA1�ʗ�x�A2�ʗ�y�A3�ʗ�z�̋ߖT�ɂ�����<FONT color="#0000FF">x��x+p�Ay��y+q�Az��z+r</FONT>�ɕω�����ω����l����Ƃ�</FONT><FONT color="#000000">�A<FONT color="#000000">p,q,r�͏\���ɏ������̂�2���̍��͖������Ă悭�A</FONT><BR>
-</FONT><FONT color="#0000FF">���`�@���@�i5-�a�jp�{�i3-�a�j�ip+q�j�{�i1-�a�j�ip+q+r�j</FONT><FONT color="#000000"><BR>
-������<FONT color="#0000FF">�a��6x+4y+2z</FONT><BR>
-�ł��`��]���ł���B<BR>
-��������݂̂ɗp����ꍇ�́Ap�Aq�Ar�Ƃ��ɏ������ƌv�Z���ʓ|�Ȃ̂Łu10�v�u5�v�u-5�v�Ȃǂ̑傫�Ȓl�ɂ��Ă����͂Ȃ��B<BR>
+順位率が複数同時に、しかもその変化率にも差があるような変化が生ずる場合に拡張して論じよう。<BR>
+</FONT><FONT color="#0000FF">一般に、1位率x、2位率y、3位率zの近傍において<FONT color="#0000FF">xがx+p、yがy+q、zがz+r</FONT>に変化する変化を考えるとき</FONT><FONT color="#000000">、<FONT color="#000000">p,q,rは十分に小さいので2次の項は無視してよく、</FONT><BR>
+</FONT><FONT color="#0000FF">ｄＡ　＝　（5-Ｂ）p＋（3-Ｂ）（p+q）＋（1-Ｂ）（p+q+r）</FONT><FONT color="#000000"><BR>
+ただし<FONT color="#0000FF">Ｂ＝6x+4y+2z</FONT><BR>
+でｄＡを評価できる。<BR>
+正負判定のみに用いる場合は、p、q、rともに小数だと計算が面倒なので「10」「5」「-5」などの大きな値にしても問題はない。<BR>
 <BR>
 <BR>
-����ɕ��G�ȕω����r�I�ȒP�ɒǂ����Ƃ��ł���<FONT color="#000000">���A���w�p�Y���Ƃ��Ă͂Ƃ������A���������ɂƂ��Ă͂����ďd�v�Ȍ����ł��Ȃ��̂œǎ҂ւ̉ۑ�Ƃ���B<BR>
-</FONT>�݂����q�l�̕W���΍��ƁA�`�l�Ƃ̊֌W�𒲂ׁA�u�q�ϓ����������^�C�v�v�����݂��邩�ǂ������ׂĂ݂�̂��ʔ������ł���B<BR>
+さらに複雑な変化を比較的簡単に追うこともできる<FONT color="#000000">が、数学パズルとしてはともかく、麻雀研究にとってはさして重要な研究でもないので読者への課題とする。<BR>
+</FONT>みかけＲ値の標準偏差と、Ａ値との関係を調べ、「Ｒ変動が激しいタイプ」が実在するかどうか調べてみるのも面白そうである。<BR>
 <BR>
 <BR>
 <BR>
-<FONT color="#000000" size="+2"><B>�M���x�����߂Ď��͌v�����s���Ƃ��ɕK�v�Ȏ������F</B></FONT><FONT color="#000000"><BR>
+<FONT color="#000000" size="+2"><B>信頼度を決めて実力計測を行うときに必要な試合数：</B></FONT><FONT color="#000000"><BR>
 <BR>
-�Ⴆ�΁A���Ϗ��ʂ̂΂����0.05�i����q60�j�ȓ��ɗ}�������ꍇ�i95���̐M���x�Łj�A2�Ёi�q�j��2�~1200�~��o�`/n�p��60�ƂȂ�悤�Ȏ������������Ηǂ��B<BR>
-<FONT color="#000000"><FONT color="#000000"><A href="HSB.html"><B><U><FONT color="#0000FF">�i�W�����K���z�\�j</FONT></U></B></A><BR>
+例えば、平均順位のばらつきを0.05（安定Ｒ60）以内に抑えたい場合（95％の信頼度で）、2σ（Ｒ）＝2×1200×√｛Ａ/n｝＜60となるような試合数ｎを取れば良い。<BR>
+<FONT color="#000000"><FONT color="#000000"><A href="HSB.html"><B><U><FONT color="#0000FF">（標準正規分布表）</FONT></U></B></A><BR>
 </FONT></FONT><BR>
-�`��1.25���Ƃ����<BR>
-2400�~��o1.25/���p��60<BR>
-���A<BR>
-5760000�~1.25/����3600<BR>
-�v�Z����<BR>
-����2000<BR>
-�ƂȂ�B<BR>
-2000�������邱�Ƃɂ���āA���Ϗ��ʂ̂΂����0.05�ȓ��Ɏ��܂邱�Ƃ��v�Z�ł���B<BR>
+Ａ＝1.25だとすると<BR>
+2400×√｛1.25/ｎ｝＜60<BR>
+より、<BR>
+5760000×1.25/ｎ＜3600<BR>
+計算して<BR>
+ｎ＞2000<BR>
+となる。<BR>
+2000試合することによって、平均順位のばらつきは0.05以内に収まることが計算できる。<BR>
 <BR>
-���Ȃ݂�100���������ꍇ�̕��Ϗ��ʂ̂΂���̕W���΍���0.12�ʁi�q134.16�j�ł���A20�l��1�l�͎��͂��0.24�ʁi�q268�j���������т����߂邱�Ƃ��\�ł���B<BR>
-�����ɂ����ĕ��Ϗ���0.24�ʂƂ������͐�]�I�ł����āA</FONT><FONT color="#FF0000">���\�l�̎Q���҂̂�����ł�����100�����̌��ʂ���u�D���v�u���D���v�Ȃǌ��߂Ď��͂��v�����邱�Ƃɂ͑S�����̈Ӗ����Ȃ�</FONT><FONT color="#000000">���Ƃ��킩��i�������A�Q���҂̂��ꂼ��̎��͂ɕ��Ϗ��ʂɂ���0.2���傫���悤�ȍ�������ꍇ�͕ʂ����j�B<BR>
+ちなみに100試合した場合の平均順位のばらつきの標準偏差は0.12位（Ｒ134.16）であり、20人に1人は実力より0.24位（Ｒ268）も高い成績を収めることが可能である。<BR>
+麻雀において平均順位0.24位という差は絶望的であって、</FONT><FONT color="#FF0000">数十人の参加者のいる大会でたった100試合の結果から「優勝」「準優勝」など決めて実力を計測することには全く何の意味もない</FONT><FONT color="#000000">ことがわかる（もちろん、参加者のそれぞれの実力に平均順位にして0.2より大きいような差がある場合は別だが）。<BR>
 </FONT><BR>
 <BR>
 <BR>
 <BR>
-</FONT><FONT color="#000000" size="+2"><B>���ʕ��z�̈Ⴂ�ɂ���āA�ϓ��������ɂȂ悤�Ɏ���������������ׂ����F</B><BR>
+</FONT><FONT color="#000000" size="+2"><B>順位分布の違いによって、変動が同じになように試合数を微調整すべきか：</B><BR>
 </FONT><BR>
-�`�̒l���قȂ�A�܂菇�ʕ��z���قȂ�ꍇ�ɁA�q�덷�𓯂��ɂ��悤�Ƃ���Ƃ��A�K�v�Ȏ���������������ׂ����낤���H<BR>
+Ａの値が異なる、つまり順位分布が異なる場合に、Ｒ誤差を同じにしようとするとき、必要な試合数を微調整すべきだろうか？<BR>
 <BR>
-��{�`1/n1}����{�`2/n2}<BR>
-���A���炩��<BR>
-<B>��2/��1���`2/�`1</B><BR>
-����������B<BR>
+√{Ａ1/n1}＝√{Ａ2/n2}<BR>
+より、明らかに<BR>
+<B>ｎ2/ｎ1＝Ａ2/Ａ1</B><BR>
+が成立する。<BR>
 <BR>
-�����ɒ[�łȂ�����A�ʏ�A�`��1.2�ߕӂ̒l������A�`2/�`1��1.45/1.2��1.208���x�ōl����΂悢�B<BR>
-�ϓ��������ɂȂ鎎�����́A�ł����⏇�ʕ��z���ς���Ă����܂�ς�炸�A������������ł����ŕK�v�Ȏ�������1.208�{���x�����Ȃ��Ώ[���ƂȂ�B<BR>
+相当極端でない限り、通常、Ａは1.2近辺の値だから、Ａ2/Ａ1＝1.45/1.2＝1.208程度で考えればよい。<BR>
+変動が同じになる試合数は、打ち方や順位分布が変わってもあまり変わらず、せいぜいある打ち方で必要な試合数の1.208倍程度をこなせば充分となる。<BR>
 <BR>
-�Ƃ���ŁA��������N����1.208N�ɕω������ۂɁA����q�̕ϓ������ǂ̒��x�����������邩���l���Ă݂�B<BR>
-2�Ёi�m�A�q�\���j=2�~1200�~�i1.25/�m�j^0.5<BR>
-2�Ёi1.208�m�A�q�\���j=2�~1200�~�i1.25/�i1.208�m�j�j^0.5<BR>
-�̍����Ƃ���<BR>
-����q�ϓ����i95���j��2�~1200�~1.118���o�@�i1/�m�j^0.5�@�|�@�i1/1.208�m�j^0.5�@�p<BR>
-��2400�~1.118�~�i0.021/1.021�j���m^0.5<BR>
-��242���m^0.5<BR>
-������A<BR>
-����q�ϓ����i95���j��30���x�ɂȂ�m�́A�m��65<BR>
-����q�ϓ����i95���j��10���x�ɂȂ�m�́A�m��586<BR>
-���v�Z�ł���B<BR>
+ところで、試合数がNから1.208Nに変化した際に、安定Ｒの変動分をどの程度減少させられるかを考えてみる。<BR>
+2σ（Ｎ、Ｒ表示）=2×1200×（1.25/Ｎ）^0.5<BR>
+2σ（1.208Ｎ、Ｒ表示）=2×1200×（1.25/（1.208Ｎ））^0.5<BR>
+の差をとって<BR>
+安定Ｒ変動差（95％）＝2×1200×1.118÷｛　（1/Ｎ）^0.5　－　（1/1.208Ｎ）^0.5　｝<BR>
+＝2400×1.118×（0.021/1.021）÷Ｎ^0.5<BR>
+＝242÷Ｎ^0.5<BR>
+これより、<BR>
+安定Ｒ変動差（95％）＜30程度になるＮは、Ｎ＞65<BR>
+安定Ｒ変動差（95％）＜10程度になるＮは、Ｎ＞586<BR>
+が計算できる。<BR>
 <BR>
-�`�̕ω��i���ʕ��z�̕ω��j�ɂ���āA�{���v���ɕK�v�Ȏ������͑������邪�A586�����ȏ���x�̎������ł���΁A����q�ϓ����ɂ�����10�ȉ��̌덷���������Ȃ��B<BR>
-���ۂɂ́A������������q�̕W���΍���1000�����ɂ����Ă�50�߂�����A���ʕ��z���Ⴄ����Ƃ�����1000������1208�����ɑ������Čv������Ӗ��͂���قǂȂ��i���̕ύX�ɂ���ẮA����q�ϓ�����7���ω����Ȃ��j�B<BR>
+Ａの変化（順位分布の変化）によって、本来計測に必要な試合数は増加するが、586試合以上程度の試合数であれば、安定Ｒ変動差において10以下の誤差しか生じない。<BR>
+実際には、そもそも安定Ｒの標準偏差は1000試合においても50近くあり、順位分布が違うからといって1000試合→1208試合に増加して計測する意味はそれほどない（その変更によっては、安定Ｒ変動差は7も変化しない）。<BR>
 <BR>
-�ȏォ��A���̂��Ƃ����_�ł���B<BR>
-<B><FONT color="#0000FF">���ʕ��z������Ă��Ă��A600�����Ȃǂ�����x�ȏ�̎������ł���΁A���ʕ��z�̈Ⴂ�ɂ��ϓ����������ɂȂ�悤�Ɏ����������������K�v�͂Ȃ��B</FONT></B><BR>
-<FONT color="#0000FF"><B>�ł����i���ʕ��z�j�ɂ��܂�ˑ������A�������݂̂ɂ���Ď��͂̌v���덷�i���R�ɂ��덷�j�͕\�����B</B></FONT><BR>
-<BR>
-<BR>
+以上から、次のことが結論できる。<BR>
+<B><FONT color="#0000FF">順位分布が違っていても、600試合などある程度以上の試合数であれば、順位分布の違いによる変動分が同じになるように試合数を微調整する必要はない。</FONT></B><BR>
+<FONT color="#0000FF"><B>打ち方（順位分布）にあまり依存せず、試合数のみによって実力の計測誤差（偶然による誤差）は表される。</B></FONT><BR>
 <BR>
 <BR>
-<FONT size="+1"><B><FONT size="+2">���ڑΌ��ɂ���ď��s�����肷��̂ɕK�v�Ȏ������F</FONT></B></FONT><BR>
 <BR>
-�����ƊȒP�ɁA����l�ƕʂ̐l�Ƃ̂ǂ��炪���������v�������@�Ƃ��āu�����������ڑΌ����āA�e�����̏��������̍��v�ŏ�������v���@���l������B<BR>
-���̕��@�ŏ��s�����肷�邽�߂ɕK�v�Ȏ������ɂ��čl���Ă݂悤�B<BR>
 <BR>
-N��������K�񏟂����Ƃ���B<BR>
-���Ɏ��͂��������Ƃ���ƁA1����������̏�����1/2�ɂȂ邩��AN������K��ȏ㏟�m����<BR>
-<FONT size="-1"><B><FONT size="+2">��</FONT></B></FONT>N<B><FONT size="+2">C</FONT></B>��<B><FONT size="+2">�i1/2�j^N</FONT></B>�@�i�V�O�}�́A��=K�`N�j<BR>
-�ƕ\�����B<BR>
-N=100�AK=60�Ǝ��΂��̒l��0.02844���x�ɂȂ�A���p��5�����x�ŉ����u���҂͌݊p�̎��͂ł���v�����p�ł��邱�ƂɂȂ�B<BR>
-���l��N=30�AK=20�Ƃ��Ă��A�l��0.0494�ƂȂ�A������x�̎��͔�r���ł��邱�Ƃ��킩��B<BR>
+<FONT size="+1"><B><FONT size="+2">直接対決によって勝敗を決定するのに必要な試合数：</FONT></B></FONT><BR>
 <BR>
-���̂悤�ɂ��āA<B>5�A���A10������9���ȏ�A20������15���ȏ�A30������20���ȏ�A100������60���ȏ�</B>�A�Ȃǂ̌��ʂɂ���āA���҂̎��͂��r���邱�Ƃ��ł���B<BR>
-����������͂����܂ł��u5���v�͈̘̔͂b�ł����āA�������̐l�Ƒł������ʁA���܂��܉��\�l��1�l�̊����Łu5�A�s��������v�Ȃǂ����邱�Ƃ͎��R�Ȃ��Ƃł���B<BR>
-<FONT color="#000000"><FONT color="#000000">�Ƃ������k�́A������Ԃł́A�������Łu5�����ΐ킵������v��171���������A���̂���5�A���̑����9���A5�A�s�̑����2���ł������B<BR>
-</FONT></FONT>�������̑ΐ푊��̒����炽�܂���5�A����5�A�s�̑����T���āu�����Ă���v�u�����Ă���v�Ɣ��f����̂ł͂Ȃ��āA�݂��Ɂu1��1�ŏ������悤�v�ƌ��߂Ă����L�̎����������Ȃ��A���̌��ʂŔ��f����K�v�����邱�Ƃɒ��ӂ���B<BR>
+もっと簡単に、ある人と別の人とのどちらが強いかを計測する手法として「何試合か直接対決して、各試合の勝ち負けの合計で勝負する」方法が考えられる。<BR>
+この方法で勝敗を決定するために必要な試合数について考えてみよう。<BR>
 <BR>
-�ꌩ�A���Ϗ��ʂŔ�r���邱�Ƃɑ΂��ď��Ȃ��������ō������悤�Ɋ����邩������Ȃ����A���Ϗ��ʂƂ��̕ϓ��Ŕ�r����̂ɔ�ׂāA�u���́v����̐��x�͈����Ȃ�<FONT color="#000000">�i�]�͂�����΁A���ꍇ�̏��ʂ̑g�ݍ��킹�A������ꍇ�̏��ʂ̑g�ݍ��킹�̕��ς�����ĕ��Ϗ��ʍ��̋c�_�Ɏ�������ōl�@���Ă݂�j�B�M�����u�����𑝉������āA���ʂ������o�₷���悤�ɂ��Ă���ɉ߂��Ȃ��B<BR>
+N試合してK回勝ったとする。<BR>
+仮に実力が等しいとすると、1試合あたりの勝率は1/2になるから、N試合中K回以上勝つ確率は<BR>
+<FONT size="-1"><B><FONT size="+2">Σ</FONT></B></FONT>N<B><FONT size="+2">C</FONT></B>ｉ<B><FONT size="+2">（1/2）^N</FONT></B>　（シグマは、ｉ=K～N）<BR>
+と表される。<BR>
+N=100、K=60と取ればこの値は0.02844程度になり、棄却域5％程度で仮説「両者は互角の実力である」を棄却できることになる。<BR>
+同様にN=30、K=20としても、値は0.0494となり、ある程度の実力比較ができることがわかる。<BR>
 <BR>
-���΂��΁A�u���Ⴀ���ۂɑΐ킵�Ă݂�v�ȂǂƂ������茾�t�����ɂ��邪�A�킴�킴�ΐ킵�ĐM���ł��鏟�s������ɂ́i�����̎��͍����Ȃ�����j�A��ʂ̎������i���Ȃ��Ƃ����S�����`���玎���A���邢�͐��������j���K�v�ƂȂ�B<BR>
-�����̎d�g�݂��킩���Ă���҂́i�ɒ[�Ȏ��͍������邱�Ƃ��\�z�����ꍇ�������āj�A���̂悤�ȋ𖆂Ȍ��t�����ɂ��Ȃ��B<BR>
+このようにして、<B>5連勝、10試合中9勝以上、20試合中15勝以上、30試合中20勝以上、100試合中60勝以上</B>、などの結果によって、両者の実力を比較することができる。<BR>
+ただしこれはあくまでも「5％」の範囲の話であって、数多くの人と打った結果、たまたま何十人に1人の割合で「5連敗した相手」などがいることは自然なことである。<BR>
+<FONT color="#000000"><FONT color="#000000">とつげき東北の、ある期間での、超ランで「5試合対戦した相手」は171名いたが、そのうち5連勝の相手は9名、5連敗の相手は2名であった。<BR>
+</FONT></FONT>数多くの対戦相手の中からたまたま5連勝や5連敗の相手を探して「勝っている」「負けている」と判断するのではなくて、互いに「1対1で勝負しよう」と決めてから上記の試合数をこなし、その結果で判断する必要があることに注意せよ。<BR>
+<BR>
+一見、平均順位で比較することに対して少ない試合数で差がつくように感じるかもしれないが、平均順位とその変動で比較するのに比べて、「実力」測定の精度は悪くなる<FONT color="#000000">（余力があれば、勝つ場合の順位の組み合わせ、負ける場合の順位の組み合わせの平均を取って平均順位差の議論に持ち込んで考察してみよ）。ギャンブル性を増加させて、結果が早く出やすいようにしているに過ぎない。<BR>
+<BR>
+しばしば、「じゃあ実際に対戦してみろ」などという売り言葉を耳にするが、わざわざ対戦して信頼できる勝敗をつけるには（相当の実力差がない限り）、大量の試合数（少なくとも数百試合～数千試合、あるいは数万試合）が必要となる。<BR>
+麻雀の仕組みがわかっている者は（極端な実力差があることが予想される場合を除いて）、このような愚昧な言葉を口にしない。<BR>
 <BR>
 <BR>
 <BR>

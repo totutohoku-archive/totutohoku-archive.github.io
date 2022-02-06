@@ -3,21 +3,21 @@
 <HEAD>
 <meta charset="UTF-8">
 <META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
-<TITLE>ƒVƒXƒeƒ}ƒeƒBƒbƒN–ƒHŠw</TITLE>
+<TITLE>ã‚·ã‚¹ãƒ†ãƒãƒ†ã‚£ãƒƒã‚¯éº»é›€å·¥å­¦</TITLE>
 </HEAD>
 <BODY background="1052.gif">
-<P>ƒVƒXƒeƒ}ƒeƒBƒbƒN–ƒHŠwF”v•ˆˆ—F<FONT size="+3"><B><BR></B></FONT><BR><BR>
+<P>ã‚·ã‚¹ãƒ†ãƒãƒ†ã‚£ãƒƒã‚¯éº»é›€å·¥å­¦ï¼šç‰Œè­œå‡¦ç†ï¼š<FONT size="+3"><B><BR></B></FONT><BR><BR>
 <BR>
-//ˆÈ‰º‚ÌƒOƒ[ƒoƒ‹•Ï”‚ğg—p‚·‚éB<BR>
-//ƒ[ƒJƒ‹‚É‚µ‚Ä‚à—Ç‚¢‚ªAƒtƒ@ƒCƒ‹‘€ìŠÖŒW‚ÌŠÖ”ŒÄ‚Ño‚µ‚È‚Ç‚ª”ÏG‚É‚È‚èAƒƒŠƒbƒg‚Í‚ ‚Ü‚è‚È‚¢B<BR>
+//ä»¥ä¸‹ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’ä½¿ç”¨ã™ã‚‹ã€‚<BR>
+//ãƒ­ãƒ¼ã‚«ãƒ«ã«ã—ã¦ã‚‚è‰¯ã„ãŒã€ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œé–¢ä¿‚ã®é–¢æ•°å‘¼ã³å‡ºã—ãªã©ãŒç…©é›‘ã«ãªã‚Šã€ãƒ¡ãƒªãƒƒãƒˆã¯ã‚ã¾ã‚Šãªã„ã€‚<BR>
 FILE *fp;<BR>
 int MOJISUU=256;<BR>
-char sitei[256]; //&quot;03/05/01\0&quot;‚È‚Ç‚Æ‚µA“ª‚¾‚µ‚µ‚½‚¢‡“ú•t‚ğw’è‚·‚é<BR>
-char str[256]; //”Ä—pB<BR>
+char sitei[256]; //&quot;03/05/01\0&quot;ãªã©ã¨ã—ã€é ­ã ã—ã—ãŸã„è©¦åˆæ—¥ä»˜ã‚’æŒ‡å®šã™ã‚‹<BR>
+char str[256]; //æ±ç”¨ã€‚<BR>
 <BR>
 <BR>
 <BR>
-//ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğæ“¾‚·‚éŠÖ”B<BR>
+//ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹é–¢æ•°ã€‚<BR>
 long filesize(FILE *stream)<BR>
 {<BR>
 long curpos, length;<BR>
@@ -29,18 +29,18 @@ return length;<BR>
 }<BR>
 <BR><BR>
 <BR>
-//Œ»İ‚Ìfp‚æ‚èŒã‚ë‚É‚ ‚éA‚à‚Á‚Æ‚à‹ß‚¢‡ƒf[ƒ^‚Ì“ú•t‚©‚çn‚Ü‚é•¶š—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ“¾‚é<BR>
+//ç¾åœ¨ã®fpã‚ˆã‚Šå¾Œã‚ã«ã‚ã‚‹ã€ã‚‚ã£ã¨ã‚‚è¿‘ã„è©¦åˆãƒ‡ãƒ¼ã‚¿ã®æ—¥ä»˜ã‹ã‚‰å§‹ã¾ã‚‹æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹<BR>
 char * nextdate()<BR>
 {<BR>
 char *ptr, *dates,c = '/';<BR>
 str[0]='\0';<BR>
 str[1]='\0';<BR>
 str[2]='\0';<BR>
-//&quot;‘ì ŠJn &quot;‚Æ‚¢‚¤•¶š—ñ‚ª‚ ‚èA&quot;=====
-&quot;‚Æ‚¢‚¤•¶š—ñ‚ª‚ ‚èA<BR>
-//‚È‚¨‚©‚Â&quot;/&quot;‚ª‚ ‚é‚æ‚¤‚Ès‚Ü‚Å“Ç‚İ”ò‚Î‚µ‚Â‚ÂA&quot;/&quot;‚Ì2•¶š‘O<BR>
-//‚©‚ç‚Ì•¶š—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğdates‚ÉŠi”[<BR>
-while((strstr(&amp;str[2],&quot;‘ì ŠJn &quot;)==NULL)||((strstr(&amp;str[2],&quot;=====
+//&quot;å“ é–‹å§‹ &quot;ã¨ã„ã†æ–‡å­—åˆ—ãŒã‚ã‚Šã€&quot;=====
+&quot;ã¨ã„ã†æ–‡å­—åˆ—ãŒã‚ã‚Šã€<BR>
+//ãªãŠã‹ã¤&quot;/&quot;ãŒã‚ã‚‹ã‚ˆã†ãªè¡Œã¾ã§èª­ã¿é£›ã°ã—ã¤ã¤ã€&quot;/&quot;ã®2æ–‡å­—å‰<BR>
+//ã‹ã‚‰ã®æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’datesã«æ ¼ç´<BR>
+while((strstr(&amp;str[2],&quot;å“ é–‹å§‹ &quot;)==NULL)||((strstr(&amp;str[2],&quot;=====
 &quot;)==NULL)||(ptr==NULL)))<BR>
 {<BR>
 if((fgets(&amp;str[2], MOJISUU-2, fp))==NULL){return
@@ -50,8 +50,8 @@ ptr = strchr(&amp;str[2], c);<BR>
 return ptr-2;<BR>
 }<BR>
 <BR>
-//04/01/01‚È‚Ç‚©‚çn‚Ü‚é•¶š—ñ2‚Â‚ğ”äŠr‚·‚éB<BR>
-//date1‚Ì‚Ù‚¤‚ªŒã‚È‚ç‚Î1@æ‚È‚ç‚Î-1@“¯‚¶‚È‚ç0<BR>
+//04/01/01ãªã©ã‹ã‚‰å§‹ã¾ã‚‹æ–‡å­—åˆ—2ã¤ã‚’æ¯”è¼ƒã™ã‚‹ã€‚<BR>
+//date1ã®ã»ã†ãŒå¾Œãªã‚‰ã°1ã€€å…ˆãªã‚‰ã°-1ã€€åŒã˜ãªã‚‰0<BR>
 int datecmp(char * date1,char * date2)<BR>
 {<BR>
 char dateA[10],dateB[10];<BR>
@@ -59,13 +59,13 @@ strncpy(dateA,date1,8);<BR>
 strncpy(dateB,date2,8);<BR>
 dateA[8]='\0';<BR>
 dateB[8]='\0';<BR>
-if(dateA[0]=='9')dateA[0]=1; //Œµ–§‚É‚Í•¶šƒR[ƒhˆË‘¶<BR>
-if(dateB[0]=='9')dateB[0]=1; //Œµ–§‚É‚Í•¶šƒR[ƒhˆË‘¶<BR>
+if(dateA[0]=='9')dateA[0]=1; //å³å¯†ã«ã¯æ–‡å­—ã‚³ãƒ¼ãƒ‰ä¾å­˜<BR>
+if(dateB[0]=='9')dateB[0]=1; //å³å¯†ã«ã¯æ–‡å­—ã‚³ãƒ¼ãƒ‰ä¾å­˜<BR>
 for(int ind=0;ind&lt;=8;ind++)<BR>
 {<BR>
-if(dateA[ind]&gt;dateB[ind]){/*ShowMessage(AnsiString(dateA)+&quot;‚Í&quot;+AnsiString(dateB)+&quot;‚æ‚èŒã&quot;);*/return
+if(dateA[ind]&gt;dateB[ind]){/*ShowMessage(AnsiString(dateA)+&quot;ã¯&quot;+AnsiString(dateB)+&quot;ã‚ˆã‚Šå¾Œ&quot;);*/return
 1;}<BR>
-if(dateA[ind]&lt;dateB[ind]){/*ShowMessage(AnsiString(dateA)+&quot;‚Í&quot;+AnsiString(dateB)+&quot;‚æ‚è‘O&quot;);*/return
+if(dateA[ind]&lt;dateB[ind]){/*ShowMessage(AnsiString(dateA)+&quot;ã¯&quot;+AnsiString(dateB)+&quot;ã‚ˆã‚Šå‰&quot;);*/return
 -1;}<BR>
 }<BR>
 return 0;<BR>
@@ -73,7 +73,7 @@ return 0;<BR>
 <BR>
 <BR>
 <BR>
-//mjscore‚Ì“ú•tƒf[ƒ^‚ğ2•ªŒŸõ‚·‚é‚½‚ß‚ÌÄ‹AŠÖ”<BR>
+//mjscoreã®æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ã‚’2åˆ†æ¤œç´¢ã™ã‚‹ãŸã‚ã®å†å¸°é–¢æ•°<BR>
 int x(fpos_t * l_filepos,fpos_t * r_filepos)<BR>
 {<BR>
 fpos_t mid_filepos;<BR>

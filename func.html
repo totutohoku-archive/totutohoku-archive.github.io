@@ -3,25 +3,25 @@
 <HEAD>
 <meta charset="UTF-8">
 <META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
-<TITLE>���X�g�������Ȋ֐�</TITLE>
+<TITLE>時々使いそうな関数</TITLE>
 </HEAD>
 <BODY background="1052.gif" bgcolor="#ffffff" text="#000000" vlink="#808080" alink="#0000ff" link="#191970">
-<P align="center"><FONT color="#0000FF" size="6"><STRONG>���X�g�������Ȋ֐�</STRONG></FONT></P>
+<P align="center"><FONT color="#0000FF" size="6"><STRONG>時々使いそうな関数</STRONG></FONT></P>
 <P><BR>
 <BR><BR><BR>
 <B><FONT size="+1">random_select</FONT></B><BR>
 <BR>
-�v�f���`�A�v�f���a�A�v�f���b�E�E�E�̂��̂̒�����A���l�Ɋm���炵���m����1�����o�����Ƃ��A�ǂ̗v�f�����o���ꂽ����Ԃ��B<BR>
-�g������data[0]��0���Adata[1]�`�ɂ`�`�̗v�f�����A�Ō�̃f�[�^�͔ԕ��Ƃ��ĕ��������Ă��̊֐����Ăяo���B<BR>
-�v�f���Ə��������A�����ł��悢�B�Ⴆ��10���i0.1�j�A50���i0.5�j�A40���i0.4�j�̊m���ŋN���邱�Ƃ̂ǂꂪ�N�������𔻒肷��ꍇ<BR>
+要素数Ａ、要素数Ｂ、要素数Ｃ・・・のものの中から、同様に確からしい確率で1つを取り出したとき、どの要素が取り出されたかを返す。<BR>
+使い方はdata[0]に0を、data[1]～にＡ～の要素数を、最後のデータは番兵として負数を入れてこの関数を呼び出す。<BR>
+要素数と書いたが、小数でもよい。例えば10％（0.1）、50％（0.5）、40％（0.4）の確率で起きることのどれが起きたかを判定する場合<BR>
 data[0]=0;<BR>
 data[1]=0.1;<BR>
 data[2]=0.5;<BR>
 data[3]=0.4;<BR>
 data[4]=-1;<BR>
 i=random_select(data);<BR>
-�Ƃ���ƁAi��10���̊m����1���A50���̊m����2���A40���̊m����3������B<BR>
-(int)(data[i]*100)�@�Ƃ���悤�ɁA���̏ꍇ�����ȉ�2�������ʂɔ��f�����B<BR>
+とすると、iに10％の確率で1が、50％の確率で2が、40％の確率で3が入る。<BR>
+(int)(data[i]*100)　とあるように、この場合小数以下2桁が結果に反映される。<BR>
 <BR>
 int random_select(double data[256])<BR>
 {<BR>

@@ -3,66 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
-<title>°ٿ��</title>
+<title>ﾂｰﾙｿｰｽ</title>
 </head>
 
 <body background="801-04.gif" bgcolor="#FFFFFF">
 
-<p><font color="#00FF80" size="7"><strong>�c�[���̃\�[�X�R�[�h�ꕔ���J</strong></font><font
-color="#FFFF80"><strong>�@</strong></font><font color="#00FF80"
+<p><font color="#00FF80" size="7"><strong>ツールのソースコード一部公開</strong></font><font
+color="#FFFF80"><strong>　</strong></font><font color="#00FF80"
 size="7"><strong><br>
 </strong></font><font color="#FFFFFF" size="4"><strong><br>
-</strong></font><font color="#FFFFFF">��Ɍ����Ă����܂����A�Ƃ́u�P�r�b�g�̍��Ńt���[�Y����R�[�h�������v���ƂŒm���Ă���܂�(
-���ށ�)�����!<br>
+</strong></font><font color="#FFFFFF">先に言っておきますが、とつは「１ビットの差でフリーズするコードを書く」ことで知られております(
+≧∇≦)ﾌﾞﾊﾊﾊ!<br>
 <br>
-�͂����茾���āu�����΂����v�u�I�u�W�F�N�g�w���H�Ȃɂ���R(
-�L�D`)�m�v�̐��E�ł��B<br>
+はっきり言って「動けばいい」「オブジェクト指向？なにそれヽ(
+´Д`)ノ」の世界です。<br>
 <br>
-�P�U�r�b�g���ォ��A�@�B��ŃR�[�h�����Ă��̂ŁA�܂��u�������Ɓv�D��A����ǂ������������A�̏K��������́B<br>
+１６ビット時代から、機械語でコード書いてたので、まず「動くこと」優先、ぁゃιぃ部分も無視、の習慣があるの。<br>
 <br>
-�b��b�{�{�̕׋����������l�́A�ʂ̂g�o�֍s���ĉ������B<br>
+ＣやＣ＋＋の勉強をしたい人は、別のＨＰへ行って下さい。<br>
 <br>
-�Ƃ��b�{�{�͂܂��׋����ł���(��)�B<br>
+とつもＣ＋＋はまだ勉強中ですし(笑)。<br>
 <br>
-�Ă������A��{�I�ȕ׋��Ȃ��ŃR�[�f�B���O����N�Z������̂ŁA�b�Ƃ��̕����񑀍�Ȃ񂩂����������ł���(��)�B<br>
+ていうか、基本的な勉強なしでコーディングするクセがあるので、Ｃとかの文字列操作なんかもすごい苦手ですわ(笑)。<br>
 <br>
-�V���[�e�B���O�Q�[���Ƃ��΂��������Ă�����ˁU�i�L���M�G�j<br>
+シューティングゲームとかばっかり作ってたからねゞ（´▽｀；）<br>
 <br>
-�K���Ƀ|�C���^���ĂāA���܂��������烉�b�L�[���Ċ����ł���Ă܂��B<br>
+適当にポインタ当てて、うまく動いたらラッキーって感じでやってます。<br>
 <br>
-�J���͂b�{�{�a���������������g���Ă܂��̂ŁA���̊��ɂ͑S���g���Ȃ��ł��傤(
-�L�`)�B<br>
-<br>
-<br>
-�����ɂ́A�P���Ɂu�b�{�{�r���_�[�œ����֌W�̏W�v�c�[�������ꍇ�Ɏg���񂹂�\�[�X�v�����邾���ł��B<br>
-<br>
-�����A�����֌W�̃c�[������Ă�l�A���Ѓ\�[�X���J�����܂��傤��B<br>
-<br>
-���������A������Ȃ��\�[�X�̓K����������J�ł����A���Ԃ�A�W�v�c�[�����ɂ͖𗧂�ł�(��)�B<br>
-<br>
-�m�������L����邱�ƂŁA�X�ɏ�̒m���𑨂��邱�Ƃ��ł��܂��B<br>
-<br>
-�݂�Ȃ��݂�ȓ����ǂݍ��݃��[�`���Ȃ񂩍���Ă�����A�݂�Ȃ̃A�C�f�A���������Ȃ��Ǝv����(
-���ށ�)<br>
+開発はＣ＋＋Ｂｕｉｌｄｅｒを使ってますので、他の環境には全く使えないでしょう(
+´ｰ`)。<br>
 <br>
 <br>
+ここには、単純に「Ｃ＋＋ビルダーで東風関係の集計ツールを作る場合に使い回せるソース」があるだけです。<br>
 <br>
-</font><font color="#00FFFF" size="3"><strong>�������@DateCMP�֐�</strong></font><font
-color="#FFFFFF">�@����(AnsiString,AnsiString)�@�Ԃ�l�P�@�|�P<br>
+ただ、東風関係のツール作ってる人、ぜひソース公開をしましょうよ。<br>
 <br>
-�v���̏W�v�̎��ɁA������ԁi���t�j�̎w�������ꍇ�������B<br>
-���Ԃ���t��r�̃��\�b�h���炢����Ǝv�����A���ׂ�̂߂�ǂ��̂Ŏ��삵���B<br>
-���t�̃t�H�[�}�b�g�́h**/**/**�h�̌`�ŁAAnsiString�ŗ^����B<br>
-1999�N��2000�N���r����ƁA���̃t�H�[�}�b�g�̏ꍇ��1999&gt;2000�ƂȂ�̂ŁA�����Ȃ�Ȃ��悤��</font><font
-color="#FFFFFF" size="5">����</font><font color="#FFFFFF">�̏���������Ă���B<br>
-���Ƃ͂����(��)<br>
-AnsiString�@��=DateTimePicker-&gt;Date�@�̂悤�ɂ��ăQ�b�g�����w����t�ƁA�ʂɗp�ӂ��ꂽ���t���r����̂ɗp���܂��B<br>
-�v���́A����ΐ�̓��t�𓾂郋�[�`���͉��́u�W�v�̍��i�v�̒��ɓ����Ă܂��B<br>
-���Ȃ݂ɁA�d�l�ł́u�������v�Ȃ�O���Ԃ�͂��Ȃ񂾂��A�v��������t��ǂ݂Ƃ�Ƃ��A���̕������J�b�g����̂��ʓ|�ł�������Ă��炸�A�����I�ɂP���|�P�����Ԃ�Ȃ��V�X�e���ɂȂ�܂����R(�L���M*)/���<br>
-�w����t���u1999/01/01�v���Ƃ��āA�ΐ�����u1999/01/01�v�ł��A�ΐ���̕��́u1999/01/01
-16:02 491��=====�v�݂����ȃf�[�^�ő����Ă���̂ŁA�C�R�[���ɂȂ�Ȃ���ł���(
-���ށ�)�����!<br>
-�܁A���Ȃ���(;�L�`)y-��<br>
+こういう、きちゃないソースの適当すぎる公開でさえ、たぶん、集計ツール作りには役立つんです(笑)。<br>
+<br>
+知識が共有されることで、更に上の知識を捉えることができます。<br>
+<br>
+みんながみんな同じ読み込みルーチンなんか作っていたら、みんなのアイデアが活かせないと思うよ(
+≧∇≦)<br>
+<br>
+<br>
+<br>
+</font><font color="#00FFFF" size="3"><strong>ｉｎｔ　DateCMP関数</strong></font><font
+color="#FFFFFF">　引数(AnsiString,AnsiString)　返り値１　－１<br>
+<br>
+牌譜の集計の時に、ある期間（日付）の指定をする場合が多い。<br>
+たぶん日付比較のメソッドくらいあると思うが、調べるのめんどいので自作した。<br>
+日付のフォーマットは”**/**/**”の形で、AnsiStringで与える。<br>
+1999年と2000年を比較すると、このフォーマットの場合に1999&gt;2000となるので、そうならないように</font><font
+color="#FFFFFF" size="5">だけ</font><font color="#FFFFFF">の処理がされている。<br>
+あとはしらん(笑)<br>
+AnsiString　ｘ=DateTimePicker-&gt;Date　のようにしてゲットした指定日付と、別に用意された日付を比較するのに用います。<br>
+牌譜の、ある対戦の日付を得るルーチンは下の「集計の骨格」の中に入ってます。<br>
+ちなみに、仕様では「同じ日」なら０が返るはずなんだが、牌譜から日付を読みとるとき、後ろの部分をカットするのが面倒でそれをしておらず、自動的に１か－１しか返らないシステムになりましたヽ(´▽｀*)/ｷｬｰ<br>
+指定日付が「1999/01/01」だとして、対戦日が「1999/01/01」でも、対戦日の方は「1999/01/01
+16:02 491卓=====」みたいなデータで送られてくるので、イコールにならないんですな(
+≧∇≦)ﾌﾞﾊﾊﾊ!<br>
+ま、問題ないよ(;´ｰ`)y-ﾟﾟ<br>
 <br>
 <br>
 </font><font color="#FFFFFF" size="1">int DateCMP(AnsiString
@@ -90,19 +90,19 @@ return 1;<br>
 else<br>
 {<br>
 return 0;<br>
-�p<br>
-�p<br>
+｝<br>
+｝<br>
 </font><font color="#FFFFFF"><br>
 <br>
 <br>
 <br>
-</font><font color="#00FFFF" size="3"><strong>�W�v�̍��i</strong></font><font
-color="#FFFFFF">�@���ꂪmjscore�W�v�̍��i�����B�������������ŁA���Ƃ͓K���ɂ�����΁A�]�ޏW�v���ł���͂��B<br>
-���ӁE���̕����͂܂����W�r��ł�(��)�@�^����ꂽ�g�m�̕�������܂ނg�m���������肷��ƏW�v�����������Ȃ�܂��ˁB<br>
+</font><font color="#00FFFF" size="3"><strong>集計の骨格</strong></font><font
+color="#FFFFFF">　これがmjscore集計の骨格部分。こういう感じで、あとは適当にいじれば、望む集計ができるはず。<br>
+注意・この部分はまだ発展途上です(笑)　与えられたＨＮの文字列を含むＨＮがあったりすると集計がおかしくなりますね。<br>
 <br>
 <br>
 </font><font color="#FFFFFF" size="2">char* filename =new
-char[FILENAME_MAX];</font><font color="#FFFFFF"> //filename�ɂ́Amjscore.txt�ւ̃t���p�X�������Ă��܂��B<br>
+char[FILENAME_MAX];</font><font color="#FFFFFF"> //filenameには、mjscore.txtへのフルパスが入っています。<br>
 <br>
 </font><font color="#FFFFFF" size="2">void TForm1::test()<br>
 {<br>
@@ -120,8 +120,8 @@ int taku;<br>
 double siaisuu[4]={0,0,0,0};<br>
 double junnikei[4]={0,0,0,0};<br>
 <br>
-FILE *fp;�@�@�@�@<br>
-if ((fp=fopen(filename,&quot;r&quot;))==NULL) //�����������������Ŏw�肳���t�@�C�����Ȃ���Ή��������A��<br>
+FILE *fp;　　　　<br>
+if ((fp=fopen(filename,&quot;r&quot;))==NULL) //ｆｉｌｅｎａｍｅで指定されるファイルがなければ何もせず帰る<br>
 {<br>
 return;<br>
 }<br>
@@ -130,53 +130,53 @@ fgets(str, MOJISUU, fp);<br>
 fclose(fp);<br>
 <br>
 <br>
-if ((fp=fopen(filename,&quot;r&quot;))==NULL) //��(�P���P;)�����Ȃ蓯���������Ƃ�I�H�@�̂̎c�[�ł��傤(��)<br>
+if ((fp=fopen(filename,&quot;r&quot;))==NULL) //Σ(￣□￣;)いきなり同じ処理しとる！？　昔の残骸でしょう(笑)<br>
 {<br>
 return;<br>
 }<br>
 <br>
-strcpy(namae1,Edit5-&gt;Text.c_str()); //�g�m�̕�����̂���TEdit�����當����ɂg�m�����i�r���_�[���p�҂Ȃ�Ӗ��킩��ł��傤<br>
+strcpy(namae1,Edit5-&gt;Text.c_str()); //ＨＮの文字列のあるTEdit欄から文字列にＨＮを代入（ビルダー利用者なら意味わかるでしょう<br>
 strcpy(namae2,Edit6-&gt;Text.c_str());<br>
 strcpy(namae3,Edit7-&gt;Text.c_str());<br>
 <br>
-strcpy(takusyurui1,&quot;�����L���O����&quot;); //���ޔ��ʗp<br>
-strcpy(takusyurui2,&quot;�㋉�����L���O&quot;);<br>
-strcpy(takusyurui3,&quot;�F�����L���O��&quot;);<br>
+strcpy(takusyurui1,&quot;ランキング超上&quot;); //卓種類判別用<br>
+strcpy(takusyurui2,&quot;上級ランキング&quot;);<br>
+strcpy(takusyurui3,&quot;：ランキング卓&quot;);<br>
 <br>
-while (!feof(fp)) //filename���I���܂ŏ����𑱂���<br>
+while (!feof(fp)) //filenameが終わるまで処理を続ける<br>
 {<br>
 fgets(str, MOJISUU, fp);<br>
 if((strstr(str,takusyurui1)!=NULL)||(strstr(str,takusyurui2)!=NULL)||(strstr(str,takusyurui3)!=NULL))
-//�w��̑��ނł���΁A�ȉ��̏��������܂�<br>
+//指定の卓種類であれば、以下の処理をします<br>
 {<br>
 <br>
-if (strstr(str,takusyurui1)!=NULL){taku=1;} //���ޔ���<br>
+if (strstr(str,takusyurui1)!=NULL){taku=1;} //卓種類判別<br>
 else if (strstr(str,takusyurui2)!=NULL){taku=2;}<br>
 else if (strstr(str,takusyurui3)!=NULL){taku=3;}<br>
 <br>
 <br>
 <br>
-char *ptr, c = '�n'; //�J�n�N�������擾<br>
+char *ptr, c = '始'; //開始年月日を取得<br>
 <br>
 ptr = strchr(str, c);<br>
 date=ptr+5;<br>
 AnsiString p;<br>
 p=DateToStr(MaskEdit1-&gt;Date);<br>
-p=p; //�J�n���Ɠ������A����ȍ~�Ȃ�W�v������<br>
+p=p; //開始日と同じか、それ以降なら集計したい<br>
 AnsiString p2;<br>
 p2=DateToStr(MaskEdit2-&gt;Date);<br>
-p2=p2+1; //�I�����{�P�Ɠ������A����ȍ~�Ȃ�W�v�������Ȃ��iDateCMP�֐��̐����ŏ������ʂ�A�u�������v�͔��ʂł��Ȃ���ł�<br>
+p2=p2+1; //終了日＋１と同じか、それ以降なら集計したくない（DateCMP関数の説明で書いた通り、「同じ日」は判別できないんです<br>
 <br>
 <br>
-if ((DateCMP(date,p)==1)&amp;&amp;(DateCMP(date,p2)==-1)) //�擾�����N�������AMaskEdit1�`MaskEdit2�̊Ԃł���΁A������W�v�ΏۂƂ��ďW�v�B<br>
-// MaskEdit�@�Ɩ���t���Ă��܂����A�����͎���DateTimePicker���g���Ă��܂�(��)�B<br>
+if ((DateCMP(date,p)==1)&amp;&amp;(DateCMP(date,p2)==-1)) //取得した年月日が、MaskEdit1～MaskEdit2の間であれば、それを集計対象として集計。<br>
+// MaskEdit　と名を付けていますが、ここは実はDateTimePickerを使っています(笑)。<br>
 <br>
 {<br>
 <br>
 fgets(str, MOJISUU, fp);<br>
 <br>
 if(((strstr(str,namae1))!=NULL)||((strstr(str,namae2))!=NULL)||((strstr(str,namae3))!=NULL))
-//�w��̂g�m���܂܂�Ă���ΏW�v<br>
+//指定のＨＮが含まれていれば集計<br>
 {<br>
 <br>
 if((strstr(str,namae1))!=NULL){strcpy(namae,namae1);}<br>
@@ -185,7 +185,7 @@ else if((strstr(str,namae3))!=NULL){strcpy(namae,namae3);}<br>
 <br>
 <br>
 <br>
-// �W�v�{��<br>
+// 集計本体<br>
 <br>
 int bangou;<br>
 bangou=atoi(strstr(str,namae)-2);<br>
@@ -195,19 +195,19 @@ for(c=-1;c&lt;=bangou;c++)<br>
 {fgets(str, MOJISUU, fp);}<br>
 <br>
 int kaze=0;<br>
-if ((strstr(str,&quot;��]&quot;))!=NULL) {kaze=1;}<br>
-if ((strstr(str,&quot;��]&quot;))!=NULL) {kaze=2;}<br>
-if ((strstr(str,&quot;��]&quot;))!=NULL) {kaze=3;}<br>
-if ((strstr(str,&quot;�k]&quot;))!=NULL) {kaze=4;}<br>
+if ((strstr(str,&quot;東]&quot;))!=NULL) {kaze=1;}<br>
+if ((strstr(str,&quot;南]&quot;))!=NULL) {kaze=2;}<br>
+if ((strstr(str,&quot;西]&quot;))!=NULL) {kaze=3;}<br>
+if ((strstr(str,&quot;北]&quot;))!=NULL) {kaze=4;}<br>
 if (kaze==1||kaze==2||kaze==3||kaze==4)<br>
 {<br>
 <br>
 <br>
 //
-�オ����v�����̂��̂��g�����W�v�͂����ɋL�q����B<br>
+上がり手や牌譜そのものを使った集計はここに記述する。<br>
 <br>
 <br>
-while((strstr(str,&quot; ---- �������� ----&quot;))==NULL) //�����Ȃ莎�����ʂ܂Ŕ�΂��B�オ���Ȃǂ̏W�v�͂��̒��O�ɂ��邱�ƁB<br>
+while((strstr(str,&quot; ---- 試合結果 ----&quot;))==NULL) //いきなり試合結果まで飛ばす。上がり手などの集計はこの直前にすること。<br>
 {fgets(str, MOJISUU, fp);}<br>
 <br>
 int tokuten=0;<br>
@@ -221,10 +221,10 @@ fscanf(fp,&quot;%d&quot;,&amp;tokuten);<br>
 if(strstr(kekka,namae)!=NULL)<br>
 {<br>
 int jyunni;<br>
-jyunni=atoi(kekka); //���̎����ł̏��ʂ𓾂�<br>
-siaisuu[taku]++; //taku�ɂ������ł̎����������Z<br>
+jyunni=atoi(kekka); //その試合での順位を得る<br>
+siaisuu[taku]++; //takuにあたる卓での試合数を加算<br>
 <br>
-junnikei[taku]+=jyunni++; //taku�ɂ������ł̏��ʍ��v�����Z<br>
+junnikei[taku]+=jyunni++; //takuにあたる卓での順位合計を加算<br>
 <br>
 }<br>
 }<br>
@@ -238,10 +238,10 @@ junnikei[taku]+=jyunni++; //taku�ɂ������ł̏��ʍ��v�����Z<br>
 fclose(fp);<br>
 <br>
 //
-�ȉ��A�K���ɕ��Ϗ��ʂ�����q�����v�Z���ā@Edit�ɓ���Ă��B���̂ւ�͍��l�C���B<br>
+以下、適当に平均順位やら安定Ｒやらを計算して　Editに入れてやる。このへんは作る人任せ。<br>
 <br>
-long totalsiaisuu; //�Ȃ�long�����āH�@���̂˂��A�����΂����˂񓮂��΁I(
-�L�D`)<br>
+long totalsiaisuu; //なぜlongかって？　あのねえ、動けばええねん動けば！(
+´Д`)<br>
 int R1=1930;<br>
 int R2=1730;<br>
 int R3=1500;<br>
@@ -268,8 +268,8 @@ Edit12-&gt;Text=0;Edit13-&gt;Text=0;<br>
 else<br>
 {<br>
 Edit12-&gt;Text=double (junnikei[2]/Edit11-&gt;Text.ToInt());<br>
-Edit13-&gt;Text=(R2+3000-1200*(Edit12-&gt;Text.ToDouble())); //���̂ւ�̓��������̋L�q�ɁA���C�̂Ȃ��������܂���(
-���ށ�)�����!<br>
+Edit13-&gt;Text=(R2+3000-1200*(Edit12-&gt;Text.ToDouble())); //このへんの同じ処理の記述に、やる気のなさを感じますな(
+≧∇≦)ﾌﾞﾊﾊﾊ!<br>
 }<br>
 <br>
 if(siaisuu[1]==0){<br>
@@ -281,7 +281,7 @@ Edit15-&gt;Text=double (junnikei[1]/Edit14-&gt;Text.ToInt());<br>
 Edit16-&gt;Text=(R1+3000-1200*(Edit15-&gt;Text.ToDouble()));<br>
 }<br>
 <br>
-if(totalsiaisuu==0){ //����������q�̏o�͂�����˂�<br>
+if(totalsiaisuu==0){ //ここが安定Ｒの出力かしらねえ<br>
 Edit19-&gt;Text=0;}<br>
 else<br>
 {<br>
@@ -296,13 +296,13 @@ saveinifile();<br>
 <br>
 </font><font color="#FFFFFF"><br>
 <br>
-</font><font color="#00FFFF"><strong>void�@saveinifile�i�j�֐�</strong></font><font
-color="#FFFFFF">�@�O��g�����g�m��W�v���Ԃ�ۑ����܂��B<br>
-�n�߂�#define iniFN
-�h�D���ȃt�@�C���l�[���h�@�ŁA���̃f�[�^�ۑ��p�̃t�@�C���l�[����^���Ă����܂��B<br>
-Edit5�Ƃ��A����n���o�Ă��܂����A�v�́u�g�m�̕����񂪓�����Edit���v�ł���B�K�X�ύX���Ă��������ȁB<br>
-�Ƃ����Edit1�ł����A����́u��Ɨp�v�́A�C���r�W�u���ȃG�f�B�b�g�{�b�N�X�ł��B<br>
-�Ȃ��A������Ƃ��̑���Ƃ������܂������Ȃ������̂ŁA�Z���I�ɂ����p����Ɏ���܂���(��)�B<br>
+</font><font color="#00FFFF"><strong>void　saveinifile（）関数</strong></font><font
+color="#FFFFFF">　前回使ったＨＮや集計期間を保存します。<br>
+始めに#define iniFN
+”好きなファイルネーム”　で、このデータ保存用のファイルネームを与えておきます。<br>
+Edit5とか、それ系が出てきますが、要は「ＨＮの文字列が入ったEdit欄」ですわ。適宜変更してくださいな。<br>
+ところでEdit1ですが、これは「作業用」の、インビジブルなエディットボックスです。<br>
+なんや、文字列とかの代入とかがうまくいかなかったので、短絡的にこれを用いるに至りました(爆)。<br>
 <br>
 </font><font color="#FFFFFF" size="1">void TForm1::saveinifile(){<br>
 <br>
@@ -331,11 +331,11 @@ fclose(fp);<br>
 </font><font color="#FFFFFF"><br>
 <br>
 <br>
-</font><font color="#00FFFF"><strong>void�@loadinifile�i�j�֐�</strong></font><font
-color="#FFFFFF">�@�O��g�����g�m��W�v���Ԃ����[�h���܂��B<br>
-�n�߂�#define iniFN
-�h�t�@�C���l�[���h�@�ŁA���̃f�[�^�ۑ��p�̃t�@�C���l�[����^���Ă����܂��B<br>
-���l��Edit1�͍�Ɨp�ɂȂ��Ă܂��B<br>
+</font><font color="#00FFFF"><strong>void　loadinifile（）関数</strong></font><font
+color="#FFFFFF">　前回使ったＨＮや集計期間をロードします。<br>
+始めに#define iniFN
+”ファイルネーム”　で、このデータ保存用のファイルネームを与えておきます。<br>
+同様にEdit1は作業用になってます。<br>
 <br>
 <br>
 </font><font color="#FFFFFF" size="1">void TForm1::loadinifile(){<br>

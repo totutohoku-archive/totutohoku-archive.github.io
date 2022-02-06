@@ -4,75 +4,75 @@
 <head>
 <meta charset="UTF-8">
 <META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
-<title>�ł���������g���u���V���[�e�B���O</title>
+<title>できすぎくんトラブルシューティング</title>
 </head>
 
 <BODY>
-<P><B>�ł���������g���u���V���[�e�B���O</B><BR>
+<P><B>できすぎくんトラブルシューティング</B><BR>
 <BR><BR><BR>
-���ۂɂ������W�v���s�񍐂ƑΏ���<BR>
+実際にあった集計失敗報告と対処例<BR>
 <BR>
 <BR>
-<B>�p�F�ł��Ă���͂��̎������W�v�ɔ��f����Ȃ�</B><BR>
+<B>Ｑ：打っているはずの試合が集計に反映されない</B><BR>
 <BR>
-���߂̍����őł��Ă����̂����A��ɂȂ��đ��őł����B<BR>
-���̃��C���C��őł��Ă�������20����������Ƃ����W�v����Ă��Ȃ��悤�ŁA���Ԃ�ύX���Ă��W�v�ł��Ȃ��B<BR>
-mjscore�ɂ͂����Ƒł����������L�^����Ă���̂ɂǂ����āH<BR><BR>
-<B>�`�Fmjscore�̔j���������C�����Ă�������</B><BR>
+初めの頃第一で打っていたのだが、後になって第二で打った。<BR>
+第一のワイワイ卓で打っていた頃の20試合ちょっとしか集計されていないようで、期間を変更しても集計できない。<BR>
+mjscoreにはちゃんと打った試合が記録されているのにどうして？<BR><BR>
+<B>Ａ：mjscoreの破損部分を修復してください</B><BR>
 <BR>
-mjscore�́A25�����ڂ�����̎�����<BR>
+mjscoreの、25試合目あたりの試合に<BR>
 <BR>
-===== ������F���ԂŃ��C���C��y�������S�z
-54�� �J�n 2080/02/03 19:57 =====<BR>
+===== 東風戦：仲間でワイワイ卓【麻雀中心】
+54卓 開始 2080/02/03 19:57 =====<BR>
 <BR>
-���̂悤�Ȏ����������������܂܂�Ă��܂����B���炩�̎����mjscore�ɉ��ς�������ꂽ���A���̎����̋L�^����PC�̎��v�������Ă����Ǝv���܂��B<BR>
-�ł���������͏W�v���A���̎������W�v���邽�тɁu�W�v���Ԃ��W�v����������v�Ɣ��f���ďI�����Ă��܂��܂��B<BR>
-mjscore�́A���̎����̏���<BR>
+このような試合情報を持つ試合が含まれていました。何らかの事情でmjscoreに改変が加えられたか、この試合の記録時にPCの時計が狂っていたと思われます。<BR>
+できすぎくんは集計中、この試合を集計するたびに「集計期間を集計しおわった」と判断して終了してしまいます。<BR>
+mjscoreの、この試合の情報を<BR>
 <BR>
-===== ������F���ԂŃ��C���C��y�������S�z
-54�� �J�n 2002/02/03 19:57 =====<BR>
+===== 東風戦：仲間でワイワイ卓【麻雀中心】
+54卓 開始 2002/02/03 19:57 =====<BR>
 <BR>
-���̂悤�ɏC�����邩�A���̎������ۂ��ƍ폜���邩�A�܂��́umjscore�f�[�^�𐳋K�����Ɖ���v�u�I�����t�𒴂�����W�v�I���v�̃`�F�b�N�𗼕��Ƃ��O���ďW�v���Ă��������B
+このように修正するか、この試合を丸ごと削除するか、または「mjscoreデータを正規順序と仮定」「終了日付を超えたら集計終了」のチェックを両方とも外して集計してください。
 <BR>
-����~�X�ɂ����mjscore���󂵂Ă��܂�Ȃ��悤�ɁA�o�b�N�A�b�v������Ă����Ƃ��s�����Ƃ��������߂��܂��B<BR><BR>
-<B>�|�C���g�F</B><BR><BR>
-mjscore�Ɏ�����񂪃L�`���Ə������܂�Ă��āAmjscore�E�g�m�Ȃǂ̎w����������ɂ�������炸�A���܂��W�v�ł��Ȃ����́Amjscore�����̏�񂪈ُ�ł���\���������ł��B<BR>
-���ɁA���t�̃~�X�͕s���ȏW�v�R��𔭐������₷���̂ŁA�umjscore�f�[�^�𐳋K�����Ɖ���v�u�I�����t�𒴂�����W�v�I���v�̃`�F�b�N�𗼕��Ƃ��O���ďW�v���Ă݂�ȂǁA�ُ�̌��������Ƃ߂Ă��������B<BR>
-�Q�ȏ��mjscore��A�������ꍇ�ȂǂɁA�����J�n���t���t�]���Ă����肷��ƁA�v��ʏW�v�R��̌����ɂȂ�܂��B<BR>
-<BR>
-<BR>
-<B>�p�F�ꕔ�̃f�[�^���W�v����Ȃ�</B><BR>
-<BR>
-�W�v���ʂ́A���̂��������W�v����Ă��Ȃ��āA0�̂܂܂Ȃ�ł����ǁA�Ȃ�łł��傤�H�H
+操作ミスによってmjscoreを壊してしまわないように、バックアップを取ってから作業を行うことをおすすめします。<BR><BR>
+<B>ポイント：</B><BR><BR>
+mjscoreに試合情報がキチンと書き込まれていて、mjscore・ＨＮなどの指定も正しいにもかかわらず、うまく集計できない時は、mjscore内部の情報が異常である可能性が高いです。<BR>
+特に、日付のミスは不可解な集計漏れを発生させやすいので、「mjscoreデータを正規順序と仮定」「終了日付を超えたら集計終了」のチェックを両方とも外して集計してみるなど、異常の原因をつきとめてください。<BR>
+２つ以上のmjscoreを連結した場合などに、試合開始日付が逆転していたりすると、思わぬ集計漏れの原因になります。<BR>
 <BR>
 <BR>
-<B>�`�F�v�����o�͂��Ă��������A�ڍ׃f�[�^���o���ɂ͏ڍ׏W�v�����Ă�������</B><BR><BR>
-�����������񂭂������F<FONT color="#0000ff"><A href="TROUBLE23.html"><FONT color="#0000ff">�W�v�͏I���A�����̃f�[�^�͐���ɏo�͂���Ă��܂����A���[�`���f�[�^�Ȃǂ̗���0������ł��܂�</FONT></A></FONT><BR>
-�܂��A�ڍׂȌ��ʁi���[�`�̋��`���Ȃǁj��\�����邽�߂ɂ́u�ڍ׏W�v�v�ɂ���ďW�v���Ă���A���ʕ\����ʂŁu�ڍ׃f�[�^�v�̃{�^�����N���b�N���܂��B<BR>
+<B>Ｑ：一部のデータが集計されない</B><BR>
+<BR>
+集計結果の、＊のついた欄が集計されていなくて、0のままなんですけど、なんででしょう？？
 <BR>
 <BR>
-<B>�p�F�ςȃG���[���o�܂������H�i�P�j</B><BR><BR>
-�W�v�{�^���������ƁA�u���W���[���hDEKISUGI.exe�h�̃A�h���X********�ŁA�A�h���XFFFFFFFF�ɑ΂���ǂݍ��݈ᔽ���N���܂����B�v�ƁA�ł���ł����A�����܂��������̂ł��傤���H<BR>
+<B>Ａ：牌譜を出力してください、詳細データを出すには詳細集計をしてください</B><BR><BR>
+こちらをごらんください：<FONT color="#0000ff"><A href="TROUBLE23.html"><FONT color="#0000ff">集計は終わり、多くのデータは正常に出力されていますが、リーチ時データなどの欄に0が並んでいます</FONT></A></FONT><BR>
+また、詳細な結果（リーチの愚形率など）を表示するためには「詳細集計」によって集計してから、結果表示画面で「詳細データ」のボタンをクリックします。<BR>
 <BR>
-<B>�`�F�������̌���������܂��̂Ŋm�F���Ă�������</B><BR><BR>
-�Emjscore�w��Y��̉\��<BR>
-���ۂɂ�������ł�<BR>
-�u��������A�g���n�߂����̂��Ƃ�Y��ĂāA�����X�R�A���w�肷��ߒ��������Ă܂���(^-^;�v<BR>
-�Ƃ��������ł����B��{�I�ȃp�����[�^�̃`�F�b�N���s���܂��傤�B<BR>
 <BR>
-�E�g�m�Ȃǂ̋L�^�t�@�C���̌̏�̉\��<BR>
-DEKISUGI.exe���A�V�����t�H���_�ɃR�s�[���āA�V�����t�H���_�ŋN�����Ă݂Ă��������B<BR><BR>
-�Emjscore�ُ̈�̉\��<BR>
-�u�������̂P���v�̏W�v�����A���܂������܂��񂩁H<BR>
-�������̂P���̏W�v����������Ȃ�A�W�v���Ԃ�K���ɂ��炵�Ȃ���umjscore�ُ̈�v�̈ʒu�����Ƃ߁A<A href="TROUBLE13.html"><U><FONT color="#0000FF">mjscore�t�@�C���̕s���̊m�F</FONT></U></A>���s���܂��B<BR>
-�W�v���S���ł��Ȃ��Ȃ�A<A href="TROUBLE1.html"><U><FONT color="#0000FF">������x�ŏ�����g���u���V���[�e�B���O���ĊJ</FONT></U></A>���Ă݂Ă��������B<BR><BR><BR>
-<B>�p�F�ςȃG���[���o�܂������H�i�Q�j</B><BR><BR>
-<B>�`�F�������O���ďW�v���Ă݂Ă�������</B><BR><BR>
-�u�����v�́umjscore�f�[�^�����K�����ł���Ɖ���v�u�I�����t�𒴂�����W�v�I���v�̂Q�̃I�v�V�����̃`�F�b�N���O���ďW�v���Ă݂�ƏW�v�ł��邱�Ƃ������ł��B<BR>
-����͏W�v�̍������̂��߂ɁA�ł���������mjscore�̐������f�[�^�����𖳎����ďW�v���悤�Ƃ��邽�߂ɁA�\�z�O�̃f�[�^��mjscore���ɍ������Ă���ꍇ�ɂ��܂����삵�Ȃ����Ƃ����邩��ł��B<BR>
-�Ⴆ�΁Amjscore�L�^���Ɏ��v�������Ă��āu2080/02/03�v�̂悤�ȊJ�n���t�����f�[�^�����������ꍇ��A����̏������d�Ȃ����g�m�̃L�����Ƃ̑ΐ�f�[�^������ꍇ������ɊY�����܂��B<BR>
+<B>Ｑ：変なエラーが出ましたが？（１）</B><BR><BR>
+集計ボタンを押すと、「モジュール”DEKISUGI.exe”のアドレス********で、アドレスFFFFFFFFに対する読み込み違反が起きました。」と、でたんですが、何がまずかったのでしょうか？<BR>
 <BR>
-���̕��@�ŏW�v����������ꍇ�́A���Y�́u�ُ�f�[�^�v�����������o���č폜���邱�ƂŁA���̌�X���[�Y�ɏW�v���s�����Ƃ��ł���悤�ɂȂ�܂��B<BR><BR>
+<B>Ａ：いくつかの原因がありますので確認してください</B><BR><BR>
+・mjscore指定忘れの可能性<BR>
+実際にあった例では<BR>
+「すっかり、使い始めた時のことを忘れてて、ｍｊスコアを指定する過程が抜けてました(^-^;」<BR>
+という原因でした。基本的なパラメータのチェックも行いましょう。<BR>
+<BR>
+・ＨＮなどの記録ファイルの故障の可能性<BR>
+DEKISUGI.exeを、新しいフォルダにコピーして、新しいフォルダで起動してみてください。<BR><BR>
+・mjscoreの異常の可能性<BR>
+「ある特定の１日」の集計さえ、うまくいきませんか？<BR>
+ある特定の１日の集計が成功するなら、集計期間を適当にずらしながら「mjscoreの異常」の位置をつきとめ、<A href="TROUBLE13.html"><U><FONT color="#0000FF">mjscoreファイルの不正の確認</FONT></U></A>を行います。<BR>
+集計が全くできないなら、<A href="TROUBLE1.html"><U><FONT color="#0000FF">もう一度最初からトラブルシューティングを再開</FONT></U></A>してみてください。<BR><BR><BR>
+<B>Ｑ：変なエラーが出ましたが？（２）</B><BR><BR>
+<B>Ａ：条件を外して集計してみてください</B><BR><BR>
+「条件」の「mjscoreデータが正規順序であると仮定」「終了日付を超えたら集計終了」の２つのオプションのチェックを外して集計してみると集計できることも多いです。<BR>
+これは集計の高速化のために、できすぎくんがmjscoreの正しいデータ順序を無視して集計しようとするために、予想外のデータがmjscore内に混入している場合にうまく動作しないことがあるからです。<BR>
+例えば、mjscore記録時に時計が狂っていて「2080/02/03」のような開始日付を持つデータが混入した場合や、特定の条件が重なったＨＮのキャラとの対戦データがある場合がこれに該当します。<BR>
+<BR>
+この方法で集計が成功する場合は、当該の「異常データ」部分を見つけ出して削除することで、その後スムーズに集計を行うことができるようになります。<BR><BR>
 <BR>
 <BR><BR>
 <BR>

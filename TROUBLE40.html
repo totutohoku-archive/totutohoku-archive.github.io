@@ -3,55 +3,55 @@
 <HEAD>
 <meta charset="UTF-8">
 <META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
-<TITLE>�ł���������g���u���V���[�e�B���O</TITLE>
+<TITLE>できすぎくんトラブルシューティング</TITLE>
 </HEAD>
 <BODY>
-<P><B>�ł���������g���u���V���[�e�B���O</B><BR>
+<P><B>できすぎくんトラブルシューティング</B><BR>
 <BR>
 <BR>
 <BR>
-�����̃f�[�^�̈ꕔ�������炳�܂ɂ��������ꍇ<BR><BR><BR>
-����1�����̃f�[�^���ۂ��ƍ폜���Ă��������B<BR>
-��Ƃ̑O�ɁA�K��mjscore.txt�̃o�b�N�A�b�v������Ă��������B<BR>
+試合のデータの一部があからさまにおかしい場合<BR><BR><BR>
+その1試合のデータを丸ごと削除してください。<BR>
+作業の前に、必ずmjscore.txtのバックアップを取ってください。<BR>
 <BR>
 <BR>
-�Ⴆ�΁A���ۂ̏Ǐ�Ƃ��āu�������̓��t���܂ޏW�v�������܂��W�v�ł��Ȃ��v�Ƃ����񍐂̒��ɁA���̂悤�ȗႪ����܂����B<BR>
-���Y�̓��t�̎����f�[�^�̒��ɁA���̂悤�ɕ������������f�[�^���܂܂�Ă��܂����B<BR>
+例えば、実際の症状として「ある特定の日付を含む集計だけうまく集計できない」という報告の中に、次のような例がありました。<BR>
+当該の日付の試合データの中に、次のように文字化けしたデータが含まれていました。<BR>
 <BR>
-�u<BR>
-30�� ���ʃ��� ���� <BR>
-[1�k]1m6m8m3p4p8p1s4s7s8s���쐼<BR>
-[2��]2m4m5m7m8m2p6p9p9p9s���k��<BR>
-[3��]2m8m9m1p1p4p5p6p8p3s6s�쒆<BR>
-[4��]2m3m3m4m8m9p2s3s5s6s9s����<BR>
-[�\�h��]1s [���h��]7m<BR>
-* 2G9m 2d�k 3G�� 3d8p 4G6s 4d9s 1G2s 1d1m
-2G3m 2d�� 3G3p 3d2m 4G7p 4d��<BR>
-* 1G7p 1d�� 2G�� 2D�� 3G3s 3d9m 4G7s 4d8m
-1G7m 1d�� 2G7s 2d�� 3G8p 3d8m<BR>
-* 4G3p 4d�� 1G�� 1d1s 2G7p 2d2p 3G9m 3D9m
-4G�� 4D�� 3N 3d�� 4G5s 4d3p 1G5m<BR>
-* 1d4s 2G5p 2d9s 3G�� 3D�� 4G�� 4D�� 1G��
+「<BR>
+30符 一飜ロン 自風 <BR>
+[1北]1m6m8m3p4p8p1s4s7s8s東南西<BR>
+[2東]2m4m5m7m8m2p6p9p9p9s西北発<BR>
+[3南]2m8m9m1p1p4p5p6p8p3s6s南中<BR>
+[4西]2m3m3m4m8m9p2s3s5s6s9s白発<BR>
+[表ドラ]1s [裏ドラ]7m<BR>
+* 2G9m 2d北 3G南 3d8p 4G6s 4d9s 1G2s 1d1m
+2G3m 2d西 3G3p 3d2m 4G7p 4d白<BR>
+* 1G7p 1d西 2G白 2D白 3G3s 3d9m 4G7s 4d8m
+1G7m 1d南 2G7s 2d発 3G8p 3d8m<BR>
+* 4G3p 4d発 1G東 1d1s 2G7p 2d2p 3G9m 3D9m
+4G南 4D南 3N 3d中 4G5s 4d3p 1G5m<BR>
+* 1d4s 2G5p 2d9s 3G白 3D白 4G中 4D中 1G発
 1d2s 2G1s 2D1s 3G4s 3d6s 4G5m<BR>
-* 4d9p 1G7p 1d�� 2G1s 2D1s 3G6s 3D6s 4G4s
-4d7p 1G3m 1d7p 2G�� 2D�� 3G2s<BR>
-* 3d3s 4G2p 4D2p 1G�k 1D�k 2G7m 2d7s 3G5m
+* 4d9p 1G7p 1d発 2G1s 2D1s 3G6s 3D6s 4G4s
+4d7p 1G3m 1d7p 2G発 2D発 3G2s<BR>
+* 3d3s 4G2p 4D2p 1G北 1D北 2G7m 2d7s 3G5m
 3D5m 4G6p 4D6p 1G1m 1d8p 2G6p<BR>
 * 2d7m 3G8s 3D8s 4G7m 4D7m 1G5s 1D5s 2G8s
-2D8s 3G�� 3D�� 4G7s 4d2m 1G1p<BR>
+2D8s 3G中 3D中 4G7s 4d2m 1G1p<BR>
 * 1d7p 3A<BR>
 <BR>
-�^���ϭ8+�a��E�E2Wg�[�rfJ8na����C���[��n&Eacute;_�EۍZ�����X�^�k�z�Fm�Ew7+��?��s�PiLM���[�\��jo��UƫPm�vPӁE�R=====
-�����탉���L���O���㋉ 566�� �J�n 2002/12/17
+ﾓﾈﾏｭ8+ｨaｳ・・2Wgﾜ[ﾎrfJ8naｮﾎﾓ澆χ[｢熟&Eacute;_・ﾛ校ｯｩ俺ﾐX魃^ｳkｷz珖m・w7+?ｵ鋭訓iLMﾁ｡ﾐ[媾joｰ鏘ﾆｫPmﾖvPﾓ・潦=====
+東風戦ランキング超上級 566卓 開始 2002/12/17
 16:38 =====<BR>
-�v<BR>
+」<BR>
 <BR>
-�������őΐ풆�ɂ�������炸�����I�ɃR���s���[�^�����Z�b�g�����肵���ꍇ�ɁA���̂悤�ȕs���f�[�^���������܂��\��������܂��B<BR>
-���̗�̏ꍇ�Ȃ�<BR>
-�u<BR>
-�^���ϭ8+�a��E�E2Wg�[�rfJ8na����C���[��n&Eacute;_�EۍZ�����X�^�k�z�Fm�Ew7+��?��s�PiLM���[�\��jo��UƫPm�vPӁE�R<BR>
-�v<BR>
-�̕������폜���邱�ƂŁA����ȏW�v���\�ɂȂ�܂��B<BR>
+東風荘で対戦中にもかかわらず強制的にコンピュータをリセットしたりした場合に、このような不正データが書き込まれる可能性があります。<BR>
+この例の場合なら<BR>
+「<BR>
+ﾓﾈﾏｭ8+ｨaｳ・・2Wgﾜ[ﾎrfJ8naｮﾎﾓ澆χ[｢熟&Eacute;_・ﾛ校ｯｩ俺ﾐX魃^ｳkｷz珖m・w7+?ｵ鋭訓iLMﾁ｡ﾐ[媾joｰ鏘ﾆｫPmﾖvPﾓ・潦<BR>
+」<BR>
+の部分を削除することで、正常な集計が可能になります。<BR>
 <BR>
 <BR>
 <BR><BR>

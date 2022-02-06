@@ -3,98 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
-<title>���v�v�Z�}�j���A��v1</title>
+<title>統計計算マニュアルv1</title>
 </head>
 
 <body bgcolor="#FFFF80">
 
-<p><font size="6">�m�����v�v�Z�}�j���A��v1�@</font><font
-size="4"><strong>�Ƃ������k</strong></font><font size="3"><br>
+<p><font size="6">確率統計計算マニュアルv1　</font><font
+size="4"><strong>とつげき東北</strong></font><font size="3"><br>
 <br>
 <br>
-</font><font size="6">����</font><font size="3"><br>
+</font><font size="6">導入</font><font size="3"><br>
 <br>
-</font><font color="#400040" size="3">�ȈՓ��v�v�Z�c�[��</font><font
-size="3">���V�X�e�}�e�B�b�N�����������|�c�[���ɃA�b�v�������A������g�p����ۂɓ��v�w�I�Ȓm�������邾�낤�B<br>
+</font><font color="#400040" size="3">簡易統計計算ツール</font><font
+size="3">をシステマティック麻雀研究所－ツールにアップしたが、それを使用する際に統計学的な知識がいるだろう。<br>
 <br>
-���Ɂu�����v�Ȃǂ�m�邽�߂ɂ���������������������o���Ă������Ȃ��B<br>
-�Ƃ̂悤�ɓ��v�͊w�Ȃ񂼂��C�߂�̂ł��Ȃ�����A��ʂ̐l�X���m���E���v�ɐG��邽�߂ɂ́A�̌n�I�Ȓm���Ƃ������͍��Z���w���x�̒m���ŁA<strong>�u100��W�����P������60��ȏ㏟�m�����Ă�������E�E�E�v�Ȃ�Ă����ӂƂ����^��ɑ����ɓ����Ă����悤�Ȋ�</strong>�������Ǝv���Ă���B<br>
+特に「公式」などを知るためにいちいち文献を引っ張り出してきたくない。<br>
+とつのように統計力学なんぞを修めるのでもない限り、一般の人々が確率・統計に触れるためには、体系的な知識というよりは高校数学程度の知識で、<strong>「100回ジャンケンして60回以上勝つ確率っていくらやろ・・・」なんていうふとした疑問に即座に答えてくれるような環境</strong>がいいと思っている。<br>
 <br>
-��������������Ƃ����v�Z���ȒP�ɍs����c�[����񋟂��A����������΂����ł��̎��Ӓm�����w�ׂ�A���������������Ői�߂����B<br>
-<br>
-<br>
-</font><font size="6">��{�I�Ȓ�`</font><font size="3"><br>
-<br>
-<strong>�i���j</strong><br>
+そういうちょっとした計算を簡単に行えるツールを提供し、興味があればここでその周辺知識を学べる、そういった方向で進めたい。<br>
 <br>
 <br>
-</font><font size="6">�Q�����z�Ɛ��K���z</font>�i���v�v�Z�c�[���P�E���K���z�@�̎��Ӓm���j<br>
+</font><font size="6">基本的な定義</font><font size="3"><br>
+<br>
+<strong>（略）</strong><br>
 <br>
 <br>
-���̗v�f�̒����炒���o�����o�����i�g�ݍ��킹�j��<font
-size="3"><strong>�@��</strong></font><font size="5">�b</font><font
-size="3"><strong>��</strong></font>��<strong>n!�^r!(n-r)!</strong>�@�ʂ�ł��B<br>
-<br>
-��F<br>
-�R�C����100�񓊂��āA�\��80��o��ł����́@<font
-size="2">100</font><font size="5">�b</font><font size="2">80</font>�@�ƂȂ�B�R�C����100�񓊂������ʂ́A�S����<font
-size="4"><strong>�@2!</strong></font>�@�ʂ肠��̂�����A�R�C����100�񓊂��āA�\��80��o��m���́@<font
-size="2">100</font><font size="5">�b</font><font size="2">80</font><font
-size="4"><strong>��2!</strong></font>�@�ł���B<br>
+</font><font size="6">２項分布と正規分布</font>（統計計算ツール１・正規分布　の周辺知識）<br>
 <br>
 <br>
-�u�Q�����z�v�Ƃ́A�m�����̎��ۂ𓯈�����̉��ŁA�Ɨ��ɂ���ώ@�����Ƃ��A���̎��ۂ����񔭐�����m��<br>
-<font size="5"><strong>�e</strong></font><font size="3"><strong>(x)</strong></font>��<font
-size="3"><strong>��</strong></font><font size="5">�b</font><font
-size="4"><strong>x</strong>�~</font><font size="5"><strong>��</strong></font><font
-size="3"><strong>^x</strong>�~</font><font size="5"><strong>(1-p)</strong></font><font
+ｎ個の要素の中からｒ個取り出す取り出し方（組み合わせ）は<font
+size="3"><strong>　ｎ</strong></font><font size="5">Ｃ</font><font
+size="3"><strong>ｒ</strong></font>＝<strong>n!／r!(n-r)!</strong>　通りです。<br>
+<br>
+例：<br>
+コインを100回投げて、表が80回出るでかたは　<font
+size="2">100</font><font size="5">Ｃ</font><font size="2">80</font>　となる。コインを100回投げた結果は、全部で<font
+size="4"><strong>　2!</strong></font>　通りあるのだから、コインを100回投げて、表が80回出る確率は　<font
+size="2">100</font><font size="5">Ｃ</font><font size="2">80</font><font
+size="4"><strong>÷2!</strong></font>　である。<br>
+<br>
+<br>
+「２項分布」とは、確率ｐの事象を同一条件の下で、独立にｎ回観察したとき、この事象がｘ回発生する確率<br>
+<font size="5"><strong>Ｆ</strong></font><font size="3"><strong>(x)</strong></font>＝<font
+size="3"><strong>ｎ</strong></font><font size="5">Ｃ</font><font
+size="4"><strong>x</strong>×</font><font size="5"><strong>ｐ</strong></font><font
+size="3"><strong>^x</strong>×</font><font size="5"><strong>(1-p)</strong></font><font
 size="3"><strong>^(n-x)</strong></font><br>
-�ł���悤�Ȋm���ϐ��̕��z�̂��Ƃł��B<br>
+であるような確率変数の分布のことです。<br>
 <br>
-����́u�\���o��m�������ł���悤�ȃR�C���v�������������ɁA�\������o��m���ɑ��Ȃ�܂���B<br>
-�\�̏o�閇���̊��Ғl�́@<font size="5">�d</font><strong>(x)</strong>��<strong>����</strong>�@�A�@���U�́@<font
-size="5">�u</font><strong>(x)</strong>��<strong>np(1-p)</strong>�@�ł��B�W���΍�<strong>��</strong>��<strong>root�i</strong><font
-size="5">�u</font><strong>(x)</strong><font size="4"><strong>�j</strong></font><br>
+これは「表が出る確率がｐであるようなコイン」をｎ投げた時に、表がｘ回出る確率に他なりません。<br>
+表の出る枚数の期待値は　<font size="5">Ｅ</font><strong>(x)</strong>＝<strong>ｎｐ</strong>　、　分散は　<font
+size="5">Ｖ</font><strong>(x)</strong>＝<strong>np(1-p)</strong>　です。標準偏差<strong>σ</strong>＝<strong>root（</strong><font
+size="5">Ｖ</font><strong>(x)</strong><font size="4"><strong>）</strong></font><br>
 <br>
 <br>
-���͐��K���z�̐}�ł����A���l�͖������āA�u�������R�C���𓊂����Ƃ��ɕ\���o�閇���v�A�u�c���������Ȃ銄���v�Ƃ������ɍl����΁A�}�̌`�������������ɂȂ�͔̂[���ł���ł��傤�B<br>
-10��R�C���𓊂���4��`6��\���o�邱�Ƃ̂ق����A8��ȏ�\���o�邱�Ƃ�葽���A�Ƃ����̂͌o���I�ɂ킩��ł��傤�B<br>
+下は正規分布の図ですが、数値は無視して、「横軸＝コインを投げたときに表が出る枚数」、「縦軸＝そうなる割合」という風に考えれば、図の形がこういう風になるのは納得できるでしょう。<br>
+10回コインを投げて4回～6回表が出ることのほうが、8回以上表が出ることより多い、というのは経験的にわかるでしょう。<br>
 <br>
 <br>
 <img src="statm.gif" width="318" height="217"><br>
-<font size="2"><strong>�@�@�@�@�@�@�@�@�@�@�@�@���K���z</strong></font><br>
+<font size="2"><strong>　　　　　　　　　　　　正規分布</strong></font><br>
 <br>
-�ł́A10��R�C���𓊂���ꍇ�ƁA10000��R�C���𓊂���ꍇ���ׂ�Ƃǂ��ł��傤���B<br>
-10��̏ꍇ�́A�^�񒆂̎R����r�I�Ⴍ�A������̍L���`�ɂȂ�ł��傤�B<br>
-10000�񂾂ƁA�^�񒆂̎R���s���Ƃ������`�ɂȂ�A�[�̕��͋ɂ߂ď������Ȃ�܂��B<br>
-10�񓊂���8��ȏ�\�A�Ƃ������Ƃ͂܂܋N���邱�Ƃł����A10000�񓊂���8000��ȏ���\���o�邱�Ƃ͋ɂ߂ď��Ȃ�����ł��B<br>
+では、10回コインを投げる場合と、10000回コインを投げる場合を比べるとどうでしょうか。<br>
+10回の場合は、真ん中の山が比較的低く、すそ野の広い形になるでしょう。<br>
+10000回だと、真ん中の山が鋭くとがった形になり、端の方は極めて小さくなります。<br>
+10回投げて8回以上表、ということはまま起こることですが、10000回投げて8000回以上も表が出ることは極めて少ないからです。<br>
 <br>
 <br>
-�Q�����z�ɂ����āA���s�񐔂��̒l��傫�������ꍇ�ɁA���̕��z�͐��K���z�ɋ߂Â����Ƃ��m���Ă��܂��B<br>
-<font size="5"><strong>�e</strong></font><font size="3"><strong>(x)</strong></font>��<font
-size="5"><strong>�i</strong></font><font size="3"><strong>exp</strong></font><font
+２項分布において、試行回数ｎの値を大きくした場合に、その分布は正規分布に近づくことが知られています。<br>
+<font size="5"><strong>Ｆ</strong></font><font size="3"><strong>(x)</strong></font>＝<font
+size="5"><strong>（</strong></font><font size="3"><strong>exp</strong></font><font
 size="5"><strong>(</strong></font><font size="3"><strong>-</strong></font><font
-size="4"><strong>(</strong></font><font size="3"><strong>(x-��)^2</strong></font><font
-size="4"><strong>)</strong></font><font size="3"><strong>��</strong></font><font
-size="4"><strong>(</strong></font><font size="3"><strong>2�~��^2</strong></font><font
-size="4"><strong>)</strong></font><font size="5"><strong>)�j�^�i</strong></font><font
-size="3"><strong>�Ё~root(2��)</strong></font><font size="5"><strong>�j</strong></font><br>
-�ʁF���Ғl�@�ЁF�W���΍��i���U�̃��[�g���Ƃ������́j<br>
+size="4"><strong>(</strong></font><font size="3"><strong>(x-μ)^2</strong></font><font
+size="4"><strong>)</strong></font><font size="3"><strong>÷</strong></font><font
+size="4"><strong>(</strong></font><font size="3"><strong>2×σ^2</strong></font><font
+size="4"><strong>)</strong></font><font size="5"><strong>)）／（</strong></font><font
+size="3"><strong>σ×root(2π)</strong></font><font size="5"><strong>）</strong></font><br>
+μ：期待値　σ：標準偏差（分散のルートをとったもの）<br>
 <br>
-���K���z�̊m�����x�֐��̕ϐ������A<br>
-<strong>��</strong>��<strong>(��-��)</strong><font size="4"><strong>�^</strong></font><strong>��</strong><br>
-�ɏ]���ĕϊ����邱�Ƃ�<strong>�u�W�����v</strong>�ƌĂсA����ɂ���āu�W�����K���z�v�ɕϊ����邱�Ƃ��ł��܂��B<br>
-�������邱�ƂŁA<strong>�u�W�����K���z�\�v</strong>�Ȃǂ��g���āA<font
-size="4"><strong>��̕��G(?)�Ȏ����v�Z���邱�ƂȂ��A�m����m�邱�Ƃ��ł���</strong></font>�킯�ł��B<br>
+正規分布の確率密度関数の変数ｘを、<br>
+<strong>ｚ</strong>＝<strong>(ｘ-μ)</strong><font size="4"><strong>／</strong></font><strong>σ</strong><br>
+に従って変換することを<strong>「標準化」</strong>と呼び、これによって「標準正規分布」に変換することができます。<br>
+こうすることで、<strong>「標準正規分布表」</strong>などを使って、<font
+size="4"><strong>上の複雑(?)な式を計算することなく、確率を知ることができる</strong></font>わけです。<br>
 <br>
 <font color="#400040" size="3"><strong><br>
 <br>
-</strong></font><font color="#400040" size="5"><strong>�@�@�@�@�@���K���z�\</strong></font><font
+</strong></font><font color="#400040" size="5"><strong>　　　　　正規分布表</strong></font><font
 color="#000080" size="3"><strong><br>
 <br>
-</strong></font><font size="3"><strong>z �@�@0.00�@�@�@ 0.01�@�@
-0.02�@�@ 0.03�@�@ 0.04�@�@ 0.05�@�@ 0.06�@�@ 0.07�@�@
-0.08�@�@ 0.09<br>
+</strong></font><font size="3"><strong>z 　　0.00　　　 0.01　　
+0.02　　 0.03　　 0.04　　 0.05　　 0.06　　 0.07　　
+0.08　　 0.09<br>
 0.0 0.50000 0.49601 0.49202 0.48803 0.48405 0.48006 0.47608
 0.47210 0.46812 0.46414<br>
 0.1 0.46017 0.45620 0.45224 0.44828 0.44433 0.44038 0.43644
@@ -179,35 +179,35 @@ color="#000080" size="3"><strong><br>
 0.00002 0.00002 0.00002</strong></font><font size="4"><strong><br>
 </strong></font><br>
 <br>
-���K���z�\�́A���邚�ɑ΂��ẮA��̕��z�}�ł̉E���ʐς�\���Ă��܂��B<br>
-��̕��z�}�́A�����|���`�{���͈̔͂�ϕ�����Ƃ��傤�ǂ��̒l�i�ʐρj���P�ɂȂ�悤�ɂȂ��Ă��܂��B<br>
-�܂�Ⴆ�΁A�����O�@�Ƃ��Đ��K���z�\�̂���0.00�̂Ƃ�������āu0.50000�v�ƂȂ��Ă���̂́A<strong>�����O���E���̖ʐς�0.5�A����������΂����O�ȏ�ɂȂ�m����50���ł���</strong>���Ƃ������Ă���̂ł��B<br>
+正規分布表は、あるｚに対しての、上の分布図での右側面積を表しています。<br>
+上の分布図は、ｚ＝－∞～＋∞の範囲を積分するとちょうどその値（面積）が１になるようになっています。<br>
+つまり例えば、ｚ＝０　として正規分布表のｚ＝0.00のところを見て「0.50000」となっているのは、<strong>ｚ＝０より右側の面積が0.5、言い換えればｚが０以上になる確率が50％である</strong>ことを示しているのです。<br>
 <br>
 <br>
-<font color="#400040" size="4"><strong>���K���z�\��p����v�Z��</strong></font><font
+<font color="#400040" size="4"><strong>正規分布表を用いる計算例</strong></font><font
 color="#400040" size="3"><br>
 <br>
-1/4�̊m���œ�����}�[�N�V�[�g���100��ɁA���S�ɂł���߂ɉ񓚂��A19��ȉ�����������Ȃ��m���o�����߂�B<br>
+1/4の確率で当たるマークシート問題100問に、完全にでたらめに回答し、19問以下しか当たらない確率Ｐを求める。<br>
 <br>
-���ρ@np�@�́@100�~1/4���Q�T<br>
-�W���΍��@���@�́@�i100�~1/4�~(1-1/4)�j^(1/2)<br>
-�����Ł@���@��W���������<br>
-����(x-np)�^�i�inp(1-p)�j^(1/2)�j�@����@����-1.39�@�B<br>
+平均　np　は　100×1/4＝２５<br>
+標準偏差　ｚ　は　（100×1/4×(1-1/4)）^(1/2)<br>
+そこで　ｘ　を標準化すると<br>
+ｚ＝(x-np)／（（np(1-p)）^(1/2)）　から　ｚ＝-1.39　。<br>
 <br>
-���̕\�̏c���P�D�R�C����0.09�̂Ƃ��������0.08226�B<br>
+この表の縦軸１．３，横軸0.09のところを見て0.08226。<br>
 <br>
-�]���ċ��߂�m���@�o��8.226���@�ł���B</font><font
+従って求める確率　Ｐ＝8.226％　である。</font><font
 color="#000080" size="3"><br>
 </font><br>
 <br>
-<font color="#0000FF"><strong>�������킩���Ă���΁A��́u�����v�Ƃ��Čv�Z�@���o���Ă��܂��ƕ֗��ł��B<br>
+<font color="#0000FF"><strong>理屈がわかっていれば、後は「公式」として計算法を覚えてしまうと便利です。<br>
 <br>
-�P�j�Ώۂ̕��ρA���U�A�W���΍������߂�B<br>
-�Q�j�W��������<br>
-�R�j���K���z�\������<br>
+１）対象の平均、分散、標準偏差を求める。<br>
+２）標準化する<br>
+３）正規分布表を見る<br>
 <br>
-����ŁA��������Ȍv�Z�Ȃ��Ŋm����m�邱�Ƃ��ł��܂��B<br>
-����⌟��̂��߂Ɍ������Ȃ����@�ł����A���̘b�͂܂��@�����΁B</strong></font><br>
+これで、やっかいな計算なしで確率を知ることができます。<br>
+推定や検定のために欠かせない方法ですが、その話はまた機会があれば。</strong></font><br>
 <br>
 <br>
 <br>

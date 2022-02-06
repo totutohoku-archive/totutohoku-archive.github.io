@@ -3,122 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
-<title>�C�ӂ̐��v����ɏo�镽�ό�</title>
+<title>任意の数牌が場に出る平均個数</title>
 </head>
 
 <body background="801-04.gif" bgcolor="#000000" text="#FFFFFF">
 
-<p><font color="#00FF80" size="7">�C�ӂ̐��v����ɏo�镽�ό�</font><br>
-<font color="#FFFF80">�S�Ă̌����ւ̊�b�Ƃ��ā@�@�@�@1999/12/27�@�Ƃ������k</font><br>
+<p><font color="#00FF80" size="7">任意の数牌が場に出る平均個数</font><br>
+<font color="#FFFF80">全ての研究への基礎として　　　　1999/12/27　とつげき東北</font><br>
 <br>
-<font color="#FFFFFF">������v���ǂ̒��x���ƂɎg����̂��H�@�R�ʑ҂����c���̂ƃg�C�c�{�������������c���̂ŁA�ǂ��炪�`�e����_���₷�����H<br>
-�啔���̖����Z�p�����̈�̊�b�Ƃ��āA�u�C�ӂ̐��v���ǂ̒��x���Ƃ̃����c�Ɏg����̂��v���v�Z����B</font><br>
-<font color="#80FFFF"><strong>�i���_�����������l�͐��́u���_�v�ɔ��ŉ������j</strong></font><br>
+<font color="#FFFFFF">当たり牌がどの程度他家に使われるのか？　３面待ちを残すのとトイツ＋リャンメンを残すので、どちらが形テンを狙いやすいか？<br>
+大部分の麻雀技術研究の一つの基礎として、「任意の数牌がどの程度他家のメンツに使われるのか」を計算する。</font><br>
+<font color="#80FFFF"><strong>（結論だけ見たい人は青字の「結論」に飛んで下さい）</strong></font><br>
 <br>
-<font color="#FFFFFF">�܂��͑��Ƃ̃����c���̊����`���_�Ƀ��f�������Ă݂�B<br>
-�E����͏�Ƀ����[���`���C�c�E�V�����c�`�̃e���p�C�`�ł���A���鑼�ƂƂ��鑼�Ƃ̐��ߐF�͕K���ʂł���B<br>
-���̂悤�ȃ��f����I�������̂́A���̂悤�ȗ��R�ɂ��B<br>
+<font color="#FFFFFF">まずは他家のメンツ作りの完成形を大胆にモデル化してみる。<br>
+・相手は常にメンゼンチンイツ・シュンツ形のテンパイ形であり、ある他家とある他家の染め色は必ず別である。<br>
+このようなモデルを選択したのは、次のような理由による。<br>
 <br>
-�����ł́A�R�l�̑��Ƃ����ꂼ��S�����c�Ɠ������������邽�߂ɑŔv����B<br>
-�ʏ�̓}���Y�E�s���Y�E�\�[�Y���ꂼ��ɂ������Ȃ������c����邩��A�������郁���c�͔�r�I���U����B�R�l�S���ł܂Ƃ߂ă}���Y�E�s���Y�E�\�[�Y���g���̂ł��邩��A���ς���΂P�l�������F���łS�����c�����ƍl���邱�Ƃ��ł���B���v�̎g�p�ɂ��Ă͍l�����Ă��Ȃ����A���v���g�p����邱�Ƃɂ���āu�C�ӂ̐��v�̏o�₷���i���Ȃ��Ƃ����v�̒[�E���Ȃǂɂ��g�p���̔�j�v�͂قڕω����󂯂Ȃ����̂ƍl������B<br>
-�����Łu�C�ӂ̐��v���g������v�̖��ł́A�����l���`���C�c�ɐ��߂Ă���悤�ȃ��f�����l���Ė��Ȃ��B<br>
-�܂��A�V�����c�`�Ɍ��肵���̂́A�g�C�c��A���R�͊�{�I�ɌǗ��ō�邱�Ƃ��\�ł��邽�߂ɁA�u����C�ӂ̐��v�v���A���R�ł��邱�Ƃ������I�ɐ��@���邱�Ƃ͂قڕs�\������ł���B�o����J�����Ƃ��ł��ǂ��������s�\�Ȃ��̂ł���A���̂悤�ȒP�����͑Ó��ł���B<br>
+麻雀では、３人の他家がそれぞれ４メンツと頭を完成させるために打牌する。<br>
+通常はマンズ・ピンズ・ソーズそれぞれにこだわりなくメンツを作るから、完成するメンツは比較的分散する。３人全員でまとめてマンズ・ピンズ・ソーズを使うのであるから、平均すれば１人あたり一色分で４メンツを作ると考えることができる。字牌の使用については考慮していないが、字牌が使用されることによって「任意の数牌の出やすさ（少なくとも数牌の端・中などによる使用率の比）」はほぼ変化を受けないものと考えられる。<br>
+そこで「任意の数牌が使われる個数」の問題では、相手一人がチンイツに染めているようなモデルを考えて問題ない。<br>
+また、シュンツ形に限定したのは、トイツやアンコは基本的に孤立で作ることが可能であるために、「ある任意の数牌」がアンコであることを合理的に推察することはほぼ不可能だからである。経験やカンごときでもどうせ推測不可能なものであり、このような単純化は妥当である。<br>
 <br>
-��L�̃��f�����ɂ���āA�����l�̃����c�\�������̂悤�ɍl���邱�Ƃ��ł���B<br>
+上記のモデル化によって、ある一人のメンツ構成を次のように考えることができる。<br>
 <br>
-�S�����c���A���̂�������S�Z�b�g�A�����_���ɑI������B<br>
-�P�Q�R�@�Q�R�S�@�R�S�T�@�S�T�U�@�T�U�V�@�U�V�W�@�V�W�X<br>
-�����Ƃ��āA���̂�������P�A�����_���ɑI������B<br>
-�P�@�Q�@�R�@�S�@�T�@�U�@�V�@�W�@�X<br>
+４メンツを、次のうちから４セット、ランダムに選択する。<br>
+１２３　２３４　３４５　４５６　５６７　６７８　７８９<br>
+頭候補として、次のうちから１つ、ランダムに選択する。<br>
+１　２　３　４　５　６　７　８　９<br>
 <br>
-�Ƃ���ƁA�Ⴆ�Δv�u�P�v�����ƂɎg�p�����m�������̂悤�ɋ��߂邱�Ƃ��ł���B</font><br>
+とすると、例えば牌「１」が他家に使用される確率を次のように求めることができる。</font><br>
 <br>
-<font color="#FFFFFF">�v��P�ɂ���<br>
-�����c�Ɏg�p�������@�����c�ɕs�g�p�i�]��j���@�@�@�@�@�@�@�@�@�@�@���̊m��<br>
-�@�@�@�@�@�@�O�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�S�@�@�@�@�@�@�@�@�@�@�@Comb�i4,0�j�~�i1/7�j^0�~�i6/7�j^4<br>
-�@�@�@�@�@�@�P�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�R�@�@�@�@�@�@�@�@�@�@�@Comb�i4,1�j�~�i1/7�j^1�~�i6/7�j^3<br>
-�@�@�@�@�@�@�Q�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�Q�@�@�@�@�@�@�@�@�@�@�@Comb�i4,2�j�~�i1/7�j^2�~�i6/7�j^2<br>
-�@�@�@�@�@�@�R�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�P�@�@�@�@�@�@�@�@�@�@�@Comb�i4,3�j�~�i1/7�j^3�~�i6/7�j^1<br>
-�@�@�@�@�@�@�S�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�O�@�@�@�@�@�@�@�@�@�@�@Comb�i4,4�j�~�i1/7�j^4�~�i6/7�j^0<br>
+<font color="#FFFFFF">牌種１について<br>
+メンツに使用される個数　メンツに不使用（余る）個数　　　　　　　　　　　その確率<br>
+　　　　　　０　　　　　　　　　　　　　　　　　４　　　　　　　　　　　Comb（4,0）×（1/7）^0×（6/7）^4<br>
+　　　　　　１　　　　　　　　　　　　　　　　　３　　　　　　　　　　　Comb（4,1）×（1/7）^1×（6/7）^3<br>
+　　　　　　２　　　　　　　　　　　　　　　　　２　　　　　　　　　　　Comb（4,2）×（1/7）^2×（6/7）^2<br>
+　　　　　　３　　　　　　　　　　　　　　　　　１　　　　　　　　　　　Comb（4,3）×（1/7）^3×（6/7）^1<br>
+　　　　　　４　　　　　　　　　　　　　　　　　０　　　　　　　　　　　Comb（4,4）×（1/7）^4×（6/7）^0<br>
 <br>
-Comb�i���A���j�̓R���r�l�[�V�����̗��B���v�L���ł́@���b���@�ł���B<br>
+Comb（ｘ、ｙ）はコンビネーションの略。統計記号では　ｘＣｙ　である。<br>
 <br>
-�c�薇���̊��Ғl�́A�������@8232/2400�@���B<br>
-�܂������̔v�̕��@1/9�@�������āA�u���Ƃ̃����c�Ɏg�p����Ȃ��P�̌����ρv�����܂�B<br>
-�Q�`�X�ɂ��Ă����l�Ɍv�Z����ƁA���̂悤�ɂȂ�B</font><br>
+残り枚数の期待値は、これより約　8232/2400　枚。<br>
+また頭候補の牌の分　1/9　を引いて、「他家のメンツに使用されない１の個数平均」が求まる。<br>
+２～９についても同様に計算すると、次のようになる。</font><br>
 <br>
-<font color="#80FFFF" size="6">���_�F�C�ӂ̐��v�����ƃ����c�Ɏg�p����镽�ό�</font><font
+<font color="#80FFFF" size="6">結論：任意の数牌が他家メンツに使用される平均個数</font><font
 color="#80FFFF"><br>
 </font><br>
-<font color="#FFFF80">�u�P�i�X�j�v�����Ƃ̃����c�ɑg�ݍ��܂�Ă���i�܂��͑��Ƃ̃����c�ɕK�v�ł���j���ό��́@0.681�B<br>
-�u�P�i�X�j�v�����Ƃ̃����c�ɕs�v�ł��镽�ό��́@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@3.319�B<br>
-�i�s�v�����c���؂���Ɖ��肵�āj���v���l�����āu�P�i�X�j�v���ŏI�I�ɏ�ɏo�镽�ό��́@2.937�B<br>
+<font color="#FFFF80">「１（９）」が他家のメンツに組み込まれている（または他家のメンツに必要である）平均個数は　0.681個。<br>
+「１（９）」が他家のメンツに不要である平均個数は　　　　　　　　　　　　　　　　　　　　　　　　　　　3.319個。<br>
+（不要メンツが切られると仮定して）王牌を考慮して「１（９）」が最終的に場に出る平均個数は　2.937個。<br>
 <br>
-�u�Q�i�W�j�v�����Ƃ̃����c�ɑg�ݍ��܂�Ă���i�܂��͑��Ƃ̃����c�ɕK�v�ł���j���ό��́@1.253�B<br>
-�u�Q�i�W�j�v�����Ƃ̃����c�ɕs�v�ł��镽�ό��́@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@2.747�B<br>
-�i�s�v�����c���؂���Ɖ��肵�āj���v���l�����āu�Q�i�W�j�v���ŏI�I�ɏ�ɏo�镽�ό��́@2.365�B<br>
+「２（８）」が他家のメンツに組み込まれている（または他家のメンツに必要である）平均個数は　1.253個。<br>
+「２（８）」が他家のメンツに不要である平均個数は　　　　　　　　　　　　　　　　　　　　　　　　　　　2.747個。<br>
+（不要メンツが切られると仮定して）王牌を考慮して「２（８）」が最終的に場に出る平均個数は　2.365個。<br>
 <br>
-�u�R�`�V�v�����Ƃ̃����c�ɑg�ݍ��܂�Ă���i�܂��͑��Ƃ̃����c�ɕK�v�ł���j���ό��́@1.824�B<br>
-�u�R�`�V�v�����Ƃ̃����c�ɕs�v�ł��镽�ό��́@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@2.176�B<br>
-�i�s�v�����c���؂���Ɖ��肵�āj���v���l�����āu�R�`�V�v���ŏI�I�ɏ�ɏo�镽�ό��́@1.641�B</font><br>
+「３～７」が他家のメンツに組み込まれている（または他家のメンツに必要である）平均個数は　1.824個。<br>
+「３～７」が他家のメンツに不要である平均個数は　　　　　　　　　　　　　　　　　　　　　　　　　　　2.176個。<br>
+（不要メンツが切られると仮定して）王牌を考慮して「３～７」が最終的に場に出る平均個数は　1.641個。</font><br>
 <br>
 <br>
-<font color="#80FFFF" size="5">�⑫�ƍl�@</font><font
+<font color="#80FFFF" size="5">補足と考察</font><font
 color="#FFFFFF"><br>
 <br>
-���ꂾ���ł͂Ȃ�̂��Ƃ��킩��Ȃ��l�����邩���m��Ȃ����ǁA�����</font><font
-color="#FF8000" size="5"><strong>�߂���������ɗ�����</strong></font><font
-color="#FFFFFF">(��)</font><br>
-<font color="#FFFFFF">�Ⴆ�΁A</font><font color="#FF9955"
-size="5">�P���؂�̃J���`�����Q�}���҂��ƁA�U�ƂW�̃V�����|���҂��A�ǂ������o�₷�����H</font><br>
-<font color="#FFFFFF">���̌��_�������</font><font
-color="#FF9955" size="5">�ȒP</font><font color="#FFFFFF">�B</font><br>
-<font color="#FFFF80">�u�Q�v�́A����2.747�]��̂ŁA�P���؂�̏ꍇ�@</font><font
-color="#FFFF80" size="4"><strong>1.747�]��</strong></font><font
-color="#FFFF80">���ƂɂȂ�B<br>
-�u�U�v�͕���2.176�]�邪�A�������g�C�c�Ŏ����Ă���̂Ŏc��0.176�A�u�W�v�̕���0.747�B���v</font><font
-color="#FFFF80" size="4"><strong>0.923�]��</strong></font><font
-color="#FFFF80">�B<br>
-</font><font color="#FFFF80" size="3">��{�I�ɂ́A</font><font
-color="#FFFF80" size="5">���Ƃ������c�Ɏg��Ȃ����o��</font><font
-color="#FFFF80">�@�Ƃ������Ƃ�����A���́u�]����v�����̂܂ܓ�����v�̏o������\���킯��E�E�E�B���炩��</font><font
-color="#FF9955" size="5">���̏ꍇ�J���`�����L��</font><font
-color="#FFFF80">�i ���ށ��j��<br>
+これだけではなんのことかわからない人もいるかも知れないけど、これは</font><font
+color="#FF8000" size="5"><strong>めっっちゃ役に立つぞぉ</strong></font><font
+color="#FFFFFF">(笑)</font><br>
+<font color="#FFFFFF">例えば、</font><font color="#FF9955"
+size="5">１枚切れのカンチャン２マン待ちと、６と８のシャンポン待ち、どっちが出やすいか？</font><br>
+<font color="#FFFFFF">この結論を見れば</font><font
+color="#FF9955" size="5">簡単</font><font color="#FFFFFF">。</font><br>
+<font color="#FFFF80">「２」は、平均2.747個余るので、１枚切れの場合　</font><font
+color="#FFFF80" size="4"><strong>1.747個余る</strong></font><font
+color="#FFFF80">ことになる。<br>
+「６」は平均2.176個余るが、自分がトイツで持っているので残り0.176個、「８」の方は0.747個。合計</font><font
+color="#FFFF80" size="4"><strong>0.923個余る</strong></font><font
+color="#FFFF80">。<br>
+</font><font color="#FFFF80" size="3">基本的には、</font><font
+color="#FFFF80" size="5">他家がメンツに使わない＝出る</font><font
+color="#FFFF80">　ということだから、この「余る個数」がそのまま当たり牌の出安さを表すわけよ・・・。明らかに</font><font
+color="#FF9955" size="5">この場合カンチャン有利</font><font
+color="#FFFF80">（ ≧∇≦）ｂ<br>
 </font><br>
-<font color="#FF9955" size="5">�P���؂�̃J���`�����Q�}���҂��ƁA�P�ƂW�̃V�����|���҂��Ȃ�H</font><font
+<font color="#FF9955" size="5">１枚切れのカンチャン２マン待ちと、１と８のシャンポン待ちなら？</font><font
 color="#FFFFFF"><br>
-</font><font color="#FFFF80">�u�Q�v�́A</font><font
-color="#FFFF80" size="4"><strong>1.747�]��</strong></font><font
-color="#FFFF80">�B�u�P�v��1.216�A�u�W�v��0.747��</font><font
-color="#FFFF80" size="4"><strong>���v1.963�]��</strong></font><font
-color="#FFFF80">�B</font><font color="#FFFFFF"><br>
-</font><font color="#FF9955" size="5">���̏ꍇ�V�����|���L��</font><font
-color="#FFFF80">�i ���ށ��j��</font><font color="#FF9955"
+</font><font color="#FFFF80">「２」は、</font><font
+color="#FFFF80" size="4"><strong>1.747個余る</strong></font><font
+color="#FFFF80">。「１」は1.216個、「８」は0.747個で</font><font
+color="#FFFF80" size="4"><strong>合計1.963個余る</strong></font><font
+color="#FFFF80">。</font><font color="#FFFFFF"><br>
+</font><font color="#FF9955" size="5">この場合シャンポン有利</font><font
+color="#FFFF80">（ ≧∇≦）ｂ</font><font color="#FF9955"
 size="5"><br>
 </font><font color="#FFFFFF"><br>
-</font><font color="#FF9955" size="3"><strong>�����悤�ɁA�P���؂�̃J���`�����Q�}���҂��ƁA�P���؂�̂P�ƂX�̃V�����|���҂��̏ꍇ�́A����܂��V�����|���L���E�E�E�Əo����킯���B</strong></font><font
+</font><font color="#FF9955" size="3"><strong>同じように、１枚切れのカンチャン２マン待ちと、１枚切れの１と９のシャンポン待ちの場合は、これまたシャンポン有利・・・と出せるわけだ。</strong></font><font
 color="#FFFFFF" size="1"><strong><br>
 </strong></font><font color="#FFFFFF"><br>
-���́u�Ƃ��f���v�ɁA���Ɍ덷������܂���Ƃ��Ă��A�����܂Ŗ��m�ȍ����o��Ώ[������Ŏg���܂��i�P�[�P�j�B<br>
-���̂悤�ɂ��āA�S�Ă̑҂��ɂ��āA�ǂꂪ�o�₷�����A�Ȃ�Ă̂���ʂ�킩��B<br>
+この「とつモデル」に、仮に誤差がありまくるとしても、ここまで明確な差が出れば充分実戦で使えます（￣ー￣）。<br>
+このようにして、全ての待ちについて、どれが出やすいか、なんてのが一通りわかる。<br>
 <br>
-���f���͒P���ł͂��邯�ǁA����Ȃ��������͂P�O�O�{�����m�����A���܂��␳��������΁A�����鑼�̌����ɉ��p�ł���Ǝv���B<br>
-�Ⴆ�΁E�E�E�`�[�g�C�P�V�����e������A�g�C�g�C�ɍs���������悢�󋵂͂ǂ�Ȏ����A�Ƃ��E�E�E�B<br>
-�Ă䂤���A���������g����Ȃ���E�E�E�u�U�߂̎p��������ȁv�Ƃ������Ă��閃���G���P�O�O�����A���̕\�P�����Ƃ������߂���B</font><br>
+モデルは単純ではあるけど、下らない直感よりは１００倍も正確だし、うまく補正を加えれば、あらゆる他の研究に応用できると思う。<br>
+例えば・・・チートイ１シャンテンから、トイトイに行った方がよい状況はどんな時か、とか・・・。<br>
+てゆうか、けっこう使えるなこれ・・・「攻めの姿勢を崩すな」とか書いてある麻雀雑誌１００冊より、この表１つ持つことをお勧めする。</font><br>
 <br>
 <br>
-�@�@�@�@�@�@�@�@<img src="SLtotu1.gif" width="614"
+　　　　　　　　<img src="SLtotu1.gif" width="614"
 height="451"><br>
 <br>
 <br>
-�����łˁA�S�s���؂��ĂQ�R�s���҂��ɂ��������o�₷���̂��A�Q�T�s���҂��̂܂܂̕����ǂ��̂��A�̔��f���ł���킯�B<br>
-���ɂ��A��q�̗��_����A�X�}���͖{�������Ɓi���Ȃ��Ƃ��Q���j�o�ĂȂ��Ƃ����������ڂł���B�ł��o�ĂȂ��B�N�������ɂ��Ă邩�ȁA�Ǝv���Ă������ς肻���B<br>
-�P�}���������ɂ��Ȃ�؂�ĂQ�}���̓V�����c���ɂȂ�ɂ����i�ʏ�̂P�ƂقƂ�Ǖς��Ȃ��͂��j�A���������o�Ă��Ă��ǂ��B<br>
-��Ƃ��A���R�ɂ��Ă����B<br>
-���Ƃ��猩�Ă��P�s���E���E�삠����́A���̌������ʂ��猩�ďo�Ă��Ȃ��Ƃ��������v�Ȃ킯�ŁB<br>
-�܂��U�s�����{���̒l��葽���o�Ă��邱�Ƃ���A���Ƃ̎�͂��̂�����Ŏ~�܂�₷���B�܂��R�s�����{�����o�Ă��Ȃ����ǂ��A�R�s���͖{�����̂�����łO�D�T�����炢�o�Ă���̂����ʂŁA�܂�����̎�ɓ����Ă��邩�ǂ����͉������B<br>
-��Ƃ͂S�T�s�����c���Ă����B<br>
-�u���ʘ_�v�ł͂Ȃ���B�����Ɨ��_�Ɋ�Â��Ă���Ă�킯�₩���(��)�B<br>
+ここでね、４ピン切って２３ピン待ちにした方が出やすいのか、２５ピン待ちのままの方が良いのか、の判断ができるわけ。<br>
+他にも、上述の理論から、９マンは本来もっと（少なくとも２枚）出てないとおかしい順目でしょ。でも出てない。誰かが頭にしてるかな、と思ってたらやっぱりそう。<br>
+１マンが序順にかなり切れて２マンはシュンツ候補になりにくく（通常の１とほとんど変わらないはず）、もう少し出ていても良い。<br>
+上家がアンコにしていた。<br>
+他家から見ても１ピン・白・南あたりは、この研究結果から見て出ていないとおかしい牌なわけで。<br>
+また６ピンが本来の値より多く出ていることから、他家の手はこのあたりで止まりやすい。まぁ３ピンが本来より出ていないけども、３ピンは本来このあたりで０．５枚くらい出ているのが普通で、まだ相手の手に入っているかどうかは怪しい。<br>
+上家は４５ピンを残していた。<br>
+「結果論」ではないよ。ちゃんと理論に基づいてゆってるわけやからね(笑)。<br>
 <br>
 <br>
 <br>

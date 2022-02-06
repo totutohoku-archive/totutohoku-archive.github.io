@@ -3,10 +3,10 @@
 <HEAD>
 <meta charset="UTF-8">
 <META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
-<TITLE>�n�[�h�E�F�A�����������[�`��hdrand.c</TITLE>
+<TITLE>ハードウェア乱数生成ルーチンhdrand.c</TITLE>
 </HEAD>
 <BODY background="1052.gif" bgcolor="#ffffff" text="#000000">
-<P><FONT color="#000000" size="6"><STRONG>�n�[�h�E�F�A�����������[�`��hdrand.c</STRONG></FONT>�@�@by�@�Ƃ������k�@�@<FONT color="#0000FF"><U><A href="/hp/"><FONT color="#0000FF">�g�b�v�y�[�W�ɖ߂�</FONT></A></U></FONT><BR>
+<P><FONT color="#000000" size="6"><STRONG>ハードウェア乱数生成ルーチンhdrand.c</STRONG></FONT>　　by　とつげき東北　　<FONT color="#0000FF"><U><A href="/hp/"><FONT color="#0000FF">トップページに戻る</FONT></A></U></FONT><BR>
 <BR>
 <BR>
 <A href="http://www.amazon.co.jp/exec/obidos/ASIN/4061497650/sml-22"><IMG src="kagakusuru.jpg" width="72" height="120" border="0"></A><FONT color="#FF0000"><SCRIPT type="text/javascript"><!--
@@ -20,115 +20,115 @@ google_ad_channel ="";
 </SCRIPT> <BR>
 <BR>
 </FONT><BR>
-<FONT size="+2"><B>�u�����_���ȗ����v�u�ǎ��ȗ����v�𓾂�</B></FONT><BR>
+<FONT size="+2"><B>「ランダムな乱数」「良質な乱数」を得る</B></FONT><BR>
 <BR>
-<B><FONT size="+1">�����F</FONT></B><BR>
+<B><FONT size="+1">導入：</FONT></B><BR>
 <BR>
-�v���O���~���O�����Ă��āA�u�^�Ƀ����_���ȗ����v�𓾂悤�Ƃ����Ƃ��ɍ��邱�Ƃ�����B<BR>
-�ǂ�ȂɗD�ꂽ����_�I�[���������[�`�����A�^�Ƀ����_���ȗ���������Ă͂���Ȃ��B<BR>
-���ʂƂ���time�l�Ȃǂ𗐐��̎�ɂ��邱�ƂɂȂ�킯���B<BR>
-�Q�[���ȂǂȂ炻�̒��x�ł��[�������A�Z�L�����e�B�̏d�v�ȃ\�t�g�ł͂����͂������A���[�U�̃}�E�X���͂̃^�C�~���O�Ȃǂ�ǂݎ��K�v���o�Ă���B<BR>
-������<B>CPU��Pentium�ȍ~�EWindows���Ńn�[�h�f�B�X�N���g�p����Ă����</B>�ŁA���[�U�ɕs���ȓ��͍�Ƃ������邱�ƂȂ��A�ǂ������̗����𓾂邽�߂̃��[�`��������Ă����B<BR>
-<BR>
-<BR>
-<B><FONT size="+1">���@�F</FONT></B><BR>
-<BR>
-�e���|�����t�@�C���t�H���_�Ƀt�@�C�����쐬�E�폜���A���̏����ɂ����������Ԃ�������\�p�t�H�[�}���X�J�E���^�Ōv�����āA�������Ԃ𓾂�B<BR>
-�������Ԃ̃r�b�g��̂����A�΂�Ȃ��r�b�g�𗐐��r�b�g�Ƃ��ė��p����B<BR>
-�n�[�h�f�B�X�N�̃V�[�N���Ԃ╨���I�ȏ������ݑ��x�́A�L���b�V���≷�x�⎼�x��Windows�̏������Ȃǂɂ���Ă΂��������̂ŁA�ǎ��ȃ����_���r�b�g���Ƃ��B<BR>
-���肳���r�b�g�̕ω����ŏ��Ƀe�X�g���Ă������ƂŁi100��̃r�b�g�����ŁA�[���ɕω�������ꂽ�r�b�g�����𗐐��Ɏg�p����j�A�������x�̈Ⴂ��A�p�t�H�[�}���X�J�E���^�̎��̈����i�Ⴆ�΍ŉ��ʃr�b�g���K���������ɂȂ�\���j���z���ł���B<BR>
-<BR>
-���R�A��p�̃n�[�h�E�F�A��p����̂Ɣ�r���ē��쑬�x�͒x���i1000�r�b�g/1�b�E�E�E�Ƃ������k�̊��Łj���A�u�^�̗����v�͕��ʂ�1000�r�b�g������΂��Ȃ�[�����낤�B<BR>
-���̃��[�`�����K�v�Ƃ���uPentium�ȍ~�EWindows�E�v�n�[�h�f�B�X�N�v�Ƃ����~���́A���Ȃ��Ƃ���p�n�[�h�E�F�A���͂����ƒႢ���̂��B<BR>
-���[�U�Ƀ}�E�X��U�点���肸���Ƒ����A�����Ɨǎ��ȗ����������邱�Ƃ��낤�B<BR>
-�Ȃ�<B>�A���̕����Ő�������������́A�����]���̗L���ȃe�X�g<A href="http://stat.fsu.edu/~geo/diehard.html"><U><FONT color="#0000FF"><FONT color="#0000FF">DIEHARD�e�X�g</FONT></FONT></U></A>��<U><A href="test_bit.txt"><FONT color="#0000FF">���i</FONT></A></U>����</B>�iMT��DIEHARD���ʂ�<A href="mtdiehard.txt"><U><FONT color="#0000FF">������</FONT></U></A>�j�B<BR>
-MT�̂悤�ȁA�����̒����ǎ��ȋ[�������̎�Ƃ��Ă�����g���΁A�Í��c�[���Ȃǂ�<A href="VNCrypt.html"><U><FONT color="#0000FF">���p�I�ɉ��p</FONT></U></A>�ł���B<BR>
-<BR>
-���ǂ���l�����𓾂�K�v������Ȃǂ̖ړI�ɉ����āAhdrand_test�֐����̃e�X�g�͊e�X��������Ɨǂ��B<BR>
+プログラミングをしていて、「真にランダムな乱数」を得ようとしたときに困ることがある。<BR>
+どんなに優れた決定論的擬似乱数ルーチンも、真にランダムな乱数を作ってはくれない。<BR>
+結果としてtime値などを乱数の種にすることになるわけだ。<BR>
+ゲームなどならその程度でも充分だが、セキュリティの重要なソフトではそうはいかず、ユーザのマウス入力のタイミングなどを読み取る必要が出てくる。<BR>
+そこで<B>CPUがPentium以降・Windows下でハードディスクが使用されている環境</B>で、ユーザに不可解な入力作業をさせることなく、良い性質の乱数を得るためのルーチンを作っておく。<BR>
 <BR>
 <BR>
-<B><FONT size="+1">�֐��F</FONT></B><BR>
+<B><FONT size="+1">方法：</FONT></B><BR>
+<BR>
+テンポラリファイルフォルダにファイルを作成・削除し、その処理にかかった時間を高分解能パフォーマンスカウンタで計測して、処理時間を得る。<BR>
+処理時間のビット列のうち、偏らないビットを乱数ビットとして利用する。<BR>
+ハードディスクのシーク時間や物理的な書き込み速度は、キャッシュや温度や湿度やWindowsの処理順などによってばらつきがあるので、良質なランダムビットがとれる。<BR>
+測定されるビットの変化を最初にテストしておくことで（100回のビット発生で、充分に変化が見られたビットだけを乱数に使用する）、処理速度の違いや、パフォーマンスカウンタの質の悪さ（例えば最下位ビットが必ず偶数や奇数になる可能性）も吸収できる。<BR>
+<BR>
+当然、専用のハードウェアを用いるのと比較して動作速度は遅い（1000ビット/1秒・・・とつげき東北の環境で）が、「真の乱数」は普通は1000ビットもあればかなり充分だろう。<BR>
+このルーチンが必要とする「Pentium以降・Windows・要ハードディスク」という敷居は、少なくとも専用ハードウェアよりはずっと低いものだ。<BR>
+ユーザにマウスを振らせるよりずっと早く、ずっと良質な乱数が得られることだろう。<BR>
+なお<B>、この方式で生成した乱数列は、乱数評価の有名なテスト<A href="http://stat.fsu.edu/~geo/diehard.html"><U><FONT color="#0000FF"><FONT color="#0000FF">DIEHARDテスト</FONT></FONT></U></A>に<U><A href="test_bit.txt"><FONT color="#0000FF">合格</FONT></A></U>した</B>（MTのDIEHARD結果は<A href="mtdiehard.txt"><U><FONT color="#0000FF">こちら</FONT></U></A>）。<BR>
+MTのような、周期の長い良質な擬似乱数の種としてこれを使えば、暗号ツールなどに<A href="VNCrypt.html"><U><FONT color="#0000FF">実用的に応用</FONT></U></A>できる。<BR>
+<BR>
+より良い一様乱数を得る必要があるなどの目的に応じて、hdrand_test関数内のテストは各々調整すると良い。<BR>
+<BR>
+<BR>
+<B><FONT size="+1">関数：</FONT></B><BR>
 <BR>
 <B><I><FONT size="+1">int hdrand_init()</FONT></I></B><BR>
 <BR>
-�e���|�����t�@�C����p�ӂ��邽�߂̊֐��B<B>�S�Ă̓���̑O�ɂ�����P�x�����Ăяo���Ă����B</B><BR>
-�����ł̃G���[�͓��Ƀ`�F�b�N����K�v�͂Ȃ��Bhdrand_test()�ł̕Ԃ�l�������`�F�b�N����Ώ[���B<BR>
-�Ԃ�l<BR>
-0�@�ʏ�I��<BR>
--1�@�e���|�����t�@�C�����쐬�ł��Ȃ��̂�hdrand�͂����Ȃ��B<BR>
+テンポラリファイルを用意するための関数。<B>全ての動作の前にこれを１度だけ呼び出しておく。</B><BR>
+ここでのエラーは特にチェックする必要はない。hdrand_test()での返り値だけをチェックすれば充分。<BR>
+返り値<BR>
+0　通常終了<BR>
+-1　テンポラリファイルが作成できないのでhdrandはつかえない。<BR>
 <BR>
 <BR>
 <B><I><FONT size="+1">int hdrand_test()</FONT></I></B><BR>
 <BR>
-���ۂɂ������̗����𔭐������A�����Ƃ��Ďg�p�\�ȃr�b�g�����O���[�o���ϐ��Ɋi�[����B<BR>
-<FONT color="#000000"><B>�v���O�����̍ŏ��ŁAinit�̌��1�x�����K���Ăяo���A�G���[���o�Ă������Ȃ���΂���ȍ~�͈ӎ����Ȃ��ėǂ��B</B></FONT><BR>
-�P�x���s���Ă��i�Ԃ�l-1�ł��j�A���̌㐬������\��������̂ŉ��x�����g���C���������ǂ��B<BR>
+実際にいくつかの乱数を発生させ、乱数として使用可能なビット情報をグローバル変数に格納する。<BR>
+<FONT color="#000000"><B>プログラムの最初で、initの後に1度だけ必ず呼び出し、エラーが出てさえいなければそれ以降は意識しなくて良い。</B></FONT><BR>
+１度失敗しても（返り値-1でも）、その後成功する可能性もあるので何度かリトライした方が良い。<BR>
 <BR>
-�Ԃ�l<BR>
-n�@n�r�b�g�������Ƃ��Ďg�p�\�B<BR>
-0�@�g�p�\�ȗ����r�b�g�����݂��Ȃ��B<BR>
--1�@�g�p�\�ȗ����r�b�g�����݂��Ȃ��B���̊��ł�hdrand���g���Ȃ��B<BR>
+返り値<BR>
+n　nビットが乱数として使用可能。<BR>
+0　使用可能な乱数ビットが存在しない。<BR>
+-1　使用可能な乱数ビットが存在しない。その環境ではhdrandが使えない。<BR>
 <BR>
-��̓I�ȓ���<BR>
-hdrand_generate()�ŗ����r�b�g��100�񐶐�����B<BR>
-�O��̃r�b�g�ƍ���̃r�b�g��40�`60��ω����Ă���΁A���̃r�b�g�́u���i�v�ł���B<BR>
-���i�ɂȂ����r�b�g��1�r�b�g�ȏ㑶�݂���΁A���̊֐���-1�ȊO�̒l��Ԃ��B<BR>
+具体的な動作<BR>
+hdrand_generate()で乱数ビットを100回生成する。<BR>
+前回のビットと今回のビットが40～60回変化していれば、そのビットは「合格」である。<BR>
+合格になったビットが1ビット以上存在すれば、この関数は-1以外の値を返す。<BR>
 <BR>
 <BR>
 <B><I><FONT size="+1">int hdrand_generate()</FONT></I></B><BR>
 <BR>
-���ۂɗ�������郋�[�`���B�����ł����g�p����B<BR>
+実際に乱数を作るルーチン。内部でだけ使用する。<BR>
 <BR>
 <BR>
 <B><I><FONT size="+1">int hdrand32()</FONT></I></B><BR>
 <BR>
-32�r�b�g�̐M���ł��闐���r�b�g���Ԃ��B<BR>
-<B>�ŏ��ɏ������iinit��test�j���s������́A������Ăяo�������ŗǎ��ȗ����r�b�g����擾�ł���B</B><BR>
+32ビットの信頼できる乱数ビット列を返す。<BR>
+<B>最初に初期化（initとtest）を行った後は、これを呼び出すだけで良質な乱数ビット列を取得できる。</B><BR>
 <BR>
 <BR>
 <B><I><FONT size="+1">int hdrandbit()</FONT></I></B><BR>
 <BR>
-1�r�b�g�̐M���ł��闐���r�b�g��Ԃ��B<BR>
-hdrand_generate�ɂ���Đ��������r�b�g��́u�L���ȏ�ʃr�b�g�v�����͏����΂�\��������̂ŁA��芮�S�ȗ����𓾂����ꍇ�͂�����𗘗p����B<BR>
-������������x�������������̃r�b�g���𓾂�ꍇ�Ahdrand32�̕��������ł���B<BR>
+1ビットの信頼できる乱数ビットを返す。<BR>
+hdrand_generateによって生成されるビット列の「有効な上位ビット」部分は少し偏る可能性があるので、より完全な乱数を得たい場合はこちらを利用する。<BR>
+ただしある程度長い同じ長さのビット数を得る場合、hdrand32の方が高速である。<BR>
 <BR>
 <BR>
-<B><FONT size="+1">�e�X�g�v���O������iBorland C++ Builder�j</FONT></B><BR>
+<B><FONT size="+1">テストプログラム例（Borland C++ Builder）</FONT></B><BR>
 <BR>
 #include&quot;stdio.h&quot;<BR>
 <BR>
 main(void)<BR>
 {<BR>
-//�����ƃG���[�`�F�b�N<BR>
+//準備とエラーチェック<BR>
 int noerr=0;<BR>
 hdrand_init();<BR>
 for(int retry=0;retry&lt;16;retry++)if(hdrand_test()!=-1){noerr=1;break;}<BR>
-if(noerr==0){ShowMessage(&quot;�������g���܂���&quot;);exit(0);}<BR>
-//���ۂɗ����𐶐�����<BR>
+if(noerr==0){ShowMessage(&quot;乱数が使えません&quot;);exit(0);}<BR>
+//実際に乱数を生成する<BR>
 for(int r=0;r&lt;10;r++)ShowMessage(hdrand32());<BR>
 }<BR>
 <BR>
 <BR>
 <BR>
-<B><FONT size="+1">�����F</FONT></B><BR>
+<B><FONT size="+1">実装：</FONT></B><BR>
 <BR>
-<B>�w�b�_���i�O���[�o���j�F</B>�i�K�v�Ȃ�static�ɂ��邱�ƁB�֐��̃v���g�^�C�v�錾���K�v�Ȃ炷�邱�Ɓj<BR>
+<B>ヘッダ部（グローバル）：</B>（必要ならstaticにすること。関数のプロトタイプ宣言も必要ならすること）<BR>
 <BR>
-_LARGE_INTEGER hdrand_PC; //������\�p�t�H�[�}���X�J�E���^�̃J�E���g�l�Q�Ɨp<BR>
-DWORD hdrand_value; //�W�F�l���[�^���Ԃ��^�̒l<BR>
-int hdrand_Rshift; //hdrand�̃W�F�l���[�^���Ԃ��l�̉E���r�b�g���g���Ȃ���<BR>
-int hdrand_Lshift; //hdrand�̃W�F�l���[�^���Ԃ��l�̉��r�b�g���g�p�\��<BR>
-char hdrand_buf[MAX_PATH]; //�t�@�C���l�[���ێ��p<BR>
-FILE * hdrand_str; //�t�@�C�����o�͗p<BR>
+_LARGE_INTEGER hdrand_PC; //高分解能パフォーマンスカウンタのカウント値参照用<BR>
+DWORD hdrand_value; //ジェネレータが返す真の値<BR>
+int hdrand_Rshift; //hdrandのジェネレータが返す値の右何ビットが使えないか<BR>
+int hdrand_Lshift; //hdrandのジェネレータが返す値の何ビットが使用可能か<BR>
+char hdrand_buf[MAX_PATH]; //ファイルネーム保持用<BR>
+FILE * hdrand_str; //ファイル入出力用<BR>
 <BR>
-<B>�֐����F</B><BR>
+<B>関数部：</B><BR>
 <BR>
 int hdrand_init()<BR>
 {<BR>
 if(GetTempPath(MAX_PATH,hdrand_buf)==0)return
--1; //�e���|�����t�@�C���t�H���_���擾<BR>
+-1; //テンポラリファイルフォルダを取得<BR>
 strcat(hdrand_buf,&quot;temprnd.tmp\0&quot;);
-//���̃e���|�����t�@�C���B�����Ƃ��Ȃ�GetTempFileName�ŁB<BR>
+//仮のテンポラリファイル。ちゃんとやるならGetTempFileNameで。<BR>
 return 0;<BR>
 }<BR>
 <BR>
@@ -189,7 +189,7 @@ return hdrand_Lshift;<BR>
 }<BR>
 <BR>
 <BR>
-//�����_����32�r�b�g�̗�����Ԃ��B<BR>
+//ランダムな32ビットの乱数を返す。<BR>
 int hdrand32()<BR>
 {<BR>
 unsigned int tmp=0;<BR>
@@ -212,7 +212,7 @@ tmp=tmp&lt;&lt;1;<BR>
 }<BR>
 <BR>
 <BR>
-//�����_����1�r�b�g�̗�����Ԃ��B<BR>
+//ランダムな1ビットの乱数を返す。<BR>
 int hdrandbit()<BR>
 {<BR>
 hdrand_generate();<BR>
@@ -221,15 +221,15 @@ return (hdrand_value &gt;&gt; hdrand_Rshift
 }<BR>
 <BR>
 <BR>
-<B><FONT size="+1">����</FONT></B><BR>
+<B><FONT size="+1">注意</FONT></B><BR>
 <BR>
-hdrand32()�́A�������݂ɂ����������Ԃ̏�ʂ̕��̃r�b�g�����p����i���̕ω����[���ɑ傫������j�B<BR>
-���̂��߁A���ǂ������𓾂邽�߂ɂ́Ahdrand_generate�ɂ��Ԃ�lhdrand_value�̉��ʃr�b�g�̕��𗘗p����悤�ɂ��������ǂ���������Ȃ��B<BR>
-���p��[�����Ǝv�����A���̂�����̒���������ꍇ�e���Ń\�[�X��������悤�ɁB<BR>
+hdrand32()は、書き込みにかかった時間の上位の方のビットも利用する（その変化が充分に大きい限り）。<BR>
+そのため、より良い乱数を得るためには、hdrand_generateによる返り値hdrand_valueの下位ビットの方を利用するようにした方が良いかもしれない。<BR>
+実用上充分だと思うが、そのあたりの調整をする場合各自でソースをいじるように。<BR>
 <BR>
-<FONT color="#FF0000">���̃v���O�����𗘗p���Ĕ������������Ȃ鑹�Q�ɂ��A��҂Ƃ������k�͐ӔC�𕉂�Ȃ��B�e���̐ӔC�̉��Ɏg�p���邱�ƁB</FONT><BR>
-���ǁA����\�t�g�ւ̑g�ݍ��ݓ��͑S�Ď��R�B���̃y�[�W�̓��e�𒘍쌠������ύX���āA���̂܂܎�����HP�ɏ����悤�Ȃ��Ƃ͂��Ȃ��悤�Ɂi���쌠�@�Ɉᔽ����j�B<BR>
-���̃y�[�W��2002/04/21�Ɍ��J���ꂽ�B<BR>
+<FONT color="#FF0000">このプログラムを利用して発生したいかなる損害にも、作者とつげき東北は責任を負わない。各自の責任の下に使用すること。</FONT><BR>
+改良、自作ソフトへの組み込み等は全て自由。このページの内容を著作権だけを変更して、そのまま自分のHPに書くようなことはしないように（著作権法に違反する）。<BR>
+このページは2002/04/21に公開された。<BR>
 <BR>
 <BR>
 <BR>

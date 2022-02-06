@@ -4,44 +4,44 @@
 <head>
 <meta charset="UTF-8">
 <META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
-<title>MJexeIO����}�j���A��</title>
+<title>MJexeIO入門マニュアル</title>
 </head>
 
-<BODY background="1052.gif" alink="#ff7f00" bgcolor="#ffffff" link="#ff0000" text="#000000" vlink="#400080"><P><B><FONT size="+3"><IMG src="MJexeIO.gif" width="34" height="36" border="0">MJexeIO.DLL</FONT><FONT size="+1">�i��������ʓ��o�͗p�_�C�i�~�b�N�����N���C�u�����j�@����}�j���A��</FONT></B><BR>
+<BODY background="1052.gif" alink="#ff7f00" bgcolor="#ffffff" link="#ff0000" text="#000000" vlink="#400080"><P><B><FONT size="+3"><IMG src="MJexeIO.gif" width="34" height="36" border="0">MJexeIO.DLL</FONT><FONT size="+1">（東風荘画面入出力用ダイナミックリンクライブラリ）　入門マニュアル</FONT></B><BR>
 <BR>
 <BR><BR>
-<FONT size="+1"><B>��̓I�Ƀv���O����������ē������ɂ́H</B></FONT><BR>
+<FONT size="+1"><B>具体的にプログラムを作って動かすには？</B></FONT><BR>
 <BR>
-C++�̃R���p�C�����g���āA�R���\�[���A�v���Ƃ��č\�z���Ă݂܂��傤�B<BR>
-<FONT color="#0000FF">�}�j���A���̎w���ǂ���ɃT���v�����R�s�y���Ă����܂��B</FONT><BR>
-�ꕔ<FONT color="#0000FF">�uShowMessage�v�Ȃǂ̃R���p�C���ˑ��̊֐����g���Ă���̂ŁA�������������͍폜</FONT>���Ă��܂��܂��傤�B<BR>
-���ɂ���R�[�h�̂قƂ�ǑS�����A�����̃R�s�y�ł��B<BR>
+C++のコンパイラを使って、コンソールアプリとして構築してみましょう。<BR>
+<FONT color="#0000FF">マニュアルの指示どおりにサンプルをコピペしていきます。</FONT><BR>
+一部<FONT color="#0000FF">「ShowMessage」などのコンパイラ依存の関数を使っているので、そういう部分は削除</FONT>してしまいましょう。<BR>
+下にあるコードのほとんど全部が、ただのコピペです。<BR>
 <BR>
-�����ăv���O�����̍ŏ��ŁA�K�v�ȃC���N���[�h�t�@�C����#include�ŃC���N���[�h�����܂��B<BR>
-�܂��ȒP�̂��߂ɁA���Ȃ��݂�int main�i�j����n�܂�悤�ɂ����̂ŁAreturn�̂Ƃ���͕Ԃ�l��K���ɂ��Ă��܂��B<BR>
-<FONT color="#FF0000">�Ԏ�</FONT>�ɂȂ��Ă��镔���ȊO�́A�uShowMessage�v���폜������A�ureturn�v���ureturn
--1�v�ɕς����肵�Ă��邾���ŁA��{�I�ɃR�s�y�ł��B<BR>
+そしてプログラムの最初で、必要なインクルードファイルを#includeでインクルードさせます。<BR>
+また簡単のために、おなじみのint main（）から始まるようにしたので、returnのところは返り値を適当につけてやります。<BR>
+<FONT color="#FF0000">赤字</FONT>になっている部分以外は、「ShowMessage」を削除したり、「return」を「return
+-1」に変えたりしているだけで、基本的にコピペです。<BR>
 <BR>
-��������̂܂܃R���p�C������΁i���Ԃ�j�����Ǝv���܂��B<BR>
-���R�A<FONT color="#FF0000">MJexeIO.dll�����s�t�@�C���Ɠ����t�H���_�ɒu���Ă����K�v������܂�</FONT>�B<BR><BR>
+これをこのままコンパイルすれば（たぶん）動くと思います。<BR>
+当然、<FONT color="#FF0000">MJexeIO.dllを実行ファイルと同じフォルダに置いておく必要があります</FONT>。<BR><BR>
 <BR>
-<B>VisualC++�̏ꍇ</B>�A�L���X�g�̐������Ⴄ�悤�ŁA<BR>
+<B>VisualC++の場合</B>、キャストの制限が違うようで、<BR>
 GetHaiSize = ( GETHAISIZE )::GetProcAddress(
 hDll, &quot;_GetHaiSize&quot; ); <BR>
-�̂悤�ȕ����ŃL���X�g�G���[���o��悤�ł��B<BR>
-�R���p�C���̎w���ʂ�A������<BR>
+のような部分でキャストエラーが出るようです。<BR>
+コンパイラの指示通り、ここを<BR>
 GetHaiSize = ( GETHAISIZE )::GetProcAddress(
 (struct HINSTANCE__ *)hDll, &quot;_GetHaiSize&quot;
 ); <BR>
-�ɒ����Ă�邱�ƂŁA�R���p�C���ł��܂��B<BR>
+に直してやることで、コンパイルできます。<BR>
 <BR>
 <BR>
 <FONT size="-2" color="#FF0000">#include&quot;windows.h&quot;<BR>
 #include&quot;string.h&quot;<BR>
 </FONT><FONT size="-2"><BR>
 </FONT><FONT size="-2"><BR>
-//���ȉ��̓w�b�_�����ɋL�q<BR>
-//�C���|�[�g�֐��̌^��`�i���̊e�֐��̐�����ǂ�ŁA�����^�Œ�`���܂��j<BR>
+//★以下はヘッダ部分に記述<BR>
+//インポート関数の型定義（下の各関数の説明を読んで、同じ型で定義します）<BR>
 typedef int (*GETTEHAI)(int,int *);<BR>
 typedef int (*GETSUTEHAI)(int,int,int *);<BR>
 typedef int (*GETSUTEHAINUM)(int,int,int
@@ -71,7 +71,7 @@ typedef int (*GETHOLDTIME)(int);<BR>
 typedef int (*GETREACH)(int,int);<BR>
 typedef int (*SENDCHAT)(char *,int,int);<BR>
 </FONT><FONT size="-2"><BR>
-//�C���|�[�g�֐��^�̊֐��ւ̃|�C���^�ϐ��錾<BR>
+//インポート関数型の関数へのポインタ変数宣言<BR>
 GETTEHAI GetTehai;<BR>
 GETSUTEHAI GetSutehai;<BR>
 GETSUTEHAINUM GetSutehaiNum;<BR>
@@ -101,13 +101,13 @@ SENDCHAT SendChat;<BR>
 </FONT><FONT size="-2" color="#FF0000"><BR>
 int main()<BR>
 {</FONT><FONT size="-2"><BR>
-int tmphai[51],size; //�ėp<BR>
+int tmphai[51],size; //汎用<BR>
 </FONT><FONT size="-2"><BR>
 HANDLE hDll = ::LoadLibrary( &quot;MJexeIO.dll&quot;
-); //DLL�����[�h<BR>
-if(hDll==NULL){return 0;} //DLL���[�h�̃G���[�`�F�b�N<BR>
+); //DLLをロード<BR>
+if(hDll==NULL){return 0;} //DLLロードのエラーチェック<BR>
 </FONT><FONT size="-2"><BR>
-//DLL����K�v�Ȋ֐����C���|�[�g<BR>
+//DLLから必要な関数をインポート<BR>
 GetHaiSize = ( GETHAISIZE )::GetProcAddress(
 hDll, &quot;_GetHaiSize&quot; ); <BR>
 GetDorahai = ( GETDORAHAI )::GetProcAddress(
@@ -147,33 +147,33 @@ GetHoldTime = (GETHOLDTIME)::GetProcAddress(hDll,&quot;_GetHoldTime&quot;);<BR>
 GetReach = (GETREACH)::GetProcAddress(hDll,&quot;_GetReach&quot;);<BR>
 SendChat = (SENDCHAT)::GetProcAddress(hDll,&quot;_SendChat&quot;);<BR>
 </FONT><FONT size="-2"><BR>
-//DLL�֐��C���|�[�g�̃G���[�`�F�b�N�B���̗�ł͂Q�̊֐��������`�F�b�N���Ă���B<BR>
-if(GetHaiSize==NULL){return -1;} //DLL�֐��C���|�[�g�̃G���[�`�F�b�N<BR>
-if(GetDorahai==NULL){return -1;} //DLL�֐��C���|�[�g�̃G���[�`�F�b�N<BR>
+//DLL関数インポートのエラーチェック。この例では２つの関数だけをチェックしている。<BR>
+if(GetHaiSize==NULL){return -1;} //DLL関数インポートのエラーチェック<BR>
+if(GetDorahai==NULL){return -1;} //DLL関数インポートのエラーチェック<BR>
 </FONT><FONT size="-2"><BR>
 int i;<BR>
-char str[1024]; //�Ԃ�l�󂯎��p�̕�����<BR>
+char str[1024]; //返り値受け取り用の文字列<BR>
 char players[5][20];<BR>
 </FONT><FONT size="-2"><BR>
-strcpy(players[0],&quot;/w �Ƃ������k\0&quot;);<BR>
-strcpy(players[1],&quot;/w �ƂJ������\0&quot;);<BR>
-strcpy(players[2],&quot;/w �g�E������\0&quot;);<BR>
-strcpy(players[3],&quot;/w �o�C�}���L��\0&quot;);<BR>
-strcpy(players[4],&quot;/w �f�V�}���L��\0&quot;);<BR>
+strcpy(players[0],&quot;/w とつげき東北\0&quot;);<BR>
+strcpy(players[1],&quot;/w とつ開発研究\0&quot;);<BR>
+strcpy(players[2],&quot;/w 紅孔雀さん\0&quot;);<BR>
+strcpy(players[3],&quot;/w バイマンキン\0&quot;);<BR>
+strcpy(players[4],&quot;/w デシマンキン\0&quot;);<BR>
 for(i=0;i&lt;5;i++)<BR>
-SendChat(players[i],0,0); //�`���b�g�ɕ����񑗐M<BR>
+SendChat(players[i],0,0); //チャットに文字列送信<BR>
 </FONT><FONT size="-2"><BR>
-//���ȉ��͑S�Ă̓�����I��������Ɉ�x�����s��<BR>
-//DLL�̊J��<BR>
+//★以下は全ての動作を終了した後に一度だけ行う<BR>
+//DLLの開放<BR>
 FreeLibrary( hDll );<BR>
 return 0;<BR>
 </FONT><FONT size="-2" color="#FF0000">}</FONT><FONT size="-2"><BR>
 </FONT><BR><BR><BR>
-<B><FONT size="+1">���s���ʉ��</FONT></B><BR>
+<B><FONT size="+1">実行結果画面</FONT></B><BR>
 <BR>
 <IMG src="MJexeIODLL.gif" width="586" height="411" border="0"><BR><BR>
-�����̉�ʂŏ�̃v���O���������s����ƁA���̂悤�Ɉ�u�ɂ��āu�ꊇ/w�v�����邱�Ƃ��ł��܂����B<BR>
-<FONT color="#0000FF">MJexeIO.dll�𗘗p����΁A��v�����̓R�s�y�ŁA�g������𐮂��{�^���Ȃǂ�z�u����΁A���p�I�ȃc�[������邱�Ƃ��ł���</FONT>���Ƃ����킩�肢���������ł��傤�B<BR><BR><BR><BR><BR><BR><BR><BR>
+東風の画面で上のプログラムを実行すると、このように一瞬にして「一括/w」をすることができました。<BR>
+<FONT color="#0000FF">MJexeIO.dllを利用すれば、主要部分はコピペで、使い勝手を整えボタンなどを配置すれば、実用的なツールを作ることができる</FONT>ことがおわかりいただけたでしょう。<BR><BR><BR><BR><BR><BR><BR><BR>
 <BR>
 <BR><BR><BR><BR><BR>
 <BR></P></BODY>

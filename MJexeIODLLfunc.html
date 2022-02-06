@@ -3,25 +3,25 @@
 <HEAD>
 <meta charset="UTF-8">
 <META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows">
-<TITLE>MJexeIO�J���҃}�j���A��</TITLE>
+<TITLE>MJexeIO開発者マニュアル</TITLE>
 </HEAD>
 <BODY background="1052.gif" alink="#ff7f00" bgcolor="#ffffff" link="#ff0000" text="#000000" vlink="#400080">
-<P><B><FONT size="+3"><IMG src="MJexeIO.gif" width="34" height="36" border="0">MJexeIO.DLL</FONT><FONT size="+1">�i��������ʓ��o�͗p�_�C�i�~�b�N�����N���C�u�����j�@�J���҃}�j���A��</FONT></B><BR>
+<P><B><FONT size="+3"><IMG src="MJexeIO.gif" width="34" height="36" border="0">MJexeIO.DLL</FONT><FONT size="+1">（東風荘画面入出力用ダイナミックリンクライブラリ）　開発者マニュアル</FONT></B><BR>
 <BR>
 <BR>
-<B><FONT size="+2">���g�p�@��</FONT></B><BR>
+<B><FONT size="+2">★使用法★</FONT></B><BR>
 <BR>
-�ʏ��DLL�Ɠ��l�ł��B���o�[�W�����ɂ̓w�b�_�t�@�C��������܂���B<BR>
-C++�ȊO����̗��p�@�́A�e���Œ��ׂĂ��������i����ۏ؂͂��܂��񂪗��p�\�ł��傤�B�ǂ���邩�܂ł͒m��܂���j�B<BR>
-����C++�@Builder�Ń{�^�����������Ƃ��Ƀh�����擾���ĕ\�����邽�߂̃T���v���R�[�h�ł��B<BR>
-��ʂɁA�����̉�ʂ���f�[�^��ǂގ��ɂ́A�����̉�ʂ����[�U�Ɍ����Ă��Ȃ���΂����܂���B<BR>
-���[�U�������̃E�C���h�E����ʒ[�ɒǂ�����Ă�����A���̃E�C���h�E�ɂ���Č����Ȃ��Ȃ��Ă���ꍇ�ɂ͂��܂������擾�ł��܂���B<BR>
-���̂悤�ȉ\���ɑ΂���G���[�`�F�b�N�͕ʓr�s���Ă��������B<BR>
+通常のDLLと同様です。現バージョンにはヘッダファイルがありません。<BR>
+C++以外からの利用法は、各自で調べてください（動作保証はしませんが利用可能でしょう。どうやるかまでは知りません）。<BR>
+下はC++　Builderでボタンを押したときにドラを取得して表示するためのサンプルコードです。<BR>
+一般に、東風の画面からデータを読む時には、東風の画面がユーザに見えていなければいけません。<BR>
+ユーザが東風のウインドウを画面端に追いやっていたり、他のウインドウによって見えなくなっている場合にはうまく情報を取得できません。<BR>
+そのような可能性に対するエラーチェックは別途行ってください。<BR>
 <BR>
-�i�ꕔ�̊֐����C���|�[�g���Ă��Ȃ���������Ȃ��B�K�v�Ȃ炱����Q�l�ɂ��āA�g�������֐���K�X�ǉ����邱�Ɓj<BR>
+（一部の関数をインポートしていないかもしれない。必要ならこれを参考にして、使いたい関数を適宜追加すること）<BR>
 <BR>
-//���ȉ��̓w�b�_�����ɋL�q<BR>
-//�C���|�[�g�֐��̌^��`�i���̊e�֐��̐�����ǂ�ŁA�����^�Œ�`���܂��j<BR>
+//★以下はヘッダ部分に記述<BR>
+//インポート関数の型定義（下の各関数の説明を読んで、同じ型で定義します）<BR>
 typedef int (*GETTEHAI)(int,int *);<BR>
 typedef int (*GETSUTEHAI)(int,int,int *);<BR>
 typedef int (*GETSUTEHAIEX)(int,int,int *,int
@@ -77,7 +77,7 @@ typedef int (*GETCHATLINENUM)(void);<BR>
 typedef int (*GETCHATLINE)(char *,int);<BR>
 typedef int (*GETPLAYINFO)(int *);<BR>
 <BR>
-//�C���|�[�g�֐��^�̊֐��ւ̃|�C���^�ϐ��錾<BR>
+//インポート関数型の関数へのポインタ変数宣言<BR>
 GETTEHAI GetTehai;<BR>
 GETSUTEHAI GetSutehai;<BR>
 GETSUTEHAIEX GetSutehaiEx;<BR>
@@ -125,25 +125,25 @@ GETCHATLINENUM GetChatLineNum;<BR>
 GETCHATLINE GetChatLine;<BR>
 GETPLAYINFO GetPlayInfo;<BR>
 <BR>
-//���ȉ����{�^���N���b�N�C�x���g���ɋL�q<BR>
-//<FONT color="#FF0000" size="+1"><B>���ӁI</B></FONT>�@<B>VisualC++�̏ꍇ</B>�A�L���X�g�̐������Ⴂ�܂��B<BR>
+//★以下をボタンクリックイベント内に記述<BR>
+//<FONT color="#FF0000" size="+1"><B>注意！</B></FONT>　<B>VisualC++の場合</B>、キャストの制限が違います。<BR>
 //GetHaiSize = ( GETHAISIZE )::GetProcAddress(
 hDll, &quot;_GetHaiSize&quot; ); <BR>
-//�̂悤�ȕ����ŃL���X�g�G���[���o��悤�ł��B<BR>
-//�R���p�C���̎w���ʂ�A������<BR>
+//のような部分でキャストエラーが出るようです。<BR>
+//コンパイラの指示通り、ここを<BR>
 //GetHaiSize = ( GETHAISIZE )::GetProcAddress(
 (struct HINSTANCE__ *)hDll, &quot;_GetHaiSize&quot;
 ); <BR>
-//�ɒ����Ă�邱�ƂŁA�R���p�C���ł��܂��B<BR>
+//に直してやることで、コンパイルできます。<BR>
 {<BR>
-int tmphai[51],size; //�ėp<BR>
+int tmphai[51],size; //汎用<BR>
 <BR>
 HANDLE hDll = ::LoadLibrary( &quot;MJexeIO.dll&quot;
-); //DLL�����[�h<BR>
-if(hDll==NULL){ShowMessage(&quot;DLL�I�[�v���ł��܂���&quot;);return;}
-//DLL���[�h�̃G���[�`�F�b�N<BR>
+); //DLLをロード<BR>
+if(hDll==NULL){ShowMessage(&quot;DLLオープンできません&quot;);return;}
+//DLLロードのエラーチェック<BR>
 <BR>
-//DLL����K�v�Ȋ֐����C���|�[�g<BR>
+//DLLから必要な関数をインポート<BR>
 GetHaiSize = ( GETHAISIZE )::GetProcAddress(
 hDll, &quot;_GetHaiSize&quot; ); <BR>
 GetDorahai = ( GETDORAHAI )::GetProcAddress(
@@ -206,198 +206,198 @@ GetChatLineNum = (GETCHATLINENUM)::GetProcAddress(hDll,&quot;_GetChatLineNum&quo
 GetChatLine = (GETCHATLINE)::GetProcAddress(hDll,&quot;_GetChatLine&quot;);<BR>
 GetPlayInfo = (GETPLAYINFO)::GetProcAddress(hDll,&quot;_GetPlayInfo&quot;);<BR>
 <BR>
-//DLL�֐��C���|�[�g�̃G���[�`�F�b�N�B���̗�ł͂Q�̊֐��������`�F�b�N���Ă���B<BR>
-if(GetHaiSize==NULL){ShowMessage(&quot;GetHaiSize�֐����C���|�[�g�ł��܂���&quot;);return;}
-//DLL�֐��C���|�[�g�̃G���[�`�F�b�N<BR>
-if(GetDorahai==NULL){ShowMessage(&quot;GetDoraHai�֐����C���|�[�g�ł��܂���&quot;);return;}
-//DLL�֐��C���|�[�g�̃G���[�`�F�b�N<BR>
+//DLL関数インポートのエラーチェック。この例では２つの関数だけをチェックしている。<BR>
+if(GetHaiSize==NULL){ShowMessage(&quot;GetHaiSize関数をインポートできません&quot;);return;}
+//DLL関数インポートのエラーチェック<BR>
+if(GetDorahai==NULL){ShowMessage(&quot;GetDoraHai関数をインポートできません&quot;);return;}
+//DLL関数インポートのエラーチェック<BR>
 <BR>
-//���ȉ������R�ɃR�[�f�B���O����<BR>
-//�g������<BR>
-size=GetHaiSize(); //�v�T�C�Y�擾<BR>
-GetDorahai(size,tmphai); //�h���\���v�̎擾<BR>
-ShowMessage((AnsiString)tmphai[1]); //�h���\���v�̕\��<BR>
-//���ȏ�����R�ɃR�[�f�B���O����<BR>
+//★以下を自由にコーディングする<BR>
+//使い方例<BR>
+size=GetHaiSize(); //牌サイズ取得<BR>
+GetDorahai(size,tmphai); //ドラ表示牌の取得<BR>
+ShowMessage((AnsiString)tmphai[1]); //ドラ表示牌の表示<BR>
+//★以上を自由にコーディングする<BR>
 <BR>
-//���ȉ��͑S�Ă̓�����I��������Ɉ�x�����s��<BR>
-//DLL�̊J��<BR>
+//★以下は全ての動作を終了した後に一度だけ行う<BR>
+//DLLの開放<BR>
 FreeLibrary( hDll );<BR>
 }<BR>
 <BR>
 <BR>
-<B><FONT size="+2">���g�p�̃q���g��</FONT></B><BR>
+<B><FONT size="+2">★使用のヒント★</FONT></B><BR>
 <BR>
-����̏����擾���邽�߂ɂ͂قƂ�ǕK���A�v�̃T�C�Y��񂪕K�v�ɂȂ�̂ŁA��̗�̂悤�ɔv�T�C�Y���ŏ��Ɏ擾����悤�ɂ��܂��傤�B<BR>
+卓内の情報を取得するためにはほとんど必ず、牌のサイズ情報が必要になるので、上の例のように牌サイズを最初に取得するようにしましょう。<BR>
 <BR>
-�܂��͏�̃T���v���R�[�h�����s���Ă݂܂��傤�B�����Ɠ������̑��ʂ��o������ԂŎ��s����΁A�h���\���v�̔v�ԍ����\�������͂��ł��B<BR>
-//�g������@�̕����������̍D���ȃR�[�h�ɏ��������邱�ƂŁA���������o�͋@�\���������\�t�g�E�F�A����y�ɃR�[�f�B���O�ł��܂��B<BR>
-���̊֐����g���ꍇ�A��ƑS�����l�ɂ���Η��p�ł��܂��B<BR>
+まずは上のサンプルコードを実行してみましょう。ちゃんと東風荘の卓画面を出した状態で実行すれば、ドラ表示牌の牌番号が表示されるはずです。<BR>
+//使い方例　の部分を自分の好きなコードに書き換えることで、東風荘入出力機能を持ったソフトウェアを手軽にコーディングできます。<BR>
+他の関数を使う場合、上と全く同様にすれば利用できます。<BR>
 <BR>
-�֐��ւ̃|�C���^���擾���Ă��܂��΁A�ʏ�̊֐��Ƃ܂��������l��<BR>
+関数へのポインタを取得してしまえば、通常の関数とまったく同様に<BR>
 ShowMessage(GetDLLVersion(MspWnd));<BR>
-�̂悤�Ɏg�p�ł��܂��B<BR>
+のように使用できます。<BR>
 <BR>
-���̃y�[�W�̈�ԉ��ɁA���ۂɂ���DLL���g���āu��Ɍ����Ă���v�̖������J�E���g����v�T���v���R�[�h�����Ă����܂��B<BR>
-�Q�l�ɂ��Ă��������B<BR>
-<BR>
-<BR>
-<B><FONT size="+2">����`��</FONT></B><BR>
-<BR>
-<B><FONT size="+1">�EMode�i�Ԕv�̈����j</FONT></B><BR>
-<BR>
-MJexeIO.dll�������̉�ʂ���v��ǂݏo���悤�ȑS�Ă̏󋵂ɂ��āA�Ԕv���ǂ��F�����邩���AMode�Ƃ��Ďw�肵�܂��B<BR>
-Mode��SetMode�i�j�֐��ŕύX���܂��B<BR>
-������Ԃł�Mode=0�ŁA���̏�Ԃł́A�Ԕv�͒P�Ȃ�ʏ�v�ƔF������܂��B<BR>
-�Ⴆ�΃h������5�}���̎��AMode=0��GetDoraHai�i�j���Ăяo���ƁAMJexeIO.dll�́u5�i5�}���j�v��Ԃ��܂��B<BR>
-Mode=1�̏ꍇ�A�Ԕv��Ԕv�ł���Ƃ݂Ȃ��A���̌�v�ԍ����擾����悤�ȏꍇ�ɁA���ʂȔv�ԍ���Ԃ��܂��B<BR>
-�Ⴆ�΃h������5�}���̎��AMode=1��GetDoraHai�i�j���Ăяo���ƁAMJexeIO.dll�́u38�i��5�}���j�v��Ԃ��܂��B<BR>
-<FONT color="#FF0000">�������A�e���p�C�`�F�b�N�Ȃǂ��s���ꍇ�iCheck_tenpai�֐��j�A���ʂȔv�ԍ����܂񂾂܂܂ł͓��삵�܂���B</FONT><BR>
-�����܂ł��v�̓ǂݏo���̕Ԃ�l�ɂ����ĐԔv�ɑΉ����邩�ǂ����ł����āA���̗l�X�ȏ���������ꍇ�́A�v�ԍ��̒������s���K�v������܂��̂Œ��ӂ��Ă��������B<BR>
-<BR>
-<B><FONT size="+1">�E�v�̕\����</FONT></B><BR>
-�v�ԍ��Ǝ��ۂ̔v�̎�ނ́A���̂悤�ɑΉ��t�����Ă��܂��B<BR>
-1�@1�}��<BR>
-2�@2�}��<BR>
-�E�E�E<BR>
-5�@5�}���܂��͐�5�}���iMode�ɂ��j<BR>
-�E�E�E<BR>
-9�@9�}��<BR>
-10�@����`<BR>
-<BR>
-11�@1�s��<BR>
-12�@2�s��<BR>
-�E�E�E<BR>
-15�@5�s���܂��͐�5�s���iMode�ɂ��j<BR>
-�E�E�E<BR>
-19�@9�s��<BR>
-20�@����`<BR>
-<BR>
-21�@1�\�E<BR>
-22�@2�\�E<BR>
-�E�E�E<BR>
-25�@5�\�E�܂��͐�5�\�E�iMode�ɂ��j<BR>
-�E�E�E<BR>
-29�@9�\�E<BR>
-30�@����`<BR>
-<BR>
-31�@��<BR>
-32�@��<BR>
-33�@��<BR>
-34�@�k<BR>
-35�@��<BR>
-36�@��<BR>
-37�@��<BR>
-<BR>
-38�@����`�܂��͐�5�}���iMode�ɂ��j<BR>
-39�@����`�܂��͐�5�s���iMode�ɂ��j<BR>
-40�@����`�܂��͐�5�\�E�iMode�ɂ��j<BR>
-<BR>
-41�@�������̔v�iv0.77�ȑO�̃o�[�W�����ł�255�ł����j<BR>
-<BR>
-�v�̎�ނƂ���0�`33�Ȃǂ��g�����̂������Ǝv���܂����A�����I�ɂ킩��₷�����Ė��p�ȃo�O���o���ɂ������邽�߂ɁA���̂悤�Ɍ��߂��Ă��܂��B<BR>
-�s�s���Ȃ�ϊ��p�̊֐���p�ӂ��Ďg���Ă��������B<BR>
-�v�̏��������Ƃ��́Aint��50�ȏ�̃T�C�Y�̔z���p�ӂ��Ďg�����Ƃ𐄏����܂��B<BR>
-<BR>
-<B><FONT size="+1">�E�֐��̕Ԃ�l�Ƃ��Ắ@-255</FONT></B><BR>
-�֐���-255�̕Ԃ�l�����Ƃ��A�������̃E�C���h�E�n���h���܂��̓f�o�C�X�R���e�L�X�g�̎擾�Ɏ��s�������Ƃ��Ӗ����܂��B<BR>
-��̓I�ɂ́A���������N�����Ă��Ȃ����A�������̑ΐ���ʂł̂ݗL���Ȋ֐���ҍ����ŌĂяo�����ꍇ�Ȃǂɂ��̒l���Ԃ�܂��B<BR>
+このページの一番下に、実際にこのDLLを使って「場に見えている牌の枚数をカウントする」サンプルコードをつけておきます。<BR>
+参考にしてください。<BR>
 <BR>
 <BR>
-<B><FONT size="+1"><FONT size="+2">���֐��}�j���A����</FONT><BR>
+<B><FONT size="+2">★定義★</FONT></B><BR>
+<BR>
+<B><FONT size="+1">・Mode（赤牌の扱い）</FONT></B><BR>
+<BR>
+MJexeIO.dllが東風の画面から牌を読み出すような全ての状況について、赤牌をどう認識するかを、Modeとして指定します。<BR>
+ModeはSetMode（）関数で変更します。<BR>
+初期状態ではMode=0で、この状態では、赤牌は単なる通常牌と認識されます。<BR>
+例えばドラが赤5マンの時、Mode=0でGetDoraHai（）を呼び出すと、MJexeIO.dllは「5（5マン）」を返します。<BR>
+Mode=1の場合、赤牌を赤牌であるとみなし、その後牌番号を取得するような場合に、特別な牌番号を返します。<BR>
+例えばドラが赤5マンの時、Mode=1でGetDoraHai（）を呼び出すと、MJexeIO.dllは「38（赤5マン）」を返します。<BR>
+<FONT color="#FF0000">ただし、テンパイチェックなどを行う場合（Check_tenpai関数）、特別な牌番号を含んだままでは動作しません。</FONT><BR>
+あくまでも牌の読み出しの返り値において赤牌に対応するかどうかであって、他の様々な処理をする場合は、牌番号の調整を行う必要がありますので注意してください。<BR>
+<BR>
+<B><FONT size="+1">・牌の表し方</FONT></B><BR>
+牌番号と実際の牌の種類は、次のように対応付けられています。<BR>
+1　1マン<BR>
+2　2マン<BR>
+・・・<BR>
+5　5マンまたは赤5マン（Modeによる）<BR>
+・・・<BR>
+9　9マン<BR>
+10　未定義<BR>
+<BR>
+11　1ピン<BR>
+12　2ピン<BR>
+・・・<BR>
+15　5ピンまたは赤5ピン（Modeによる）<BR>
+・・・<BR>
+19　9ピン<BR>
+20　未定義<BR>
+<BR>
+21　1ソウ<BR>
+22　2ソウ<BR>
+・・・<BR>
+25　5ソウまたは赤5ソウ（Modeによる）<BR>
+・・・<BR>
+29　9ソウ<BR>
+30　未定義<BR>
+<BR>
+31　東<BR>
+32　南<BR>
+33　西<BR>
+34　北<BR>
+35　白<BR>
+36　発<BR>
+37　中<BR>
+<BR>
+38　未定義または赤5マン（Modeによる）<BR>
+39　未定義または赤5ピン（Modeによる）<BR>
+40　未定義または赤5ソウ（Modeによる）<BR>
+<BR>
+41　裏向けの牌（v0.77以前のバージョンでは255でした）<BR>
+<BR>
+牌の種類として0～33などを使うものも多いと思いますが、直感的にわかりやすくして無用なバグを出しにくくするために、このように決められています。<BR>
+不都合なら変換用の関数を用意して使ってください。<BR>
+牌の情報を扱うときは、intで50以上のサイズの配列を用意して使うことを推奨します。<BR>
+<BR>
+<B><FONT size="+1">・関数の返り値としての　-255</FONT></B><BR>
+関数が-255の返り値を持つとき、東風荘のウインドウハンドルまたはデバイスコンテキストの取得に失敗したことを意味します。<BR>
+具体的には、東風荘が起動していないか、東風荘の対戦卓画面でのみ有効な関数を待合室で呼び出した場合などにこの値が返ります。<BR>
+<BR>
+<BR>
+<B><FONT size="+1"><FONT size="+2">★関数マニュアル★</FONT><BR>
 </FONT></B><BR>
 <BR>
-<B><A name="CanselTonpuConnection"></A><FONT size="+1">int CanselTonpuConnection()</FONT></B>�@�@�i�g�E������J���j<BR>
+<B><A name="CanselTonpuConnection"></A><FONT size="+1">int CanselTonpuConnection()</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�����ڑ����s���L�����Z������B<BR>
+東風接続試行をキャンセルする。<BR>
 <BR>
-[����]<BR>
+[引数]<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���s<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　失敗<BR>
 <BR>
 <BR>
 <A name="Check_tenpai"></A><B><FONT size="+1">int Check_tenpai(int pai[],int agari[])</FONT></B><BR>
 <BR>
-�e���p�C�`�F�b�N���s���֐��B<BR>
-pai[]�ɂ́A�e�X�̔v�̖���������B<BR>
-�������Apai[]�ɐԔv���܂܂�Ă���Ɛ���ɓ��삵�Ȃ��̂Œ��ӁB�Ԕv�����pai[]���e���p�C�`�F�b�N����ꍇ�ATehaiNormalize�Ő��K�����Ă���s���B<BR>
-�z��agari[]�ɂ́A������v�̐������Ԃ�i�Ⴆ�΁A�S�݂ƂV�݂̑҂��Ȃ�Aagari_pai[1]��4���Aagari_pai[2]��7���Ԃ�B[3]�ȉ���0�j�B<BR>
-�������Aagari_pai[0]�ɂ́A�オ��v���S���ł������邩�̌����Ԃ�i��̏ꍇ����2�j�B<BR>
-<FONT color="#FF0000">���̊֐��́A�����܂ł��u�t�[�����Ă��Ȃ��v�̍\���v�����ɂ��Ẵ`�F�b�N���s�����̂ł���B<BR>
-�|����J����`�[�����v�ɂ��ẮApai[]���珜�O���˂΂Ȃ�Ȃ����A���̊֐��͂���ɂ��Ă͊֒m���Ȃ��B<BR>
-�Ⴆ�΁A�R�t�[�����ā@1m2m7m7m�@�Ƃ����`�ł���΁A����́u�y���`�����e���p�C�v�Ƃ݂Ȃ���A3m�𓖂���v�Ƃ��ĕԂ��B<BR>
+テンパイチェックを行う関数。<BR>
+pai[]には、各々の牌の枚数が入る。<BR>
+ただし、pai[]に赤牌が含まれていると正常に動作しないので注意。赤牌入りのpai[]をテンパイチェックする場合、TehaiNormalizeで正規化してから行う。<BR>
+配列agari[]には、あがり牌の数字が返る（例えば、４萬と７萬の待ちなら、agari_pai[1]に4が、agari_pai[2]に7が返る。[3]以下は0）。<BR>
+ただし、agari_pai[0]には、上がり牌が全部でいくつあるかの個数が返る（上の場合だと2）。<BR>
+<FONT color="#FF0000">この関数は、あくまでも「フーロしていない牌の構成」部分についてのチェックを行うものである。<BR>
+ポンやカンやチーした牌については、pai[]から除外せねばならないし、この関数はそれについては関知しない。<BR>
+例えば、３フーロして　1m2m7m7m　という形であれば、これは「ペンチャンテンパイ」とみなされ、3mを当たり牌として返す。<BR>
 </FONT><BR>
-[����]<BR>
-pai[] ��v�̔z��B<BR>
-agari[] �オ��v����Ԃ����߂̔z��B<BR>
+[引数]<BR>
+pai[] 手牌の配列。<BR>
+agari[] 上がり牌情報を返すための配列。<BR>
 <BR>
-[�Ԃ�l]<BR>
-�����������҂��Ȃ�1�A�V�����|���҂��Ȃ�2�A�J���`�����҂��Ȃ�3�A�y���`�����҂��Ȃ�4�A�P�R�҂��Ȃ��5�A������v���R�ȏ゠��ꍇ��6�A���̑��̏ꍇ��7��Ԃ��B<BR>
-�m�[�e���Ȃ��0��Ԃ��B�܂�����ȏꍇ�Ƃ��āA���m13�ʑ҂��̏ꍇ8��Ԃ��B<BR>
-�Ȃ��A1112�Ȃǂ̌`�ɂ��Ă����A���̑҂��̌`���A������v6���ȏ㎝������`�ł���ꍇ�i1234��14�҂��Ȃǁj�A��ʂɃ��������������ɂȂ�<BR>
-agari[0]�@�オ��v�̌��B<BR>
-agari[1�`20]�@�e�X�̏オ��v�̔ԍ��B<BR>
+[返り値]<BR>
+リャンメン待ちなら1、シャンポン待ちなら2、カンチャン待ちなら3、ペンチャン待ちなら4、単騎待ちならば5、あがり牌が３つ以上ある場合は6、その他の場合は7を返す。<BR>
+ノーテンならば0を返す。また特殊な場合として、国士13面待ちの場合8を返す。<BR>
+なお、1112などの形についてだが、その待ちの形が、当たり牌6枚以上持ち得る形である場合（1234の14待ちなど）、一般にリャンメン扱いになる<BR>
+agari[0]　上がり牌の個数。<BR>
+agari[1～20]　各々の上がり牌の番号。<BR>
 <BR>
-�E���ӓ_<BR>
-�҂��̌`�̕Ԃ�l�͖ڈ��ł���B1���A��������Ƃ����āA�K�������X�W�҂��Ƃ͌���Ȃ��̂Œ��ӂ���B�ڂ�����agari[]�̓��e���画�f���邱�ƁB<BR>
+・注意点<BR>
+待ちの形の返り値は目安である。1が帰ったからといって、必ずしもスジ待ちとは限らないので注意する。詳しくはagari[]の内容から判断すること。<BR>
 <BR>
 <BR>
 <A name="Check_agari"></A><B><FONT size="+1">int Check_agari(int pai[],int x)</FONT></B><BR>
 <BR>
-pai[]�ɗ^����ꂽ�v�\����<FONT color="#FF0000">�u�ʏ��v�ɑ΂���</FONT>�A�vx���オ��v�ł��邩�ǂ�����Ԃ��B<BR>
-�u�ʏ��v�Ƃ́A���m���o�ƃ`�[�g�C�c�������S�Ă̎�̂��Ƃł���B<BR>
-<FONT color="#FF0000">Check_tenpai�Ɠ��l�̒��ӂ��K�v�ł���B<BR>
-�Ⴆ�΁Apai[]�Ɂu1m2m�v�����̏�񂪓����Ă���Ƃ��A3m�́u�オ��v�ł���v�Ƃ݂Ȃ����B<BR>
-�v����ɁApai[]�ŗ^����ꂽ�v�{���ŗ^����ꂽ�v�̑g�ݍ��킹�ɑ΂��āA�����̃����c�ƂP�̓��������o����Ƃ��A�オ��ƌ��Ȃ����B</FONT><BR>
+pai[]に与えられた牌構成の<FONT color="#FF0000">「通常手」に対して</FONT>、牌xが上がり牌であるかどうかを返す。<BR>
+「通常手」とは、国士無双とチートイツを除く全ての手のことである。<BR>
+<FONT color="#FF0000">Check_tenpaiと同様の注意が必要である。<BR>
+例えば、pai[]に「1m2m」だけの情報が入っているとき、3mは「上がり牌である」とみなされる。<BR>
+要するに、pai[]で与えられた牌＋ｘで与えられた牌の組み合わせに対して、整数個のメンツと１つの頭が抜き出せるとき、上がりと見なされる。</FONT><BR>
 <BR>
-[����]<BR>
-pai[]�@��v�̔z��B<BR>
-x�@�オ��v�ł��邩�ǂ������ׂ�v�B<BR>
+[引数]<BR>
+pai[]　手牌の配列。<BR>
+x　上がり牌であるかどうか調べる牌。<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@�オ��v�łȂ�<BR>
-���̑��@�オ��v�ł���i�l�́ACheck_tenpai����g���邽�߂ɑ҂��̌`�Ȃǂɂ���ĕω����邪�A�����Check_tenpai�̕Ԃ�l�ƕK��������v���Ȃ��j<BR>
+[返り値]<BR>
+0　上がり牌でない<BR>
+その他　上がり牌である（値は、Check_tenpaiから使われるために待ちの形などによって変化するが、これはCheck_tenpaiの返り値と必ずしも一致しない）<BR>
 <BR>
 <BR>
-<A name="ExistAvailableFunctionKey"></A><B><FONT size="+1">int ExistAvailableFunctionKey(int size)</FONT></B>�@�@�i�g�E������J���j<BR>
+<A name="ExistAvailableFunctionKey"></A><B><FONT size="+1">int ExistAvailableFunctionKey(int size)</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�����̉�ʂŁA�{�^�����o�Ă��邩���擾����֐��B<BR>
+東風の画面で、ボタンが出ているかを取得する関数。<BR>
 <BR>
-[����]<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
+[引数]<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@���������Ȃ�<BR>
-1�@������������<BR>
--1�@�G���[�i�擾���s�j<BR>
+[返り値]<BR>
+0　何も押せない<BR>
+1　何かが押せる<BR>
+-1　エラー（取得失敗）<BR>
 <BR>
 <BR>
 <A name="ext_GetHai"></A><B><FONT size="+1">int ext_GetHai(int sizes,int x,int y,int
 houkou)</FONT></B><BR>
 <BR>
-�����̉�ʏ�ɂ���v���ǂ݁A�v�ԍ���Ԃ��B<BR>
+東風の画面上にある牌画を読み、牌番号を返す。<BR>
 <BR>
-[����]<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
-x,y�@�u�v�̍���_�v���A�����̉�ʂ̃f�o�C�X�R���e�L�X�g��̑��΍��W�Ŏ����B�v�̍���_�́A�u�v�̃f�U�C����̍���v�ł����āA���ۂ̉�ʏ�ł͔v�̌����ɂ���āu����v�Ƃ͌���Ȃ��B<BR>
-houkou�@�ǂݍ��݂����v�̌������w�肷��B1�������̔v�i���ʌ����j�@2�����Ƃ̔v�i���ʂ̔v������90�x��]�������́j�@3����Ƃ̔v�i180�x��]�j�@4����Ƃ̔v�i270�x��]�j<BR>
+[引数]<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
+x,y　「牌の左上点」を、東風の画面のデバイスコンテキスト上の相対座標で示す。牌の左上点は、「牌のデザイン上の左上」であって、実際の画面上では牌の向きによって「左上」とは限らない。<BR>
+houkou　読み込みたい牌の向きを指定する。1＝自分の牌（正面向き）　2＝下家の牌（正面の牌を左に90度回転したもの）　3＝上家の牌（180度回転）　4＝上家の牌（270度回転）<BR>
 <BR>
 <BR>
 <A name="GetAvailableFunctionKey"></A><B><FONT size="+1">int GetAvailableFunctionKey(int *flags,int
-size)</FONT></B>�@�@�i�g�E������J���j<BR>
+size)</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�����̉�ʂŁA�uF3�@���֐i�ށv�Ȃǂ̃{�^�����o�Ă��邩�A�o�Ă���Ȃ炻�̕\�L�͂ǂ��ł��邩���擾����֐��B<BR>
-���ʂ�flags[]�ɕԂ�Bflags[]�͗v�f��10�ȏ�̃T�C�Y�ɂ��邱�ƁB<BR>
+東風の画面で、「F3　次へ進む」などのボタンが出ているか、出ているならその表記はどうであるかを取得する関数。<BR>
+結果はflags[]に返る。flags[]は要素数10以上のサイズにすること。<BR>
 <BR>
-[����]<BR>
-flags[x]�@�L�[x���������Ԃɂ��邩�A�܂�������ꍇ���̕\�L���ǂ��ł��邩��Ԃ����߂̔z��B<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
+[引数]<BR>
+flags[x]　キーxが押せる状態にあるか、また押せる場合その表記がどうであるかを返すための配列。<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@�擾����<BR>
--1�@�G���[<BR>
-flags[]�@�ɁA�ȉ��̕\�̂悤�ɐ��l���Ԃ�B</P>
+[返り値]<BR>
+0　取得成功<BR>
+-1　エラー<BR>
+flags[]　に、以下の表のように数値が返る。</P>
 <TABLE border="1">
   <TBODY>
     <TR>
@@ -409,769 +409,769 @@ flags[]�@�ɁA�ȉ��̕\�̂悤�ɐ��l���Ԃ�B</P>
     </TR>
     <TR>
       <TD>x=2</TD>
-      <TD>�iF2�{�^���Ȃ��j</TD>
-      <TD>F2�̂Ĕv�\��</TD>
-      <TD>�i����`�j</TD>
-      <TD>�i����`�j</TD>
+      <TD>（F2ボタンなし）</TD>
+      <TD>F2捨て牌表示</TD>
+      <TD>（未定義）</TD>
+      <TD>（未定義）</TD>
     </TR>
     <TR>
       <TD>x=3</TD>
-      <TD>�iF3�{�^���Ȃ��j</TD>
-      <TD>F3���֐i��</TD>
-      <TD>F3���_�\��</TD>
-      <TD>�i����`�j</TD>
+      <TD>（F3ボタンなし）</TD>
+      <TD>F3次へ進む</TD>
+      <TD>F3得点表示</TD>
+      <TD>（未定義）</TD>
     </TR>
     <TR>
       <TD>x=4</TD>
-      <TD>�iF4�{�^���Ȃ��j</TD>
-      <TD>F4�ϐ�I��</TD>
-      <TD>F4�I��</TD>
-      <TD>�i����`�j</TD>
+      <TD>（F4ボタンなし）</TD>
+      <TD>F4観戦終了</TD>
+      <TD>F4終了</TD>
+      <TD>（未定義）</TD>
     </TR>
     <TR>
       <TD>x=5</TD>
-      <TD>�iF5�{�^���Ȃ��j</TD>
-      <TD>F5���i���]�Ȃ��j</TD>
-      <TD>F5���i���]���j</TD>
-      <TD>F5����</TD>
+      <TD>（F5ボタンなし）</TD>
+      <TD>F5鳴無（反転なし）</TD>
+      <TD>F5鳴無（反転中）</TD>
+      <TD>F5無し</TD>
     </TR>
     <TR>
       <TD>x=6</TD>
-      <TD>�iF6�{�^���Ȃ��j</TD>
-      <TD>F6�J��</TD>
-      <TD>�i����`�j</TD>
-      <TD>�i����`�j</TD>
+      <TD>（F6ボタンなし）</TD>
+      <TD>F6カン</TD>
+      <TD>（未定義）</TD>
+      <TD>（未定義）</TD>
     </TR>
     <TR>
       <TD>x=7</TD>
-      <TD>�iF7�{�^���Ȃ��j</TD>
-      <TD>F7�|��</TD>
-      <TD>F7���[�`�i���]�Ȃ��j</TD>
-      <TD>F7���[�`�i���]���j</TD>
+      <TD>（F7ボタンなし）</TD>
+      <TD>F7ポン</TD>
+      <TD>F7リーチ（反転なし）</TD>
+      <TD>F7リーチ（反転中）</TD>
     </TR>
     <TR>
       <TD>x=8</TD>
-      <TD>�iF8�{�^���Ȃ��j</TD>
-      <TD>F8�`�[�i���]�Ȃ��j</TD>
-      <TD>F8�`�[�i���]����j</TD>
-      <TD>F8�|�v</TD>
+      <TD>（F8ボタンなし）</TD>
+      <TD>F8チー（反転なし）</TD>
+      <TD>F8チー（反転あり）</TD>
+      <TD>F8倒牌</TD>
     </TR>
     <TR>
       <TD>x=9</TD>
-      <TD>�iF9�{�^���Ȃ��j</TD>
-      <TD>F9�c��</TD>
-      <TD>F9����</TD>
-      <TD>�i����`�j</TD>
+      <TD>（F9ボタンなし）</TD>
+      <TD>F9ツモ</TD>
+      <TD>F9ロン</TD>
+      <TD>（未定義）</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
 <BR>
-<B><A name="GetChatLine"></A><FONT size="+1">int GetChatLine(char * str,int index)</FONT></B>�@�@�i�g�E������J���j<BR>
+<B><A name="GetChatLine"></A><FONT size="+1">int GetChatLine(char * str,int index)</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�`���b�g���́A�w�肵���s�̕�������擾����֐��B�ΐ��ʂł��ҍ��ł����l�Ɏg����B<BR>
+チャット欄の、指定した行の文字列を取得する関数。対戦画面でも待合でも同様に使える。<BR>
 <BR>
-[����]<BR>
-str�@��������󂯎�邽�߂̕����^�z��ւ̃|�C���^<BR>
-index�@�󂯎�肽���s���w�肷��B0���`���b�g���̍ŏ�i�̍s�ŁA�ŐV�̂��̂ɋ߂Â��΋߂Â��قǒl��������B<BR>
+[引数]<BR>
+str　文字列を受け取るための文字型配列へのポインタ<BR>
+index　受け取りたい行を指定する。0がチャット欄の最上段の行で、最新のものに近づけば近づくほど値が増える。<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���s<BR>
-�擾���邽�߂Ɏw�肵���s�����݂��Ȃ��ꍇ��A�G���[���o���ꍇ�Ȃǂ́Astr��\0���Ԃ邱�Ƃ��ۏႳ���B<BR>
-�Ȃ��A�`���b�g���ɉ����\������Ă��Ȃ����ɌĂяo���ƁA�֐��S�̂Ƃ��Ă�0�i�����j��Ԃ����Astr��\0�ɂȂ�B<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　失敗<BR>
+取得するために指定した行が存在しない場合や、エラーが出た場合などは、strに\0が返ることが保障される。<BR>
+なお、チャット欄に何も表示されていない時に呼び出すと、関数全体としては0（成功）を返すが、strは\0になる。<BR>
 <BR>
 <BR>
-<B><A name="GetChatLineNum"></A><FONT size="+1">int GetChatLineNum()</FONT></B>�@�@�i�g�E������J���j<BR>
+<B><A name="GetChatLineNum"></A><FONT size="+1">int GetChatLineNum()</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�`���b�g���̍s����Ԃ��֐��B����Ŏ擾�����l����1��������index��^����GetChatLine���Ăяo���΁A�ŐV�̔������擾�ł���B<BR>
+チャット欄の行数を返す関数。これで取得した値から1を引いたindexを与えてGetChatLineを呼び出せば、最新の発言を取得できる。<BR>
 <BR>
-[����]<BR>
+[引数]<BR>
 <BR>
-[�Ԃ�l]<BR>
-n�@�`���b�g����n�s����i������0�s�̏ꍇ�͓��ʂ�1���Ԃ�j<BR>
--1�@���s<BR>
+[返り値]<BR>
+n　チャット欄はn行ある（ただし0行の場合は特別に1が返る）<BR>
+-1　失敗<BR>
 <BR>
 <BR>
 <B><A name="GetCursorDCPos"></A><FONT size="+1">bool GetCursorDCPos(LPRECT lprect)</FONT></B><BR>
 <BR>
-API��GetCursorPos�ƑS�������`���Ŏg���A�}�E�X�J�[�\���̍��W���A�������̑ΐ��ʂ̃f�o�C�X�R���e�L�X�g��̑��Έʒu�ŕԂ��B<BR>
+APIのGetCursorPosと全く同じ形式で使え、マウスカーソルの座標を、東風荘の対戦画面のデバイスコンテキスト上の相対位置で返す。<BR>
 <BR>
-[����]<BR>
-lprect�@XY���W���i�[����RECT�\���̂ւ̃|�C���^<BR>
+[引数]<BR>
+lprect　XY座標を格納するRECT構造体へのポインタ<BR>
 <BR>
-[�Ԃ�l]<BR>
-true�@����<BR>
-false�@���s<BR>
+[返り値]<BR>
+true　成功<BR>
+false　失敗<BR>
 <BR>
 <BR>
 <FONT size="+1"><A name="GetDLLVersion"></A><B>int GetDLLVersion(void)</B></FONT><BR>
 <BR>
-DLL�̃o�[�W�����ԍ����擾����֐��B<BR>
+DLLのバージョン番号を取得する関数。<BR>
 <BR>
-[����]<BR>
-�Ȃ�<BR>
+[引数]<BR>
+なし<BR>
 <BR>
-[�Ԃ�l]<BR>
-�o�[�W�����ԍ���100�{�̐����l�i3.20�Ȃ�320�j�B<BR>
+[返り値]<BR>
+バージョン番号の100倍の整数値（3.20なら320）。<BR>
 <BR>
 <BR>
 <A name="GetCursorDCPos"></A><FONT size="+1"><A name="GetDorahai"></A><B>int GetDorahai(int size,int *dorahai)</B></FONT><BR>
 <BR>
-�h���\���v��Ԃ��B<BR>
+ドラ表示牌を返す。<BR>
 <BR>
-[����]<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
-dorahai�@�h���\���v�����󂯎�邽�߂�int�z����w���|�C���^<BR>
+[引数]<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
+dorahai　ドラ表示牌情報を受け取るためのint配列を指すポインタ<BR>
 <BR>
-[�Ԃ�l]<BR>
--1�@size���ُ�<BR>
-0�@�擾���s<BR>
-dorahai[0�`]�ɂ͈ȉ��̏�񂪕Ԃ�B<BR>
-[0]�h���\���v�̖���<BR>
-[1]�h���\���v�i1�߁j�̔v�ԍ�<BR>
-[2]�h���\���v�i2�߁j�̔v�ԍ�<BR>
-�E�E�E<BR>
+[返り値]<BR>
+-1　sizeが異常<BR>
+0　取得失敗<BR>
+dorahai[0～]には以下の情報が返る。<BR>
+[0]ドラ表示牌の枚数<BR>
+[1]ドラ表示牌（1つめ）の牌番号<BR>
+[2]ドラ表示牌（2つめ）の牌番号<BR>
+・・・<BR>
 <BR>
 <BR>
 <B><A name="GetExtendInformation"></A><FONT size="+1">int GetExtendInformation(int * mem,int sizes)</FONT></B><BR>
 <BR>
-DLL�̊g����Ɨ̈�̃f�[�^���w��o�C�g�������ǂݏo���֐��B<BR>
-�Ⴆ�Ό��o�[�W�����ŁA����֐����i�j�́A���`�Ə��a���擾���邽�߂̊֐��������Ƃ���B<BR>
-�����ŁA�֐����i�j�ɁA�V�������b���擾����@�\������K�v���������Ƃ���B<BR>
-�Ƃ��낪�A���Ղɂ��i�j�̈�����Ԃ�l��ύX�����Ă��܂��ƁA�݊������ۂĂ��A����܂ł��i�j���g�p���Ă������[�U���������Ă��܂��B<BR>
-���̂悤�ȏꍇ�A���i�j�́A������Ԃ�l���͍̂��܂Œʂ�ŁADLL�̊g����Ɨ̈�ɏ��b���������ނ悤�ɕύX�����B<BR>
-�]���̃��[�U�͖��ӎ��ɂ���܂łƓ������`�A���a���擾�ł��A�܂��g����Ɨ̈��ǂݏo�����ƂŁA���b�𓾂邱�Ƃ��ł���悤�ɂȂ�B<BR>
-�����I�ɁA�S�Ă̊֐��́A�g����Ɨ̈�ɏ������݂��s���\��������Ƃ���B���������ēǂݏo���͕K���A�֐����Ă񂾒���ɍs���K�v������B<BR>
+DLLの拡張作業領域のデータを指定バイト数だけ読み出す関数。<BR>
+例えば現バージョンで、ある関数ｆ（）は、情報Ａと情報Ｂを取得するための関数だったとする。<BR>
+ここで、関数ｆ（）に、新しく情報Ｃを取得する機能もつける必要が生じたとする。<BR>
+ところが、安易にｆ（）の引数や返り値を変更させてしまうと、互換性が保てず、これまでｆ（）を使用していたユーザが混乱してしまう。<BR>
+このような場合、ｆ（）は、引数や返り値自体は今まで通りで、DLLの拡張作業領域に情報Ｃを書き込むように変更される。<BR>
+従来のユーザは無意識にこれまでと同じ情報Ａ、情報Ｂを取得でき、また拡張作業領域を読み出すことで、情報Ｃを得ることもできるようになる。<BR>
+将来的に、全ての関数は、拡張作業領域に書き込みを行う可能性があるとする。したがって読み出しは必ず、関数を呼んだ直後に行う必要がある。<BR>
 <BR>
-[����]<BR>
-mem�@�g����Ɨ̈�̃f�[�^���R�s�[���邽�߂�int�z��ւ̃|�C���^�B<BR>
-sizes�@�R�s�[����o�C�g���B<BR>
+[引数]<BR>
+mem　拡張作業領域のデータをコピーするためのint配列へのポインタ。<BR>
+sizes　コピーするバイト数。<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@�T�C�Y���ُ�i�R�s�[�T�C�Y0�ɂ����ꍇ��-1���A��j<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　サイズが異常（コピーサイズ0にした場合も-1が帰る）<BR>
 <BR>
 <BR>
 <B><A name="GetExtendInformationSize"></A><FONT size="+1">int GetExtendInformationSize()</FONT></B><BR>
 <BR>
-�g����Ɨ̈�̃T�C�Y���o�C�g���ŕԂ��֐��B<BR>
+拡張作業領域のサイズをバイト数で返す関数。<BR>
 <BR>
-[����]<BR>
+[引数]<BR>
 <BR>
-[�Ԃ�l]<BR>
-�g����Ɨ̈�̃o�C�g���B<BR>
+[返り値]<BR>
+拡張作業領域のバイト数。<BR>
 <BR>
 <BR>
 <A name="GetFuroHai"></A><B><FONT size="+1">int GetFurohai(int player,int size,int *
 furohai)</FONT></B><BR>
 <BR>
-�t�[���v���擾����֐��B<BR>
+フーロ牌を取得する関数。<BR>
 <BR>
-[����]<BR>
-player�@�N�̃t�[���v���擾���邩�B1�������A2�����ƁA3���g�C�����A4�����<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
-furohai�@�t�[���v�����󂯎�邽�߂�int�z����w���|�C���^<BR>
+[引数]<BR>
+player　誰のフーロ牌を取得するか。1＝自分、2＝下家、3＝トイメン、4＝上家<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
+furohai　フーロ牌情報を受け取るためのint配列を指すポインタ<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�`�@�ǂݏo�����t�[�������c��<BR>
-furohai[0�`]�ɂ͈ȉ��̒l���Ԃ�B<BR>
-n+1�Ԗڂ̃t�[���v�ɂ��Ẵf�[�^�Ƃ���<BR>
-[0+4*n]�@�t�[���̎�ށB0���t�[���Ȃ��A1���|���A2���`�[�A3���A���J���A4���~���J��<BR>
-[1+4*n]�@���̃t�[�������c�̍\���v�̂��������Ƃ��v�ԍ��̏������v�̔ԍ��B<BR>
-[2+4*n]�@���̃t�[�������c�̂����A���Ƃ���擾�����v�̔v�ԍ��B<BR>
-[3+4*n]�@���̐l���瑊�ΓI�Ɍ����A�H�������Ƃ̔ԍ��B1�����ƁA2���g�C�����A3�����<BR>
+[返り値]<BR>
+0～　読み出せたフーロメンツ個数<BR>
+furohai[0～]には以下の値が返る。<BR>
+n+1番目のフーロ牌についてのデータとして<BR>
+[0+4*n]　フーロの種類。0＝フーロなし、1＝ポン、2＝チー、3＝アンカン、4＝ミンカン<BR>
+[1+4*n]　そのフーロメンツの構成牌のうちもっとも牌番号の小さい牌の番号。<BR>
+[2+4*n]　そのフーロメンツのうち、他家から取得した牌の牌番号。<BR>
+[3+4*n]　その人から相対的に見た、食った他家の番号。1＝下家、2＝トイメン、3＝上家<BR>
 <BR>
-�E���ӓ_<BR>
-���̊֐���furohai�Ƃ��ė^����A�h���X����+50�܂ł̃A�h���X�ɑ΂��ď������݂��s���\��������Bint
-furohai[51]�ȏ�̑傫���̔z����m�ۂ��Ďg�����ƁB<BR>
+・注意点<BR>
+この関数はfurohaiとして与えるアドレスから+50までのアドレスに対して書き込みを行う可能性がある。int
+furohai[51]以上の大きさの配列を確保して使うこと。<BR>
 <BR>
 <BR>
 <FONT size="+1"><A name="GetHaiSize"></A><B>int GetHaiSize(void)</B></FONT><BR>
 <BR>
-���ݑΐ��ɂ���ꍇ�͔v�̃T�C�Y���擾����֐��B<BR>
+現在対戦卓にいる場合は牌のサイズを取得する関数。<BR>
 <BR>
-[����]<BR>
+[引数]<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@�v�̃T�C�Y�擾���s�B�ΐ��ʂłȂ����A���̃E�C���h�E���d�Ȃ��Ă��邩�ADevice�̒l���s�K��<BR>
-1�`3�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
+[返り値]<BR>
+0　牌のサイズ取得失敗。対戦画面でないか、他のウインドウが重なっているか、Deviceの値が不適切<BR>
+1～3　牌のサイズ。1＝小、2＝中、3＝大<BR>
 <BR>
 <BR>
-<B><A name="GetHoldTime"></A><FONT size="+1">int GetHoldTime(int size)</FONT></B>�@�@�i�g�E������J���j<BR>
+<B><A name="GetHoldTime"></A><FONT size="+1">int GetHoldTime(int size)</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-���ݎ����̃^�[���̎��A�Ŕv����܂ł̐������Ԃ��擾����B<BR>
+現在自分のターンの時、打牌するまでの制限時間を取得する。<BR>
 <BR>
-[����]<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
+[引数]<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
 <BR>
-[�Ԃ�l]<BR>
--1�@���s<BR>
--1�ȊO�@��������<BR>
+[返り値]<BR>
+-1　失敗<BR>
+-1以外　制限時間<BR>
 <BR>
 <BR>
 <B><A name="GetKaze"></A><FONT size="+1">int GetKaze(int size)</FONT></B><BR>
 <BR>
-�����i��O�̃v���C���[�j�̕����擾����֐��B<BR>
+自分（手前のプレイヤー）の風を取得する関数。<BR>
 <BR>
-[����]<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
+[引数]<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
 <BR>
-[�Ԃ�l]<BR>
--1�@size���ُ�<BR>
-0�@�ǂݎ�莸�s<BR>
-1�@�����͓�<BR>
-2�@�����͓�<BR>
-3�@�����͐�<BR>
-4�@�����͖k<BR>
+[返り値]<BR>
+-1　sizeが異常<BR>
+0　読み取り失敗<BR>
+1　自分は東<BR>
+2　自分は南<BR>
+3　自分は西<BR>
+4　自分は北<BR>
 <BR>
 <BR>
 <B><A name="GetNextOrder"></A><FONT size="+1">int GetNextOrder(int A,int a,int orders[5])</FONT></B><BR>
 <BR>
-�v���C���[A��a�Ԗڂɐ؂����v�̎��ɁA���̊e�X�̃v���C���[���؂�v�̈ʒu��Ԃ��֐��B<BR>
-�������ASimulateOrder�֐��Ŏ��O�ɃV�~�����[�g���Ă����K�v������B<BR>
-�Ȃ��A�V�~�����[�g���ʂɏ����ł��񌈒萫������ꍇ�͂��̊֐��͓��삵�Ȃ��̂Œ��ӁB<BR>
-�Ⴆ�΁A�|����`�[���Ȃ���΁A�e��5�Ԗڂ̎̂Ĕv���̂Ă����ɁA���̊e�X�̃v���C���[���؂�v�̈ʒu��5�ł���B<BR>
-�܂��A�q��5�Ԗڂ̎̂Ĕv���̂Ă����ɁA�e���؂�v�̈ʒu��6�Ԗڂł���B<BR>
-���[�`�v�̌�ɒʂ����v���ǂꂩ�Ȃǂ���y�Ɏ擾����̂ɗ��p�ł���B<BR>
+プレイヤーAがa番目に切った牌の次に、他の各々のプレイヤーが切る牌の位置を返す関数。<BR>
+ただし、SimulateOrder関数で事前にシミュレートしておく必要がある。<BR>
+なお、シミュレート結果に少しでも非決定性がある場合はこの関数は動作しないので注意。<BR>
+例えば、ポンやチーがなければ、親が5番目の捨て牌を捨てた次に、他の各々のプレイヤーが切る牌の位置は5である。<BR>
+また、子が5番目の捨て牌を捨てた次に、親が切る牌の位置は6番目である。<BR>
+リーチ牌の後に通った牌がどれかなどを手軽に取得するのに利用できる。<BR>
 <BR>
-[����]<BR>
-A�@�v���C���[�ԍ�<BR>
-a�@�؂����v�́A�̂Ĕv��̈ʒu<BR>
-orders�@�Ԃ�l��Ԃ����߂̔z��<BR>
+[引数]<BR>
+A　プレイヤー番号<BR>
+a　切った牌の、捨て牌上の位置<BR>
+orders　返り値を返すための配列<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@�V�~�����[�g���ʂɕs�m�萫������<BR>
-orders[n]�@�v���C���[n�����ɏo���̂Ĕv�̈ʒu���Ԃ�<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　シミュレート結果に不確定性がある<BR>
+orders[n]　プレイヤーnが次に出す捨て牌の位置が返る<BR>
 <BR>
 <BR>
 <B><A name="GetOrder"></A><FONT size="+1">int GetOrder(int A,int a,int B,int b)</FONT></B><BR>
 <BR>
-�v���C���[A��a�Ԗڂɐ؂����v���A�v���C���[B��b�Ԗڂɐ؂����v�ɑ΂��Ăǂ����������ł��邩��Ԃ��֐��B<BR>
-�������ASimulateOrder�֐��Ŏ��O�ɃV�~�����[�g���Ă����K�v������B<BR>
-<A href="MJexeIODLL0.html" target="TOP"><U><FONT color="#0000FF">������</FONT></U></A>�A���S���Y���̊T���ƁA��������ɂ��Ă̐���������B<BR>
-�Ⴆ�΁AGetOrder(1,1,4,1)�̌��ʂ́A�����i��O�̃v���C���[�j���e�Ȃ�0�A��Ƃ��e�Ȃ�1�ł���i���̑��̏ꍇ�͏󋵂ɂ���ĕω�����j�B<BR>
-�Ȃ��Ȃ�A�������e�ł������A������1�ԍŏ��ɐ؂����v�͏�ɁA4�i��Ɓj��1�ԍŏ��ɐ؂����v����ɐ؂��Ă���A�t�ɏ�Ƃ��e�ł���΁A������1�ԍŏ��ɐ؂����v�́A��Ƃ�1�ԍŏ��ɐ؂����v����ɐ؂��Ă��邩��ł���B�܂��A�������Ƃ��e�ŁA�������e�̑��ł��|�����Ă���΁A������1�ԍŏ��ɐ؂����v�́A��Ƃ̈�ԍŏ��ɐ؂����v������ɂȂ�B<BR>
-���l�ɂ��ĔC�ӂ̔v�ɑ΂��鏇���t�����擾�ł���B�u�s��v�Ƃ́A�ǂ��炪��ł���\�����_���I�ɂ��蓾��ꍇ�̕Ԃ�l�ł���B<BR>
+プレイヤーAがa番目に切った牌が、プレイヤーBがb番目に切った牌に対してどういう順序であるかを返す関数。<BR>
+ただし、SimulateOrder関数で事前にシミュレートしておく必要がある。<BR>
+<A href="MJexeIODLL0.html" target="TOP"><U><FONT color="#0000FF">ここに</FONT></U></A>アルゴリズムの概略と、順序決定についての説明がある。<BR>
+例えば、GetOrder(1,1,4,1)の結果は、自分（手前のプレイヤー）が親なら0、上家が親なら1である（その他の場合は状況によって変化する）。<BR>
+なぜなら、自分が親である限り、自分の1番最初に切った牌は常に、4（上家）が1番最初に切った牌より先に切られており、逆に上家が親であれば、自分の1番最初に切った牌は、上家が1番最初に切った牌より後に切られているからである。また、もし下家が親で、自分が親の第一打をポンしていれば、自分の1番最初に切った牌は、上家の一番最初に切った牌よりも先になる。<BR>
+同様にして任意の牌に対する順序付けを取得できる。「不定」とは、どちらが先である可能性も論理的にあり得る場合の返り値である。<BR>
 <BR>
-[����]<BR>
-A,B�@�v���C���[�ԍ�<BR>
-a,b�@�؂����v�́A�̂Ĕv��̈ʒu<BR>
+[引数]<BR>
+A,B　プレイヤー番号<BR>
+a,b　切った牌の、捨て牌上の位置<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@�va���O�Ɗm��<BR>
-1�@�va����Ɗm��<BR>
-2�@�����͕s��<BR>
--1�@�L�^�Ȃ�(�V�~�����[�g����Ă��Ȃ��A�܂��̂Ă��Ă��Ȃ��v�ɑ΂��ēǂݍ��񂾁A�Ȃ�)<BR>
+[返り値]<BR>
+0　牌aが前と確定<BR>
+1　牌aが後と確定<BR>
+2　順序は不定<BR>
+-1　記録なし(シミュレートされていない、まだ捨てられていない牌に対して読み込んだ、など)<BR>
 <BR>
 <BR>
 <B><A name="GetPlayInfo"></A><FONT size="+1">int GetPlayInfo(int * data)</FONT></B><BR>
 <BR>
-�ΐ��ʁi�ϐ��ʁj�ł́A�E�C���h�E�̃^�C�g���o�[��񂩂����ǂݎ��B<BR>
-data�̊e�l�́A�ǂݎ��ɐ��������ꍇ�͂��̒l���A���s�����ꍇ��-1���ۏႳ���B<FONT color="#FF0000">�v�f����10�ȏ�m�ۂ��邱��</FONT>�B<BR>
+対戦画面（観戦画面）での、ウインドウのタイトルバー情報から情報を読み取る。<BR>
+dataの各値は、読み取りに成功した場合はその値が、失敗した場合は-1が保障される。<FONT color="#FF0000">要素数は10以上確保すること</FONT>。<BR>
 <BR>
-[����]<BR>
-data�@�����󂯎�邽�߂�int�z��ւ̃|�C���^�B<BR>
+[引数]<BR>
+data　情報を受け取るためのint配列へのポインタ。<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���ʂłȂ��ȂǁA���s<BR>
-data�ɂ͈ȉ��̏�񂪐����l�Ƃ��ĕԂ�B<BR>
-data[0]�@��ԍ�<BR>
-data[1]�@���ꂩ�i�l=1�j�A���i�l=2�j���A����i�l=3�j���A�k��i�l=4�j��<BR>
-data[2]�@���ǂ�<BR>
-data[3]�@���{�ꂩ<BR>
-data[4]�@���[�`�_��<BR>
-data[5]�@�ϐ�Ґ�<BR>
-data[6]�@�c�薇��<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　卓画面でないなど、失敗<BR>
+dataには以下の情報が整数値として返る。<BR>
+data[0]　卓番号<BR>
+data[1]　東場か（値=1）、南場（値=2）か、西場（値=3）か、北場（値=4）か<BR>
+data[2]　何局か<BR>
+data[3]　何本場か<BR>
+data[4]　リーチ棒数<BR>
+data[5]　観戦者数<BR>
+data[6]　残り枚数<BR>
 <BR>
 <BR>
 <B><A name="GetPlayerInfo"></A><FONT size="+1">int GetPlayerInfo(int * point,int * rate,int
-player,int size)</FONT></B>�@�@�i�g�E������J���j<BR>
+player,int size)</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�v���C���[�̎����_�ƃ��[�g���擾����B�`���b�g���S��ȂǁA���[�g�\�L�̂Ȃ���ł�rate�擾���s�Ȃ̂ŁA*rate�ɂ�1���Ԃ�B<BR>
+プレイヤーの持ち点とレートを取得する。チャット中心卓など、レート表記のない卓ではrate取得失敗なので、*rateには1が返る。<BR>
 <BR>
-[����]<BR>
-point�@�w��v���C���[�̎����_��Ԃ����߂�int�^�ւ̃|�C���^�B�擾�Ɏ��s�����ꍇ��1�B<BR>
-rate�@�w��v���C���[�̃��[�g��Ԃ����߂�int�^�ւ̃|�C���^�B�擾�Ɏ��s�����ꍇ��1�B<BR>
-player�@�N�̏����擾���邩�B1�������A2�����ƁA3���g�C�����A4�����<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
+[引数]<BR>
+point　指定プレイヤーの持ち点を返すためのint型へのポインタ。取得に失敗した場合は1。<BR>
+rate　指定プレイヤーのレートを返すためのint型へのポインタ。取得に失敗した場合は1。<BR>
+player　誰の情報を取得するか。1＝自分、2＝下家、3＝トイメン、4＝上家<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@�����i���_�܂��̓��[�g�̂����ꂩ�̎擾�ɐ����j<BR>
--1�@���s�i������̎擾�����s�j<BR>
+[返り値]<BR>
+0　成功（得点またはレートのいずれかの取得に成功）<BR>
+-1　失敗（いずれの取得も失敗）<BR>
 <BR>
 <BR>
 <FONT size="+1"><A name="GetPlayStatus"></A><B>int GetPlayStatus</B></FONT><BR>
 <BR>
-�ǏI�����̉�ʂ�ǂݎ��B�������B<BR>
+局終了時の画面を読み取る。未実装。<BR>
 <BR>
 <BR>
 <B><A name="GetRightestTehai"></A><FONT size="+1">int GetRightestTehai(void)</FONT></B><BR>
 <BR>
-�Ō��GetTehai���Ăяo�������́A��ԍŌ�ɓǂݏo�����v�i��ԉE�̔v�j��Ԃ��֐��B<BR>
-�����̃c���Ԃ̎��Ƀc�������v���擾����ꍇ�ȂǂɎg�p����B�Ȃ��������v���c�������u�Ԃ𔻕ʂ���ɂ́A�iGetTehai�̕Ԃ�l�j%3==2�@�ł��邩�ǂ�����p����Ɨǂ��B<BR>
+最後にGetTehaiを呼び出した時の、一番最後に読み出した牌（一番右の牌）を返す関数。<BR>
+自分のツモ番の時にツモった牌を取得する場合などに使用する。なお自分が牌をツモった瞬間を判別するには、（GetTehaiの返り値）%3==2　であるかどうかを用いると良い。<BR>
 <BR>
-[����]<BR>
+[引数]<BR>
 <BR>
-[�Ԃ�l]<BR>
-�ŋ�GetTehai�̓����œǂ܂ꂽ�v�̂����́A�Ō�̔v�̔v�ԍ��B<BR>
+[返り値]<BR>
+最近GetTehaiの内部で読まれた牌のうちの、最後の牌の牌番号。<BR>
 <BR>
 <BR>
 <B><A name="GetReach"></A><FONT size="+1">int GetReach(int player,int size)</FONT></B><BR>
 <BR>
-�w��L���������[�`���Ă��邩�ۂ����擾����֐��B<BR>
-�u���[�`�_�v�̃O���t�B�b�N���璼�ړǂ�ł��邽�߂ɁAGetSutehai�Ȃǂ����ɍ����ł���B<BR>
-�ΐ풆�ȂǂłȂ��ꍇ�ɂ��u���[�`���Ă��Ȃ��v�Ƃ����Ԃ�l���A��̂ŁA���[�`���݂̂ɍs������������ꍇ�ɗL���ł���B<BR>
+指定キャラがリーチしているか否かを取得する関数。<BR>
+「リーチ棒」のグラフィックから直接読んでいるために、GetSutehaiなどより非常に高速である。<BR>
+対戦中などでない場合にも「リーチしていない」という返り値が帰るので、リーチ時のみに行う処理がある場合に有効である。<BR>
 <BR>
-[����]<BR>
-player�@�N�̎̂Ĕv���擾���邩�B1�������A2�����ƁA3���g�C�����A4�����<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
+[引数]<BR>
+player　誰の捨て牌を取得するか。1＝自分、2＝下家、3＝トイメン、4＝上家<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@���[�`���Ă��Ȃ��i���邢�͑ΐ��̉�ʂłȂ��Ȃǁj�B<BR>
-1�@���[�`���Ă���B<BR>
+[返り値]<BR>
+0　リーチしていない（あるいは対戦卓の画面でないなど）。<BR>
+1　リーチしている。<BR>
 <BR>
 <BR>
 <B><A name="GetSutehai"></A><FONT size="+1">int GetSutehai(int player,int size,int *
 sutehai)</FONT></B><BR>
 <BR>
-�̂Ĕv���擾����֐��B<BR>
+捨て牌を取得する関数。<BR>
 <BR>
-[����]<BR>
-player�@�N�̎̂Ĕv���擾���邩�B1�������A2�����ƁA3���g�C�����A4�����<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
-sutehai�@�̂Ĕv�����󂯎�邽�߂�int�z����w���|�C���^<BR>
+[引数]<BR>
+player　誰の捨て牌を取得するか。1＝自分、2＝下家、3＝トイメン、4＝上家<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
+sutehai　捨て牌情報を受け取るためのint配列を指すポインタ<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�`�@�ǂݏo�����̂Ĕv��<BR>
-sutehai[0�`]�ɂ͈ȉ��̒l���Ԃ�B<BR>
-[0]���[�`�錾�v�̈ʒu�B0�ȉ��̎����[�`�Ȃ��i���̊֐����Ă񂾂Ƃ��͏�ɕۏႳ���j�B-1�̎��A�ǂݍ��݃G���[�ł��邱�Ƃ��m���B<BR>
-[n]n�ԖڂɎ̂Ă�ꂽ�v�̔ԍ��B<BR>
+[返り値]<BR>
+0～　読み出せた捨て牌個数<BR>
+sutehai[0～]には以下の値が返る。<BR>
+[0]リーチ宣言牌の位置。0以下の時リーチなし（この関数を呼んだときは常に保障される）。-1の時、読み込みエラーであることが確実。<BR>
+[n]n番目に捨てられた牌の番号。<BR>
 <BR>
-�E���ӓ_<BR>
-���̊֐���sutehai�Ƃ��ė^����A�h���X����+50�܂ł̃A�h���X�ɑ΂��ď������݂��s���\��������Bint
-sutehai[51]�ȏ�̑傫���̔z����m�ۂ��Ďg�����ƁB<BR>
-���[�`�錾�v�̈ʒu�́A���[�`�������ڂ𒼐ڕ\���Ȃ��̂Œ��ӂ���K�v������B�Ⴆ�Ύ�����1��2���؂����Ƃ��A�Е��̓g�C�����Ƀ|����������Е��͉��ƂɃ`�[����Ă���Ƃ���ƁA�ǂ��炪��Ƀt�[������������ӂɒ�߂邱�Ƃ͂ł��Ȃ��̂ŁA���[�`��ɒʂ����v���߂邽�߂ɂ́A��ɓ����̏���ǂݍ���ł��Ȃ���΂Ȃ�Ȃ��B<BR>
+・注意点<BR>
+この関数はsutehaiとして与えるアドレスから+50までのアドレスに対して書き込みを行う可能性がある。int
+sutehai[51]以上の大きさの配列を確保して使うこと。<BR>
+リーチ宣言牌の位置は、リーチした順目を直接表さないので注意する必要がある。例えば自分が1を2枚切ったとき、片方はトイメンにポンされもう片方は下家にチーされているとすると、どちらが先にフーロしたかを一意に定めることはできないので、リーチ後に通った牌を定めるためには、常に東風の情報を読み込んでいなければならない。<BR>
 <BR>
 <BR>
 <B><A name="GetSutehaiEx"></A><FONT size="+1">int GetSutehaiEx(int player,int size,int
 * sutehai,int * sutehaidata)</FONT></B><BR>
 <BR>
-�̂Ĕv���擾����֐��̊g���ŁB�̂Ĕv�̂����́A�ǂ̔v�ɖԂ��������Ă��邩���擾�ł���B<BR>
-<FONT color="#FF0000">GetSutehaiEx2������o�[�W�����𗘗p���Ă���ꍇ�A��{�I��GetSutehaiEx2�𗘗p���ׂ�</FONT>�ł���B<BR>
+捨て牌を取得する関数の拡張版。捨て牌のうちの、どの牌に網がかかっているかも取得できる。<BR>
+<FONT color="#FF0000">GetSutehaiEx2があるバージョンを利用している場合、基本的にGetSutehaiEx2を利用すべき</FONT>である。<BR>
 <BR>
-[����]<BR>
-player�@�N�̎̂Ĕv���擾���邩�B1�������A2�����ƁA3���g�C�����A4�����<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
-sutehai�@�̂Ĕv�����󂯎�邽�߂�int�z����w���|�C���^<BR>
-sutehaidata�@�Ԃ̂��������̂Ĕv���ǂ��ł��邩�̏����󂯎�邽�߂�int�z����w���|�C���^<BR>
+[引数]<BR>
+player　誰の捨て牌を取得するか。1＝自分、2＝下家、3＝トイメン、4＝上家<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
+sutehai　捨て牌情報を受け取るためのint配列を指すポインタ<BR>
+sutehaidata　網のかかった捨て牌がどこであるかの情報を受け取るためのint配列を指すポインタ<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�`�@�ǂݏo�����̂Ĕv��<BR>
-sutehai[0�`]�ɂ͈ȉ��̒l���Ԃ�B<BR>
-[0]���[�`�錾�v�̈ʒu�B0�ȉ��̎����[�`�Ȃ��i���̊֐����Ă񂾂Ƃ��͏�ɕۏႳ���j�B-1�̎��A�ǂݍ��݃G���[�ł��邱�Ƃ��m���B<BR>
-[n]n�ԖڂɎ̂Ă�ꂽ�v�̔ԍ��B<BR>
-sutehaidata[1�`]�ɂ͈ȉ��̒l���Ԃ�B<BR>
-[n]n�ԖڂɎ̂Ă�ꂽ�v�ɖԂ��������Ă��邩�ǂ����B0�@�������Ă��Ȃ��@1�@�������Ă���<BR>
+[返り値]<BR>
+0～　読み出せた捨て牌個数<BR>
+sutehai[0～]には以下の値が返る。<BR>
+[0]リーチ宣言牌の位置。0以下の時リーチなし（この関数を呼んだときは常に保障される）。-1の時、読み込みエラーであることが確実。<BR>
+[n]n番目に捨てられた牌の番号。<BR>
+sutehaidata[1～]には以下の値が返る。<BR>
+[n]n番目に捨てられた牌に網がかかっているかどうか。0　かかっていない　1　かかっている<BR>
 <BR>
-�E���ӓ_<BR>
-GetSutehai�Ɠ��l�Bsutehaidata�ւ̏������݂�sutehai�ւ̏������݂ɏ�����B<BR>
+・注意点<BR>
+GetSutehaiと同様。sutehaidataへの書き込みはsutehaiへの書き込みに準ずる。<BR>
 <BR>
 <BR>
 <B><A name="GetSutehaiEx2"></A><FONT size="+1">int GetSutehaiEx2(int player,int size,int
 * sutehai,int * sutehaidata,int * tumokiridata,int
 * RedBorder)</FONT></B><BR>
 <BR>
-�̂Ĕv���擾����֐��̊g���ŁB<BR>
-�̂Ĕv�̂����́A�ǂ̔v�ɖԂ��������Ă��邩�A�ǂ̔v�Ƀc���؂�������Ă��邩�A�ǂ̔v���ԃ��N�ň͂܂�Ă��邩���擾�ł���B<BR>
+捨て牌を取得する関数の拡張版。<BR>
+捨て牌のうちの、どの牌に網がかかっているか、どの牌にツモ切り線がついているか、どの牌が赤ワクで囲まれているかも取得できる。<BR>
 <BR>
-[����]<BR>
-player�@�N�̎̂Ĕv���擾���邩�B1�������A2�����ƁA3���g�C�����A4�����<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
-sutehai�@�̂Ĕv�����󂯎�邽�߂�int�z����w���|�C���^<BR>
-sutehaidata�@�Ԃ̂��������̂Ĕv���ǂ��ł��邩�̏����󂯎�邽�߂�int�z����w���|�C���^<BR>
-tumokiridata�@�c���؂���i���F�̐��j�������v���ǂ��ł��邩�̏����󂯎�邽�߂�int�z����w���|�C���^<BR>
-RedBorder�@�ԃ��N�ň͂܂ꂽ�v�i�|����`�[�⃍�����\�ȑΏ۔v�j�̈ʒu��Ԃ����߂�int�ϐ��ւ̃|�C���^<BR>
+[引数]<BR>
+player　誰の捨て牌を取得するか。1＝自分、2＝下家、3＝トイメン、4＝上家<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
+sutehai　捨て牌情報を受け取るためのint配列を指すポインタ<BR>
+sutehaidata　網のかかった捨て牌がどこであるかの情報を受け取るためのint配列を指すポインタ<BR>
+tumokiridata　ツモ切り線（水色の線）がついた牌がどこであるかの情報を受け取るためのint配列を指すポインタ<BR>
+RedBorder　赤ワクで囲まれた牌（ポンやチーやロンが可能な対象牌）の位置を返すためのint変数へのポインタ<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�`�@�ǂݏo�����̂Ĕv��<BR>
-sutehai[0�`]�ɂ͈ȉ��̒l���Ԃ�B<BR>
-[0]���[�`�錾�v�̈ʒu�B0�ȉ��̎����[�`�Ȃ��i���̊֐����Ă񂾂Ƃ��͏�ɕۏႳ���j�B-1�̎��A�ǂݍ��݃G���[�ł��邱�Ƃ��m���B<BR>
-[n]n�ԖڂɎ̂Ă�ꂽ�v�̔ԍ��B<BR>
-sutehaidata[1�`]�ɂ͈ȉ��̒l���Ԃ�B<BR>
-[n]n�ԖڂɎ̂Ă�ꂽ�v�ɖԂ��������Ă��邩�ǂ����B0�@�������Ă��Ȃ��@1�@�������Ă���<BR>
-tumokiridata[1�`]�ɂ͈ȉ��̒l���Ԃ�B<BR>
-[n]n�ԖڂɎ̂Ă�ꂽ�v�Ƀc���؂�������Ă��邩�ǂ����B0�@���Ă��Ȃ��@1�@���Ă���<BR>
-RedBorder�@0�@���̃v���C���[�̎̂Ĕv�ɂ͐ԃ��N�ň͂܂ꂽ�v�����݂��Ȃ��@n�@���̃v���C���[��n�Ԗڂ̎̂Ĕv���ԃ��N�ň͂܂�Ă���<BR>
+[返り値]<BR>
+0～　読み出せた捨て牌個数<BR>
+sutehai[0～]には以下の値が返る。<BR>
+[0]リーチ宣言牌の位置。0以下の時リーチなし（この関数を呼んだときは常に保障される）。-1の時、読み込みエラーであることが確実。<BR>
+[n]n番目に捨てられた牌の番号。<BR>
+sutehaidata[1～]には以下の値が返る。<BR>
+[n]n番目に捨てられた牌に網がかかっているかどうか。0　かかっていない　1　かかっている<BR>
+tumokiridata[1～]には以下の値が返る。<BR>
+[n]n番目に捨てられた牌にツモ切り線がついているかどうか。0　ついていない　1　ついている<BR>
+RedBorder　0　そのプレイヤーの捨て牌には赤ワクで囲まれた牌が存在しない　n　そのプレイヤーのn番目の捨て牌が赤ワクで囲まれている<BR>
 <BR>
-�E���ӓ_<BR>
-GetSutehai�Ɠ��l�B�z��ւ̏������݂�sutehai�ւ̏������݂ɏ�����B<BR>
+・注意点<BR>
+GetSutehaiと同様。配列への書き込みはsutehaiへの書き込みに準ずる。<BR>
 <BR>
 <BR>
 <B><A name="GetSutehaiNum"></A><FONT size="+1">int GetSutehaiNum(int player,int size,int
 * sutehai)</FONT></B><BR>
 <BR>
-�̂Ĕv�̐��ƃ��[�`���ڂ������AGetSutehai���������Ɏ擾����֐��B<BR>
+捨て牌の数とリーチ順目だけを、GetSutehaiよりも高速に取得する関数。<BR>
 <BR>
-[����]<BR>
-player�@�N�̎̂Ĕv���擾���邩�B1�������A2�����ƁA3���g�C�����A4�����<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
-sutehai�@�����󂯎�邽�߂�int�z����w���|�C���^<BR>
+[引数]<BR>
+player　誰の捨て牌を取得するか。1＝自分、2＝下家、3＝トイメン、4＝上家<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
+sutehai　情報を受け取るためのint配列を指すポインタ<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�`�@�ǂݏo�����̂Ĕv��<BR>
-sutehai[0�`]�ɂ͈ȉ��̒l���Ԃ�B<BR>
-[0]���[�`�錾�v�̈ʒu�B0�ȉ��̎����[�`�Ȃ��i���̊֐����Ă񂾂Ƃ��͏�ɕۏႳ���j�B-1�̎��A�ǂݍ��݃G���[�ł��邱�Ƃ��m���B<BR>
-[n]�ω����Ȃ��i�������܂�Ȃ��j�B<BR>
+[返り値]<BR>
+0～　読み出せた捨て牌個数<BR>
+sutehai[0～]には以下の値が返る。<BR>
+[0]リーチ宣言牌の位置。0以下の時リーチなし（この関数を呼んだときは常に保障される）。-1の時、読み込みエラーであることが確実。<BR>
+[n]変化しない（書き込まれない）。<BR>
 <BR>
-�E���ӓ_<BR>
-���[�`�錾�v�̈ʒu�́A���[�`�������ڂ𒼐ڕ\���Ȃ��̂Œ��ӂ���K�v������B�Ⴆ�Ύ�����1��2���؂����Ƃ��A�Е��̓g�C�����Ƀ|����������Е��͉��ƂɃ`�[����Ă���Ƃ���ƁA�ǂ��炪��Ƀt�[������������ӂɒ�߂邱�Ƃ͂ł��Ȃ��̂ŁA���[�`��ɒʂ����v���߂邽�߂ɂ́A��ɓ����̏���ǂݍ���ł��Ȃ���΂Ȃ�Ȃ��B<BR>
+・注意点<BR>
+リーチ宣言牌の位置は、リーチした順目を直接表さないので注意する必要がある。例えば自分が1を2枚切ったとき、片方はトイメンにポンされもう片方は下家にチーされているとすると、どちらが先にフーロしたかを一意に定めることはできないので、リーチ後に通った牌を定めるためには、常に東風の情報を読み込んでいなければならない。<BR>
 <BR>
 <BR>
 <FONT size="+1"><A name="GetTehai"></A><B>int GetTehai(int size,int * tehai)</B></FONT><BR>
 <BR>
-�����̃����[���v���擾����֐��B<BR>
+自分のメンゼン牌を取得する関数。<BR>
 <BR>
-[����]<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
-tehai�@��v�����󂯎�邽�߂�int�z����w���|�C���^<BR>
+[引数]<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
+tehai　手牌情報を受け取るためのint配列を指すポインタ<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@�ǂݏo���Ɏ��s���A�ǂݏo�����v��0��<BR>
-1�`14�@�ǂݏo�����v�̌��i�K�������ǂݏo��������ۏ؂��Ȃ��j<BR>
-tehai[0�`]�ɂ͈ȉ��̒l���Ԃ�B<BR>
-[n]�vn�������Ă��閇��<BR>
+[返り値]<BR>
+0　読み出しに失敗し、読み出せた牌が0個<BR>
+1～14　読み出せた牌の個数（必ずしも読み出し成功を保証しない）<BR>
+tehai[0～]には以下の値が返る。<BR>
+[n]牌nを持っている枚数<BR>
 <BR>
-�E�֐��̓���<BR>
-�֐��́A�����̎�v��ǂݏo����tehai[0�`37]�ɕԂ��Btehai[0]�͎����̃����[����v�̐��i�Ⴆ�Βʏ��13�A���P�R�̎���1�j�B<BR>
+・関数の動作<BR>
+関数は、自分の手牌を読み出してtehai[0～37]に返す。tehai[0]は自分のメンゼン手牌の数（例えば通常は13、裸単騎の時は1）。<BR>
 <BR>
-�E���ӓ_<BR>
-���̊֐���tehai�Ƃ��ė^����A�h���X����+50�܂ł̃A�h���X�ɑ΂��ď������݂��s���\��������Bint
-tehai[51]�ȏ�̑傫���̔z����m�ۂ��Ďg�����ƁB<BR>
-�������̃E�C���h�E���A���̃E�C���h�E�ɂ���ĉB��Ă����肷��ꍇ����ɓ��삵�Ȃ��B<BR>
-���������̍ہA���̊֐��͕K�������u�G���[�v��Ԃ��Ȃ��B<BR>
-���肵������̂��߂ɂ́A�������̃E�C���h�E��O�ʂɈړ�������ȂǁA�ʓr�H�v���K�v�ł���B<BR>
+・注意点<BR>
+この関数はtehaiとして与えるアドレスから+50までのアドレスに対して書き込みを行う可能性がある。int
+tehai[51]以上の大きさの配列を確保して使うこと。<BR>
+東風荘のウインドウが、他のウインドウによって隠れていたりする場合正常に動作しない。<BR>
+しかもその際、この関数は必ずしも「エラー」を返さない。<BR>
+安定した動作のためには、東風荘のウインドウを前面に移動させるなど、別途工夫が必要である。<BR>
 <BR>
 <BR>
-<B><A name="GetTonpuConnectionStatus"></A><FONT size="+1">int GetTonpuConnectionStatus()</FONT></B>�@�@�i�g�E������J���j<BR>
+<B><A name="GetTonpuConnectionStatus"></A><FONT size="+1">int GetTonpuConnectionStatus()</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�����ւ̐ڑ����s��Ԃ��擾����B<BR>
+東風への接続試行状態を取得する。<BR>
 <BR>
-[����]<BR>
+[引数]<BR>
 <BR>
-[�Ԃ�l]<BR>
--1�@�G���[(�ڑ��E�B���h�E�������ꍇ�������Ɋ܂�)<BR>
-0�@��ڑ���<BR>
-1�@�����T�[�o�ɐڑ���<BR>
-2�@�����񑗐M��<BR>
-3�@�G���[�_�C�A���O���o�Ă���(�T�[�o�ւ̐ڑ��Ɏ��s���܂����B)<BR>
-4�@�G���[�_�C�A���O���o�Ă���(�����Őڑ��ł��܂���ł����B)<BR>
-5�@�G���[�_�C�A���O���o�Ă���(���̃T�[�o�ւ̐ڑ�����������܂���B)<BR>
-6�@�G���[�_�C�A���O���o�Ă���(�Ƃ肠�����G���[�_�C�A���O���o�Ă���B)<BR>
+[返り値]<BR>
+-1　エラー(接続ウィンドウが無い場合もここに含む)<BR>
+0　非接続中<BR>
+1　東風サーバに接続中<BR>
+2　会員情報送信中<BR>
+3　エラーダイアログが出ている(サーバへの接続に失敗しました。)<BR>
+4　エラーダイアログが出ている(満員で接続できませんでした。)<BR>
+5　エラーダイアログが出ている(このサーバへの接続権限がありません。)<BR>
+6　エラーダイアログが出ている(とりあえずエラーダイアログが出ている。)<BR>
 <BR>
 <BR>
 <FONT size="+1"><A name="GetTonpuData"></A><B>int GetTonpuData(char * string)</B></FONT><BR>
 <BR>
-�������E�C���h�E�̃^�C�g���o�[��������擾����B<BR>
+東風荘ウインドウのタイトルバー文字列を取得する。<BR>
 <BR>
-[����]<BR>
-string�@�擾�����������Ԃ����߂�char�z����w���|�C���^�B�^�C�g���o�[�Ɋ܂܂꓾�镶����̑傫���ȏ�̔z����m�ۂ��邱�ƁB<BR>
+[引数]<BR>
+string　取得した文字列を返すためのchar配列を指すポインタ。タイトルバーに含まれ得る文字列の大きさ以上の配列を確保すること。<BR>
 <BR>
-[�Ԃ�l]<BR>
--2�@�N�����ꂽ���������̂����݂��Ȃ�<BR>
--1�@�������͋N������Ă��邪�ҍ����ł��Ȃ��ΐ풆�ł��Ȃ��ϐ풆�ł��Ȃ��B<BR>
-0�@���ݑҍ���<BR>
-1�܂���2�@�i�s��j�@���ݑΐ풆�܂��͊ϐ풆<BR>
+[返り値]<BR>
+-2　起動された東風荘自体が存在しない<BR>
+-1　東風荘は起動されているが待合室でもなく対戦中でもなく観戦中でもない。<BR>
+0　現在待合室<BR>
+1または2　（不定）　現在対戦中または観戦中<BR>
 <BR>
 <BR>
 <B><A name="GetTonpuInfo"></A><FONT size="+1">int GetTonpuInfo(HWND *hMachiai_p,HWND *hPlayRoom_p)</FONT></B><BR>
 <BR>
-�����̃Q�[����ʂ̃E�C���h�E�n���h����Ԃ��B<BR>
+東風のゲーム画面のウインドウハンドルを返す。<BR>
 <BR>
-[����]<BR>
-*hMachiai_p�@�ҍ����E�C���h�E�̃n���h��������HWND�ւ̃|�C���^<BR>
-*hPlayRoom_p�@��E�C���h�E�̃n���h��������HWND�ւ̃|�C���^<BR>
+[引数]<BR>
+*hMachiai_p　待合室ウインドウのハンドルを入れるHWNDへのポインタ<BR>
+*hPlayRoom_p　卓ウインドウのハンドルを入れるHWNDへのポインタ<BR>
 <BR>
-[�Ԃ�l]<BR>
-�����Ƃ��ė^�����|�C���^�ɁA�e�X�̃E�C���h�E�n���h�����Ԃ�B������Ȃ������ꍇ��NULL�B<BR>
-int�̕Ԃ�l�͐ڑ��T�[�o��\���A�ȉ��̈Ӗ������B<BR>
-0�@�ǂ��ɂ��ڑ�����Ă��Ȃ�<BR>
-1�`3�@�恛�������ɐڑ���<BR>
-4�@VIP�ɐڑ���<BR>
+[返り値]<BR>
+引数として与えたポインタに、各々のウインドウハンドルが返る。見つからなかった場合はNULL。<BR>
+intの返り値は接続サーバを表し、以下の意味を持つ。<BR>
+0　どこにも接続されていない<BR>
+1～3　第○東風荘に接続中<BR>
+4　VIPに接続中<BR>
 <BR>
 <BR>
 <B><A name="GetTurnPlayer"></A><FONT size="+1">int GetTurnPlayer(<FONT size="+1">int size</FONT>)</FONT></B><BR>
 <BR>
-���݃c������ёŔv���̑��Ƃ̔ԍ���Ԃ��B<BR>
+現在ツモおよび打牌中の他家の番号を返す。<BR>
 <BR>
-[����]<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
+[引数]<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
 <BR>
-[�Ԃ�l]<BR>
--1�@size���ُ�<BR>
-0�@�ǂݎ�莸�s<BR>
-1�@��O�̃v���C���[�̃^�[��<BR>
-2�@���Ƃ̃v���C���[�̃^�[��<BR>
-3�@�g�C�����̃v���C���[�̃^�[��<BR>
-4�@��Ƃ̃v���C���[�̃^�[��<BR>
+[返り値]<BR>
+-1　sizeが異常<BR>
+0　読み取り失敗<BR>
+1　手前のプレイヤーのターン<BR>
+2　下家のプレイヤーのターン<BR>
+3　トイメンのプレイヤーのターン<BR>
+4　上家のプレイヤーのターン<BR>
 <BR>
 <BR>
 <B><A name="PushFunctionKey"></A><FONT size="+1">int PushFunctionKey(int keyno)</FONT></B><BR>
 <BR>
-�t�@���N�V�����L�[���͂��邽�߂̊֐��B<BR>
+ファンクションキー入力するための関数。<BR>
 <BR>
-[����]<BR>
-keyno�@1�`12�B���̐����̃t�@���N�V�����L�[�������B�Ⴆ�Ίϐ풆�Ɋϐ�I�����������ꍇ�Akeyno=4�i�e�S�L�[�j�Ƃ��Ă��̊֐����Ăׂ΂����B<BR>
+[引数]<BR>
+keyno　1～12。その数字のファンクションキーを押す。例えば観戦中に観戦終了させたい場合、keyno=4（Ｆ４キー）としてこの関数を呼べばいい。<BR>
 <BR>
-[�Ԃ�l]<BR>
--2�@������keyno<BR>
+[返り値]<BR>
+-2　無効なkeyno<BR>
 <BR>
 <BR>
 <B><A name="PushHai"></A><FONT size="+1">int PushHai(int size,int haiposition)</FONT></B><BR>
 <BR>
-�����̔v�̈ʒu�����N���b�N���邽�߂̊֐��B<BR>
+自分の牌の位置を左クリックするための関数。<BR>
 <BR>
-[����]<BR>
-size�@�v�̃T�C�Y�B1�����A2�����A3����<BR>
-haiposition�@�����牽�Ԗڂ̔v�ʒu�����N���b�N���邩�B1�`14�B�Ⴆ��14���Ɓu�c���؂�v�ɑ�������B<BR>
+[引数]<BR>
+size　牌のサイズ。1＝小、2＝中、3＝大<BR>
+haiposition　左から何番目の牌位置を左クリックするか。1～14。例えば14だと「ツモ切り」に相当する。<BR>
 <BR>
-[�Ԃ�l]<BR>
--1�@size���ُ�<BR>
--2�@������haiposition<BR>
-<BR>
-<BR>
-<B><A name="PushJouhouButton"></A><FONT size="+1">int PushJouhouButton()</FONT></B>�@�@�i�g�E������J���j<BR>
-<BR>
-�����̑ҍ��ɂ���Ƃ��A�u����v�{�^���������B<BR>
-<BR>
-[����]<BR>
-<BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���s<BR>
+[返り値]<BR>
+-1　sizeが異常<BR>
+-2　無効なhaiposition<BR>
 <BR>
 <BR>
-<B><A name="PushKansenButton"></A><FONT size="+1">int PushKansenButton()</FONT></B>�@�@�i�g�E������J���j<BR>
+<B><A name="PushJouhouButton"></A><FONT size="+1">int PushJouhouButton()</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�����̑ҍ��ɂ���Ƃ��A�u�ϐ�v�{�^���������B<BR>
+東風の待合にいるとき、「卓情報」ボタンを押す。<BR>
 <BR>
-[����]<BR>
+[引数]<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���s<BR>
-<BR>
-<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　失敗<BR>
 <BR>
 <BR>
-<B><A name="PushSyuuryouButton"></A><FONT size="+1">int PushSyuuryouButton()</FONT></B>�@�@�i�g�E������J���j<BR>
+<B><A name="PushKansenButton"></A><FONT size="+1">int PushKansenButton()</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�����̑ҍ��ɂ���Ƃ��A�u�I���v�{�^���������B<BR>
+東風の待合にいるとき、「観戦」ボタンを押す。<BR>
 <BR>
-[����]<BR>
+[引数]<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���s<BR>
-<BR>
-<BR>
-<B><A name="PushTonpuConnectionButton"></A><FONT size="+1">int PushTonpuConnectionButton()</FONT></B>�@�@�i�g�E������J���j<BR>
-<BR>
-�����ւ̐ڑ����s���J�n����i�ڑ��{�^���������j�B<BR>
-<BR>
-[����]<BR>
-<BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���s<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　失敗<BR>
 <BR>
 <BR>
-<B><A name="PushTorikesiButton"></A><FONT size="+1">int PushTorikesiButton()</FONT></B>�@�@�i�g�E������J���j<BR>
-<BR>
-�����̑ҍ��ɂ���Ƃ��A�u�\�����v�{�^���������B<BR>
-<BR>
-[����]<BR>
-<BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���s<BR>
 <BR>
 <BR>
-<B><A name="PushYoyakuButton"></A><FONT size="+1">int PushYoyakuButton()</FONT></B>�@�@�i�g�E������J���j<BR>
+<B><A name="PushSyuuryouButton"></A><FONT size="+1">int PushSyuuryouButton()</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�����̑ҍ��ɂ���Ƃ��A�u�\��v�{�^���������B<BR>
+東風の待合にいるとき、「終了」ボタンを押す。<BR>
 <BR>
-[����]<BR>
+[引数]<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���s<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　失敗<BR>
+<BR>
+<BR>
+<B><A name="PushTonpuConnectionButton"></A><FONT size="+1">int PushTonpuConnectionButton()</FONT></B>　　（紅孔雀さん開発）<BR>
+<BR>
+東風への接続試行を開始する（接続ボタンを押す）。<BR>
+<BR>
+[引数]<BR>
+<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　失敗<BR>
+<BR>
+<BR>
+<B><A name="PushTorikesiButton"></A><FONT size="+1">int PushTorikesiButton()</FONT></B>　　（紅孔雀さん開発）<BR>
+<BR>
+東風の待合にいるとき、「予約取消」ボタンを押す。<BR>
+<BR>
+[引数]<BR>
+<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　失敗<BR>
+<BR>
+<BR>
+<B><A name="PushYoyakuButton"></A><FONT size="+1">int PushYoyakuButton()</FONT></B>　　（紅孔雀さん開発）<BR>
+<BR>
+東風の待合にいるとき、「予約」ボタンを押す。<BR>
+<BR>
+[引数]<BR>
+<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　失敗<BR>
 <BR>
 <BR>
 <B><A name="RClick"></A><FONT size="+1">int RClick(void)</FONT></B><BR>
 <BR>
-�����̉�ʂŉE�N���b�N���邽�߂̊֐��B�|����`�[���L�����Z������ꍇ�ɗp����B<BR>
+東風の画面で右クリックするための関数。ポンやチーをキャンセルする場合に用いる。<BR>
 <BR>
-[����]<BR>
+[引数]<BR>
 <BR>
-[�Ԃ�l]<BR>
+[返り値]<BR>
 <BR>
 <BR>
-<B><A name="SelectTaku"></A><FONT size="+1">int SelectTaku(int TakuType,int TakuNo)</FONT></B>�@�@�i�g�E������J���j<BR>
+<B><A name="SelectTaku"></A><FONT size="+1">int SelectTaku(int TakuType,int TakuNo)</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�ҍ��ŁA���I������֐��B<BR>
+待合で、卓を選択する関数。<BR>
 <BR>
-[����]<BR>
-TakuType�@���X�g�{�b�N�X���̂ǂ̑��ނ�I�����邩���w�肷��B02/07/30���݂ł́@0�@���C���C��y�`���b�g���S�z�@1�@���C���C��y�������S�z�@�E�E�E�@4�@��������<BR>
-TakuNo�@���̑��ނ̒��ł́A���ΓI�ȑ�̈ʒu���w���B�Ⴆ�Β�������501�삩��n�܂��Ă���Ƃ���ƁATakuTypa=4�ATakuNo=0�Ƃ���ƁA501����w�肵�����ƂɂȂ�B<BR>
+[引数]<BR>
+TakuType　リストボックス内のどの卓種類を選択するかを指定する。02/07/30現在では　0　ワイワイ卓【チャット中心】　1　ワイワイ卓【麻雀中心】　・・・　4　超ラン卓<BR>
+TakuNo　その卓種類の中での、相対的な卓の位置を指す。例えば超ランが501卓から始まっているとすると、TakuTypa=4、TakuNo=0とすると、501卓を指定したことになる。<BR>
 <BR>
-[�Ԃ�l]<BR>
--1�@���s�i���̑��ނ����݂��Ȃ��A��ԍ����傫������A�Ȃǁj<BR>
+[返り値]<BR>
+-1　失敗（その卓種類が存在しない、卓番号が大きすぎる、など）<BR>
 <BR>
-���ӓ_�F<BR>
-���ނ��Ƃ̑�̐��́A�������̃o�[�W�����ɂ���Ď኱�ω����邱�Ƃ�����̂Œ��ӂ���B<BR>
+注意点：<BR>
+卓種類ごとの卓の数は、東風荘のバージョンによって若干変化することもあるので注意する。<BR>
 <BR>
 <BR>
 <B><A name="SendChat"></A><FONT size="+1">int SendChat(char * strings,int nonsense,int
-mode)</FONT></B>�@�@�i�g�E������J���j<BR>
+mode)</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�`���b�g�o�͂��s���֐��B<BR>
-�Ⴆ�΁@strings[]=&quot;/w �v���C���[��&quot;�@�ɂ��Ă��̊֐����Ăяo���ƁA�����̃`���b�g�E�C���h�E��/w
-�������ʂ��\�������B<BR>
-�`���b�g�̕��͍ő���͐�64�����i���p�j�Ȃ̂ŁA64�����𒴂���ꍇ�͎����I��64�����܂łɐ؂�l�߂��đ��M�����B<BR>
+チャット出力を行う関数。<BR>
+例えば　strings[]=&quot;/w プレイヤー名&quot;　にしてこの関数を呼び出すと、東風のチャットウインドウに/w
+した結果が表示される。<BR>
+チャットの幅は最大入力数64文字（半角）なので、64文字を超える場合は自動的に64文字までに切り詰められて送信される。<BR>
 <BR>
-[����]<BR>
-strings�@�`���b�g������B<BR>
-nonsense�@�w�肵�Ă����Ӗ��i�ߋ��̃o�[�W�����Ƃ̌݊����j<BR>
-mode�@0�@�`���b�g�E�C���h�E�ɁA�w�肵��������������ē���@�@0�ȊO�@�`���b�g�E�C���h�E�ɁA�w�肵���������u���i�ǋL�j���ē���<BR>
+[引数]<BR>
+strings　チャット文字列。<BR>
+nonsense　指定しても無意味（過去のバージョンとの互換性）<BR>
+mode　0　チャットウインドウに、指定した文字列を代入して動作　　0以外　チャットウインドウに、指定した文字列を置換（追記）して動作<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���s<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　失敗<BR>
 <BR>
 <BR>
 <B><A name="SetMode"></A><FONT size="+1">int SetMode(int Mode)</FONT></B><BR>
 <BR>
-�Ȍ�AMJexeIO.dll���v�̓ǂݏo�����s���ۂɁA�Ԕv�̔v�ԍ����ǂ��������i�ʏ�̔v�Ƌ�ʕs�\�ɂ��邩�A���ʂȔv�ԍ����g�����j�����肷��B�Ȃ��N�������Mode=0�ł���B<BR>
-�ʏ�A�e���p�C�`�F�b�N��t���e���`�F�b�N�̍ۂɂ͐Ԕv�͖������ėǂ��̂ŁAMode=0��p���A�_���v�Z�ȂǕK�v�ȏꍇ����Mode=1�ɂ���������������Ȃ��B<BR>
+以後、MJexeIO.dllが牌の読み出しを行う際に、赤牌の牌番号をどう扱うか（通常の牌と区別不能にするか、特別な牌番号を使うか）を決定する。なお起動直後はMode=0である。<BR>
+通常、テンパイチェックやフリテンチェックの際には赤牌は無視して良いので、Mode=0を用い、点数計算など必要な場合だけMode=1にする方が混乱が少ない。<BR>
 <BR>
-[����]<BR>
-Mode=0�@�Ԕv�ł����Ă��ʏ�v�Ƃ��Ĉ����B��5�}���̔v�ԍ���5�A��5�s���̔v�ԍ���15�A��5�\�E�̔v�ԍ���25�B<BR>
-Mode=1�@�Ԕv�ɂ͔v�ԍ�38,39,40�����蓖�Ă�B��5�}���̔v�ԍ���38�A��5�s���̔v�ԍ���39�A��5�\�E�̔v�ԍ���40�B<BR>
+[引数]<BR>
+Mode=0　赤牌であっても通常牌として扱う。赤5マンの牌番号は5、赤5ピンの牌番号は15、赤5ソウの牌番号は25。<BR>
+Mode=1　赤牌には牌番号38,39,40を割り当てる。赤5マンの牌番号は38、赤5ピンの牌番号は39、赤5ソウの牌番号は40。<BR>
 <BR>
-[�Ԃ�l]<BR>
+[返り値]<BR>
 0<BR>
 <BR>
 <BR>
 <B><A name="SetTonpuConnectionInfo"></A><FONT size="+1">int SetTonpuConnectionInfo(int server,char
-*number,char *password)</FONT></B>�@�@�i�g�E������J���j<BR>
+*number,char *password)</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�������̐ڑ��E�B���h�E�ɐڑ������Z�b�g����B<BR>
+東風荘の接続ウィンドウに接続情報をセットする。<BR>
 <BR>
-[����]<BR>
-server�@�ڑ�����T�[�o(1�`3=���`��O,4=VIP)<BR>
-number�@����ԍ�<BR>
-password�@�p�X���[�h<BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���s<BR>
+[引数]<BR>
+server　接続するサーバ(1～3=第一～第三,4=VIP)<BR>
+number　会員番号<BR>
+password　パスワード<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　失敗<BR>
 <BR>
 <BR>
 <B><A name="SimulateOrder"></A><FONT size="+1">int SimulateOrder<BR>
 (int kaze,<BR>
-�@int furohais1[50],int furohais2[50],int
+　int furohais1[50],int furohais2[50],int
 furohais3[50],int furohais4[50],int furokosuus[5],<BR>
-�@int sutehais1[50],int sutehais2[50],int
+　int sutehais1[50],int sutehais2[50],int
 sutehais3[50],int sutehais4[50],int sutehaikosuus[5],<BR>
-�@int sutehaidatas1[50],int sutehaidatas2[50],int
+　int sutehaidatas1[50],int sutehaidatas2[50],int
 sutehaidatas3[50],int sutehaidatas4[50])</FONT></B><BR>
 <BR>
-�̂Ĕv�A�t�[���v�̏�񂩂�A�v�̏��������߂邽�߂̃V�~�����[�V�������s���B<BR>
-�Ⴆ�΃|���`�[�����藐��Ă���Ƃ��Ɂu�e�̂T�Ԗڂ̎̂Ĕv�ƁA��Ƃ̂T�Ԗڂ̎̂Ĕv�́A�ǂ��炪��ɐ؂�ꂽ���H�v�Ƃ������Ƃ��擾���邽�߂̏����Ƃ��Ă��̊֐����ĂԁB<BR>
-���̌��ʂ́AGetOrder�֐��œǂݏo�����Ƃ��ł���B<BR>
-���@�Ƃ��ẮA<A href="MJexeIODLL0.html" target="TOP"><U><FONT color="#0000FF">������</FONT></U></A>�A���S���Y���̊T��������B<BR>
+捨て牌、フーロ牌の情報から、牌の順序を求めるためのシミュレーションを行う。<BR>
+例えばポンチーが入り乱れているときに「親の５番目の捨て牌と、南家の５番目の捨て牌は、どちらが先に切られたか？」ということを取得するための準備としてこの関数を呼ぶ。<BR>
+この結果は、GetOrder関数で読み出すことができる。<BR>
+方法としては、<A href="MJexeIODLL0.html" target="TOP"><U><FONT color="#0000FF">ここに</FONT></U></A>アルゴリズムの概略がある。<BR>
 <BR>
-[����]<BR>
-kaze�@��O�̃v���C���[�̕��BGetKaze�Ŏ擾�����Ԃ�l<BR>
-furohais1�@GetFurohai�ɂ���ē���ꂽ�A�v���C���[1�̃t�[���v�f�[�^���̂���<BR>
-furohais2�@GetFurohai�ɂ���ē���ꂽ�A�v���C���[2�̃t�[���v�f�[�^���̂���<BR>
-furohais3�@GetFurohai�ɂ���ē���ꂽ�A�v���C���[3�̃t�[���v�f�[�^���̂���<BR>
-furohais4�@GetFurohai�ɂ���ē���ꂽ�A�v���C���[4�̃t�[���v�f�[�^���̂���<BR>
-furokosuus[n]�@�v���C���[n�́A�t�[�����BGetFurohai�̕Ԃ�l������B<BR>
-sutehais1�@GetSutehaiEx�ɂ���ē���ꂽ�A�v���C���[1��sutehai�f�[�^���̂���<BR>
-sutehais2�@GetSutehaiEx�ɂ���ē���ꂽ�A�v���C���[2��sutehai�f�[�^���̂���<BR>
-sutehais3�@GetSutehaiEx�ɂ���ē���ꂽ�A�v���C���[3��sutehai�f�[�^���̂���<BR>
-sutehais4�@GetSutehaiEx�ɂ���ē���ꂽ�A�v���C���[4��sutehai�f�[�^���̂���<BR>
-sutehais[n]�@�v���C���[n�́A�ǂݏo�����̂Ĕv�̌��BGetSutehai�̕Ԃ�l������B<BR>
-sutehaidatas1�@GetSutehaiEx�ɂ���ē���ꂽ�A�v���C���[1��sutehaidata�f�[�^���̂���<BR>
-sutehaidatas2�@GetSutehaiEx�ɂ���ē���ꂽ�A�v���C���[2��sutehaidata�f�[�^���̂���<BR>
-sutehaidatas3�@GetSutehaiEx�ɂ���ē���ꂽ�A�v���C���[3��sutehaidata�f�[�^���̂���<BR>
-sutehaidatas4�@GetSutehaiEx�ɂ���ē���ꂽ�A�v���C���[4��sutehaidata�f�[�^���̂���<BR>
+[引数]<BR>
+kaze　手前のプレイヤーの風。GetKazeで取得した返り値<BR>
+furohais1　GetFurohaiによって得られた、プレイヤー1のフーロ牌データそのもの<BR>
+furohais2　GetFurohaiによって得られた、プレイヤー2のフーロ牌データそのもの<BR>
+furohais3　GetFurohaiによって得られた、プレイヤー3のフーロ牌データそのもの<BR>
+furohais4　GetFurohaiによって得られた、プレイヤー4のフーロ牌データそのもの<BR>
+furokosuus[n]　プレイヤーnの、フーロ数。GetFurohaiの返り値を入れる。<BR>
+sutehais1　GetSutehaiExによって得られた、プレイヤー1のsutehaiデータそのもの<BR>
+sutehais2　GetSutehaiExによって得られた、プレイヤー2のsutehaiデータそのもの<BR>
+sutehais3　GetSutehaiExによって得られた、プレイヤー3のsutehaiデータそのもの<BR>
+sutehais4　GetSutehaiExによって得られた、プレイヤー4のsutehaiデータそのもの<BR>
+sutehais[n]　プレイヤーnの、読み出せた捨て牌の個数。GetSutehaiの返り値を入れる。<BR>
+sutehaidatas1　GetSutehaiExによって得られた、プレイヤー1のsutehaidataデータそのもの<BR>
+sutehaidatas2　GetSutehaiExによって得られた、プレイヤー2のsutehaidataデータそのもの<BR>
+sutehaidatas3　GetSutehaiExによって得られた、プレイヤー3のsutehaidataデータそのもの<BR>
+sutehaidatas4　GetSutehaiExによって得られた、プレイヤー4のsutehaidataデータそのもの<BR>
 <BR>
-[�Ԃ�l]<BR>
--1�@���s�i�ǂꂩ�̃f�[�^�����������j<BR>
-0�@����<BR>
+[返り値]<BR>
+-1　失敗（どれかのデータがおかしい）<BR>
+0　成功<BR>
 <BR>
 <BR>
-<B><A name="SuperQuickWatching"></A><FONT size="+1">int SuperQuickWatching()</FONT></B>�@�@�i�g�E������J���j<BR>
+<B><A name="SuperQuickWatching"></A><FONT size="+1">int SuperQuickWatching()</FONT></B>　　（紅孔雀さん開発）<BR>
 <BR>
-�`���쁨���C�쁨�E�E�E�̏��Ŋϐ�ł�����T���A�u�Ԋϐ���s���֐��B<BR>
+チャ卓→ワイ卓→・・・の順で観戦できる卓を探し、瞬間観戦を行う関数。<BR>
 <BR>
-[����]<BR>
-�Ȃ�<BR>
+[引数]<BR>
+なし<BR>
 <BR>
-[�Ԃ�l]<BR>
-0�@����<BR>
--1�@���s<BR>
+[返り値]<BR>
+0　成功<BR>
+-1　失敗<BR>
 <BR>
 <BR>
 <B><A name="TehaiNormalize"></A><FONT size="+1">int TehaiNormalize(int norm_pai[],int pai[])<BR>
 </FONT></B><BR>
-�Ԕv�����pai[]����A�ʏ��norm_pai[]�ɕϊ�����B<BR>
-�܂�pai[38]�i��5�}���j��norm_pai[5]�i5�}���j�ɕϊ�����Anorm_pai[38]��0�ɂȂ�悤�ȓ��������B<BR>
-����`�̔v�ԍ��̔v��0�ɂȂ�B<BR>
-�v�̕��z�Ȃǂ𐔂�����A�Ō�ɂ�����Ăяo�����ƂŁA�Ԕv�𖳎������������s�����Ƃ��ł���B<BR>
-�Ȃ��Anorm_pai[]�̗v�f����49�܂łɑ΂��ď������݂��s���\��������B<BR>
+赤牌入りのpai[]から、通常のnorm_pai[]に変換する。<BR>
+つまりpai[38]（赤5マン）はnorm_pai[5]（5マン）に変換され、norm_pai[38]は0になるような動作をする。<BR>
+未定義の牌番号の牌は0になる。<BR>
+牌の分布などを数えた後、最後にこれを呼び出すことで、赤牌を無視した処理を行うことができる。<BR>
+なお、norm_pai[]の要素数は49までに対して書き込みを行う可能性がある。<BR>
 <BR>
-[����]<BR>
-norm_pai[]�@�ϊ����ꂽ�v������B<BR>
-pai[]�@�ϊ�����v������B<BR>
+[引数]<BR>
+norm_pai[]　変換された牌が入る。<BR>
+pai[]　変換する牌を入れる。<BR>
 <BR>
-[�Ԃ�l]<BR>
+[返り値]<BR>
 0<BR>
 <BR>
 <BR>
-<FONT size="+1"><B><FONT size="+2">���T���v���R�[�h��</FONT></B></FONT><BR>
+<FONT size="+1"><B><FONT size="+2">★サンプルコード★</FONT></B></FONT><BR>
 <BR>
 <BR>
-<B><A name="sample1"></A><FONT size="+1">�T���v���R�[�h�P�E��Ɍ����Ă���v�̖����̐����グ</FONT></B><BR>
+<B><A name="sample1"></A><FONT size="+1">サンプルコード１・場に見えている牌の枚数の数え上げ</FONT></B><BR>
 <BR>
-�ŏ��̃T���v���R�[�h�́u�ȉ������R�ɃR�[�f�B���O����v�̕����ɁA���̂悤�ȃR�[�h�������ƁA�u�������猩����ɏo���v�̖����v��bahai[]�Ɏ�荞�ނ��Ƃ��ł��܂��B<BR>
-�������Abahai[]�͕ʓr�錾���A���������Ă����Ă��������B<BR>
-�܂�������m�F���邽�߂ɂ�ShowMessage�Ȃǂ�p���āAbahai[]�̓��e��\�����Ă��������B<BR>
+最初のサンプルコードの「以下を自由にコーディングする」の部分に、次のようなコードを書くと、「自分から見た場に出た牌の枚数」をbahai[]に取り込むことができます。<BR>
+もちろん、bahai[]は別途宣言し、初期化しておいてください。<BR>
+また動作を確認するためにはShowMessageなどを用いて、bahai[]の内容を表示してください。<BR>
 <BR>
-���̃R�[�h�ŏd�v�Ȃ̂̓t�[���v�̎�舵�����ł��B<BR>
-�t�[���v�̕\���͎኱��₱�����̂ŁA���ӂ��Ă��������B<BR>
+このコードで重要なのはフーロ牌の取り扱い方です。<BR>
+フーロ牌の表現は若干ややこしいので、注意してください。<BR>
 <BR>
-���̃R�[�h�ł͑��ɂ���u�v���C���[�v���猩���S�Ă̔v�̎�舵�����s���Ă��܂��B<BR>
-���̃R�[�h�������ύX���邱�ƂŁA���̔v��e�ՂɎ擾���邱�Ƃ��ł��܂��B<BR>
-�Ȃ��A���ۂ̎g�p�̍ۂɂ́A�Ⴆ�΂S�l�ڂ̃t�[���v���擾����^�C�~���O�œ������E�C���h�E�����̃E�C���h�E�ɂ���ĉB���ꂽ�肷�邱�Ƃɂ��擾���s�̉\�������邽�߁A����̔v�ǂݍ��݂ɑ΂��ă`�F�b�N���s���ׂ��ł��B<BR>
+このコードでは卓上にある「プレイヤー」から見た全ての牌の取り扱いを行っています。<BR>
+このコードを少し変更することで、卓上の牌を容易に取得することができます。<BR>
+なお、実際の使用の際には、例えば４人目のフーロ牌を取得するタイミングで東風荘ウインドウが他のウインドウによって隠されたりすることによる取得失敗の可能性があるため、毎回の牌読み込みに対してチェックを行うべきです。<BR>
 <BR>
 <BR>
-int index=0; //�v���w�����߂̔ėp�ϐ�<BR>
+int index=0; //牌を指すための汎用変数<BR>
 <BR>
-//�h���\���v�Ɏg���Ă��閇�������J�E���g<BR>
+//ドラ表示牌に使われている枚数分をカウント<BR>
 int gettmp=GetDorahai(size,tmphai);<BR>
-if(gettmp&lt;=0){ShowMessage(&quot;�h���擾���s&quot;);return;}<BR>
+if(gettmp&lt;=0){ShowMessage(&quot;ドラ取得失敗&quot;);return;}<BR>
 for(int i=1;i&lt;=tmphai[0];i++)<BR>
 {<BR>
 index=tmphai[i];<BR>
 bahai[index]++;<BR>
 }<BR>
 <BR>
-//�����̎�v�Ɏg���Ă��閇�������J�E���g<BR>
+//自分の手牌に使われている枚数分をカウント<BR>
 gettmp=GetTehai(size,tmphai);<BR>
 if(gettmp&gt;=1)<BR>
 for(int i=1;i&lt;=37;i++)<BR>
@@ -1179,11 +1179,11 @@ for(int i=1;i&lt;=37;i++)<BR>
 bahai[i]+=tmphai[i];<BR>
 }<BR>
 <BR>
-//�S�l���̎̂Ĕv�Ɏg���Ă��閇�������J�E���g<BR>
-for(int j=1;j&lt;=4;j++) //�e�v���C���[�ɓn���ČJ��Ԃ�<BR>
+//４人分の捨て牌に使われている枚数分をカウント<BR>
+for(int j=1;j&lt;=4;j++) //各プレイヤーに渡って繰り返し<BR>
 {<BR>
 gettmp=GetSutehai(j,size,tmphai);<BR>
-if(gettmp&lt;0){ShowMessage(&quot;�̂Ĕv�擾���s&quot;);return;}<BR>
+if(gettmp&lt;0){ShowMessage(&quot;捨て牌取得失敗&quot;);return;}<BR>
 if(gettmp&gt;=1)<BR>
 for(int i=1;i&lt;=gettmp;i++)<BR>
 {<BR>
@@ -1192,44 +1192,44 @@ bahai[index]++;<BR>
 }<BR>
 }<BR>
 <BR>
-//�S�l���̃t�[���v�Ɏg���Ă��閇�������J�E���g<BR>
-for(int j=1;j&lt;=4;j++) //�e�v���C���[�ɓn���ČJ��Ԃ�<BR>
+//４人分のフーロ牌に使われている枚数分をカウント<BR>
+for(int j=1;j&lt;=4;j++) //各プレイヤーに渡って繰り返し<BR>
 {<BR>
 gettmp=GetFurohai(j,size,tmphai);<BR>
 if(gettmp&gt;0)<BR>
-for(int k=1;k&lt;=gettmp;k++) //���Y�v���C���[�̃t�[���������J��Ԃ�<BR>
+for(int k=1;k&lt;=gettmp;k++) //当該プレイヤーのフーロ数だけ繰り返す<BR>
 {<BR>
-if(tmphai[0+4*(k-1)]==1) //���̃t�[���̎�ނ�1�i�|���j�Ȃ�<BR>
+if(tmphai[0+4*(k-1)]==1) //そのフーロの種類が1（ポン）なら<BR>
 {<BR>
 index=tmphai[1+4*(k-1)];<BR>
-bahai[index]+=3; //�|���̎��ƂȂ��Ă���v���R���u��ɏo���v�Ƃ݂Ȃ�<BR>
+bahai[index]+=3; //ポンの軸となっている牌を３枚「場に出た」とみなし<BR>
 index=tmphai[2+4*(k-1)];<BR>
-bahai[index]--; //�|�����ꂽ�v�́A�̂Ĕv�Ƃ̃_�u���J�E���g���l������<BR>
+bahai[index]--; //ポンされた牌の、捨て牌とのダブルカウントを考慮する<BR>
 }<BR>
 <BR>
-else if(tmphai[0+4*(k-1)]==2) //���̃t�[���̎�ނ�2�i�`�[�j�Ȃ�<BR>
+else if(tmphai[0+4*(k-1)]==2) //そのフーロの種類が2（チー）なら<BR>
 {<BR>
 index=tmphai[1+4*(k-1)];<BR>
 bahai[index]++;<BR>
 bahai[index+1]++;<BR>
-bahai[index+2]++; //�`�[����Ă���v���A���̎���������R�u��ɏo���v�Ƃ݂Ȃ�<BR>
+bahai[index+2]++; //チーされている牌を、その軸部分から３つ「場に出た」とみなし<BR>
 index=tmphai[2+4*(k-1)];<BR>
-bahai[index]--; //�`�[���ꂽ�v�́A�̂Ĕv�Ƃ̃_�u���J�E���g���l������<BR>
+bahai[index]--; //チーされた牌の、捨て牌とのダブルカウントを考慮する<BR>
 }<BR>
 <BR>
-else if(tmphai[0+4*(k-1)]==3) //���̃t�[���̎�ނ�3�i�A���J���j�Ȃ�<BR>
+else if(tmphai[0+4*(k-1)]==3) //そのフーロの種類が3（アンカン）なら<BR>
 {<BR>
 index;<BR>
 index=tmphai[1+4*(k-1)];<BR>
-bahai[index]+=4; //�J���̎��ƂȂ��Ă���v���S���u��ɏo���v�Ƃ݂Ȃ�<BR>
+bahai[index]+=4; //カンの軸となっている牌を４枚「場に出た」とみなす<BR>
 }<BR>
 <BR>
-else if(tmphai[0+4*(k-1)]==4) //���̃t�[���̎�ނ�4�i�~���J���j�Ȃ�<BR>
+else if(tmphai[0+4*(k-1)]==4) //そのフーロの種類が4（ミンカン）なら<BR>
 {<BR>
 int index=tmphai[1+4*(k-1)];<BR>
-bahai[index]+=4; //�J���̎��ƂȂ��Ă���v���S���u��ɏo���v�Ƃ݂Ȃ�<BR>
+bahai[index]+=4; //カンの軸となっている牌を４枚「場に出た」とみなし<BR>
 index=tmphai[2+4*(k-1)];<BR>
-bahai[index]--; //�J�����ꂽ�v�́A�̂Ĕv�Ƃ̃_�u���J�E���g���l������<BR>
+bahai[index]--; //カンされた牌の、捨て牌とのダブルカウントを考慮する<BR>
 }<BR>
 }<BR>
 }<BR>
@@ -1237,57 +1237,57 @@ bahai[index]--; //�J�����ꂽ�v�́A�̂Ĕv�Ƃ̃_�u���J�E���g���l������<BR>
 <BR>
 <BR>
 <BR>
-<B><A name="sample2"></A><FONT size="+1">�T���v���R�[�h�Q�E�e���p�C�`�F�b�N�i�オ��v���ׁA�҂��̌`������܂ށj</FONT></B><BR>
+<B><A name="sample2"></A><FONT size="+1">サンプルコード２・テンパイチェック（上がり牌調べ、待ちの形判定を含む）</FONT></B><BR>
 <BR>
-�ŏ��̃T���v���R�[�h�́u�ȉ������R�ɃR�[�f�B���O����v�̕����ɁA���̂悤�ȃR�[�h�������ƁA�u�����̎�v���e���p�C���Ă��邩�ǂ����v�u�オ��v�͉����v�u�҂��̌`�͉����v�𔻕ʂł��܂��B<BR>
-������m�F���邽�߂ɂ͓K�X���ʂ�\�������Ă��������B<BR>
-Check_tenpai�̕Ԃ�l�ɂ��Ă̏ڍׂ̓}�j���A���{��������񂭂������B<BR>
+最初のサンプルコードの「以下を自由にコーディングする」の部分に、次のようなコードを書くと、「自分の手牌がテンパイしているかどうか」「上がり牌は何か」「待ちの形は何か」を判別できます。<BR>
+動作を確認するためには適宜結果を表示させてください。<BR>
+Check_tenpaiの返り値についての詳細はマニュアル本文をごらんください。<BR>
 <BR>
 <BR>
 char tehai[100];<BR>
 char agaripais[100];<BR>
-int size; //�K���ɐ錾<BR>
+int size; //適当に宣言<BR>
 <BR>
-size=GetHaiSize(); //�v�T�C�Y�̎擾<BR>
-SetMode(0); //�Ԕv�𖳎����Ď擾����<BR>
-int kosuu=GetTehai(size,tehai); //��v���擾���A�擾�ł���������ێ�<BR>
+size=GetHaiSize(); //牌サイズの取得<BR>
+SetMode(0); //赤牌を無視して取得する<BR>
+int kosuu=GetTehai(size,tehai); //手牌を取得し、取得できた枚数を保持<BR>
 if(kosuu%3==2){int index=GetRightestTehai();tehai[index]--;}
-//�����������c����������Ȃ�A�c�����Ă����v����v���珜��<BR>
+//もし自分がツモった直後なら、ツモってきた牌を手牌から除く<BR>
 int tenpai=Check_tenpai(tehai,agaripais);
-//�e���p�C�`�F�b�N���s��<BR>
+//テンパイチェックを行う<BR>
 <BR>
 <BR>
 <BR>
 <BR>
-<B><A name="sample3"></A><FONT size="+1">�T���v���R�[�h�R</FONT><FONT color="#FF0000">�i���S�Ҍ����E�I�X�X���j</FONT><FONT size="+1">�E�ꊇ�u/w�v</FONT></B><BR>
+<B><A name="sample3"></A><FONT size="+1">サンプルコード３</FONT><FONT color="#FF0000">（初心者向け・オススメ）</FONT><FONT size="+1">・一括「/w」</FONT></B><BR>
 <BR>
-�ŏ��̃T���v���R�[�h�́u�ȉ������R�ɃR�[�f�B���O����v�̕����ɁA���̂悤�ȃR�[�h�������ƁA�w�肳�ꂽ�g�m���ꊇ�����������ʂ��A�����̃`���b�g�E�C���h�E�ɕ\���������܂��B<BR>
-�Ȃ��Astrcpy��C�̕W���֐��ł��B<BR>
-�K�v�ȏꍇ�i�ustrcpy�͖���`�v�Ȃǂ̃G���[���o��ꍇ�j�́A�v���O�����̈�ԍŏ���#include&quot;string.h&quot;���L�q���܂��i�����������ꍇ�̓}�j���A���⌟���Łustrcpy�v�𒲂ׂ�N�Z�����Ă��������j�B<BR>
+最初のサンプルコードの「以下を自由にコーディングする」の部分に、次のようなコードを書くと、指定されたＨＮを一括検索した結果を、東風のチャットウインドウに表示させられます。<BR>
+なお、strcpyはCの標準関数です。<BR>
+必要な場合（「strcpyは未定義」などのエラーが出る場合）は、プログラムの一番最初に#include&quot;string.h&quot;を記述します（こういった場合はマニュアルや検索で「strcpy」を調べるクセをつけてください）。<BR>
 <BR>
 int i;<BR>
-char str[1024]; //�Ԃ�l�󂯎��p�̕�����<BR>
+char str[1024]; //返り値受け取り用の文字列<BR>
 char players[5][20];<BR>
 <BR>
-strcpy(players[0],&quot;/w �Ƃ������k\0&quot;);<BR>
-strcpy(players[1],&quot;/w �ƂJ������\0&quot;);<BR>
-strcpy(players[2],&quot;/w �g�E������\0&quot;);<BR>
-strcpy(players[3],&quot;/w �o�C�}���L��\0&quot;);<BR>
-strcpy(players[4],&quot;/w �f�V�}���L��\0&quot;);<BR>
+strcpy(players[0],&quot;/w とつげき東北\0&quot;);<BR>
+strcpy(players[1],&quot;/w とつ開発研究\0&quot;);<BR>
+strcpy(players[2],&quot;/w 紅孔雀さん\0&quot;);<BR>
+strcpy(players[3],&quot;/w バイマンキン\0&quot;);<BR>
+strcpy(players[4],&quot;/w デシマンキン\0&quot;);<BR>
 for(i=0;i&lt;5;i++)<BR>
-SendChat(players[i],0,0); //�`���b�g�ɕ����񑗐M<BR>
+SendChat(players[i],0,0); //チャットに文字列送信<BR>
 <BR>
-<B><A href="MJexeIODLLstart.html" target="TOP"><U><FONT color="#0000FF">��̓I�ɂ��̃v���O�����𓮂����ɂ́H</FONT></U></A><BR>
-<BR>
-<BR>
+<B><A href="MJexeIODLLstart.html" target="TOP"><U><FONT color="#0000FF">具体的にこのプログラムを動かすには？</FONT></U></A><BR>
 <BR>
 <BR>
-<A name="sample4"></A><FONT size="+1">�T���v���R�[�h�S�E�|����`�[�����藐�ꂽ��ʂŁA���[�`��ɐ؂�ꂽ�v�͂ǂ����炩�̃`�F�b�N</FONT><BR>
 <BR>
-</B>�u�ȉ������R�ɃR�[�f�B���O����v�̕����ɁA���̂悤�ȃR�[�h�������ƁA<FONT color="#000000">��O�̃v���C���[�i�����j�̃��[�`��ɁA���Ƃ����߂Đ؂����v�̈ʒu��\�����邱�Ƃ��ł��܂��B<BR>
-�ȒP�ȗ�ł����A���G�Ƀ|����`�[�����藐�ꂽ�Î~��ʂ���A�t���e���`�F�b�N�Ȃǂ�e�Ղɍs�����Ƃ��ł��܂��B<BR>
+<BR>
+<A name="sample4"></A><FONT size="+1">サンプルコード４・ポンやチーが入り乱れた画面で、リーチ後に切られた牌はどこからかのチェック</FONT><BR>
+<BR>
+</B>「以下を自由にコーディングする」の部分に、次のようなコードを書くと、<FONT color="#000000">手前のプレイヤー（自分）のリーチ後に、他家が初めて切った牌の位置を表示することができます。<BR>
+簡単な例ですが、複雑にポンやチーが入り乱れた静止画面から、フリテンチェックなどを容易に行うことができます。<BR>
 </FONT><BR>
-//���ȉ������R�ɃR�[�f�B���O����<BR>
+//★以下を自由にコーディングする<BR>
 int furohais[5][50];<BR>
 int sutehais[5][50];<BR>
 int sutehaidatas[5][50];<BR>
@@ -1299,8 +1299,8 @@ memset(sutehaidatas,0,sizeof(int)*5*50);<BR>
 memset(furokosuus,0,sizeof(int)*5);<BR>
 memset(sutehaikosuus,0,sizeof(int)*5);<BR>
 <BR>
-size=GetHaiSize(); //�v�T�C�Y�擾<BR>
-//�ȉ��ASimulateOrder�̂��߂ɕK�v�Ȋe������擾<BR>
+size=GetHaiSize(); //牌サイズ取得<BR>
+//以下、SimulateOrderのために必要な各種情報を取得<BR>
 int kaze=GetKaze(size);<BR>
 for(int i=1;i&lt;=4;i++)<BR>
 {<BR>
@@ -1309,22 +1309,22 @@ furokosuus[i]=j;<BR>
 j=GetSutehaiEx(i,size,sutehais[i],sutehaidatas[i]);<BR>
 sutehaikosuus[i]=j;<BR>
 }<BR>
-//SimulateOrder���Ăяo���ăV�~�����[�g<BR>
+//SimulateOrderを呼び出してシミュレート<BR>
 if(<BR>
 SimulateOrder(kaze,<BR>
 furohais[1],furohais[2],furohais[3],furohais[4],furokosuus,<BR>
 sutehais[1],sutehais[2],sutehais[3],sutehais[4],sutehaikosuus,<BR>
 sutehaidatas[1],sutehaidatas[2],sutehaidatas[3],sutehaidatas[4])<BR>
-==-1){ShowMessage(&quot;�V�~�����[�g���s&quot;);FreeLibrary(
+==-1){ShowMessage(&quot;シミュレート失敗&quot;);FreeLibrary(
 hDll );exit(0);}<BR>
-//���[�`�����邩�H<BR>
-if(sutehais[1][0]&lt;=0){ShowMessage(&quot;��O�v���C���[�̓��[�`���Ă��Ȃ�&quot;);FreeLibrary(
+//リーチがあるか？<BR>
+if(sutehais[1][0]&lt;=0){ShowMessage(&quot;手前プレイヤーはリーチしていない&quot;);FreeLibrary(
 hDll );exit(0);}<BR>
-//GetOrder�œ���̔v�ȍ~�ɐ؂�ꂽ���Ƃ̔v�̈ʒu���擾���ĕ\��<BR>
+//GetOrderで特定の牌以降に切られた他家の牌の位置を取得して表示<BR>
 int kekkas[5];<BR>
 GetNextOrder(1,sutehais[1][0],kekkas);<BR>
-ShowMessage(&quot;��O�v���C���[�̃��[�`��ɐ؂���v�́A�v���C���[2��&quot;+(AnsiString)kekkas[2]+&quot;�Ԗڂ̎̂Ĕv�A�v���C���[3��&quot;+(AnsiString)kekkas[3]+&quot;�Ԗڂ̎̂Ĕv�A�v���C���[4��&quot;+(AnsiString)kekkas[4]+&quot;�Ԗڂ̎̂Ĕv&quot;);<BR>
-//���ȏ�����R�ɃR�[�f�B���O����<BR>
+ShowMessage(&quot;手前プレイヤーのリーチ後に切られる牌は、プレイヤー2の&quot;+(AnsiString)kekkas[2]+&quot;番目の捨て牌、プレイヤー3の&quot;+(AnsiString)kekkas[3]+&quot;番目の捨て牌、プレイヤー4の&quot;+(AnsiString)kekkas[4]+&quot;番目の捨て牌&quot;);<BR>
+//★以上を自由にコーディングする<BR>
 <BR>
 <BR>
 <BR>
